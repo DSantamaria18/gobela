@@ -1,6 +1,7 @@
 package gobela
 
 import grails.core.GrailsApplication
+import grails.gorm.PagedResultList
 import jxl.Workbook
 import jxl.write.*
 import jxl.WorkbookSettings
@@ -192,7 +193,7 @@ class SolicitudController {
     }
 
     def buscarSolicitud(params){
-        def resultList = SolicitudesService.buscarSolicitudesPorNumeroOPorDescripcion(params).solicitudInstanceList
-        respond resultList
+        PagedResultList<Solicitud> resultList = SolicitudesService.buscarSolicitudesPorNumeroOPorDescripcion(params).solicitudInstanceList
+        [resultList: resultList, solicitudCount: resultList.size()]
     }
 }
