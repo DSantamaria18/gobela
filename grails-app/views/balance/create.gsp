@@ -25,9 +25,20 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.balance}" method="POST">
+
+        %{--<g:form resource="${this.balance}" method="POST">
                 <fieldset class="form">
                     <f:all bean="balance"/>
+                </fieldset>
+                <fieldset class="buttons">
+                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                </fieldset>
+            </g:form>--}%
+
+            <g:form url="[resource:balance, action:'save']" >
+                <input type="hidden" name="solicitud" value="${params.solicitudId}" />
+                <fieldset class="form">
+                    <g:render template="form"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
