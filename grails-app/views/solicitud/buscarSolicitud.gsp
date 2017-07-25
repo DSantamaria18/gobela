@@ -14,14 +14,6 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><g:link class="list" action="informeAnual">Informe Anual</g:link></li>
-        %{--<li><g:link class="list" action="create">Informe Semestral</g:link></li>--}%
-    </ul>
-    <ul>
-        <div class="paginateButtons">
-            %{--  <g:paginate total="${solicitudInstance.count()}"/>--}%
-            <export:formats formats="['csv', 'excel', 'ods', 'pdf', 'rtf', 'xml']"/>
-        </div>
     </ul>
 </div>
 
