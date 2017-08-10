@@ -1,6 +1,4 @@
-<%@ page import="gobela21.Balance" %>
-
-
+<%@ page import="gobela.Balance" %>
 
 <div class="fieldcontain ${hasErrors(bean: balance, field: 'gastosEjercicioAnterior', 'error')} required">
     <label for="gastosEjercicioAnterior">

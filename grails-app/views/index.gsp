@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Welcome to Grails</title>
+    <title>Gobela21</title>
+    %{--<title>Welcome to Grails</title>--}%
 
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico" />
 </head>
@@ -47,6 +48,11 @@
 
     <div class="svg" role="presentation">
         <div class="grails-logo-container">
+            %{--<asset:image src="gobela21/various-sports-groups.jpeg" class="grails-logo"/>--}%
+            %{--<asset:image src="gobela21/Fadura.jpg" class="grails-logo"/>--}%
+            %{--<asset:image src="gobela21/sports2.jpg" class="grails-logo"/>--}%
+            %{--<asset:image src="gobela21/sports.jpg" class="grails-logo"/>--}%
+            %{--<asset:image src="gobela21/kirolak_apaisado_copiar_2.jpg" class="grails-logo"/>--}%
             <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>
         </div>
     </div>
