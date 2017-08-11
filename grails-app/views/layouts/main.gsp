@@ -10,6 +10,7 @@
 
     %{--<asset:stylesheet src="application3.css"/>--}%
     <asset:stylesheet src="application.css"/>
+    <asset:javascript src="application.js"/>
 
     <g:layoutHead/>
 </head>
@@ -51,7 +52,7 @@
     <g:message code="spinner.alt" default="Loading&hellip;"/>
 </div>
 
-<asset:javascript src="application.js"/>
+
 
 </body>
 </html>
