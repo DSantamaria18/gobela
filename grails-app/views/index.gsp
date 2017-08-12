@@ -105,6 +105,7 @@
 
         <h2>Modificaciones 11/08/2017:</h2>
         <ul>
+            <li>Adaptado nuevo versionado</li>
             <li>Adaptaciones para control de acceso</li>
             <li>Nuevos menús en Home</li>
             <li>Adaptadas estadísticas a nueva versión</li>
@@ -175,7 +176,7 @@
 
         <h2>Modificaciones 26/03/2017:</h2>
         <ul>
-            <li>Añadido resumen de cambios en Home</li>
+            <li>Añadido resumen de cambios en página de inicio</li>
             <li>Añadida la suma automática de puntos en las valoraciones (Excepto Línea 2)</li>
             <li>Añadido el cálculo automático del importe concedido (Excepto Línea 2)</li>
         </ul>

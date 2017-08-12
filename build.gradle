@@ -12,7 +12,11 @@ buildscript {
     }
 }
 
-version "0.1"
+def date = new Date()
+def formattedDate = date.format('yyMMddHHmm')
+def build = formattedDate.toInteger()
+
+version "$appMajorVersion.$appMinorVersion.$build"
 group "gobela"
 
 apply plugin:"eclipse"
