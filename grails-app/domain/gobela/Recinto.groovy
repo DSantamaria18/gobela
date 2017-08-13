@@ -4,11 +4,10 @@ class Recinto {
 
     String nombre
 
-//    static hasMany = [evento: Evento]
+    static hasMany = [evento: RecintosEvento]
 
 
     static constraints = {
         nombre(nullable: false, blank: false)
-//        evento(nullable: true)
     }
 }

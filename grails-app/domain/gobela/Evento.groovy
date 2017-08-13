@@ -6,7 +6,7 @@ class Evento {
     Entidad entidadOrganizadora
     Contacto contacto
     String tipoActividad
-    Modalidad modalidad
+//    Modalidad modalidad
     String ambito
     String tipoPublico
     String publicoDest
@@ -24,6 +24,8 @@ class Evento {
     BigDecimal totalInversion
 
 //    static hasMany = [recinto: Recinto, clubOrganizador: Entidad, entidadColaboradora: Entidad]
+//    static hasMany = [recinto: RecintosEvento]
+    static hasMany = [modalidad: Modalidad]
 
     static constraints = {
         nombre(nullable: false, blank: false)
@@ -35,7 +37,7 @@ class Evento {
         contacto(nullable: true, blank: true)
 //        clubOrganizador(nullable: true, blank:true)
         ambito(inList: ['Local', 'Comarcal', 'Provincial', 'Autonómico', 'Nacional', 'Internacional'])
-        tipoPublico(nullable: false)
+        tipoPublico(inList: ['Todos los públicos', 'Infantil', 'Juvenil', 'Infantil y juvenil', 'Adultos'])
         publicoDest(inList: ['Todos', 'Femenino', 'Masculino'])
 //        recinto(nullable: true)
 //        entidadColaboradora(nullable: true)
