@@ -1,0 +1,10 @@
+package gobela
+
+class Modalidad {
+
+    String nombre
+
+    static constraints = {
+        nombre(nullable:false, blank: false, unique: true)
+    }
+}
