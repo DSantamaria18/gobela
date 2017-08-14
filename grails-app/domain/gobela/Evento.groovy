@@ -5,7 +5,7 @@ class Evento {
     String nombre
     Entidad entidadOrganizadora
     String contacto
-    String clubOrganizador
+    Entidad clubOrganizador
     String tipoActividad
     String ambito
     String tipoPublico
@@ -21,9 +21,9 @@ class Evento {
     Integer horasLimpieza
     BigDecimal costesPersonal
     BigDecimal totalInversion
-    Long modalidad
-    Long recinto
-    Long entidadColaboradora
+    Modalidad modalidad
+    Recinto recinto
+    Entidad entidadColaboradora
 
 //    static hasMany = [modalidad: Modalidad, recintos: Recinto, entidadColaboradora: Entidad]
 

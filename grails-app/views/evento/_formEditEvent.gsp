@@ -42,8 +42,8 @@
     </label>
     <g:select name="modalidad"
               from="${Modalidad.listOrderByNombre()}"
-              value="${evento?.modalidad}"
-              noSelection="${['':'Selecciona una modalidad...']}"
+              value="${evento?.modalidad?.id}"
+              noSelection="${['': 'Selecciona una modalidad...']}"
               optionKey="id"
               optionValue="nombre"/>
 </div>
@@ -56,7 +56,7 @@
 
     <g:select name="entidadOrganizadora"
               from="${gobela.Entidad.listOrderByNombreEntidad()}"
-              value="${evento?.entidadOrganizadora}"
+              value="${evento?.entidadOrganizadora?.id}"
               optionKey="id"
               optionValue="nombreEntidad"/>
 </div>
@@ -75,8 +75,7 @@
     %{--<g:textField name="clubOrganizador" value="${this.evento?.clubOrganizador}"/>--}%
     <g:select name="clubOrganizador"
               from="${gobela.Entidad.listOrderByNombreEntidad()}"
-              value="${evento?.clubOrganizador}"
-              multiple="true"
+              value="${evento?.clubOrganizador?.id}"
               optionKey="id"
               optionValue="nombreEntidad"/>
 </div>
@@ -123,8 +122,8 @@
 
     <g:select name="recintos"
               from="${gobela.Recinto.listOrderByNombre()}"
-              value="${evento?.recinto}"
-              noSelection="${['':'Selecciona un recinto...']}"
+              value="${evento?.recinto?.id}"
+              noSelection="${['': 'Selecciona un recinto...']}"
               optionKey="id"
               optionValue="nombre"/>
 </div>
@@ -137,7 +136,7 @@
 
     <g:select name="entidadColaboradora"
               from="${gobela.Entidad.listOrderByNombreEntidad()}"
-              value="${evento?.entidadColaboradora}"
+              value="${evento?.entidadColaboradora?.id}"
               optionKey="id"
               optionValue="nombreEntidad"/>
 </div>
