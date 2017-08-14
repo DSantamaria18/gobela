@@ -115,13 +115,13 @@
               valueMessagePrefix="evento.publicoDest"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: evento, field: 'recintos', 'error')} required">
-    <label for="recintos">
-        <g:message code="evento.recintos.label" default="Lugar-Recinto:"/>
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'recinto', 'error')} required">
+    <label for="recinto">
+        <g:message code="evento.recinto.label" default="Lugar-Recinto:"/>
         <span class="required-indicator">*</span>
     </label>
 
-    <g:select name="recintos"
+    <g:select name="recinto"
               from="${gobela.Recinto.listOrderByNombre()}"
               value="${evento?.recinto}"
               noSelection="${['':'Selecciona un recinto...']}"
