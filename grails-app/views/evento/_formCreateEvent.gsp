@@ -15,6 +15,13 @@
               value="${fieldValue(bean: evento, field: 'estado')}" valueMessagePrefix="evento.estado"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'relevante', 'error')}">
+    <label for="relevante">
+        <g:message code="evento.relevante.label" default="Evento importante:"/>
+    </label>
+    <g:checkBox name="relevante" value="${evento?.relevante}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'fecha', 'error')} required">
     <label for="fecha">
         <g:message code="evento.fecha.label" default="Fecha del evento:"/>
@@ -47,6 +54,21 @@
               optionKey="id"
               optionValue="nombre"/>
 </div>
+
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'multikirola', 'error')}">
+    <label for="multikirola">
+        <g:message code="evento.multikirola.label" default="Multikirola:"/>
+    </label>
+    <g:checkBox name="multikirola" value="${evento?.multikirola}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'deporteAdaptado', 'error')}">
+    <label for="deporteAdaptado">
+        <g:message code="evento.deporteAdaptado.label" default="Deporte Adaptado:"/>
+    </label>
+    <g:checkBox name="deporteAdaptado" value="${evento?.deporteAdaptado}"/>
+</div>
+
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'entidadOrganizadora', 'error')} required">
     <label for="entidadOrganizadora">

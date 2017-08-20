@@ -25,7 +25,6 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-%{--<f:display bean="evento" />--}%
 
     <ol class="property-list evento">
         <g:if test="${evento?.id}">
@@ -67,6 +66,16 @@
             </li>
         </g:if>
 
+        <g:if test="${evento?.relevante}">
+            <li class="fieldcontain">
+                <span id="relevante-label" class="property-label"><g:message
+                        code="evento.relevante.label"
+                        default="Evento importante:"/></span>
+                <span class="property-value" aria-labelledby="relevante-label"><g:formatBoolean
+                        boolean="${evento?.relevante}"/></span>
+            </li>
+        </g:if>
+
         <g:if test="${evento?.tipoActividad}">
             <li class="fieldcontain">
                 <span id="tipoActividad-label" class="property-label"><g:message
@@ -89,6 +98,26 @@
                     <g:fieldValue bean="${evento.modalidad}"
                                   field="nombre"/>
                 </span>
+            </li>
+        </g:if>
+
+        <g:if test="${evento?.multikirola}">
+            <li class="fieldcontain">
+                <span id="multikirola-label" class="property-label"><g:message
+                        code="evento.multikirola.label"
+                        default="Multikirola:"/></span>
+                <span class="property-value" aria-labelledby="multikirola-label"><g:formatBoolean
+                        boolean="${evento?.multikirola}"/></span>
+            </li>
+        </g:if>
+
+        <g:if test="${evento?.deporteAdaptado}">
+            <li class="fieldcontain">
+                <span id="deporteAdaptado-label" class="property-label"><g:message
+                        code="evento.deporteAdaptado.label"
+                        default="Deporte adaptado:"/></span>
+                <span class="property-value" aria-labelledby="deporteAdaptado-label"><g:formatBoolean
+                        boolean="${evento?.deporteAdaptado}"/></span>
             </li>
         </g:if>
 

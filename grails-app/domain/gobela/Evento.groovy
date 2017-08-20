@@ -24,15 +24,21 @@ class Evento {
     Modalidad modalidad
     Recinto recinto
     Entidad entidadColaboradora
+    Boolean deporteAdaptado
+    Boolean multikirola
+    Boolean relevante
 
 //    static hasMany = [modalidad: Modalidad, recintos: Recinto, entidadColaboradora: Entidad]
 
     static constraints = {
         nombre(nullable: false, blank: false)
-        estado(inList: ['Pendiente', 'Confirmado', 'Rechazado'])
+        estado(inList: ['Pendiente', 'Confirmado', 'Rechazado', 'Finalizado', 'Cancelado'])
         fecha(nullable: false)
-        tipoActividad(inList: ['Formación', 'Multikirola', 'Regular/Competición', 'Exhibición', 'Deporte Adaptado', 'Cultural','Solidario', 'Otros'])
+        relevante()
+        tipoActividad(inList: ['Formación', 'Regular/Competición', 'Exhibición', 'Cultural','Solidario', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Otros'])
         modalidad(nullable: true)
+        multikirola()
+        deporteAdaptado()
         entidadOrganizadora(nullable: false, blank: false)
         contacto(nullable: true, blank: true)
         clubOrganizador(nullable: true, blank:true)
