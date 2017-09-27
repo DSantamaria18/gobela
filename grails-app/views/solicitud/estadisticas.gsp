@@ -1,4 +1,4 @@
-<%@ page import="gobela21.Solicitud" %>
+<%@ page import="gobela.Solicitud" %>
 <!DOCTYPE html>
 <html>
 <head>
