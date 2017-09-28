@@ -241,3 +241,13 @@
     </label>
     <g:textField name="totalInversion" value="${this.evento?.totalInversion}"/>
 </div>--}%
+
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'observaciones', 'error')} ">
+    <label for="observaciones">
+        <g:message code="evento.observaciones.label" default="Observaciones:"/>
+
+    </label>
+    <g:textArea name="observaciones" cols="60" rows="15" maxlength="2000"
+                value="${this.evento?.observaciones}"/>
+
+</div>

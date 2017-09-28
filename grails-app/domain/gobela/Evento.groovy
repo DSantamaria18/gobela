@@ -28,6 +28,7 @@ class Evento {
     Boolean multikirola
     Boolean relevante
     String telefonoContacto
+    String observaciones
 
 //    static hasMany = [modalidad: Modalidad, recintos: Recinto, entidadColaboradora: Entidad]
 
@@ -59,7 +60,6 @@ class Evento {
         horasLimpieza(nullable: true, blank: true)
         costesPersonal(nullable: true, blank: true)
         totalInversion(nullable: true, blank: true)*/
-
-
+        observaciones(nullable: true, blank: true, maxSize: 500)
     }
 }
