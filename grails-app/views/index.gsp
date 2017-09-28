@@ -93,6 +93,14 @@
                 </g:each>
             </ul>
         </div>
+        <h2>Modificaciones 28/09/2017:</h2>
+        <ul>
+            <li>Añadido campo "teléfono contacto" a Evento</li>
+            <li>Modificados tipos dde público</li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
 
         <h2>Modificaciones 11/08/2017:</h2>
         <ul>

@@ -45,7 +45,7 @@ class Evento {
         telefonoContacto(nullable: true, blank: true)
         clubOrganizador(nullable: true, blank:true)
         ambito(inList: ['Local', 'Comarcal', 'Provincial', 'Autonómico', 'Nacional', 'Internacional'])
-        tipoPublico(inList: ['Todos los públicos', 'Infantil', 'Juvenil', 'Infantil y juvenil', 'Adultos'])
+        tipoPublico(inList: ['Todos los públicos', 'Infantil y juvenil', 'Adultos'])
         publicoDest(inList: ['Todos', 'Femenino', 'Masculino'])
         recinto(nullable: true)
         entidadColaboradora(nullable: true)
