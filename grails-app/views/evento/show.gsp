@@ -136,10 +136,20 @@
         <g:if test="${evento?.contacto}">
             <li class="fieldcontain">
                 <span id="contacto-label" class="property-label"><g:message code="evento.contacto.label"
-                                                                            default="Número de evento:"/></span>
+                                                                            default="Contacto:"/></span>
                 <span class="property-value" aria-labelledby="contacto-label"><g:fieldValue
                         bean="${evento}"
                         field="contacto"/></span>
+            </li>
+        </g:if>
+
+        <g:if test="${evento?.telefonoContacto}">
+            <li class="fieldcontain">
+                <span id="telefonoContacto-label" class="property-label"><g:message code="evento.telefonoContacto.label"
+                                                                            default="Teléfono Contacto:"/></span>
+                <span class="property-value" aria-labelledby="telefonoContacto-label"><g:fieldValue
+                        bean="${evento}"
+                        field="telefonoContacto"/></span>
             </li>
         </g:if>
 
@@ -271,7 +281,7 @@
             </li>
         </g:if>
 
-        <g:if test="${evento?.horasMant}">
+        %{--<g:if test="${evento?.horasMant}">
             <li class="fieldcontain">
                 <span id="horasMant-label" class="property-label">
                     <g:message code="evento.horasMant.label"
@@ -334,7 +344,7 @@
                                   field="totalInversion"/>
                 </span>
             </li>
-        </g:if>
+        </g:if>--}%
 
 
     </ol>

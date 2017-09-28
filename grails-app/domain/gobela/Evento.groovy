@@ -16,17 +16,18 @@ class Evento {
     Integer numParticipantesM
     Integer numAsistentes
     Integer numVoluntarios
-    Integer horasMant
+    /*Integer horasMant
     Integer horasDeptivo
     Integer horasLimpieza
     BigDecimal costesPersonal
-    BigDecimal totalInversion
+    BigDecimal totalInversion*/
     Modalidad modalidad
     Recinto recinto
     Entidad entidadColaboradora
     Boolean deporteAdaptado
     Boolean multikirola
     Boolean relevante
+    String telefonoContacto
 
 //    static hasMany = [modalidad: Modalidad, recintos: Recinto, entidadColaboradora: Entidad]
 
@@ -41,6 +42,7 @@ class Evento {
         deporteAdaptado()
         entidadOrganizadora(nullable: false, blank: false)
         contacto(nullable: true, blank: true)
+        telefonoContacto(nullable: true, blank: true)
         clubOrganizador(nullable: true, blank:true)
         ambito(inList: ['Local', 'Comarcal', 'Provincial', 'Autonómico', 'Nacional', 'Internacional'])
         tipoPublico(inList: ['Todos los públicos', 'Infantil', 'Juvenil', 'Infantil y juvenil', 'Adultos'])
@@ -52,11 +54,11 @@ class Evento {
         numParticipantesH(nullable: true, blank: true)
         numAsistentes(nullable: true, blank: true)
         numVoluntarios(nullable: true, blank: true)
-        horasMant(nullable: true, blank: true)
+        /*horasMant(nullable: true, blank: true)
         horasDeptivo(nullable: true, blank: true)
         horasLimpieza(nullable: true, blank: true)
         costesPersonal(nullable: true, blank: true)
-        totalInversion(nullable: true, blank: true)
+        totalInversion(nullable: true, blank: true)*/
 
 
     }

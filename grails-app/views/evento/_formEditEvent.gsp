@@ -89,6 +89,13 @@
     <g:textField name="contacto" value="${this.evento?.contacto}"/>
 </div>
 
+<div class="fieldcontain" ${hasErrors(bean: evento, field: 'telefonoContacto', 'error')}>
+<label for="telefonoContacto">
+    <g:message code="evento.telefonoContacto.label" default="Teléfono Contacto:"/>
+</label>
+<g:textField name="telefonoContacto" value="${this.evento?.telefonoContacto}"/>
+
+
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'clubOrganizador', 'error')}">
     <label for="clubOrganizador">
         <g:message code="evento.clubOrganizador.label" default="Club organizador:"/>
@@ -197,6 +204,7 @@
     <g:textField name="numVoluntarios" value="${this.evento?.numVoluntarios}"/>
 </div>
 
+%{--
 <div class="fieldcontain" ${hasErrors(bean: evento, field: 'horasMant', 'error')}>
     <label for="horasMant">
         <g:message code="evento.horasMantM.label" default="Número de mantenimiento:"/>
@@ -230,4 +238,4 @@
         <g:message code="evento.totalInversionM.label" default="Total inversión:"/>
     </label>
     <g:textField name="totalInversion" value="${this.evento?.totalInversion}"/>
-</div>
+</div>--}%
