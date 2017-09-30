@@ -93,13 +93,17 @@
                 </g:each>
             </ul>
         </div>
-        <h2>Modificaciones 28/09/2017:</h2>
+        <h2>Modificaciones 30/09/2017:</h2>
+        <ul>
+            <li>Subida a producción de apartado de Eventos</li>
+        </ul>
+        <h2>Modificaciones 02/09/2017:</h2>
         <ul>
             <li>Añadido campo "teléfono contacto" a Evento</li>
-            <li>Modificados tipos dde público</li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>Modificados tipos de público</li>
+            <li>Quitado campo "Club Organizador" de evento hasta tener información válida de los clubes</li>
+            <li>Importados datos de Entidades desde excel de eventos</li>
+            <li>Importados datos de eventos desde excel de eventos</li>
         </ul>
 
         <h2>Modificaciones 11/08/2017:</h2>

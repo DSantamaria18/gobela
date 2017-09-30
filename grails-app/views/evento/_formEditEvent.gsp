@@ -78,6 +78,7 @@
     <g:select name="entidadOrganizadora"
               from="${gobela.Entidad.listOrderByNombreEntidad()}"
               value="${evento?.entidadOrganizadora?.id}"
+              noSelection="${['':'Selecciona una entidad organizadora...']}"
               optionKey="id"
               optionValue="nombreEntidad"/>
 </div>
@@ -96,17 +97,18 @@
 <g:textField name="telefonoContacto" value="${this.evento?.telefonoContacto}"/>
 
 
-<div class="fieldcontain ${hasErrors(bean: evento, field: 'clubOrganizador', 'error')}">
+%{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'clubOrganizador', 'error')}">
     <label for="clubOrganizador">
         <g:message code="evento.clubOrganizador.label" default="Club organizador:"/>
     </label>
-    %{--<g:textField name="clubOrganizador" value="${this.evento?.clubOrganizador}"/>--}%
+    --}%%{--<g:textField name="clubOrganizador" value="${this.evento?.clubOrganizador}"/>--}%%{--
     <g:select name="clubOrganizador"
               from="${gobela.Entidad.listOrderByNombreEntidad()}"
               value="${evento?.clubOrganizador?.id}"
+              noSelection="${['':'Selecciona un club organizador...']}"
               optionKey="id"
               optionValue="nombreEntidad"/>
-</div>
+</div>--}%
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'ambito', 'error')} required">
     <label for="ambito">
@@ -165,6 +167,7 @@
     <g:select name="entidadColaboradora"
               from="${gobela.Entidad.listOrderByNombreEntidad()}"
               value="${evento?.entidadColaboradora?.id}"
+              noSelection="${['':'Selecciona una entidad colaboradora...']}"
               optionKey="id"
               optionValue="nombreEntidad"/>
 </div>
