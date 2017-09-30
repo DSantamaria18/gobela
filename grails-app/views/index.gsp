@@ -51,6 +51,17 @@
 
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+           aria-expanded="false">Eventos<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><g:link class="list" controller="evento" action="index"><g:message code="default.list.label"
+                                                                                      args="[entityName]"/></g:link></li>
+            <li><g:link class="create" controller="evento" action="create"><g:message code="default.new.label"
+                                                                                         args="[entityName]"/></g:link></li>
+        </ul>
+    </li>
+
+    %{--<li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
            aria-expanded="false">Solicitudes<span class="caret"></span></a>
         <ul class="dropdown-menu">
             <li><g:link class="list" controller="solicitud" action="index"><g:message code="default.list.label"
@@ -67,7 +78,7 @@
             <li class="controller"><g:link controller="Estadisticas" action="index">Informe Subvenciones</g:link></li>
         </ul>
 
-    </li>
+    </li>--}%
 </content>
 
 <div class="svg" role="presentation">
@@ -96,6 +107,7 @@
         <h2>Modificaciones 30/09/2017:</h2>
         <ul>
             <li>Subida a producción de apartado de Eventos</li>
+            <li>Añadido menú de Eventos en página de inicio</li>
         </ul>
         <h2>Modificaciones 02/09/2017:</h2>
         <ul>
