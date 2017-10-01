@@ -115,6 +115,7 @@
         <ul>
             <li>Añadido menú de Eventos en página de inicio</li>
             <li>Añadido menú de Modalidades en página de inicio</li>
+            <li>Añadido check "Evento Solidario" a Evento</li>
         </ul>
         <h2>Modificaciones 09/09/2017:</h2>
         <ul>

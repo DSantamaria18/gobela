@@ -1,5 +1,7 @@
 package gobela
 
+import com.sun.org.apache.xpath.internal.operations.Bool
+
 class Evento {
     Date fecha
     String nombre
@@ -30,6 +32,7 @@ class Evento {
     Boolean relevante
     String telefonoContacto
     String observaciones
+    Boolean solidario
 
 //    static hasMany = [modalidad: Modalidad, recintos: Recinto, entidadColaboradora: Entidad]
 
@@ -42,6 +45,7 @@ class Evento {
         modalidad(nullable: true)
         multikirola()
         deporteAdaptado()
+        solidario()
         entidadOrganizadora(nullable: false, blank: false)
         contacto(nullable: true, blank: true)
         telefonoContacto(nullable: true, blank: true)

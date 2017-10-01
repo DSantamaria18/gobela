@@ -121,6 +121,16 @@
             </li>
         </g:if>
 
+        <g:if test="${evento?.solidario}">
+            <li class="fieldcontain">
+                <span id="solidario-label" class="property-label"><g:message
+                        code="evento.solidario.label"
+                        default="Evento Solidario:"/></span>
+                <span class="property-value" aria-labelledby="solidario-label"><g:formatBoolean
+                        boolean="${evento?.solidario}"/></span>
+            </li>
+        </g:if>
+
         <g:if test="${evento?.entidadOrganizadora}">
             <li class="fieldcontain">
                 <span id="entidadOrganizadora-label" class="property-label"><g:message
