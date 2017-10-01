@@ -57,6 +57,7 @@
             %{--<li><g:link class="create" controller="evento" action="create">Nuevo Evento</g:link></li>--}%
             <li><g:link class="list" controller="lugar" action="index">Lugares</g:link></li>
             <li><g:link class="list" controller="recinto" action="index">Recintos</g:link></li>
+            <li><g:link class="list" controller="modalidad" action="index">Modalidades</g:link></li>
 
         </ul>
     </li>
@@ -88,8 +89,8 @@
         %{--<asset:image src="gobela21/Fadura.jpg" class="grails-logo"/>--}%
         %{--<asset:image src="gobela21/sports2.jpg" class="grails-logo"/>--}%
         %{--<asset:image src="gobela21/sports.jpg" class="grails-logo"/>--}%
-        %{--<asset:image src="gobela21/kirolak_apaisado_copiar_2.jpg" class="grails-logo"/>--}%
-        <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>
+        <asset:image src="gobela21/kirolak_apaisado_copiar_2.jpg" class="grails-logo"/>
+        %{--<asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>--}%
     </div>
 </div>
 
@@ -109,21 +110,16 @@
         <ul>
             <li>Importados datos de eventos desde excel de eventos</li>
             <li>Subida a producción de apartado de Eventos</li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
         </ul>
         <h2>Modificaciones 30/09/2017:</h2>
         <ul>
             <li>Añadido menú de Eventos en página de inicio</li>
+            <li>Añadido menú de Modalidades en página de inicio</li>
         </ul>
         <h2>Modificaciones 09/09/2017:</h2>
         <ul>
             <li>Importados datos de Entidades desde excel de eventos</li>
+            <li>Cambios en algunos estilos</li>
         </ul>
         <h2>Modificaciones 02/09/2017:</h2>
         <ul>

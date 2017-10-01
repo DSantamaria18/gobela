@@ -97,7 +97,6 @@
 <g:textField name="telefonoContacto" value="${this.evento?.telefonoContacto}"/>
 </div>
 
-
 %{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'clubOrganizador', 'error')}">
     <label for="clubOrganizador">
         <g:message code="evento.clubOrganizador.label" default="Club organizador:"/>

@@ -44,8 +44,7 @@ pre {
 
 }
 .navbar-default, .navbar-static-top {
-    background-color: #cc366d;
-    /*background-color: #4D8618;*/
+    background-color: #4D8618;
     border: 0px;
 }
 a.navbar-brand {
@@ -119,7 +118,6 @@ a.navbar-brand {
 }
 
 .svg #band {
-    /*background-image: url(../img/escudogetxo.gif);*/
     background-image: url(../img/grails-cupsonly-logo-white.svg);
 }
 
