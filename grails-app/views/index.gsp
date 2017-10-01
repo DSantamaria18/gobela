@@ -53,10 +53,11 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
            aria-expanded="false">Eventos<span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li><g:link class="list" controller="evento" action="index"><g:message code="default.list.label"
-                                                                                      args="[entityName]"/></g:link></li>
-            <li><g:link class="create" controller="evento" action="create"><g:message code="default.new.label"
-                                                                                         args="[entityName]"/></g:link></li>
+            <li><g:link class="list" controller="evento" action="index">Eventos</g:link></li>
+            %{--<li><g:link class="create" controller="evento" action="create">Nuevo Evento</g:link></li>--}%
+            <li><g:link class="list" controller="lugar" action="index">Lugares</g:link></li>
+            <li><g:link class="list" controller="recinto" action="index">Recintos</g:link></li>
+
         </ul>
     </li>
 
@@ -104,18 +105,35 @@
                 </g:each>
             </ul>
         </div>
+        <h2>Modificiones 01/10/2017:</h2>
+        <ul>
+            <li>Importados datos de eventos desde excel de eventos</li>
+            <li>Subida a producción de apartado de Eventos</li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
         <h2>Modificaciones 30/09/2017:</h2>
         <ul>
-            <li>Subida a producción de apartado de Eventos</li>
             <li>Añadido menú de Eventos en página de inicio</li>
+        </ul>
+        <h2>Modificaciones 09/09/2017:</h2>
+        <ul>
+            <li>Importados datos de Entidades desde excel de eventos</li>
         </ul>
         <h2>Modificaciones 02/09/2017:</h2>
         <ul>
             <li>Añadido campo "teléfono contacto" a Evento</li>
             <li>Modificados tipos de público</li>
             <li>Quitado campo "Club Organizador" de evento hasta tener información válida de los clubes</li>
-            <li>Importados datos de Entidades desde excel de eventos</li>
-            <li>Importados datos de eventos desde excel de eventos</li>
+            <li>Añadida entidad "Lugar"</li>
+            <li>Modificado entidad "Recinto" con nuevos valores</li>
+            <li>Añadido menú "Lugar" a página principal</li>
+            <li>Añadido menú "Recinto" a página principal</li>
         </ul>
 
         <h2>Modificaciones 11/08/2017:</h2>

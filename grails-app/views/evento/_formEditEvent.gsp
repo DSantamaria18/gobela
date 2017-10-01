@@ -1,4 +1,4 @@
-<%@ page import="gobela.Modalidad; gobela.Evento" %>
+<%@ page import="gobela.Lugar; gobela.Modalidad; gobela.Evento" %>
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'nombre', 'error')} required">
     <label for="nombre">
@@ -95,6 +95,7 @@
     <g:message code="evento.telefonoContacto.label" default="Teléfono Contacto:"/>
 </label>
 <g:textField name="telefonoContacto" value="${this.evento?.telefonoContacto}"/>
+</div>
 
 
 %{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'clubOrganizador', 'error')}">
@@ -144,10 +145,22 @@
               valueMessagePrefix="evento.publicoDest"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: evento, field: 'recintos', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'lugar', 'error')} required">
+    <label for="lugar">
+        <g:message code="evento.lugar.label" default="Lugar:"/>
+    </label>
+
+    <g:select name="lugar"
+              from="${gobela.Lugar.listOrderByNombreLugar()}"
+              value="${evento?.lugar?.id}"
+              noSelection="${['':'Selecciona un lugar...']}"
+              optionKey="id"
+              optionValue="nombreLugar"/>
+</div>
+
+%{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'recinto', 'error')} required">
     <label for="recintos">
-        <g:message code="evento.recintos.label" default="Lugar-Recinto:"/>
-        <span class="required-indicator">*</span>
+        <g:message code="evento.recinto.label" default="Recinto:"/>
     </label>
 
     <g:select name="recintos"
@@ -156,7 +169,7 @@
               noSelection="${['': 'Selecciona un recinto...']}"
               optionKey="id"
               optionValue="nombre"/>
-</div>
+</div>--}%
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'entidadColaboradora', 'error')} required">
     <label for="entidadColaboradora">

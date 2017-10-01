@@ -4,7 +4,7 @@ class Recinto {
 
     String nombre
 
-    static hasMany = [evento: RecintosEvento]
+    //static hasMany = [evento: RecintosEvento]
 
 
     static constraints = {

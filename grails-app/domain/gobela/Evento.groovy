@@ -22,6 +22,7 @@ class Evento {
     BigDecimal costesPersonal
     BigDecimal totalInversion*/
     Modalidad modalidad
+    Lugar lugar
     Recinto recinto
     Entidad entidadColaboradora
     Boolean deporteAdaptado
@@ -48,6 +49,7 @@ class Evento {
         ambito(inList: ['Local', 'Comarcal', 'Provincial', 'Autonómico', 'Nacional', 'Internacional'])
         tipoPublico(inList: ['Todos los públicos', 'Infantil y juvenil', 'Adultos'])
         publicoDest(inList: ['Todos', 'Femenino', 'Masculino'])
+        lugar(nullable: true)
         recinto(nullable: true)
         entidadColaboradora(nullable: true)
         numParticipantes(nullable: true, blank: true)
