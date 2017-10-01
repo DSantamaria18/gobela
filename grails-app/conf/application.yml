@@ -135,8 +135,13 @@ environments:
                 defaultTransactionIsolation: java.sql.Connection.TRANSACTION_READ_COMMITTED
     production:
         dataSource:
-            dbCreate: none
-            url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            dbCreate: update
+            #url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            url: jdbc:mysql://localhost:3306/gobela21db
+            driverClassName: com.mysql.jdbc.Driver
+            dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+            username: root
+            password: *Gobela21$
             properties:
                 jmxEnabled: true
                 initialSize: 5
