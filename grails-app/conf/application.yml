@@ -114,7 +114,7 @@ environments:
             driverClassName: com.mysql.jdbc.Driver
             dialect: org.hibernate.dialect.MySQL5InnoDBDialect
             username: gobela21
-            password: fadura2017
+            password: "fadura2017"
             properties:
                 jmxEnabled: true
                 initialSize: 5
@@ -141,7 +141,7 @@ environments:
             driverClassName: com.mysql.jdbc.Driver
             dialect: org.hibernate.dialect.MySQL5InnoDBDialect
             username: root
-            password: *Gobela21$
+            password: "*Gobela21$"
             properties:
                 jmxEnabled: true
                 initialSize: 5
