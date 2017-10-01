@@ -203,18 +203,18 @@
             </li>
         </g:if>
 
-        %{--<g:if test="${evento?.recinto}">
+        <g:if test="${evento?.recinto}">
             <li class="fieldcontain">
                 <span id="recinto-label" class="property-label">
                     <g:message code="evento.recinto.label"
-                               default="Lugar-Recinto:"/>
+                               default="Recinto:"/>
                 </span>
                 <span class="property-value" aria-labelledby="recinto-label">
                     <g:fieldValue bean="${evento.recinto}"
                                   field="nombre"/>
                 </span>
             </li>
-        </g:if>--}%
+        </g:if>
 
         <g:if test="${evento?.entidadColaboradora}">
             <li class="fieldcontain">

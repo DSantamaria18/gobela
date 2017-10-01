@@ -158,18 +158,18 @@
               optionValue="nombreLugar"/>
 </div>
 
-%{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'recinto', 'error')} required">
-    <label for="recintos">
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'recinto', 'error')} required">
+    <label for="recinto">
         <g:message code="evento.recinto.label" default="Recinto:"/>
     </label>
 
-    <g:select name="recintos"
+    <g:select name="recinto"
               from="${gobela.Recinto.listOrderByNombre()}"
               value="${evento?.recinto?.id}"
               noSelection="${['': 'Selecciona un recinto...']}"
               optionKey="id"
               optionValue="nombre"/>
-</div>--}%
+</div>
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'entidadColaboradora', 'error')} required">
     <label for="entidadColaboradora">

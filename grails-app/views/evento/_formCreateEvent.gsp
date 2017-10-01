@@ -160,7 +160,7 @@
 </div>
 
 
-%{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'recinto', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'recinto', 'error')} required">
     <label for="recinto">
         <g:message code="evento.recinto.label" default="Recinto:"/>
     </label>
@@ -171,7 +171,7 @@
               noSelection="${['':'Selecciona un recinto...']}"
               optionKey="id"
               optionValue="nombre"/>
-</div>--}%
+</div>
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'entidadColaboradora', 'error')} required">
     <label for="entidadColaboradora">
