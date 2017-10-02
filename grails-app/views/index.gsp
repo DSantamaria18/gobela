@@ -62,6 +62,15 @@
         </ul>
     </li>
 
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+           aria-expanded="false">Entidades<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><g:link class="list" controller="entidad" action="index">Entidades</g:link></li>
+            <li><g:link class="list" controller="club" action="index">Clubes</g:link></li>
+        </ul>
+    </li>
+
     %{--<li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
            aria-expanded="false">Solicitudes<span class="caret"></span></a>

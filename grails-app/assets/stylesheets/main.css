@@ -448,7 +448,8 @@ th.desc a {
 }
 
 th:hover, tr:hover {
-    background: #79b94c;
+    background: #efefef;
+    /*background: #79b94c;*/
 }
 
 /* PAGINATION */
