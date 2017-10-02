@@ -84,7 +84,8 @@ img {
 }
 
 .footer {
-    background: #48802c;
+    background: #cc366d;
+    /*background: #48802c;*/
     color: #000;
     clear: both;
     font-size: 0.8em;
@@ -174,7 +175,8 @@ img {
 }
 
 .nav li.dropdown.open ul.dropdown-menu {
-    background-color: #4D8618;
+    background-color: #cc366d;
+    /*background-color: #4D8618;*/
 }
 
 /* CREATE/EDIT FORMS AND SHOW PAGES */
@@ -561,7 +563,7 @@ a.skip {
 }
 
 .grails-logo-container {
-    background:#79b94c no-repeat 50% 30%;
+    /*background:#79b94c no-repeat 50% 30%;*/
     margin-bottom: 20px;
     color: white;
     height:300px;
