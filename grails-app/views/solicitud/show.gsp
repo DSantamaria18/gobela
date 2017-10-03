@@ -373,7 +373,7 @@
                         code="solicitud.fechaSolicitud.label"
                         default="Fecha Solicitud"/></span>
 
-                <span class="property-value" aria-labelledby="fechaSolicitud-label"><g:formatDate
+                <span class="property-value" aria-labelledby="fechaSolicitud-label"><g:formatDate format="dd-MM-yyyy"
                         date="${solicitud?.fechaSolicitud}"/></span>
 
             </li>

@@ -61,7 +61,7 @@
                         code="evento.fecha.label"
                         default="Fecha del evento:"/></span>
 
-                <span class="property-value" aria-labelledby="fecha-label"><g:formatDate
+                <span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="dd-MM-yyyy"
                         date="${evento?.fecha}"/></span>
             </li>
         </g:if>
