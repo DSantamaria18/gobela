@@ -193,7 +193,7 @@
 
 <div class="fieldcontain" ${hasErrors(bean: evento, field: 'numParticipantes', 'error')}>
     <label for="numParticipantes">
-        <g:message code="evento.numParticipantesM.label" default="Número de participantes:"/>
+        <g:message code="evento.numParticipantes.label" default="Número de participantes:"/>
     </label>
     <g:textField name="numParticipantes" value="${this.evento?.numParticipantes}"/>
     %{--</div>--}%
