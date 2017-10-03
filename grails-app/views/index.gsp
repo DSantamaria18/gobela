@@ -116,6 +116,10 @@
             </ul>
         </div>--}%
         <h1>ULTIMOS CAMBIOS</h1>
+        <h2>Modificaciones 03/10/2017:</h2>
+        <ul>
+            <li>Añadido check "es club" en entidades</li>
+        </ul>
         <h2>Modificaciones 02/10/2017:</h2>
         <ul>
             <li>Arreglado problema con los despliegues con Tomcat7 y Tomcat embebido </li>

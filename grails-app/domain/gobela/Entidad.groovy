@@ -11,10 +11,12 @@ class Entidad {
     Long telefonoEntidad1
     Long telefonoEntidad2
     String numCuenta
+    boolean es_club
 
     static constraints = {
         nombreEntidad(nullable: false, blank: false, unique: true)
         cif (nullable: false, blank: false)
+        es_club()
         direccionEntidad(nullable: true, blank: true)
         municipioEntidad(nullable: true, blank: true)
         cpEntidad(nullable: true, blank: true)
