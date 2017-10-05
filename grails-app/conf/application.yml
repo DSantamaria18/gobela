@@ -166,4 +166,4 @@ environments:
 ---
 server:
     port: 8081
-    context-path: /gobela
+    contextPath: /gobela
