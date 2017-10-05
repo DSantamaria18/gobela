@@ -58,7 +58,7 @@
             <li><g:link class="list" controller="lugar" action="index">Lugares</g:link></li>
             <li><g:link class="list" controller="recinto" action="index">Recintos</g:link></li>
             <li><g:link class="list" controller="modalidad" action="index">Modalidades</g:link></li>
-
+            <li><g:link class="list" controller="material" action="index">Material</g:link></li>
         </ul>
     </li>
 

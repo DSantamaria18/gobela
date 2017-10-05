@@ -34,6 +34,8 @@ class Evento {
     String observaciones
     Boolean solidario
 
+//    static hasOne = [material: SolicitudMaterial]
+
 //    static hasMany = [modalidad: Modalidad, recintos: Recinto, entidadColaboradora: Entidad]
 
     static constraints = {

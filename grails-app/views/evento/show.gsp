@@ -36,6 +36,7 @@
             <g:message code="default.clone.label" args="[entityName]"/></g:link></li>
         <li><g:link class="create" action="create"><g:message code="default.new.label"
                                                               args="[entityName]"/></g:link></li>
+        <li><g:link class="create" controller="solicitudMaterial" action="create" params="['eventoId': evento.id]">Material</g:link></li>
     </ul>
 </div>
 
