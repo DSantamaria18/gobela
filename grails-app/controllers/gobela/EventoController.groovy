@@ -21,6 +21,10 @@ class EventoController {
         respond new Evento(params)
     }
 
+    def clone() {
+        respond new Evento(params)
+    }
+
     @Transactional
     def save(Evento evento) {
         if (evento == null) {

@@ -49,7 +49,7 @@
     </label>
     <g:select name="modalidad"
               from="${Modalidad.listOrderByNombre()}"
-              value="${evento?.modalidad}"
+              value="${evento?.modalidad?.id}"
               noSelection="${['':'Selecciona una modalidad...']}"
               optionKey="id"
               optionValue="nombre"/>

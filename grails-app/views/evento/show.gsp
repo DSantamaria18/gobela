@@ -15,7 +15,25 @@
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
         <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]"/></g:link></li>
-        <li><g:link class="create" action="create"><g:message code="default.clone.label" args="[entityName]" /></g:link></li>
+        <li><g:link class="create"
+                    action="clone"
+                    params="['nombre'               : evento?.nombre
+                             , 'relevante'          : evento?.relevante
+                             , 'tipoActividad'      : evento?.tipoActividad
+                             , 'modalidad'          : evento?.modalidad?.id
+                             , 'multikirola'        : evento?.multikirola
+                             , 'deporteAdaptado'    : evento?.deporteAdaptado
+                             , 'solidario'          : evento?.solidario
+                             , 'entidadOrganizadora': evento?.entidadOrganizadora?.id
+                             , 'contacto'           : evento?.contacto
+                             , 'telefonoContacto'   : evento?.telefonoContacto
+                             , 'clubOrganizador'    : evento?.clubOrganizador?.id
+                             , 'ambito'             : evento?.ambito
+                             , 'tipoPublico'        : evento?.tipoPublico
+                             , 'lugar'              : evento?.lugar?.id
+                             , 'recinto'            : evento?.recinto?.id
+                             , 'entidadColaboradora': evento?.entidadColaboradora?.id]">
+            <g:message code="default.clone.label" args="[entityName]"/></g:link></li>
         <li><g:link class="create" action="create"><g:message code="default.new.label"
                                                               args="[entityName]"/></g:link></li>
     </ul>
@@ -63,7 +81,7 @@
                         default="Fecha del evento:"/></span>
 
                 <span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="dd-MM-yyyy"
-                        date="${evento?.fecha}"/></span>
+                                                                                         date="${evento?.fecha}"/></span>
             </li>
         </g:if>
 
@@ -157,7 +175,7 @@
         <g:if test="${evento?.telefonoContacto}">
             <li class="fieldcontain">
                 <span id="telefonoContacto-label" class="property-label"><g:message code="evento.telefonoContacto.label"
-                                                                            default="Teléfono Contacto:"/></span>
+                                                                                    default="Teléfono Contacto:"/></span>
                 <span class="property-value" aria-labelledby="telefonoContacto-label"><g:fieldValue
                         bean="${evento}"
                         field="telefonoContacto"/></span>
@@ -305,71 +323,70 @@
             </li>
         </g:if>
 
-        %{--<g:if test="${evento?.horasMant}">
-            <li class="fieldcontain">
-                <span id="horasMant-label" class="property-label">
-                    <g:message code="evento.horasMant.label"
-                               default="Horas de mantenimiento:"/>
-                </span>
-                <span class="property-value" aria-labelledby="horasMant-label">
-                    <g:fieldValue bean="${evento}"
-                                  field="horasMant"/>
-                </span>
-            </li>
-        </g:if>
+    %{--<g:if test="${evento?.horasMant}">
+        <li class="fieldcontain">
+            <span id="horasMant-label" class="property-label">
+                <g:message code="evento.horasMant.label"
+                           default="Horas de mantenimiento:"/>
+            </span>
+            <span class="property-value" aria-labelledby="horasMant-label">
+                <g:fieldValue bean="${evento}"
+                              field="horasMant"/>
+            </span>
+        </li>
+    </g:if>
 
-        <g:if test="${evento?.horasDeptivo}">
-            <li class="fieldcontain">
-                <span id="horasDeptivo-label" class="property-label">
-                    <g:message code="evento.horasDeptivo.label"
-                               default="Horas de uso de polideportivo:"/>
-                </span>
-                <span class="property-value" aria-labelledby="horasDeptivo-label">
-                    <g:fieldValue bean="${evento}"
-                                  field="horasDeptivo"/>
-                </span>
-            </li>
-        </g:if>
+    <g:if test="${evento?.horasDeptivo}">
+        <li class="fieldcontain">
+            <span id="horasDeptivo-label" class="property-label">
+                <g:message code="evento.horasDeptivo.label"
+                           default="Horas de uso de polideportivo:"/>
+            </span>
+            <span class="property-value" aria-labelledby="horasDeptivo-label">
+                <g:fieldValue bean="${evento}"
+                              field="horasDeptivo"/>
+            </span>
+        </li>
+    </g:if>
 
-        <g:if test="${evento?.horasLimpieza}">
-            <li class="fieldcontain">
-                <span id="horasLimpieza-label" class="property-label">
-                    <g:message code="evento.horasLimpieza.label"
-                               default="Horas de limpieza:"/>
-                </span>
-                <span class="property-value" aria-labelledby="horasLimpieza-label">
-                    <g:fieldValue bean="${evento}"
-                                  field="horasLimpieza"/>
-                </span>
-            </li>
-        </g:if>
+    <g:if test="${evento?.horasLimpieza}">
+        <li class="fieldcontain">
+            <span id="horasLimpieza-label" class="property-label">
+                <g:message code="evento.horasLimpieza.label"
+                           default="Horas de limpieza:"/>
+            </span>
+            <span class="property-value" aria-labelledby="horasLimpieza-label">
+                <g:fieldValue bean="${evento}"
+                              field="horasLimpieza"/>
+            </span>
+        </li>
+    </g:if>
 
-        <g:if test="${evento?.costesPersonal}">
-            <li class="fieldcontain">
-                <span id="costesPersonal-label" class="property-label">
-                    <g:message code="evento.costesPersonal.label"
-                               default="Costes de personal:"/>
-                </span>
-                <span class="property-value" aria-labelledby="costesPersonal-label">
-                    <g:fieldValue bean="${evento}"
-                                  field="costesPersonal"/>
-                </span>
-            </li>
-        </g:if>
+    <g:if test="${evento?.costesPersonal}">
+        <li class="fieldcontain">
+            <span id="costesPersonal-label" class="property-label">
+                <g:message code="evento.costesPersonal.label"
+                           default="Costes de personal:"/>
+            </span>
+            <span class="property-value" aria-labelledby="costesPersonal-label">
+                <g:fieldValue bean="${evento}"
+                              field="costesPersonal"/>
+            </span>
+        </li>
+    </g:if>
 
-        <g:if test="${evento?.totalInversion}">
-            <li class="fieldcontain">
-                <span id="totalInversion-label" class="property-label">
-                    <g:message code="evento.totalInversion.label"
-                               default="Total inversión:"/>
-                </span>
-                <span class="property-value" aria-labelledby="totalInversion-label">
-                    <g:fieldValue bean="${evento}"
-                                  field="totalInversion"/>
-                </span>
-            </li>
-        </g:if>--}%
-
+    <g:if test="${evento?.totalInversion}">
+        <li class="fieldcontain">
+            <span id="totalInversion-label" class="property-label">
+                <g:message code="evento.totalInversion.label"
+                           default="Total inversión:"/>
+            </span>
+            <span class="property-value" aria-labelledby="totalInversion-label">
+                <g:fieldValue bean="${evento}"
+                              field="totalInversion"/>
+            </span>
+        </li>
+    </g:if>--}%
 
     </ol>
 
