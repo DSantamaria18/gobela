@@ -116,10 +116,15 @@
             </ul>
         </div>--}%
         <h1>ULTIMOS CAMBIOS</h1>
+        <h2>Modificaciones 05/10/2017:</h2>
+        <ul>
+            <li>Añadido "Torneo-Txapelketa a tipos de actividad</li>
+        </ul>
         <h2>Modificaciones 03/10/2017:</h2>
         <ul>
             <li>Añadido check "es club" en entidades</li>
             <li>Modificado el formato de fechas</li>
+            <li>Añadido clonado de eventos</li>
         </ul>
         <h2>Modificaciones 02/10/2017:</h2>
         <ul>
