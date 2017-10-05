@@ -41,7 +41,7 @@ class Evento {
         estado(inList: ['Pendiente', 'Confirmado', 'Rechazado', 'Finalizado', 'Cancelado'])
         fecha(nullable: false)
         relevante()
-        tipoActividad(inList: ['Formación', 'Regular/Competición', 'Exhibición', 'Cultural', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Otros'])
+        tipoActividad(inList: ['Formación', 'Regular/Competición', 'Exhibición', 'Cultural', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Otros', 'Txapelketa/Torneo'])
         modalidad(nullable: true)
         multikirola()
         deporteAdaptado()
