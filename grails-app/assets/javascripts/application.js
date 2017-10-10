@@ -61,3 +61,13 @@ function actualizaL2Values(){
         $('#residentes-futbol').hide();
     }
 }
+
+function addMaterial(){
+    var material = $('[name="material"]').find(':selected').text();
+    var id = $('[name="material"]').find(':selected').val();
+    alert("Id: " + id + " Nombre: " + material);
+}
+
+function fillAvailableStock(id){
+    alert("id: " + id);
+}
