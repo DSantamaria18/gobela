@@ -7,10 +7,7 @@ class SolicitudMaterial {
     ArrayList<Material> materiales
     String observaciones
 
-//    static belongsTo = [evento: Evento]
-
     static constraints = {
-//        evento()
         entrega(nullable: false, blank: false)
         recogida(nullable: false, blank: false)
         materiales(nullable: false)

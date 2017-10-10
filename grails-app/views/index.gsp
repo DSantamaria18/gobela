@@ -141,7 +141,7 @@
             <li>Arreglado problema con los despliegues con Tomcat7 y Tomcat embebido </li>
             <li>Configurado Tomcat embebido en puerto 8081 y subcarpeta "gobela"</li>
         </ul>
-        <h2>Modificiones 01/10/2017:</h2>
+        <h2>Modificaciones 01/10/2017:</h2>
         <ul>
             <li>Importados datos de eventos desde excel de eventos</li>
             <li>Subida a producción de apartado de Eventos</li>
