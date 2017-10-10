@@ -122,6 +122,10 @@
             <li>Arregada etiqueta para "número de asistentes" en edición de eventos</li>
             <li>Arregada etiqueta para "número de voluntarios" en edición de eventos</li>
         </ul>
+        <h2>Modificaciones 10/10/2017:</h2>
+        <ul>
+            <li>añadida entidad y vistas para "Material"</li>
+        </ul>
         <h2>Modificaciones 05/10/2017:</h2>
         <ul>
             <li>Añadido "Torneo-Txapelketa a tipos de actividad</li>
