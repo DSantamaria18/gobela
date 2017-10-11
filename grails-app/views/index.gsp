@@ -105,7 +105,7 @@
 
 <div id="content" role="main">
     <section class="row colset-2-its">
-        %{--<div id="controllers" role="navigation">
+        <div id="controllers" role="navigation">
             <h2>Available Controllers:</h2>
             <ul>
                 <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
@@ -114,7 +114,7 @@
                     </li>
                 </g:each>
             </ul>
-        </div>--}%
+        </div>
         <h1>ULTIMOS CAMBIOS</h1>
         <h2>Modificaciones      :</h2>
         <ul>

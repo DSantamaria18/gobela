@@ -17,6 +17,10 @@
     <g:datePicker name="recogida" precision="day" value="${solicitudMaterial?.recogida}"/>
 </div>
 
+<div class="fieldcontain">
+    <hr>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: material, field: 'recinto', 'error')} required">
     <label for="material">
         <g:message code="material.label" default="Material:"/>
@@ -25,29 +29,35 @@
     <g:select name="material"
               from="${gobela.Material.listOrderByNombre()}"
               value="${material?.nombre})"
-              noSelection="${['':'Selecciona un material...']}"
+              noSelection="${['': 'Selecciona un material...']}"
               optionKey="id"
               optionValue="nombre"
               onchange="fillAvailableStock(this.value)"/>
 
-    <label for="cantidad">
-        <g:message code="cantidad.label" default="Cantidad:"/>
-    </label>
-    <g:field type="number" name="cantidad"/>
+    <div class="fieldcontain">
+        <label for="cantidad">
+            <g:message code="cantidad.label" default="Cantidad:"/>
+        </label>
+        <g:field type="number" name="cantidad"/>
 
-    <input type="button" value="Añadir" class="btn-info" onclick="addMaterial()">
+        <input type="button" value="Añadir" class="btn-info" onclick="addMaterial()">
+    </div>
 </div>
 
 <div id="list-Material" class="content scaffold-list" role="main">
-    <h1><g:message code="default.list.label" args="Material" /></h1>
+    <h1><g:message code="default.list.label" args="Material"/></h1>
     <g:if test="\${flash.message}">
         <div class="message" role="status">\${flash.message}</div>
     </g:if>
-    <f:table collection="\${MaterialList}" />
+    <f:table collection="\${MaterialList}"/>
 
     <div class="pagination">
-        <g:paginate total="\${MaterialCount ?: 0}" />
+        <g:paginate total="\${MaterialCount ?: 0}"/>
     </div>
+</div>
+
+<div class="fieldcontain">
+    <hr>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: solicitudMaterial, field: 'observaciones', 'error')} ">
