@@ -11,10 +11,10 @@
 //= require_self
 
 if (typeof jQuery !== 'undefined') {
-    (function($) {
-        $(document).ajaxStart(function() {
+    (function ($) {
+        $(document).ajaxStart(function () {
             $('#spinner').fadeIn();
-        }).ajaxStop(function() {
+        }).ajaxStop(function () {
             $('#spinner').fadeOut();
         });
     })(jQuery);
@@ -39,7 +39,7 @@ function sumar() {
     calcularImporteConcedido(total);
 }
 
-function calcularImporteConcedido(puntuacion){
+function calcularImporteConcedido(puntuacion) {
     var solicitado = parseFloat($('#importeSolicitado').text().replace(/\./, '').replace(/,/, '.')).toFixed(2);
     var concedido = solicitado * puntuacion / 100;
     $('[name="importeConcedido"]').val(concedido.toFixed(2).toString().replace(/\./, ','));
@@ -52,22 +52,39 @@ function recalcularImporteConcedido() {
     $('[name="importeConcedido"]').val(concedido.toFixed(2).toString().replace(/\./, ','));
 }
 
-function actualizaL2Values(){
-    if($('[name="l2esClubFutbol"]').prop('checked')){
+function actualizaL2Values() {
+    if ($('[name="l2esClubFutbol"]').prop('checked')) {
         $('#residentes-no-futbol').hide();
         $('#residentes-futbol').show();
-    }else{
+    } else {
         $('#residentes-no-futbol').show();
         $('#residentes-futbol').hide();
     }
 }
 
-function addMaterial(){
+function addMaterial() {
     var material = $('[name="material"]').find(':selected').text();
-    var id = $('[name="material"]').find(':selected').val();
-    alert("Id: " + id + " Nombre: " + material);
+    var cantidad = $('#cantidad').val();
+    var botonDelete = ('<input type="button" value="Borrar" onclick="deleteMaterial(this)"/>')
+    var lastId = parseInt($('#lista-material tr:last').attr("id"));
+    var newId = 1;
+    if(!isNaN(lastId)) {
+        newId = lastId + 1;
+    }
+    //var id = $('[name="material"]').find(':selected').val();
+    //alert("Id: " + id + " Nombre: " + material);
+    if (parseInt(cantidad) === 0 || isNaN(parseInt(cantidad))) {
+        alert("Error: La cantidad no es correcta");
+    }else {
+        var row = '<tr id="' + newId.toString() + '"><td>' + material + '</td><td>' + cantidad + '</td><td>' + botonDelete + '</td></tr>';
+        $('#lista-material').append(row);
+    }
 }
 
-function fillAvailableStock(id){
-    alert("id: " + id);
+function deleteMaterial(elem){
+    elem.closest('tr').remove();
+}
+
+function fillAvailableStock(id) {
+    //alert("id: " + id);
 }
