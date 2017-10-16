@@ -38,22 +38,24 @@
         <label for="cantidad">
             <g:message code="cantidad.label" default="Cantidad:"/>
         </label>
-        <g:field type="number" name="cantidad"/>
+        <g:field type="number" name="cantidad" id="cantidad"/>
 
-        <input type="button" value="Añadir" class="btn-info" onclick="addMaterial()">
+        <input type="button" value="Añadir" class="btn btn-info" onclick="addMaterial()">
     </div>
 </div>
 
-<div id="list-Material" class="content scaffold-list" role="main">
-    <h1><g:message code="default.list.label" args="Material"/></h1>
-    <g:if test="\${flash.message}">
-        <div class="message" role="status">\${flash.message}</div>
-    </g:if>
-    <f:table collection="\${MaterialList}"/>
-
-    <div class="pagination">
-        <g:paginate total="\${MaterialCount ?: 0}"/>
-    </div>
+<div class="table-responsive tabla-material">
+    <table>
+        <thead>
+            <tr>
+                <th>Material</th>
+                <th>Cantidad</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="lista-material">
+        </tbody>
+    </table>
 </div>
 
 <div class="fieldcontain">
