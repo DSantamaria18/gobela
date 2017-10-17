@@ -104,4 +104,11 @@ class SolicitudMaterialController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    def test(params){
+        Material materialInstance = Material.get(params.id)
+        //TODO: Crear método para obtener el stock disponible en la fecha del evento
+
+        render template: "stock", model: [stock: materialInstance.stock]
+    }
 }
