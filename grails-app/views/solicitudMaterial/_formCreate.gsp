@@ -33,25 +33,31 @@
               optionKey="id"
               optionValue="nombre"
               onchange="fillAvailableStock(this.value)"/>
+</div>
 
-    <div class="fieldcontain">
-        <label for="cantidad">
-            <g:message code="cantidad.label" default="Cantidad:"/>
-        </label>
-        <g:field type="number" name="cantidad" id="cantidad"/>
+<div class="fieldcontain" id="stock-container">
+    <label for="stock">
+        <g:message code="stock.label" default="Disponible" readonly="true"/>
+    </label>
+    <g:field type="number" name="sotck" id="stock" readonly="true"/>
+</div>
 
-        <input type="button" value="Añadir" class="btn btn-info" onclick="addMaterial()">
-    </div>
+<div class="fieldcontain">
+    <label for="cantidad">
+        <g:message code="cantidad.label" default="Cantidad:"/>
+    </label>
+    <g:field type="number" name="cantidad" id="cantidad"/>
+    <input type="button" value="Añadir" class="btn btn-info" onclick="addMaterial()">
 </div>
 
 <div class="table-responsive tabla-material">
     <table>
         <thead>
-            <tr>
-                <th>Material</th>
-                <th>Cantidad</th>
-                <th></th>
-            </tr>
+        <tr>
+            <th>Material</th>
+            <th>Cantidad</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody id="lista-material">
         </tbody>
