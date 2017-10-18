@@ -116,7 +116,7 @@
             </ul>
         </div>
         <h1>ULTIMOS CAMBIOS</h1>
-        <h2>Modificaciones      :</h2>
+        <h2>Modificaciones 22/10/2017:</h2>
         <ul>
             <li>Arregada etiqueta para "número de participantes" en creación de eventos</li>
             <li>Arregada etiqueta para "número de asistentes" en edición de eventos</li>
@@ -125,6 +125,8 @@
         <h2>Modificaciones 10/10/2017:</h2>
         <ul>
             <li>añadida entidad y vistas para "Material"</li>
+            <li>Añadidos campos "lugar de entrega" y "lugar de recogida" a solicitud de material</li>
+            <li>Añadida tabla de materiales a formulario de solicitud de material</li>
         </ul>
         <h2>Modificaciones 05/10/2017:</h2>
         <ul>
