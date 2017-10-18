@@ -105,7 +105,7 @@ class SolicitudMaterialController {
         }
     }
 
-    def test(params){
+    def checkStock(params){
         Material materialInstance = Material.get(params.id)
         //TODO: Crear método para obtener el stock disponible en la fecha del evento
 

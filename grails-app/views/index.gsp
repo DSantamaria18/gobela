@@ -116,6 +116,11 @@
             </ul>
         </div>
         <h1>ULTIMOS CAMBIOS</h1>
+        <h2>Modificaciones :</h2>
+        <ul>
+            <li>Añadidos campos "lugar de entrega" y "lugar de recogida" a solicitud de material</li>
+            <li>Añadida tabla de materiales a formulario de solicitud de material</li>
+        </ul>
         <h2>Modificaciones 10/01/2017:</h2>
         <ul>
             <li>añadida entidad y vistas para "Material"</li>

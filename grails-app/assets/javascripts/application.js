@@ -87,7 +87,7 @@ function deleteMaterial(elem) {
 
 function fillAvailableStock(id) {
     console.log(id);
-    var url = "/gobela/solicitudMaterial/test/" + id.toString();
+    var url = "/gobela/solicitudMaterial/checkStock/" + id.toString();
     console.log("URL: " + url);
     $.ajax({
         url: url,
