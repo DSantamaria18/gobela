@@ -116,6 +116,10 @@
             </ul>
         </div>--}%
         <h1>ULTIMOS CAMBIOS</h1>
+        <h2>Modificaciones      :</h2>
+        <ul>
+            <li>Arregada etiqueta para "número de participantes" en creación de eventos</li>
+        </ul>
         <h2>Modificaciones 05/10/2017:</h2>
         <ul>
             <li>Añadido "Torneo-Txapelketa a tipos de actividad</li>
