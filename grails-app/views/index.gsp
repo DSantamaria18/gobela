@@ -119,6 +119,8 @@
         <h2>Modificaciones      :</h2>
         <ul>
             <li>Arregada etiqueta para "número de participantes" en creación de eventos</li>
+            <li>Arregada etiqueta para "número de asistentes" en edición de eventos</li>
+            <li>Arregada etiqueta para "número de voluntarios" en edición de eventos</li>
         </ul>
         <h2>Modificaciones 05/10/2017:</h2>
         <ul>

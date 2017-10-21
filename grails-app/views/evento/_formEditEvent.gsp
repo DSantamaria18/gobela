@@ -214,14 +214,14 @@
 
 <div class="fieldcontain" ${hasErrors(bean: evento, field: 'numAsistentes', 'error')}>
     <label for="numAsistentes">
-        <g:message code="evento.numAsistentesM.label" default="Número de asistentes:"/>
+        <g:message code="evento.numAsistentes.label" default="Número de asistentes:"/>
     </label>
     <g:textField name="numAsistentes" value="${this.evento?.numParticipantes}"/>
 </div>
 
 <div class="fieldcontain" ${hasErrors(bean: evento, field: 'numVoluntarios', 'error')}>
     <label for="numVoluntarios">
-        <g:message code="evento.numVoluntariosM.label" default="Número de voluntarios:"/>
+        <g:message code="evento.numVoluntarios.label" default="Número de voluntarios:"/>
     </label>
     <g:textField name="numVoluntarios" value="${this.evento?.numVoluntarios}"/>
 </div>
