@@ -26,7 +26,7 @@
 
 <div class="fieldcontain">
     <label for="lugar-devolucion">
-        <g:message code="lugardevolucion.label" default="Lugar Entrega:"/>
+        <g:message code="lugardevolucion.label" default="Lugar de Recogida:"/>
     </label>
     <g:field type="text" name="lugar-devolucion" id="lugar-devolucion"/>
 </div>
