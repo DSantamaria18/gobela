@@ -116,6 +116,7 @@
             </ul>
         </div>
         <h1>ULTIMOS CAMBIOS</h1>
+<<<<<<< HEAD
         <h2>Modificaciones 22/10/2017:</h2>
         <ul>
             <li>Arregada etiqueta para "número de participantes" en creación de eventos</li>
