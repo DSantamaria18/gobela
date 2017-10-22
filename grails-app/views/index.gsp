@@ -106,7 +106,7 @@
 
 <div id="content" role="main">
     <section class="row colset-2-its">
-        <div id="controllers" role="navigation">
+        %{--<div id="controllers" role="navigation">
             <h2>Available Controllers:</h2>
             <ul>
                 <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
@@ -115,7 +115,7 @@
                     </li>
                 </g:each>
             </ul>
-        </div>
+        </div>--}%
         <h1>ULTIMOS CAMBIOS</h1>
         <h2>Modificaciones 22/10/2017:</h2>
         <ul>
@@ -125,7 +125,7 @@
             <li>Limitados los valores para los años en los selectores de fecha de solicitud de material</li>
             <li>Añadidos más campos al desglose de meterial en vista "solicitud de material"</li>
             <li>Añadida tabla con las solicitudes de material del evento en vista de Evento</li>
-            <li>Cambiado label del botón "Material" por "Solicitud Material"</li>
+            <li>Cambiado label del botón "Material" por "Solicitar Material"</li>
             <li>Quitado el botón "Crear solicitud de Material" del índice de solicitudes de material</li>
             <li>Añadido enlace a solicitudes de material en menu despleglable</li>
             <li>Creado formulario para editar solicitudes de material</li>
