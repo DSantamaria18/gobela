@@ -1,4 +1,7 @@
 <%@ page import="gobela.Modalidad" %>
+<%@ page import="gobela.SolicitudMaterial" %>
+<%@ page import="gobela.Material" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +39,8 @@
             <g:message code="default.clone.label" args="[entityName]"/></g:link></li>
         <li><g:link class="create" action="create"><g:message code="default.new.label"
                                                               args="[entityName]"/></g:link></li>
-        <li><g:link class="create" controller="solicitudMaterial" action="create" params="['eventoId': evento.id]">Material</g:link></li>
+        <li><g:link class="create" controller="solicitudMaterial" action="create"
+                    params="['eventoId': evento.id]">Solicitar Material</g:link></li>
     </ul>
 </div>
 
@@ -324,70 +328,59 @@
             </li>
         </g:if>
 
-    %{--<g:if test="${evento?.horasMant}">
-        <li class="fieldcontain">
-            <span id="horasMant-label" class="property-label">
-                <g:message code="evento.horasMant.label"
-                           default="Horas de mantenimiento:"/>
-            </span>
-            <span class="property-value" aria-labelledby="horasMant-label">
-                <g:fieldValue bean="${evento}"
-                              field="horasMant"/>
-            </span>
-        </li>
-    </g:if>
+        %{--<g:if test="${evento?.solicitudesMaterial}">
+            <li class="fieldcontain">
+                <f:table collection="${SolicitudMaterial.findAllByEvento(this.evento)}"/>
+            </li>
+        </g:if>--}%
 
-    <g:if test="${evento?.horasDeptivo}">
-        <li class="fieldcontain">
-            <span id="horasDeptivo-label" class="property-label">
-                <g:message code="evento.horasDeptivo.label"
-                           default="Horas de uso de polideportivo:"/>
-            </span>
-            <span class="property-value" aria-labelledby="horasDeptivo-label">
-                <g:fieldValue bean="${evento}"
-                              field="horasDeptivo"/>
-            </span>
-        </li>
-    </g:if>
-
-    <g:if test="${evento?.horasLimpieza}">
-        <li class="fieldcontain">
-            <span id="horasLimpieza-label" class="property-label">
-                <g:message code="evento.horasLimpieza.label"
-                           default="Horas de limpieza:"/>
-            </span>
-            <span class="property-value" aria-labelledby="horasLimpieza-label">
-                <g:fieldValue bean="${evento}"
-                              field="horasLimpieza"/>
-            </span>
-        </li>
-    </g:if>
-
-    <g:if test="${evento?.costesPersonal}">
-        <li class="fieldcontain">
-            <span id="costesPersonal-label" class="property-label">
-                <g:message code="evento.costesPersonal.label"
-                           default="Costes de personal:"/>
-            </span>
-            <span class="property-value" aria-labelledby="costesPersonal-label">
-                <g:fieldValue bean="${evento}"
-                              field="costesPersonal"/>
-            </span>
-        </li>
-    </g:if>
-
-    <g:if test="${evento?.totalInversion}">
-        <li class="fieldcontain">
-            <span id="totalInversion-label" class="property-label">
-                <g:message code="evento.totalInversion.label"
-                           default="Total inversión:"/>
-            </span>
-            <span class="property-value" aria-labelledby="totalInversion-label">
-                <g:fieldValue bean="${evento}"
-                              field="totalInversion"/>
-            </span>
-        </li>
-    </g:if>--}%
+        <g:if test="${evento?.solicitudesMaterial}">
+            <li class="fieldcontain">
+                <div class="table-responsive tabla-material">
+                    <table>
+                        <thead>
+                        <tr>
+                            <g:sortableColumn property="Solicitud"
+                                              title="${message(code: 'solicitudMaterial.solicitud.label', default: 'Solicitud')}"/>
+                            <g:sortableColumn property="material"
+                                              title="${message(code: 'solicitudMaterial.material.label', default: 'Material')}"/>
+                            <g:sortableColumn property="Cantidad"
+                                              title="${message(code: 'solicitudMaterial.cantidad.label', default: 'Cantidad')}"/>
+                            <g:sortableColumn property="entrega"
+                                              title="${message(code: 'solicitudMaterial.entrega.label', default: 'F. Entrega')}"/>
+                            <g:sortableColumn property="lugarEntrega"
+                                              title="${message(code: 'solicitudMaterial.lugarEntrega.label', default: 'Lugar Entrega')}"/>
+                            <g:sortableColumn property="recogida"
+                                              title="${message(code: 'solicitudMaterial.recogida.label', default: 'F.Recogida')}"/>
+                            <g:sortableColumn property="lugarDevolucion"
+                                              title="${message(code: 'solicitudMaterial.lugarDevolucion.label', default: 'Lugar Recogida')}"/>
+                            <g:sortableColumn property="observaciones"
+                                              title="${message(code: 'solicitudMaterial.observaciones.label', default: 'Observaciones')}"/>
+                        </tr>
+                        </thead>
+                        <tbody id="lista-material">
+                        <g:each in="${SolicitudMaterial.findAllByEvento(this.evento)}" var="solicitudMaterial"
+                                status="i">
+                            <tr rowId="${i}">
+                                <td>
+                                    <g:link controller="solicitudMaterial" action="show" id="${solicitudMaterial.id}">
+                                        ${fieldValue(bean: solicitudMaterial, field: "id")}
+                                    </g:link>
+                                </td>
+                                <td>${fieldValue(bean: solicitudMaterial, field: "material")}</td>
+                                <td>${fieldValue(bean: solicitudMaterial, field: "cantidad")}</td>
+                                <td>${fieldValue(bean: solicitudMaterial, field: "entrega")}</td>
+                                <td>${fieldValue(bean: solicitudMaterial, field: "lugarEntrega")}</td>
+                                <td>${fieldValue(bean: solicitudMaterial, field: "recogida")}</td>
+                                <td>${fieldValue(bean: solicitudMaterial, field: "lugarDevolucion")}</td>
+                                <td>${fieldValue(bean: solicitudMaterial, field: "observaciones")}</td>
+                            </tr>
+                        </g:each>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+        </g:if>
 
     </ol>
 

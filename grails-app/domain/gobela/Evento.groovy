@@ -1,7 +1,5 @@
 package gobela
 
-import com.sun.org.apache.xpath.internal.operations.Bool
-
 class Evento {
     Date fecha
     String nombre
@@ -18,11 +16,6 @@ class Evento {
     Integer numParticipantesM
     Integer numAsistentes
     Integer numVoluntarios
-    /*Integer horasMant
-    Integer horasDeptivo
-    Integer horasLimpieza
-    BigDecimal costesPersonal
-    BigDecimal totalInversion*/
     Modalidad modalidad
     Lugar lugar
     Recinto recinto
@@ -34,9 +27,11 @@ class Evento {
     String observaciones
     Boolean solidario
 
-//    static hasOne = [material: SolicitudMaterial]
+    static hasMany = [solicitudesMaterial: SolicitudMaterial]
 
-//    static hasMany = [modalidad: Modalidad, recintos: Recinto, entidadColaboradora: Entidad]
+    static mapping = {
+        solicitudesMaterial cascade:"all-delete-orphan"
+    }
 
     static constraints = {
         nombre(nullable: false, blank: false)
@@ -63,11 +58,7 @@ class Evento {
         numParticipantesH(nullable: true, blank: true)
         numAsistentes(nullable: true, blank: true)
         numVoluntarios(nullable: true, blank: true)
-        /*horasMant(nullable: true, blank: true)
-        horasDeptivo(nullable: true, blank: true)
-        horasLimpieza(nullable: true, blank: true)
-        costesPersonal(nullable: true, blank: true)
-        totalInversion(nullable: true, blank: true)*/
         observaciones(nullable: true, blank: true, maxSize: 500)
+        solicitudesMaterial()
     }
 }

@@ -1,7 +1,13 @@
 <%@ page import="gobela.SolicitudMaterial" %>
 <%@ page import="gobela.Material" %>
 
-<input type="hidden" name="evento" value="${params.eventoId}"/>
+<div class="fieldcontain">
+    <label for="evento">
+        <g:message code="evento.label" default="Evento" readonly="true"/>
+    </label>
+    %{--<g:field type="text" name="evento" id="evento" readonly="true"/>--}%
+    <g:fieldValue bean="${solicitudMaterial}" field="evento"/>
+</div>
 
 <div class="fieldcontain ${hasErrors(bean: solicitudMaterial, field: 'entrega', 'error')} required">
     <label for="entrega">
@@ -49,27 +55,28 @@
     <label for="material">
         <g:message code="material.label" default="Material:"/>
     </label>
-    <g:select name="material"
+   %{-- <g:select name="material"
               from="${gobela.Material.listOrderByNombre()}"
               value="${material?.nombre})"
               noSelection="${['': 'Selecciona un material...']}"
               optionKey="id"
               optionValue="nombre"
-              onchange="fillAvailableStock(this.value)"/>
+              onchange="fillAvailableStock(this.value)"/>--}%
+    <g:fieldValue field="material" bean="${solicitudMaterial}"/>
 </div>
 
-<div class="fieldcontain" id="stock-container">
+%{--<div class="fieldcontain" id="stock-container">
     <label for="stock">
         <g:message code="stock.label" default="Disponible" readonly="true"/>
     </label>
     <g:field type="number" name="stock" id="stock" readonly="true"/>
-</div>
+</div>--}%
 
 <div class="fieldcontain">
     <label for="cantidad">
         <g:message code="cantidad.label" default="Cantidad:"/>
     </label>
-    <g:field type="number" name="cantidad" id="cantidad"/>
+    <g:field type="number" name="cantidad" id="cantidad" value="${this.solicitudMaterial?.cantidad}"/>
     %{--<input type="button" value="Añadir" class="btn btn-info" onclick="addMaterial()">--}%
 </div>
 

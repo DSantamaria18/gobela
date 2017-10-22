@@ -59,6 +59,7 @@
             <li><g:link class="list" controller="recinto" action="index">Recintos</g:link></li>
             <li><g:link class="list" controller="modalidad" action="index">Modalidades</g:link></li>
             <li><g:link class="list" controller="material" action="index">Material</g:link></li>
+            <li><g:link class="list" controller="solicitudMaterial" action="index">Solicitudes Material</g:link></li>
         </ul>
     </li>
 
@@ -116,12 +117,19 @@
             </ul>
         </div>
         <h1>ULTIMOS CAMBIOS</h1>
-<<<<<<< HEAD
         <h2>Modificaciones 22/10/2017:</h2>
         <ul>
             <li>Arregada etiqueta para "número de participantes" en creación de eventos</li>
             <li>Arregada etiqueta para "número de asistentes" en edición de eventos</li>
             <li>Arregada etiqueta para "número de voluntarios" en edición de eventos</li>
+            <li>Limitados los valores para los años en los selectores de fecha de solicitud de material</li>
+            <li>Añadidos más campos al desglose de meterial en vista "solicitud de material"</li>
+            <li>Añadida tabla con las solicitudes de material del evento en vista de Evento</li>
+            <li>Cambiado label del botón "Material" por "Solicitud Material"</li>
+            <li>Quitado el botón "Crear solicitud de Material" del índice de solicitudes de material</li>
+            <li>Añadido enlace a solicitudes de material en menu despleglable</li>
+            <li>Creado formulario para editar solicitudes de material</li>
+            <li>Habilitada persistencia en BDD para solicitudes de material</li>
         </ul>
         <h2>Modificaciones 10/10/2017:</h2>
         <ul>

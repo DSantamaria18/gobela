@@ -9,4 +9,9 @@ class Material {
         nombre(nullable: false, blank: false, unique: true)
         stock(nullable: false, blank: false)
     }
+
+    String toString(){
+        return nombre
+//        return nombre + " (${stock})"
+    }
 }

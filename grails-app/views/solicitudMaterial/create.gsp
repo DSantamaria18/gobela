@@ -25,6 +25,7 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
+
             <g:form resource="${this.solicitudMaterial}" method="POST">
                 <fieldset class="form">
                     %{--<f:all bean="solicitudMaterial"/>--}%

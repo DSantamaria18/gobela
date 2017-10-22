@@ -2,19 +2,23 @@ package gobela
 
 class SolicitudMaterial {
 
+    Material material
+    Integer cantidad
     Date entrega = new Date()
     Date recogida = new Date()
-    //ArrayList<Material> materiales
     String observaciones
     String lugarEntrega
     String lugarDevolucion
 
+    static belongsTo = [evento: Evento]
+
     static constraints = {
+        material()
+        cantidad()
         entrega(nullable: false, blank: false)
         lugarEntrega()
         recogida(nullable: false, blank: false)
         lugarDevolucion()
-        //materiales(nullable: false)
         observaciones(nullable: true, blank: true, maxSize: 2000)
     }
 }
