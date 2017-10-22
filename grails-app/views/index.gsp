@@ -130,6 +130,9 @@
             <li>Añadido enlace a solicitudes de material en menu despleglable</li>
             <li>Creado formulario para editar solicitudes de material</li>
             <li>Habilitada persistencia en BDD para solicitudes de material</li>
+            <li>Mejorada la visualización de "modalidad" en listados</li>
+            <li>Mejorada la visualización de "recinto" en listados</li>
+            <li>Mejorada la visualización de "material" en listados</li>
         </ul>
         <h2>Modificaciones 10/10/2017:</h2>
         <ul>

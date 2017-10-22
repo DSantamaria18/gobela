@@ -10,4 +10,8 @@ class Recinto {
     static constraints = {
         nombre(nullable: false, blank: false)
     }
+
+    String toString() {
+        return nombre.toUpperCase()
+    }
 }
