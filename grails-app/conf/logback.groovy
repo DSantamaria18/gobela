@@ -33,4 +33,5 @@ if (Environment.isDevelopmentMode() && targetDir != null) {
     }
     logger("StackTrace", ERROR, ['FULL_STACKTRACE'], false)
 }
+logger('org.springframework', INFO)
 root(ERROR, ['STDOUT'])
