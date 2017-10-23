@@ -124,6 +124,10 @@
             <li>Creados roles principales</li>
             <li>Creado mapeo de acceso por rol</li>
             <li>Upgrade de módulo de subvenciones a Grails 3</li>
+            <li>Creado formulario de acceso de usuarios</li>
+            <li>creadas vistas de gestión de usuarios</li>
+            <li>creadas vistas de gestion de roles</li>
+            <li>creadas vistas de asignación de roles a usuarios</li>
         </ul>
         <h2>Modificaciones 22/10/2017:</h2>
         <ul>
