@@ -84,7 +84,8 @@ img {
 }
 
 .footer {
-    background: #cc366d;
+    background: #8b0035;
+    /*background: #cc366d;*/
     /*background: #48802c;*/
     color: #000;
     clear: both;
@@ -175,7 +176,8 @@ img {
 }
 
 .nav li.dropdown.open ul.dropdown-menu {
-    background-color: #cc366d;
+    background-color: #8b0035;
+    /*background-color: #cc366d;*/
     /*background-color: #4D8618;*/
 }
 
@@ -581,3 +583,4 @@ img.grails-logo {
     margin-right: 10%;
     margin-top: 10px;
 }
+

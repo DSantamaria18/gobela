@@ -26,13 +26,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/#">
-                 <i class="fa grails-icon">
+            <a class="navbar-brand" href="/gobela">
+                 %{--<i class="fa grails-icon">
                      <asset:image src="grails-cupsonly-logo-white.svg"/>
-                 </i> Grails
-                %{--<div class="logo-getxo grails-icon">
-                    <asset:image src="gobela21/escudogetxo.gif"/>
-                </div>--}%
+                 </i> Grails--}%
+                %{--<div class="logo-getxo">--}%
+                    <asset:image src="gobela21/icon_kirolak.png" class="logo-getxo"/>
+                %{--</div>--}%
             </a>
         </div>
 
