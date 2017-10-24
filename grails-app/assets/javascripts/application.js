@@ -36,6 +36,15 @@ function sumar() {
         total = (parseFloat(total) + parseFloat(valor));
     });
     $('[name="puntuacion"]').val(total.toFixed(2).toString().replace(/\./, ','));
+    if(total > 100.00){
+        $('[name="puntuacion"]').css('border', '1px solid rgb(255, 15, 15)');
+        alert('La puntuación total supera el 100%');
+        $('.save').hide();
+    }else{
+        $('[name="puntuacion"]').css('border', '1px solid #cccccc');
+        $('.save').show();
+    }
+
     calcularImporteConcedido(total);
 }
 
