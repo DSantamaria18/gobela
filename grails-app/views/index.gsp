@@ -77,7 +77,7 @@
     </li>
     </sec:ifAnyGranted>
 
-    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_USER, ROLE_MANAGER'>
+    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER'>
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
            aria-expanded="false">Solicitudes<span class="caret"></span></a>
@@ -96,6 +96,18 @@
             <li class="controller"><g:link controller="Estadisticas" action="index">Informe Subvenciones</g:link></li>
         </ul>
     </li>
+    </sec:ifAnyGranted>
+
+    <sec:ifAnyGranted roles='ROLE_ADMIN'>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Seguridad<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li class="controller"><g:link controller="User" action="index">Usuarios</g:link></li>
+                <li class="controller"><g:link controller="Role" action="index">Roles</g:link></li>
+                <li class="controller"><g:link controller="UserRole" action="index">Roles-Usuarios</g:link></li>
+            </ul>
+        </li>
     </sec:ifAnyGranted>
 
     <li><sec:ifLoggedIn><g:link controller='logout'>Cerrar Sesión</g:link></sec:ifLoggedIn></li>
