@@ -10,87 +10,92 @@
 
 <body>
 <content tag="nav">
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-           aria-expanded="false">Application Status <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li><a href="#">Environment: ${grails.util.Environment.current.name}</a></li>
-            <li><a href="#">App profile: ${grailsApplication.config.grails?.profile}</a></li>
-            <li><a href="#">App version:
-                <g:meta name="info.app.version"/></a>
-            </li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Grails version:
-                <g:meta name="info.app.grailsVersion"/></a>
-            </li>
-            <li><a href="#">Groovy version: ${GroovySystem.getVersion()}</a></li>
-            <li><a href="#">JVM version: ${System.getProperty('java.version')}</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</a></li>
-        </ul>
-    </li>
-    %{--<li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-           aria-expanded="false">Artefacts <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li><a href="#">Controllers: ${grailsApplication.controllerClasses.size()}</a></li>
-            <li><a href="#">Domains: ${grailsApplication.domainClasses.size()}</a></li>
-            <li><a href="#">Services: ${grailsApplication.serviceClasses.size()}</a></li>
-            <li><a href="#">Tag Libraries: ${grailsApplication.tagLibClasses.size()}</a></li>
-        </ul>
-    </li>--}%
-    %{--<li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-           aria-expanded="false">Installed Plugins <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-                <li><a href="#">${plugin.name} - ${plugin.version}</a></li>
-            </g:each>
-        </ul>
-    </li>--}%
+    <sec:ifAnyGranted roles='ROLE_ADMIN'>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Application Status <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Environment: ${grails.util.Environment.current.name}</a></li>
+                <li><a href="#">App profile: ${grailsApplication.config.grails?.profile}</a></li>
+                <li><a href="#">App version:
+                    <g:meta name="info.app.version"/></a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Grails version:
+                    <g:meta name="info.app.grailsVersion"/></a>
+                </li>
+                <li><a href="#">Groovy version: ${GroovySystem.getVersion()}</a></li>
+                <li><a href="#">JVM version: ${System.getProperty('java.version')}</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</a></li>
+            </ul>
+        </li>
+    </sec:ifAnyGranted>
 
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-           aria-expanded="false">Eventos<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li><g:link class="list" controller="evento" action="index">Eventos</g:link></li>
-            %{--<li><g:link class="create" controller="evento" action="create">Nuevo Evento</g:link></li>--}%
-            <li><g:link class="list" controller="lugar" action="index">Lugares</g:link></li>
-            <li><g:link class="list" controller="recinto" action="index">Recintos</g:link></li>
-            <li><g:link class="list" controller="modalidad" action="index">Modalidades</g:link></li>
-            <li><g:link class="list" controller="material" action="index">Material</g:link></li>
-            <li><g:link class="list" controller="solicitudMaterial" action="index">Solicitudes Material</g:link></li>
-        </ul>
-    </li>
+    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_USER, ROLE_MANAGER'>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Eventos<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><g:link class="list" controller="evento" action="index">Eventos</g:link></li>
+                %{--<li><g:link class="create" controller="evento" action="create">Nuevo Evento</g:link></li>--}%
+                <li><g:link class="list" controller="lugar" action="index">Lugares</g:link></li>
+                <li><g:link class="list" controller="recinto" action="index">Recintos</g:link></li>
+                <li><g:link class="list" controller="modalidad" action="index">Modalidades</g:link></li>
+                <li><g:link class="list" controller="material" action="index">Material</g:link></li>
+                <li><g:link class="list" controller="solicitudMaterial"
+                            action="index">Solicitudes Material</g:link></li>
+            </ul>
+        </li></sec:ifAnyGranted>
 
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-           aria-expanded="false">Entidades<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li><g:link class="list" controller="entidad" action="index">Entidades</g:link></li>
-            <li><g:link class="list" controller="club" action="index">Clubes</g:link></li>
-        </ul>
-    </li>
+    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_USER,ROLE_MANAGER'>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Entidades<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><g:link class="list" controller="entidad" action="index">Entidades</g:link></li>
+                %{--<li><g:link class="list" controller="club" action="index">Clubes</g:link></li>--}%
+            </ul>
+        </li>
+    </sec:ifAnyGranted>
 
-    %{--<li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-           aria-expanded="false">Solicitudes<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li><g:link class="list" controller="solicitud" action="index"><g:message code="default.list.label"
-                                                                                      args="[entityName]"/></g:link></li>
-            <li><g:link class="create" controller="solicitud" action="create"><g:message code="default.new.label"
-                                                                  args="[entityName]"/></g:link></li>
-        </ul>
-    </li>
+    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER'>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Solicitudes<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><g:link class="list" controller="solicitud" action="index">Lista Solicitudes</g:link></li>
+                <li><g:link class="create" controller="solicitud" action="create">Crear Solicitud</g:link></li>
+            </ul>
+        </li>
+    </sec:ifAnyGranted>
 
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-           aria-expanded="false">Estadísticas<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li class="controller"><g:link controller="Estadisticas" action="index">Informe Subvenciones</g:link></li>
-        </ul>
+    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER'>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Estadísticas<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li class="controller"><g:link controller="Estadisticas"
+                                               action="index">Informe Subvenciones</g:link></li>
+            </ul>
+        </li>
+    </sec:ifAnyGranted>
 
-    </li>--}%
+    <sec:ifAnyGranted roles='ROLE_ADMIN'>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Seguridad<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li class="controller"><g:link controller="User" action="index">Usuarios</g:link></li>
+                <li class="controller"><g:link controller="Role" action="index">Roles</g:link></li>
+                <li class="controller"><g:link controller="UserRole" action="index">Roles-Usuarios</g:link></li>
+            </ul>
+        </li>
+    </sec:ifAnyGranted>
+
+    <li><sec:ifLoggedIn><g:link controller='logout'>Cerrar Sesión</g:link></sec:ifLoggedIn></li>
+    <li><sec:ifNotLoggedIn><g:link controller='login'>Identificarse</g:link></sec:ifNotLoggedIn></li>
+
 </content>
 
 <div class="svg" role="presentation">
@@ -106,17 +111,22 @@
 
 <div id="content" role="main">
     <section class="row colset-2-its">
-        %{--<div id="controllers" role="navigation">
-            <h2>Available Controllers:</h2>
-            <ul>
-                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                    <li class="controller">
-                        <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-                    </li>
-                </g:each>
-            </ul>
-        </div>--}%
         <h1>ULTIMOS CAMBIOS</h1>
+
+        <h2>Modificaciones :</h2>
+        <ul>
+            <li>Creadas vistas para acceso de usuarios</li>
+            <li>Activado plugin de seguridad</li>
+            <li>Creados roles principales</li>
+            <li>Creado mapeo de acceso por rol</li>
+            <li>Upgrade de módulo de subvenciones a Grails 3</li>
+            <li>Creado formulario de acceso de usuarios</li>
+            <li>creadas vistas de gestión de usuarios</li>
+            <li>creadas vistas de gestion de roles</li>
+            <li>creadas vistas de asignación de roles a usuarios</li>
+            <li>Creados botones de login y logout en menú superior</li>
+        </ul>
+
         <h2>Modificaciones 22/10/2017:</h2>
         <ul>
             <li>Arregada etiqueta para "número de participantes" en creación de eventos</li>
@@ -134,43 +144,124 @@
             <li>Mejorada la visualización de "recinto" en listados</li>
             <li>Mejorada la visualización de "material" en listados</li>
         </ul>
+
         <h2>Modificaciones 10/10/2017:</h2>
         <ul>
             <li>añadida entidad y vistas para "Material"</li>
             <li>Añadidos campos "lugar de entrega" y "lugar de recogida" a solicitud de material</li>
             <li>Añadida tabla de materiales a formulario de solicitud de material</li>
         </ul>
+
         <h2>Modificaciones 05/10/2017:</h2>
         <ul>
             <li>Añadido "Torneo-Txapelketa a tipos de actividad</li>
         </ul>
+
         <h2>Modificaciones 03/10/2017:</h2>
         <ul>
             <li>Añadido check "es club" en entidades</li>
             <li>Modificado el formato de fechas</li>
             <li>Añadido clonado de eventos</li>
         </ul>
+
         <h2>Modificaciones 02/10/2017:</h2>
         <ul>
-            <li>Arreglado problema con los despliegues con Tomcat7 y Tomcat embebido </li>
+            <li>Arreglado problema con los despliegues con Tomcat7 y Tomcat embebido</li>
             <li>Configurado Tomcat embebido en puerto 8081 y subcarpeta "gobela"</li>
         </ul>
+
         <h2>Modificaciones 01/10/2017:</h2>
         <ul>
             <li>Importados datos de eventos desde excel de eventos</li>
             <li>Subida a producción de apartado de Eventos</li>
         </ul>
+
         <h2>Modificaciones 30/09/2017:</h2>
         <ul>
             <li>Añadido menú de Eventos en página de inicio</li>
             <li>Añadido menú de Modalidades en página de inicio</li>
             <li>Añadido check "Evento Solidario" a Evento</li>
         </ul>
+
         <h2>Modificaciones 09/09/2017:</h2>
         <ul>
             <li>Importados datos de Entidades desde excel de eventos</li>
             <li>Cambios en algunos estilos</li>
         </ul>
+
+        <h2>Modificaciones 02/09/2017:</h2>
+        <ul>
+            <li>Añadido campo "teléfono contacto" a Evento</li>
+            <li>Modificados tipos de público</li>
+            <li>Quitado campo "Club Organizador" de evento hasta tener información válida de los clubes</li>
+            <li>Añadida entidad "Lugar"</li>
+            <li>Modificado entidad "Recinto" con nuevos valores</li>
+            <li>Añadido menú "Lugar" a página principal</li>
+            <li>Añadido menú "Recinto" a página principal</li>
+        </ul>
+
+        <h2>Modificaciones 22/10/2017:</h2>
+        <ul>
+            <li>Arregada etiqueta para "número de participantes" en creación de eventos</li>
+            <li>Arregada etiqueta para "número de asistentes" en edición de eventos</li>
+            <li>Arregada etiqueta para "número de voluntarios" en edición de eventos</li>
+            <li>Limitados los valores para los años en los selectores de fecha de solicitud de material</li>
+            <li>Añadidos más campos al desglose de meterial en vista "solicitud de material"</li>
+            <li>Añadida tabla con las solicitudes de material del evento en vista de Evento</li>
+            <li>Cambiado label del botón "Material" por "Solicitar Material"</li>
+            <li>Quitado el botón "Crear solicitud de Material" del índice de solicitudes de material</li>
+            <li>Añadido enlace a solicitudes de material en menu despleglable</li>
+            <li>Creado formulario para editar solicitudes de material</li>
+            <li>Habilitada persistencia en BDD para solicitudes de material</li>
+            <li>Mejorada la visualización de "modalidad" en listados</li>
+            <li>Mejorada la visualización de "recinto" en listados</li>
+            <li>Mejorada la visualización de "material" en listados</li>
+        </ul>
+
+        <h2>Modificaciones 10/10/2017:</h2>
+        <ul>
+            <li>añadida entidad y vistas para "Material"</li>
+            <li>Añadidos campos "lugar de entrega" y "lugar de recogida" a solicitud de material</li>
+            <li>Añadida tabla de materiales a formulario de solicitud de material</li>
+        </ul>
+
+        <h2>Modificaciones 05/10/2017:</h2>
+        <ul>
+            <li>Añadido "Torneo-Txapelketa a tipos de actividad</li>
+        </ul>
+
+        <h2>Modificaciones 03/10/2017:</h2>
+        <ul>
+            <li>Añadido check "es club" en entidades</li>
+            <li>Modificado el formato de fechas</li>
+            <li>Añadido clonado de eventos</li>
+        </ul>
+
+        <h2>Modificaciones 02/10/2017:</h2>
+        <ul>
+            <li>Arreglado problema con los despliegues con Tomcat7 y Tomcat embebido</li>
+            <li>Configurado Tomcat embebido en puerto 8081 y subcarpeta "gobela"</li>
+        </ul>
+
+        <h2>Modificaciones 01/10/2017:</h2>
+        <ul>
+            <li>Importados datos de eventos desde excel de eventos</li>
+            <li>Subida a producción de apartado de Eventos</li>
+        </ul>
+
+        <h2>Modificaciones 30/09/2017:</h2>
+        <ul>
+            <li>Añadido menú de Eventos en página de inicio</li>
+            <li>Añadido menú de Modalidades en página de inicio</li>
+            <li>Añadido check "Evento Solidario" a Evento</li>
+        </ul>
+
+        <h2>Modificaciones 09/09/2017:</h2>
+        <ul>
+            <li>Importados datos de Entidades desde excel de eventos</li>
+            <li>Cambios en algunos estilos</li>
+        </ul>
+
         <h2>Modificaciones 02/09/2017:</h2>
         <ul>
             <li>Añadido campo "teléfono contacto" a Evento</li>
