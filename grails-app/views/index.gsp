@@ -3,9 +3,8 @@
 <head>
     <meta name="layout" content="main"/>
     <title>Gobela21</title>
-    %{--<title>Welcome to Grails</title>--}%
 
-    <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
+    <asset:link rel="icon" href="gobela21/icon_kirolak.png" type="image/x-ico"/>
 </head>
 
 <body>
