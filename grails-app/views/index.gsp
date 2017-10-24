@@ -128,6 +128,7 @@
             <li>Añadida comprobación de suma total de puntuaciones por línea</li>
             <li>Añadido mensaje de error si la suma total de puntos supera los 100</li>
             <li>Deshabilitado botón de guardar valoración si la puntuación supera los 100 puntos</li>
+            <li>Cambiado favicon</li>
         </ul>
 
         <h2>Modificaciones 22/10/2017:</h2>
