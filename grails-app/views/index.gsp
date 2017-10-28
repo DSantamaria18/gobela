@@ -107,7 +107,7 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones :</h2>
+        <h2>Modificaciones 29/10/2017:</h2>
         <ul>
             <li>Creadas vistas para acceso de usuarios</li>
             <li>Activada capa de seguridad</li>
