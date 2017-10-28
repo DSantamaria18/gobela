@@ -126,6 +126,8 @@
             <li>Cambiado favicon</li>
             <li>Cambios menores en diseño</li>
             <li>Incrementado el número de eventos por página en índice de eventos</li>
+            <li>Añadido campo hora a inicio de evento</li>
+            <li>Añadida fecha y hora de fin de evento</li>
         </ul>
 
         <h2>Modificaciones 22/10/2017:</h2>

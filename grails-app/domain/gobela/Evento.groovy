@@ -2,6 +2,7 @@ package gobela
 
 class Evento {
     Date fecha
+    Date fechaFin
     String nombre
     Entidad entidadOrganizadora
     String contacto
@@ -37,6 +38,7 @@ class Evento {
         nombre(nullable: false, blank: false)
         estado(inList: ['Pendiente', 'Confirmado', 'Rechazado', 'Finalizado', 'Cancelado'])
         fecha(nullable: false)
+        fechaFin(nullable: false)
         relevante()
         tipoActividad(inList: ['Formación', 'Regular/Competición', 'Exhibición', 'Cultural', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Otros', 'Txapelketa/Torneo'])
         modalidad(nullable: true)

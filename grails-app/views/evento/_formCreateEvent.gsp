@@ -22,12 +22,28 @@
     <g:checkBox name="relevante" value="${evento?.relevante}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: evento, field: 'fecha', 'error')} required">
+%{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'fecha', 'error')} required">
     <label for="fecha">
         <g:message code="evento.fecha.label" default="Fecha del evento:"/>
         <span class="required-indicator">*</span>
     </label>
     <g:datePicker name="fecha" precision="day" value="${this.evento?.fecha}"/>
+</div>--}%
+
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'fecha', 'error')} required">
+    <label for="fecha">
+        <g:message code="evento.fechaInicio.label" default="Fecha del evento:"/>
+        <span class="required-indicator">*</span>
+    </label>
+    <g:datePicker name="fecha" precision="minute" value="${this.evento?.fecha}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'fechaFin', 'error')} required">
+    <label for="fechaFin">
+        <g:message code="evento.fechaFin.label" default="Fecha Fin:"/>
+        <span class="required-indicator">*</span>
+    </label>
+    <g:datePicker name="fechaFin" precision="minute" value="${this.evento?.fechaFin}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'tipoActividad', 'error')} required">
