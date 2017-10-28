@@ -21,7 +21,7 @@
             <f:table collection="${eventoList}" />
 
             <div class="pagination">
-                <g:paginate total="${eventoCount ?: 0}" />
+                <g:paginate total="${eventoCount ?: 0}"/>
             </div>
         </div>
     </body>

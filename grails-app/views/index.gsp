@@ -125,6 +125,7 @@
             <li>Deshabilitado botón de guardar valoración si la puntuación supera los 100 puntos</li>
             <li>Cambiado favicon</li>
             <li>Cambios menores en diseño</li>
+            <li>Incrementado el número de eventos por página en índice de eventos</li>
         </ul>
 
         <h2>Modificaciones 22/10/2017:</h2>
