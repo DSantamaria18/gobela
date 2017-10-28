@@ -14,7 +14,7 @@
         <g:message code="solicitudMaterial.entrega.label" default="Fecha de Entrega:"/>
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="entrega" precision="day" relativeYears="[-1..2]" value="${solicitudMaterial?.entrega}"/>
+    <g:datePicker name="entrega" precision="minute" relativeYears="[-1..2]" value="${solicitudMaterial?.entrega}"/>
 </div>
 
 <div class="fieldcontain">
@@ -29,7 +29,7 @@
         <g:message code="solicitudMaterial.recogida.label" default="Fecha de Recogida:"/>
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="recogida" precision="day" relativeYears="[-1..2]" value="${solicitudMaterial?.recogida}"/>
+    <g:datePicker name="recogida" precision="minute" relativeYears="[-1..2]" value="${solicitudMaterial?.recogida}"/>
 </div>
 
 <div class="fieldcontain">

@@ -128,6 +128,8 @@
             <li>Incrementado el número de eventos por página en índice de eventos</li>
             <li>Añadido campo hora a inicio de evento</li>
             <li>Añadida fecha y hora de fin de evento</li>
+            <li>Añadida hora a fecha de entrega de solicitud de material</li>
+            <li>Añadida hora a fecha de recogida de solicitud de material</li>
         </ul>
 
         <h2>Modificaciones 22/10/2017:</h2>
