@@ -110,7 +110,7 @@
         <h2>Modificaciones :</h2>
         <ul>
             <li>Creadas vistas para acceso de usuarios</li>
-            <li>Activado plugin de seguridad</li>
+            <li>Activada capa de seguridad</li>
             <li>Creados roles principales</li>
             <li>Creado mapeo de acceso por rol</li>
             <li>Upgrade de módulo de subvenciones a Grails 3</li>
