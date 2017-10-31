@@ -28,11 +28,8 @@
                 <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                     <td>${infoDoc.nombre.decodeURL()}</td>
                     <td>${infoDoc.tamaño.decodeURL()}</td>
-                    %{--<td><a href="${createLinkTo(dir: 'images', file: infoDoc.decodeURL(), absolute: true)}"
-                           target="_new">Descargar</a></td>--}%
                     <td>
-                    <g:link class="glyphicon-cloud-download"
-                            action="downloadFile"
+                    <g:link action="downloadFile"
                             params='[fileId: infoDoc.nombre.replace(".", "###"), eventoId: params.eventoId]'>
                         <input type="button" class="btn btn-info" value="Descargar"/>
                     </g:link>
@@ -59,26 +56,42 @@
 
 %{--<div class="content scaffold-list" role="main">
     <h1>Solicitudes y Permisos</h1>
-    <g:if test="${flash.message}"><div class="message" role="status">${flash.message}</div></g:if>
-    <table>
-        <thead>
-        <tr>
-            <g:sortableColumn property="nombre" title="Nombre" />
-            <g:sortableColumn property="fechaSubida" title="Fecha de Subida" />
-        </tr>
-        </thead>
-        <tbody>
-        <g:each in="${eventDocList}" status="i" var="eventDoc">
-            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                <td><g:link action="download" id="${eventDoc.id}">${eventDoc.nombre}</g:link></td>
-                <td><g:formatDate date="${eventDoc.fechaSubida}" /></td>
+    <div class="list">
+        <table>
+            <thead>
+            <tr>
+                <th>Fichero</th>
+                <th>Tamaño (bytes)</th>
+                <th></th>
+                <th></th>
             </tr>
-        </g:each>
-        </tbody>
-    </table>
-    <div class="pagination">
-        <g:paginate total="${eventDocListCount}" />
+            </thead>
+            <tbody>
+            <g:each in="${infoDocsList}" status="i" var="infoDoc">
+                <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+                    <td>${infoDoc.nombre.decodeURL()}</td>
+                    <td>${infoDoc.tamaño.decodeURL()}</td>
+                    <td>
+                        <g:link action="downloadFile"
+                                params='[fileId: infoDoc.nombre.replace(".", "###"), eventoId: params.eventoId]'>
+                            <input type="button" class="btn btn-info" value="Descargar"/>
+                        </g:link>
+
+                    </td>
+                    <td>
+                        <g:link class="delete"
+                                action="deleteFile"
+                                params='[fileId: infoDoc.nombre.replace(".", "###"), eventoId: params.eventoId]'>
+                            <input type="button" class="btn btn-danger" value="Borrar"
+                                   onclick="return confirm('El fichero se borrará. ¿Estás seguro/a?');"/>
+                        </g:link>
+                    </td>
+                </tr>
+            </g:each>
+            </tbody>
+        </table>
     </div>
+
 </div>--}%
 </body>
 </html>
