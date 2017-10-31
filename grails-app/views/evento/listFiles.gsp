@@ -28,10 +28,24 @@
                 <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                     <td>${infoDoc.nombre.decodeURL()}</td>
                     <td>${infoDoc.tamaño.decodeURL()}</td>
-                    <td><a href="${createLinkTo(dir: 'images', file: infoDoc.decodeURL(), absolute: true)}"
-                           target="_new">Descargar${i}</a></td>
-                    <td><g:link action="delete" id="${infoDoc.replace('.', '###')}"
-                                onclick="return confirm('El fichero se borrará. ¿Estás seguro/a?');">Borrar</g:link></td>
+                    %{--<td><a href="${createLinkTo(dir: 'images', file: infoDoc.decodeURL(), absolute: true)}"
+                           target="_new">Descargar</a></td>--}%
+                    <td>
+                    <g:link class="glyphicon-cloud-download"
+                            action="downloadFile"
+                            params='[fileId: infoDoc.nombre.replace(".", "###"), eventoId: params.eventoId]'>
+                        <input type="button" class="btn btn-info" value="Descargar"/>
+                    </g:link>
+
+                    </td>
+                    <td>
+                        <g:link class="delete"
+                                action="deleteFile"
+                                params='[fileId: infoDoc.nombre.replace(".", "###"), eventoId: params.eventoId]'>
+                            <input type="button" class="btn btn-danger" value="Borrar"
+                                   onclick="return confirm('El fichero se borrará. ¿Estás seguro/a?');"/>
+                        </g:link>
+                    </td>
                 </tr>
             </g:each>
             </tbody>

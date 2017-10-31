@@ -112,7 +112,9 @@
             <li>Habilitada subida de ficheros para Evento</li>
             <li>Creada vista de gestión de ficheros en Evento</li>
             <li>Añadido botón en Evento para la gestión de ficheros</li>
-            <li></li>
+            <li>Habilitada la descarga de ficheros de Evento</li>
+            <li>Añadido botón para el borrado de ficheros de Evento </li>
+            <li>Añadida doble comprobación para el borrado de ficheros de evento</li>
         </ul>
 
         <h2>Modificaciones 29/10/2017:</h2>

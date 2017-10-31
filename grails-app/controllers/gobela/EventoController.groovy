@@ -110,8 +110,9 @@ class EventoController {
     }
 
     def listFiles() {
+        def eventoId = params.eventoId
         ArrayList<Map> infoDocsList = []
-        def f = new File("C:/temp/upload/")
+        def f = new File("C:/temp/upload/${eventoId}/")
         if (f.exists()) {
             f.eachFile() { file ->
                 if (!file.isDirectory()) {
@@ -122,18 +123,40 @@ class EventoController {
                 }
             }
         }
-//        infoDocsList.sort{ it.values()}
         infoDocsList.sort { a, b -> b.value <=> a.value }
         [infoDocsList: infoDocsList, infoDocsCount: infoDocsList.size()]
     }
 
     def deleteFile() {
-        def filename = params.id.replace('###', '.')
-        def file = new File(grailsApplication.config.images.location.toString() + File.separatorChar + filename)
+        def filename = params.fileId.replace('###', '.')
+        def eventoId = params.eventoId
+        def file = new File("C:/temp/upload/${eventoId}/" + File.separatorChar + filename)
         file.delete()
-        flash.message = "file ${filename} removed"
-        redirect(action: list)
+        flash.message = "El fichero ${filename} ha sido borrado"
+        redirect(action: 'listFiles', params: [eventoId: eventoId])
     }
+
+    def downloadFile() {
+        def filename = params.fileId.replace('###', '.')
+        def eventoId = params.eventoId
+        def file = new File("C:/temp/upload/${eventoId}/" + File.separatorChar + filename)
+
+        response.setContentType("APPLICATION/OCTET-STREAM")
+        response.setHeader("Content-Disposition", "Attachment;Filename=\"${filename}\"")
+        def fileInputStream = new FileInputStream(file)
+
+        def outputStream = response.getOutputStream()
+        byte[] buffer = new byte[4096]
+        int len
+        while ((len = fileInputStream.read(buffer)) > 0) {
+            outputStream.write(buffer, 0, len)
+        }
+        outputStream.flush()
+        outputStream.close()
+        fileInputStream.close()
+    }
+
+
 
     def uploadFile() {
         def f = request.getFile('fileUpload')
@@ -144,6 +167,6 @@ class EventoController {
         } else {
             flash.message = 'file cannot be empty'
         }
-        redirect(action: list)
+        redirect(action: 'listFiles')
     }
 }
