@@ -107,6 +107,14 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 1/11/2017:</h2>
+        <ul>
+            <li>Habilitada subida de ficheros para Evento</li>
+            <li>Creada vista de gestión de ficheros en Evento</li>
+            <li>Añadido botón en Evento para la gestión de ficheros</li>
+            <li></li>
+        </ul>
+
         <h2>Modificaciones 29/10/2017:</h2>
         <ul>
             <li>Creadas vistas para acceso de usuarios</li>

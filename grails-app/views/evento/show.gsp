@@ -41,6 +41,8 @@
                                                               args="[entityName]"/></g:link></li>
         <li><g:link class="create" controller="solicitudMaterial" action="create"
                     params="['eventoId': evento.id]">Solicitar Material</g:link></li>
+        <li><g:link class="create" action="listFiles"
+                    params="['eventoId': evento.id]">Ficheros</g:link></li>
     </ul>
 </div>
 
