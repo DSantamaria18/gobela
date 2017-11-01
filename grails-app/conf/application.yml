@@ -174,7 +174,7 @@ environments:
     test:
         uploadFolder: "c:/temp/uploads"
     production:
-        uploadFolder: "c:/temp/upload"
+        uploadFolder: "/root/ficheros"
 ---
 grails:
     controllers:
