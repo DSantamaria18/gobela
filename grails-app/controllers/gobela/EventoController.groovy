@@ -1,12 +1,17 @@
 package gobela
 
 import static org.springframework.http.HttpStatus.*
+import grails.util.Holders
 import grails.transaction.Transactional
+
+
 
 @Transactional(readOnly = false)
 class EventoController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static final String UPLOAD_FOLDER = Holders.getGrailsApplication().config.uploadFolder + "/eventos"
+
 
     def index(Integer max) {
         params.max = Math.min(max ?: 30, 100)
@@ -112,7 +117,7 @@ class EventoController {
     def listFiles() {
         def eventoId = params.eventoId
         ArrayList<Map> infoDocsList = []
-        def f = new File("C:/temp/upload/${eventoId}/info/")
+        def f = new File("${UPLOAD_FOLDER}/${eventoId}/info/")
         if (f.exists()) {
             f.eachFile() { file ->
                 if (!file.isDirectory()) {
@@ -124,14 +129,28 @@ class EventoController {
             }
         }
         infoDocsList.sort { a, b -> b.value <=> a.value }
-        [infoDocsList: infoDocsList, infoDocsCount: infoDocsList.size()]
+
+        ArrayList<Map> permDocsList = []
+        def f2 = new File("${UPLOAD_FOLDER}/${eventoId}/permisos/")
+        if (f2.exists()) {
+            f2.eachFile() { file ->
+                if (!file.isDirectory()) {
+                    Map fileInfo = [:]
+                    fileInfo.nombre = file.name
+                    fileInfo.tamaño = file.size()
+                    permDocsList.add(fileInfo)
+                }
+            }
+        }
+        permDocsList.sort { a, b -> b.value <=> a.value }
+        [infoDocsList: infoDocsList, infoDocsCount: infoDocsList.size(), permDocsList: permDocsList, permDocsCount: permDocsList.size()]
     }
 
     def deleteFile() {
         def filename = params.fileId.replace('###', '.')
         def eventoId = params.eventoId
-        String tipo = params.folder
-        String ruta = "C:/temp/upload/${eventoId}/${tipo}/"
+        String tipo = params.tipo
+        String ruta = "${UPLOAD_FOLDER}/${eventoId}/${tipo}/"
         def file = new File( ruta + File.separatorChar + filename)
         file.delete()
         flash.message = "El fichero ${filename} ha sido borrado"
@@ -142,7 +161,7 @@ class EventoController {
         def filename = params.fileId.replace('###', '.')
         def eventoId = params.eventoId
         String tipo = params.tipo
-        String ruta = "C:/temp/upload/${eventoId}/${tipo}/"
+        String ruta = "${UPLOAD_FOLDER}/${eventoId}/${tipo}/"
         def file = new File(ruta + File.separatorChar + filename)
 
         response.setContentType("APPLICATION/OCTET-STREAM")
@@ -160,13 +179,34 @@ class EventoController {
         fileInputStream.close()
     }
 
-    def uploadFile() {
+    def uploadInfoFile() {
         def eventoId = params.eventoId
-        def f = request.getFile('fileUpload')
-        String tipo = params.tipo
-        String ruta = "C:/temp/upload/${eventoId}/${tipo}/"
+        def f = request.getFile('infoFileUpload')
+        String ruta = "${UPLOAD_FOLDER}/${eventoId}/info/"
+        File folder = new File(ruta)
+        if(!folder.exists()){
+            folder.mkdirs()
+        }
         if (!f.empty) {
-            flash.message = 'Your file has been uploaded'
+            flash.message = "Se ha subido ${f.getOriginalFilename()}"
+            f.transferTo(new File( ruta + File.separatorChar + f.getOriginalFilename()))
+        } else {
+            flash.message = 'Debes seleccionar un fichero'
+        }
+        redirect(action: 'listFiles', params: [eventoId: eventoId])
+    }
+
+    def uploadPermFile() {
+        def eventoId = params.eventoId
+        def f = request.getFile('permFileUpload')
+//        String tipo = params.tipo
+        String ruta = "${UPLOAD_FOLDER}/${eventoId}/permisos/"
+        File folder = new File(ruta)
+        if(!folder.exists()){
+            folder.mkdirs()
+        }
+        if (!f.empty) {
+            flash.message = "Se ha subido ${f.getOriginalFilename()}"
             f.transferTo(new File( ruta + File.separatorChar + f.getOriginalFilename()))
         } else {
             flash.message = 'Debes seleccionar un fichero'

@@ -36,11 +36,11 @@ function sumar() {
         total = (parseFloat(total) + parseFloat(valor));
     });
     $('[name="puntuacion"]').val(total.toFixed(2).toString().replace(/\./, ','));
-    if(total > 100.00){
+    if (total > 100.00) {
         $('[name="puntuacion"]').css('border', '1px solid rgb(255, 15, 15)');
         alert('La puntuación total supera el 100%');
         $('.save').hide();
-    }else{
+    } else {
         $('[name="puntuacion"]').css('border', '1px solid #cccccc');
         $('.save').show();
     }
@@ -75,16 +75,16 @@ function addMaterial() {
     var material = $('[name="material"]').find(':selected').text();
     var cantidad = $('#cantidad').val();
     var diaEntrega = $('#fentrega_day').val();
-    var mesEntrega = $('#fentrega_month').val()-1;
+    var mesEntrega = $('#fentrega_month').val() - 1;
     var anoEntrega = $('#fentrega_year').val();
     var fechaEntrega = new Date(anoEntrega + "-" + mesEntrega + "-" + diaEntrega);
     var lugarEntrega = $('[name="lugar-entrega"]').val();
     var diaDevolucion = $('#frecogida_day').val();
     var mesDevolucion = $('#frecogida_month').val();
     var anoDevolucion = $('#frecogida_year').val();
-    var fechaDevolucion = new Date(anoDevolucion + "-" +  mesDevolucion + "-" + diaDevolucion);
+    var fechaDevolucion = new Date(anoDevolucion + "-" + mesDevolucion + "-" + diaDevolucion);
     var lugarDevolucion = $('[name="lugar-devolucion"]').val();
-    var observaciones =  $('[name="observaciones"]').val();
+    var observaciones = $('[name="observaciones"]').val();
     var botonDelete = ('<input type="button" value="Borrar" onclick="deleteMaterial(this)"/>')
     var lastId = parseInt($('#lista-material tr:last').attr("id"));
     var newId = 1;
@@ -96,7 +96,7 @@ function addMaterial() {
     if (parseInt(cantidad) === 0 || isNaN(parseInt(cantidad))) {
         alert("Error: La cantidad no es correcta");
     } else {
-        var row = '<tr id="' + newId.toString() + '"><td>' + material + '</td><td>' + cantidad + '</td><td>' + fechaEntrega.toLocaleDateString() + '</td><td>' + lugarEntrega + '</td><td>' + fechaDevolucion.toLocaleDateString() + '</td><td>' + lugarDevolucion + '</td><td>' + observaciones +'</td><td>' + botonDelete + '</td></tr>';
+        var row = '<tr id="' + newId.toString() + '"><td>' + material + '</td><td>' + cantidad + '</td><td>' + fechaEntrega.toLocaleDateString() + '</td><td>' + lugarEntrega + '</td><td>' + fechaDevolucion.toLocaleDateString() + '</td><td>' + lugarDevolucion + '</td><td>' + observaciones + '</td><td>' + botonDelete + '</td></tr>';
         $('#lista-material').append(row);
     }
 }
@@ -118,12 +118,29 @@ function fillAvailableStock(id) {
     })
 }
 
-function buscar(){
-    // alert("HOLA!!!!");
-    $('#fileUpload').click()
+function buscar(tipo) {
+    if (tipo === "info") {
+        console.log("buscando info");
+        $('#infoFileUpload').click();
+    } else if (tipo === "permisos") {
+        console.log("buscando permisos");
+        $('#permFileUpload').click();
+    } else {
+        console.log("TIPO NO VALIDO" + tipo);
+    }
+
 }
 
-function copyFileName(){
-    var filename = $('#fileUpload').val().split('\\').pop();
-    $('#fileNameInput').val(filename);
+function copyFileName(tipo) {
+    var filename = "";
+    if (tipo === "info") {
+        filename = $('#infoFileUpload').val().split('\\').pop();
+        $('#infoFileNameInput').val(filename);
+    }else if (tipo === "permisos") {
+        filename = $('#permFileUpload').val().split('\\').pop();
+        $('#permFileNameInput').val(filename);
+    } else {
+        console.log("TIPO NO VALIDO" + tipo);
+    }
+
 }

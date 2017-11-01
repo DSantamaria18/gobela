@@ -30,9 +30,9 @@
                     <td>${infoDoc.tamaño.decodeURL()}</td>
                     <td>
                         <g:link action="downloadFile"
-                                params='[fileId: infoDoc.nombre.replace(".", "###"),
+                                params='[fileId  : infoDoc.nombre.replace(".", "###"),
                                          eventoId: params.eventoId,
-                                         tipo: "info"]'>
+                                         tipo    : "info"]'>
                             <input type="button" class="btn btn-success" value="Descargar"/>
                         </g:link>
 
@@ -42,7 +42,7 @@
                                 action="deleteFile"
                                 params='[fileId  : infoDoc.nombre.replace(".", "###"),
                                          eventoId: params.eventoId,
-                                         folder  : "info"]'>
+                                         tipo  : "info"]'>
                             <input type="button" class="btn btn-danger" value="Borrar"
                                    onclick="return confirm('El fichero se borrará. ¿Estás seguro/a?');"/>
                         </g:link>
@@ -56,21 +56,22 @@
     <div class="container">
         <div class="col-md-8 col-md-offset-2">
             <h3>Subir Fichero</h3>
+
             <form method="POST" action="#" enctype="multipart/form-data">
                 <div class="form-group">
-                    <div class="input-group input-file" name="Fichier1">
+                    <div class="input-group input-file" name="infoFiles">
                         <span class="input-group-btn">
-                            <button class="btn btn-dark btn-choose" type="button" onclick="buscar()">Buscar</button>
+                            <button class="btn btn-dark btn-choose" type="button" onclick="buscar('info')">Buscar</button>
                         </span>
-                        <input type="text" class="form-control" id="fileNameInput" placeholder='Selecciona un fichero...' readonly />
-                        %{--<input type="hidden" name="eventoId" value="${params.eventoId}"/>--}%
-                        <input type="hidden" name="tipo" value="info"/>
+                        <input type="text" class="form-control" id="infoFileNameInput"
+                               placeholder='Selecciona un fichero...' readonly/>
+                        %{--<input type="hidden" name="tipo" value="info"/>--}%
                         <span class="input-group-btn">
-                            <g:actionSubmit class="btn btn-primary" value="Subir" action="uploadFile"/>
+                            <g:actionSubmit class="btn btn-primary" value="Subir" action="uploadInfoFile"/>
                         </span>
-                        <input type="file" class="form-control" id="fileUpload" name="fileUpload"
-                               onchange="copyFileName()"
-                               style="visibility:hidden";/>
+                        <input type="file" class="form-control" id="infoFileUpload" name="infoFileUpload"
+                               onchange="copyFileName('info')"
+                               style="visibility:hidden" ;/>
                     </div>
                 </div>
             </form>
@@ -78,15 +79,14 @@
     </div>
 </div>
 
-
-
-
 <br/>
 <hr>
 <br/>
 
-%{--<div class="content scaffold-list" role="main">
+<div class="content scaffold-list" role="main">
     <h1>Solicitudes y Permisos</h1>
+    <div id="success"></div>
+
     <div class="list">
         <table>
             <thead>
@@ -98,21 +98,25 @@
             </tr>
             </thead>
             <tbody>
-            <g:each in="${infoDocsList}" status="i" var="infoDoc">
+            <g:each in="${permDocsList}" status="i" var="permDoc">
                 <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                    <td>${infoDoc.nombre.decodeURL()}</td>
-                    <td>${infoDoc.tamaño.decodeURL()}</td>
+                    <td>${permDoc.nombre.decodeURL()}</td>
+                    <td>${permDoc.tamaño.decodeURL()}</td>
                     <td>
                         <g:link action="downloadFile"
-                                params='[fileId: infoDoc.nombre.replace(".", "###"), eventoId: params.eventoId]'>
-                            <input type="button" class="btn btn-info" value="Descargar"/>
+                                params='[fileId  : permDoc.nombre.replace(".", "###"),
+                                         eventoId: params.eventoId,
+                                         tipo    : "permisos"]'>
+                            <input type="button" class="btn btn-success" value="Descargar"/>
                         </g:link>
 
                     </td>
                     <td>
                         <g:link class="delete"
                                 action="deleteFile"
-                                params='[fileId: infoDoc.nombre.replace(".", "###"), eventoId: params.eventoId]'>
+                                params='[fileId  : permDoc.nombre.replace(".", "###"),
+                                         eventoId: params.eventoId,
+                                         tipo  : "permisos"]'>
                             <input type="button" class="btn btn-danger" value="Borrar"
                                    onclick="return confirm('El fichero se borrará. ¿Estás seguro/a?');"/>
                         </g:link>
@@ -123,6 +127,30 @@
         </table>
     </div>
 
-</div>--}%
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>Subir Fichero</h3>
+
+            <form method="POST" action="#" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="input-group input-file" name="permFiles">
+                        <span class="input-group-btn">
+                            <button class="btn btn-dark btn-choose" type="button" onclick="buscar('permisos')">Buscar</button>
+                        </span>
+                        <input type="text" class="form-control" id="permFileNameInput"
+                               placeholder='Selecciona un fichero...' readonly/>
+                        %{--<input type="hidden" name="tipo" value="info"/>--}%
+                        <span class="input-group-btn">
+                            <g:actionSubmit class="btn btn-primary" value="Subir" action="uploadPermFile"/>
+                        </span>
+                        <input type="file" class="form-control" id="permFileUpload" name="permFileUpload"
+                               onchange="copyFileName('permisos')"
+                               style="visibility:hidden" ;/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

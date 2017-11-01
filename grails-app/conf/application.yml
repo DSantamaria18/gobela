@@ -170,11 +170,11 @@ server:
 ---
 environments:
     development:
-        uploadFolder: "c:/temp/upload/"
+        uploadFolder: "c:/temp/upload"
     test:
-        uploadFolder: "c:/temp/upload/"
+        uploadFolder: "c:/temp/uploads"
     production:
-        uploadFolder: "c:/temp/upload/"
+        uploadFolder: "c:/temp/upload"
 ---
 grails:
     controllers:
