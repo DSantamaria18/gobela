@@ -117,6 +117,7 @@
             <li>Añadida doble comprobación para el borrado de ficheros de evento</li>
             <li>Mejoras visuales en formulario de gestión de ficheros de evento</li>
             <li>Añadido JS de control para formulario de gestión de ficheros de evento</li>
+            <li>Añadida navegación a vista de gestión de ficheros de evento</li>
         </ul>
 
         <h2>Modificaciones 29/10/2017:</h2>
