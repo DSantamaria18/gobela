@@ -29,16 +29,20 @@
                     <td>${infoDoc.nombre.decodeURL()}</td>
                     <td>${infoDoc.tamaño.decodeURL()}</td>
                     <td>
-                    <g:link action="downloadFile"
-                            params='[fileId: infoDoc.nombre.replace(".", "###"), eventoId: params.eventoId]'>
-                        <input type="button" class="btn btn-info" value="Descargar"/>
-                    </g:link>
+                        <g:link action="downloadFile"
+                                params='[fileId: infoDoc.nombre.replace(".", "###"),
+                                         eventoId: params.eventoId,
+                                         tipo: "info"]'>
+                            <input type="button" class="btn btn-success" value="Descargar"/>
+                        </g:link>
 
                     </td>
                     <td>
                         <g:link class="delete"
                                 action="deleteFile"
-                                params='[fileId: infoDoc.nombre.replace(".", "###"), eventoId: params.eventoId]'>
+                                params='[fileId  : infoDoc.nombre.replace(".", "###"),
+                                         eventoId: params.eventoId,
+                                         folder  : "info"]'>
                             <input type="button" class="btn btn-danger" value="Borrar"
                                    onclick="return confirm('El fichero se borrará. ¿Estás seguro/a?');"/>
                         </g:link>
@@ -48,7 +52,34 @@
             </tbody>
         </table>
     </div>
+
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>Subir Fichero</h3>
+            <form method="POST" action="#" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="input-group input-file" name="Fichier1">
+                        <span class="input-group-btn">
+                            <button class="btn btn-dark btn-choose" type="button" onclick="buscar()">Buscar</button>
+                        </span>
+                        <input type="text" class="form-control" id="fileNameInput" placeholder='Selecciona un fichero...' readonly />
+                        %{--<input type="hidden" name="eventoId" value="${params.eventoId}"/>--}%
+                        <input type="hidden" name="tipo" value="info"/>
+                        <span class="input-group-btn">
+                            <g:actionSubmit class="btn btn-primary" value="Subir" action="uploadFile"/>
+                        </span>
+                        <input type="file" class="form-control" id="fileUpload" name="fileUpload"
+                               onchange="copyFileName()"
+                               style="visibility:hidden";/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+
+
 
 <br/>
 <hr>

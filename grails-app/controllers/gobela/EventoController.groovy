@@ -112,7 +112,7 @@ class EventoController {
     def listFiles() {
         def eventoId = params.eventoId
         ArrayList<Map> infoDocsList = []
-        def f = new File("C:/temp/upload/${eventoId}/")
+        def f = new File("C:/temp/upload/${eventoId}/info/")
         if (f.exists()) {
             f.eachFile() { file ->
                 if (!file.isDirectory()) {
@@ -130,7 +130,9 @@ class EventoController {
     def deleteFile() {
         def filename = params.fileId.replace('###', '.')
         def eventoId = params.eventoId
-        def file = new File("C:/temp/upload/${eventoId}/" + File.separatorChar + filename)
+        String tipo = params.folder
+        String ruta = "C:/temp/upload/${eventoId}/${tipo}/"
+        def file = new File( ruta + File.separatorChar + filename)
         file.delete()
         flash.message = "El fichero ${filename} ha sido borrado"
         redirect(action: 'listFiles', params: [eventoId: eventoId])
@@ -139,7 +141,9 @@ class EventoController {
     def downloadFile() {
         def filename = params.fileId.replace('###', '.')
         def eventoId = params.eventoId
-        def file = new File("C:/temp/upload/${eventoId}/" + File.separatorChar + filename)
+        String tipo = params.tipo
+        String ruta = "C:/temp/upload/${eventoId}/${tipo}/"
+        def file = new File(ruta + File.separatorChar + filename)
 
         response.setContentType("APPLICATION/OCTET-STREAM")
         response.setHeader("Content-Disposition", "Attachment;Filename=\"${filename}\"")
@@ -156,17 +160,17 @@ class EventoController {
         fileInputStream.close()
     }
 
-
-
     def uploadFile() {
+        def eventoId = params.eventoId
         def f = request.getFile('fileUpload')
+        String tipo = params.tipo
+        String ruta = "C:/temp/upload/${eventoId}/${tipo}/"
         if (!f.empty) {
             flash.message = 'Your file has been uploaded'
-            new File(grailsApplication.config.images.location.toString()).mkdirs()
-            f.transferTo(new File(grailsApplication.config.images.location.toString() + File.separatorChar + f.getOriginalFilename()))
+            f.transferTo(new File( ruta + File.separatorChar + f.getOriginalFilename()))
         } else {
-            flash.message = 'file cannot be empty'
+            flash.message = 'Debes seleccionar un fichero'
         }
-        redirect(action: 'listFiles')
+        redirect(action: 'listFiles', params: [eventoId: eventoId])
     }
 }

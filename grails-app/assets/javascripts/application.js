@@ -117,3 +117,13 @@ function fillAvailableStock(id) {
         $('#stock-container').html(data);
     })
 }
+
+function buscar(){
+    // alert("HOLA!!!!");
+    $('#fileUpload').click()
+}
+
+function copyFileName(){
+    var filename = $('#fileUpload').val().split('\\').pop();
+    $('#fileNameInput').val(filename);
+}

@@ -175,3 +175,9 @@ environments:
         uploadFolder: "c:/temp/upload/"
     production:
         uploadFolder: "c:/temp/upload/"
+---
+grails:
+    controllers:
+        upload:
+            maxFileSize: 5242880
+            maxRequestSize: 5242880
