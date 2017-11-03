@@ -108,12 +108,15 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones 2/11/2017:</h2>
+        <h2>Modificaciones 3/11/2017:</h2>
         <ul>
             <li>Añadida entidad Zona</li>
             <li>Creadas vistas para Zona</li>
             <li>Creada relación Lugar-Zona</li>
             <li>Añadido enlace a Zonas en menú de Eventos</li>
+            <li>Arreglos en maquetación de "Num Participantes" en Evento</li>
+            <li>JS para control de combos de Zona-Lugar en creación de eventos</li>
+            <li>JS para control de combos de Zona-Lugar en edición de eventos</li>
         </ul>
 
         <h2>Modificaciones 1/11/2017:</h2>

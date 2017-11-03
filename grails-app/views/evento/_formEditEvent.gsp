@@ -101,7 +101,7 @@
     <g:select name="entidadOrganizadora"
               from="${gobela.Entidad.listOrderByNombreEntidad()}"
               value="${evento?.entidadOrganizadora?.id}"
-              noSelection="${['':'Selecciona una entidad organizadora...']}"
+              noSelection="${['': 'Selecciona una entidad organizadora...']}"
               optionKey="id"
               optionValue="nombreEntidad"/>
 </div>
@@ -114,10 +114,10 @@
 </div>
 
 <div class="fieldcontain" ${hasErrors(bean: evento, field: 'telefonoContacto', 'error')}>
-<label for="telefonoContacto">
-    <g:message code="evento.telefonoContacto.label" default="Teléfono Contacto:"/>
-</label>
-<g:textField name="telefonoContacto" value="${this.evento?.telefonoContacto}"/>
+    <label for="telefonoContacto">
+        <g:message code="evento.telefonoContacto.label" default="Teléfono Contacto:"/>
+    </label>
+    <g:textField name="telefonoContacto" value="${this.evento?.telefonoContacto}"/>
 </div>
 
 %{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'clubOrganizador', 'error')}">
@@ -167,17 +167,34 @@
               valueMessagePrefix="evento.publicoDest"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: evento, field: 'lugar', 'error')} required">
-    <label for="lugar">
-        <g:message code="evento.lugar.label" default="Lugar:"/>
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'zona', 'error')} required">
+    <label for="zona">
+        <g:message code="evento.zona.label" default="Zona:"/>
     </label>
-
-    <g:select name="lugar"
-              from="${gobela.Lugar.listOrderByNombreLugar()}"
-              value="${evento?.lugar?.id}"
-              noSelection="${['':'Selecciona un lugar...']}"
+    <g:set var="lugarId" value="${evento?.lugar?.id}"/>
+    <g:select name="zona"
+              from="${gobela.Zona.listOrderByNombre()}"
+              value="${evento?.zona?.id}"
+              noSelection="${['': 'Selecciona una Zona...']}"
               optionKey="id"
-              optionValue="nombreLugar"/>
+              optionValue="nombre"
+              onchange="fillLugarByZona(this.value, ${lugarId})"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'lugar', 'error')} required" id="lugar-container">
+    %{-- <label for="lugar">
+         <g:message code="evento.lugar.label" default="Lugar:"/>
+     </label>
+
+     <g:select name="lugar"
+               from="${gobela.Lugar.listOrderByNombreLugar()}"
+               value="${evento?.lugar?.id}"
+               noSelection="${['': 'Selecciona un lugar...']}"
+               optionKey="id"
+               optionValue="nombreLugar"/>--}%
+
+    <g:render template="lugar"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'recinto', 'error')} required">
@@ -202,31 +219,39 @@
     <g:select name="entidadColaboradora"
               from="${gobela.Entidad.listOrderByNombreEntidad()}"
               value="${evento?.entidadColaboradora?.id}"
-              noSelection="${['':'Selecciona una entidad colaboradora...']}"
+              noSelection="${['': 'Selecciona una entidad colaboradora...']}"
               optionKey="id"
               optionValue="nombreEntidad"/>
 </div>
+
+<br/>
+<hr/>
+<br/>
 
 <div class="fieldcontain" ${hasErrors(bean: evento, field: 'numParticipantes', 'error')}>
     <label for="numParticipantes">
         <g:message code="evento.numParticipantes.label" default="Número de participantes:"/>
     </label>
     <g:textField name="numParticipantes" value="${this.evento?.numParticipantes}"/>
-    %{--</div>--}%
+</div>
 
-    %{--<div class="fieldcontain" ${hasErrors(bean: evento, field: 'numParticipantesM', 'error')}>--}%
+<div class="fieldcontain" ${hasErrors(bean: evento, field: 'numParticipantesM', 'error')}>
     <label for="numParticipantesM">
         <g:message code="evento.numParticipantesM.label" default="Mujeres:"/>
     </label>
     <g:textField name="numParticipantesM" value="${this.evento?.numParticipantesM}"/>
-    %{--</div>--}%
+</div>
 
-    %{--<div class="fieldcontain" ${hasErrors(bean: evento, field: 'numParticipantesH', 'error')}>--}%
+<div class="fieldcontain" ${hasErrors(bean: evento, field: 'numParticipantesH', 'error')}>
     <label for="numParticipantesH">
         <g:message code="evento.numParticipantesH.label" default="Hombres:"/>
     </label>
     <g:textField name="numParticipantesH" value="${this.evento?.numParticipantesH}"/>
 </div>
+
+<br/>
+<hr/>
+<br/>
 
 <div class="fieldcontain" ${hasErrors(bean: evento, field: 'numAsistentes', 'error')}>
     <label for="numAsistentes">
@@ -285,5 +310,14 @@
     </label>
     <g:textArea name="observaciones" cols="60" rows="15" maxlength="2000"
                 value="${this.evento?.observaciones}"/>
-
 </div>
+
+<g:javascript>
+    $(document).ready(function () {
+        var zonaId = $('[name="zona"').val();
+        var lugarId = ${lugarId};
+        console.log("LUGAR ID: " + lugarId.toString());
+        fillLugarByZona(zonaId, lugarId);
+        $('[name="lugar"]').val(lugarId);
+    });
+</g:javascript>

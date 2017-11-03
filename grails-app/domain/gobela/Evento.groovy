@@ -27,6 +27,7 @@ class Evento {
     String telefonoContacto
     String observaciones
     Boolean solidario
+    Zona zona
 
     static hasMany = [solicitudesMaterial: SolicitudMaterial]
 

@@ -213,4 +213,11 @@ class EventoController {
         }
         redirect(action: 'listFiles', params: [eventoId: eventoId])
     }
+
+    def getLugarByZona(params){
+        def zonaId = params.id
+        Zona zona = Zona.get(zonaId)
+        def listaLugares = Lugar.findAllByZona(zona)
+        render template: "lugar", model: [listaLugares: listaLugares]
+    }
 }

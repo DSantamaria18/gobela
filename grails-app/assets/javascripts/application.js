@@ -142,5 +142,20 @@ function copyFileName(tipo) {
     } else {
         console.log("TIPO NO VALIDO" + tipo);
     }
+}
 
+function fillLugarByZona(zonaId, lugarId) {
+    console.log(zonaId);
+    var url = "/gobela/evento/getLugarByZona/" + zonaId.toString();
+    console.log("URL: " + url);
+    $.ajax({
+        url: url,
+        type: 'get'
+    }).done(function (data) {
+        console.log("data: " + data);
+        $('#lugar-container').html(data);
+        // var lugarId = "${lugarId}";
+        console.log("LUGAR ID: " + lugarId);
+        $('[name="lugar"]').val(lugarId);
+    })
 }
