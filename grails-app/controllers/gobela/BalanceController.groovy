@@ -123,7 +123,7 @@ class BalanceController {
             }
         }
         balanceDocsList.sort { a, b -> b.value <=> a.value }
-        [balanceDocsList: balanceDocsList, infoDocsCount: balanceDocsList.size()]
+        [balanceDocsList: balanceDocsList, balanceDocsCount: balanceDocsList.size()]
     }
 
     def deleteFile() {

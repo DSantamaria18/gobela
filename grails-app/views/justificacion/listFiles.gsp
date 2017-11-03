@@ -9,12 +9,12 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><g:link action="show" params="[id: params.balanceId]">Volver</g:link> </li>
+        <li><g:link action="show" params="[id: params.justificacionId]">Volver</g:link> </li>
     </ul>
 </div>
 
 <div class="content scaffold-list" role="main">
-    <h1>Ficheros de Balance</h1>
+    <h1>Ficheros de Justificación</h1>
     <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
     </g:if>
@@ -31,14 +31,14 @@
             </tr>
             </thead>
             <tbody>
-            <g:each in="${balanceDocsList}" status="i" var="balanceDoc">
+            <g:each in="${justificacionesDocsList}" status="i" var="justificacionDoc">
                 <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                    <td>${balanceDoc.nombre.decodeURL()}</td>
-                    <td>${balanceDoc.tamaño.decodeURL()}</td>
+                    <td>${justificacionDoc.nombre.decodeURL()}</td>
+                    <td>${justificacionDoc.tamaño.decodeURL()}</td>
                     <td>
                         <g:link action="downloadFile"
-                                params='[fileId  : balanceDoc.nombre.replace(".", "###"),
-                                         balanceId: params.balanceId]'>
+                                params='[fileId  : justificacionDoc.nombre.replace(".", "###"),
+                                         justificacionId: params.justificacionId]'>
                             <input type="button" class="btn btn-success" value="Descargar"/>
                         </g:link>
 
@@ -46,8 +46,8 @@
                     <td>
                         <g:link class="delete"
                                 action="deleteFile"
-                                params='[fileId  : balanceDoc.nombre.replace(".", "###"),
-                                         balanceId: params.balanceId]'>
+                                params='[fileId  : justificacionDoc.nombre.replace(".", "###"),
+                                         justificacionId: params.justificacionId]'>
                             <input type="button" class="btn btn-danger" value="Borrar"
                                    onclick="return confirm('El fichero se borrará. ¿Estás seguro/a?');"/>
                         </g:link>
@@ -64,17 +64,17 @@
 
             <form method="POST" action="#" enctype="multipart/form-data">
                 <div class="form-group">
-                    <div class="input-group input-file" name="balanceFiles">
+                    <div class="input-group input-file" name="justificacionFiles">
                         <span class="input-group-btn">
-                            <button class="btn btn-dark btn-choose" type="button" onclick="buscar('balance')">Buscar</button>
+                            <button class="btn btn-dark btn-choose" type="button" onclick="buscar('justificacion')">Buscar</button>
                         </span>
-                        <input type="text" class="form-control" id="balanceFileNameInput"
+                        <input type="text" class="form-control" id="justificacionFileNameInput"
                                placeholder='Selecciona un fichero...' readonly/>
                         <span class="input-group-btn">
-                            <g:actionSubmit class="btn btn-primary" value="Subir" action="uploadBalanceFile"/>
+                            <g:actionSubmit class="btn btn-primary" value="Subir" action="uploadJustificacionFile"/>
                         </span>
-                        <input type="file" class="form-control" id="balanceFileUpload" name="balanceFileUpload"
-                               onchange="copyFileName('balance')"
+                        <input type="file" class="form-control" id="justificacionFileUpload" name="justificacionFileUpload"
+                               onchange="copyFileName('justificacion')"
                                style="visibility:hidden" ;/>
                     </div>
                 </div>

@@ -127,6 +127,8 @@ function buscar(tipo) {
         $('#permFileUpload').click();
     } else if (tipo === 'balance') {
         $('#balanceFileUpload').click();
+    } else if (tipo === 'justificacion') {
+        $('#justificacionFileUpload').click();
     } else {
         console.log("TIPO NO VALIDO: " + tipo);
     }
@@ -144,6 +146,9 @@ function copyFileName(tipo) {
     } else if (tipo === "balance") {
         filename = $('#balanceFileUpload').val().split('\\').pop();
         $('#balanceFileNameInput').val(filename);
+    }else if (tipo === "justificacion") {
+        filename = $('#justificacionFileUpload').val().split('\\').pop();
+        $('#justificacionFileNameInput').val(filename);
     } else {
         console.log("TIPO NO VALIDO" + tipo);
     }
