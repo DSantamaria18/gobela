@@ -117,6 +117,8 @@
             <li>Arreglos en maquetación de "Num Participantes" en Evento</li>
             <li>JS para control de combos de Zona-Lugar en creación de eventos</li>
             <li>JS para control de combos de Zona-Lugar en edición de eventos</li>
+            <li>Habilitada gestión de ficheros para balance de ingresos y gastos de subvenciones</li>
+            <li>Habilitada gestión de ficheros para justificaciones de subvenciones</li>
         </ul>
 
         <h2>Modificaciones 1/11/2017:</h2>
