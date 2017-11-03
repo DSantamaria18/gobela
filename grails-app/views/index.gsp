@@ -44,6 +44,7 @@
                 <li><g:link class="list" controller="material" action="index">Material</g:link></li>
                 <li><g:link class="list" controller="solicitudMaterial"
                             action="index">Solicitudes Material</g:link></li>
+                <li><g:link class="list" controller="zona" action="index">Zonas</g:link></li>
             </ul>
         </li></sec:ifAnyGranted>
 
@@ -106,6 +107,14 @@
 <div id="content" role="main">
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
+
+        <h2>Modificaciones 2/11/2017:</h2>
+        <ul>
+            <li>Añadida entidad Zona</li>
+            <li>Creadas vistas para Zona</li>
+            <li>Creada relación Lugar-Zona</li>
+            <li>Añadido enlace a Zonas en menú de Eventos</li>
+        </ul>
 
         <h2>Modificaciones 1/11/2017:</h2>
         <ul>
