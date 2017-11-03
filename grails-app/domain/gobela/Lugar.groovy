@@ -3,9 +3,7 @@ package gobela
 class Lugar {
 
     String nombreLugar
-    Zona zona = null
-
-//    static hasOne = [zona: Zona]
+    Zona zona
 
     static constraints = {
         nombreLugar(nullable: false, blank: false, unique: true)
