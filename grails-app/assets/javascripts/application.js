@@ -125,8 +125,10 @@ function buscar(tipo) {
     } else if (tipo === "permisos") {
         console.log("buscando permisos");
         $('#permFileUpload').click();
+    } else if (tipo === 'balance') {
+        $('#balanceFileUpload').click();
     } else {
-        console.log("TIPO NO VALIDO" + tipo);
+        console.log("TIPO NO VALIDO: " + tipo);
     }
 
 }
@@ -136,9 +138,12 @@ function copyFileName(tipo) {
     if (tipo === "info") {
         filename = $('#infoFileUpload').val().split('\\').pop();
         $('#infoFileNameInput').val(filename);
-    }else if (tipo === "permisos") {
+    } else if (tipo === "permisos") {
         filename = $('#permFileUpload').val().split('\\').pop();
         $('#permFileNameInput').val(filename);
+    } else if (tipo === "balance") {
+        filename = $('#balanceFileUpload').val().split('\\').pop();
+        $('#balanceFileNameInput').val(filename);
     } else {
         console.log("TIPO NO VALIDO" + tipo);
     }
