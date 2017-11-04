@@ -111,6 +111,7 @@
         <h2>Modificaciones 4/11/2017:</h2>
         <ul>
             <li>Corregido label "Representa a una entidad" en Solicitud</li>
+            <li>Cambiado formato de fechas en vista de evento</li>
         </ul>
 
         <h2>Modificaciones 3/11/2017:</h2>
