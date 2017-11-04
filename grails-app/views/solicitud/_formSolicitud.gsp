@@ -91,7 +91,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: solicitud, field: 'representante', 'error')} ">
     <label for="representante">
-        <g:message code="solicitud.representante.label" default="Representanta a una entidad:"/>
+        <g:message code="solicitud.representante.label" default="Representa a una entidad:"/>
 
     </label>
     <g:checkBox name="representante" value="${solicitud?.representante}"/>

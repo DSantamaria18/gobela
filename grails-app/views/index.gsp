@@ -108,6 +108,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 4/11/2017:</h2>
+        <ul>
+            <li>Corregido label "Representa a una entidad" en Solicitud</li>
+        </ul>
+
         <h2>Modificaciones 3/11/2017:</h2>
         <ul>
             <li>Añadida entidad Zona</li>
