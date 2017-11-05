@@ -108,6 +108,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 5/11/2017:</h2>
+        <ul>
+            <li>Arreglado error en la creación de nuevas valoraciones con campo vacío</li>
+        </ul>
+
         <h2>Modificaciones 3/11/2017:</h2>
         <ul>
             <li>Añadida entidad Zona</li>
