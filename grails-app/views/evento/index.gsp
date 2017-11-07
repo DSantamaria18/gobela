@@ -118,7 +118,7 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <table>
+            %{--<table>
                 <thead>
                 <tr>
                     <g:sortableColumn property="nombre"
@@ -141,34 +141,18 @@
                     <td><g:formatDate format="dd-MM-yyyy HH:mm"
                                       date="${eventoInstance?.fecha}"/>
                     </td>
-                    %{--<td>${fieldValue(bean: eventoInstance, field: "fecha")}</td>--}%
+                    --}%%{--<td>${fieldValue(bean: eventoInstance, field: "fecha")}</td>--}%%{--
                     <td>${fieldValue(bean: eventoInstance, field: "tipoActividad")}</td>
                     <td>${fieldValue(bean: eventoInstance, field: "modalidad")}</td>
                 </tr>
                 </g:each>
                 </tbody>
-            </table>
-
+            </table>--}%
+            <g:render template="tablaEventos"/>
             <div class="pagination">
                 <g:paginate total="${eventoCount ?: 0}"/>
             </div>
         </div>
     </div>
-
-  %{--  <br/>
-    <hr/>
-    <br/>
-
-    <div id="list-evento" class="content scaffold-list" role="main">
-        <h1><g:message code="default.list.label" args="[entityName]"/></h1>
-        <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-        </g:if>
-        <f:table collection="${eventoList}"/>
-
-        <div class="pagination">
-            <g:paginate total="${eventoCount ?: 0}"/>
-        </div>
-    </div>--}%
 </body>
 </html>

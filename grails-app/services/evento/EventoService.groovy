@@ -13,7 +13,7 @@ class EventoService {
         String fHasta = params.fechaIniHasta
         String qBase = "SELECT * FROM evento WHERE fecha BETWEEN '${fDesde}' AND '${fHasta}'"
         String qEstado = (params.estado != 'Cualquiera')? " AND estado = '${params.estado}'" : ""
-        String qModalidad = (params.modalidad != 'Cualquiera')? " AND modalidad_id = ${params.modalidad}" : ""
+        String qModalidad = (params.modalidad != '')? " AND modalidad_id = ${params.modalidad}" : ""
         String qActividad = (params.actividad != '')? " AND tipo_actividad = '${params.actividad}'" : ""
         String qMultikirola = " AND multikirola = ${params.multikirola}"
         String qAdaptado = " AND deporte_adaptado = ${params.adaptado}"
