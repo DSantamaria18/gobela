@@ -15,7 +15,8 @@ class EventoController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 30, 100)
-        respond Evento.list(params), model: [eventoCount: Evento.count()]
+        def eventoList = Evento.findAllByEstadoNotInList(['Finalizado', 'Cancelado', 'Rechazado'])
+        respond eventoList, model: [eventoCount: eventoList.size()]
     }
 
     def show(Evento evento) {

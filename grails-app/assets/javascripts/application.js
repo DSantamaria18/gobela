@@ -169,3 +169,7 @@ function fillLugarByZona(zonaId, lugarId) {
         $('[name="lugar"]').val(lugarId);
     })
 }
+
+function filtrarEventos(){
+    alert('filtrando!');
+}

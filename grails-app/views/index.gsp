@@ -107,6 +107,8 @@
 <div id="content" role="main">
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
+
+        <h2>Modificaciones 4/11/2017:</h2>
         <ul>
             <li>Añadido registro de errores</li>
         </ul>

@@ -35,9 +35,6 @@
         <div class="message" role="status">${flash.message}</div>
     </g:if>
 
-    %{--<f:table collection="${solicitudList}" properties="['codigo', 'descSolicitud', 'nombreEntidad', 'linea', 'importeSolicitado', 'balance', 'memoria', 'valoracion', 'justificacion']"/>--}%
-
-
     <table>
         <thead>
         <tr>
