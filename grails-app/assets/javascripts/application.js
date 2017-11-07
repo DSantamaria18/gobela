@@ -189,9 +189,9 @@ function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalid
         }
     }).done(function (data) {
         console.log("data: " + data);
-        $('#lugar-container').html(data);
+        $('#tabla-eventos').html(data);
         // var lugarId = "${lugarId}";
-        console.log("LUGAR ID: " + lugarId);
-        $('[name="lugar"]').val(lugarId);
+        // console.log("LUGAR ID: " + lugarId);
+        // $('[name="lugar"]').val(lugarId);
     })
 }

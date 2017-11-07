@@ -1,4 +1,4 @@
-<div class="tabla-eventos">
+
     <table>
         <thead>
         <tr>
@@ -17,16 +17,18 @@
         <tbody>
         <g:each in="${eventoList}" status="i" var="eventoInstance">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                <td><g:link action="show"
-                            id="${eventoInstance.nombre}">${fieldValue(bean: eventoInstance, field: "nombre")}</g:link></td>
-                <td>${fieldValue(bean: eventoInstance, field: "estado")}</td>
+                <td><g:link action="show" id="${eventoInstance.nombre}">${eventoInstance.nombre}</g:link></td>
+                %{--<td><g:link action="show" id="${eventoInstance.nombre}">${fieldValue(bean: eventoInstance, field: "nombre")}</g:link></td>--}%
+                <td>${eventoInstance.estado}</td>
+                %{--<td>${fieldValue(bean: eventoInstance, field: "estado")}</td>--}%
                 <td><g:formatDate format="dd-MM-yyyy HH:mm"
                                   date="${eventoInstance?.fecha}"/>
                 </td>
-                <td>${fieldValue(bean: eventoInstance, field: "tipoActividad")}</td>
-                <td>${fieldValue(bean: eventoInstance, field: "modalidad")}</td>
+                <td>${eventoInstance.tipoActividad}</td>
+                %{--<td>${fieldValue(bean: eventoInstance, field: "tipoActividad")}</td>--}%
+                <td>${eventoInstance.modalidad}</td>
+                %{--<td>${fieldValue(bean: eventoInstance, field: "modalidad")}</td>--}%
             </tr>
         </g:each>
         </tbody>
     </table>
-</div>

@@ -110,7 +110,9 @@
 
         <h2>Modificaciones 4/11/2017:</h2>
         <ul>
-            <li>Añadido registro de errores</li>
+            <li>Añadido registro de errores en fichero de texto</li>
+            <li>Añadido formulario de filtrado de eventos</li>
+            <li>Añadido template para tablaEventos</li>
         </ul>
 
         <h2>Modificaciones 4/11/2017:</h2>
