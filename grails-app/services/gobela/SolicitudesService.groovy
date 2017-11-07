@@ -2,8 +2,10 @@ package gobela
 
 import grails.gorm.transactions.Transactional
 
+
 @Transactional
 class SolicitudesService {
+
 
     def buscarSolicitudesPorNumeroOPorDescripcion(params) {
         def result =[:]

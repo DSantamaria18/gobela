@@ -1,5 +1,8 @@
 package gobela
 
+import evento.EventoService
+import grails.gorm.PagedResultList
+
 import static org.springframework.http.HttpStatus.*
 import grails.util.Holders
 import grails.transaction.Transactional
@@ -11,7 +14,7 @@ class EventoController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     static final String UPLOAD_FOLDER = Holders.getGrailsApplication().config.uploadFolder + "/eventos"
-
+    EventoService eventoService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 30, 100)
@@ -220,5 +223,10 @@ class EventoController {
         Zona zona = Zona.get(zonaId)
         def listaLugares = Lugar.findAllByZona(zona)
         render template: "lugar", model: [listaLugares: listaLugares]
+    }
+
+    def filtrarEventos(params){
+        PagedResultList<Evento> resultList = eventoService.filtrarEventos(params)
+        [resultList: resultList, solicitudCount: resultList.size()]
     }
 }

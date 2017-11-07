@@ -31,7 +31,7 @@
                     <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
                         <h4 class="panel-title">
                             OPCIONES DE FILTRADO
-                            <span class="pull-right"><i class="fa fa-arrow-down" aria-hidden="true"></i></span>
+                            <span class="pull-right"></span>
                         </h4>
                     </a>
                 </div>
@@ -44,23 +44,25 @@
                             </label>
                             <g:select name="estado"
                                       from="${['Cualquiera', 'Pendiente', 'Confirmado', 'Rechazado', 'Finalizado', 'Cancelado']}"
-                                      value=""/>
+                                      value=""
+                                      id="qEstado"/>
                         </div>
 
                         <div class="row fieldcontain">
                             <label for="fechaInicioEntre">
                                 Fecha de inicio entre:
                             </label>
-                            <g:datePicker name="fechaInicioDesde" precision="day"/> y
-                            <g:datePicker name="fechaInicioHaste" precision="day"/>
+                            <g:datePicker name="fechaInicioDesde" precision="day" id="qFechaIniDesde"/> y
+                            <g:datePicker name="fechaInicioHaste" precision="day" id="qFechaIniHasta"/>
                         </div>
 
                         <div class="row fieldcontain">
                             <label for="tipoActividad">
                                 <g:message code="evento.tipoActividad.label" default="Tipo de actividad:"/>
                             </label>
-                            <g:select name="tipoActividad"
-                                      from="${['Cualquiera', 'Formación', 'Regular/Competición', 'Exhibición', 'Cultural', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Otros', 'Txapelketa/Torneo']}"/>
+                            <g:select name="tipoActividad" id="qActividad"
+                                      from="${['Formación', 'Regular/Competición', 'Exhibición', 'Cultural', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Otros', 'Txapelketa/Torneo']}"
+                                      noSelection="['':'Cualquiera']"/>
                         </div>
 
                         <div class="row fieldcontain">
@@ -72,26 +74,33 @@
                                       value="''"
                                       noSelection="${['': 'Cualquiera']}"
                                       optionKey="id"
-                                      optionValue="nombre"/>
+                                      optionValue="nombre"
+                                      id="qModalidad"/>
                         </div>
 
                         <div class="row fieldcontain">
                             <label for="multikirola">
                                 <g:message code="evento.multikirola.label" default="Multikirola:"/>
                             </label>
-                            <g:checkBox name="multikirola"/>
+                            <g:checkBox name="multikirola" id="qMultikirola"/>
                         </div>
 
                         <div class="row fieldcontain">
                             <label for="deporteAdaptado">
                                 <g:message code="evento.deporteAdaptado.label" default="Deporte Adaptado:"/>
                             </label>
-                            <g:checkBox name="deporteAdaptado"/>
+                            <g:checkBox name="deporteAdaptado" id="qAdaptado"/>
                         </div>
 
                         <div class="row fieldcontain">
                             <button type="button" class="row btn-block btn-primary"
-                                    onclick="filtrarEventos()">FILTRAR EVENTOS</button>
+                                    onclick="filtrarEventos($('#qEstado').val()
+                                        , $('#qFechaIniDesde_year').val() + '-' + $('#qFechaIniDesde_month').val() + '-' + $('#qFechaIniDesde_day').val()
+                                        , $('#qFechaIniHasta_year').val() + '-' + $('#qFechaIniHasta_month').val() + '-' + $('#qFechaIniHasta_day').val()
+                                        , $('#qActividad option:selected').val()
+                                        , $('#qModalidad option:selected').val()
+                                        , $('#qMultikirola').prop('checked')
+                                        , $('#qAdaptado').prop('checked'));">FILTRAR EVENTOS</button>
                         </div>
 
                     </div>
