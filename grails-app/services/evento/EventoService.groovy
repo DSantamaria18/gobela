@@ -12,7 +12,7 @@ class EventoService {
     def filtrarEventos(params) {
         String fDesde = params.fechaIniDesde
         String fHasta = params.fechaIniHasta
-        String qBase = "SELECT e.nombre, e.estado, e.fecha, e.tipo_actividad as tipoActividad, m.nombre as modalidad " +
+        String qBase = "SELECT e.id, e.nombre, e.estado, e.fecha, e.tipo_actividad as tipoActividad, m.nombre as modalidad " +
                 "FROM evento e, modalidad m WHERE e.modalidad_id = m.id AND fecha BETWEEN '${fDesde}' AND '${fHasta}'"
         String qModalidad = (params.modalidad != '')? " AND e.modalidad_id = ${params.modalidad}" : ""
         String qEstado = (params.estado != 'Cualquiera')? " AND e.estado = '${params.estado}'" : ""

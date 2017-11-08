@@ -22,7 +22,7 @@
     <tbody>
     <g:each in="${eventoList}" status="i" var="eventoInstance">
         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-            <td><g:link action="show" id="${eventoInstance.nombre}">${eventoInstance.nombre}</g:link></td>
+            <td><g:link action="show" id="${eventoInstance.id}">${eventoInstance.nombre}</g:link></td>
             <td>${eventoInstance.estado}</td>
             <td><g:formatDate format="dd-MM-yyyy HH:mm"
                               date="${eventoInstance?.fecha}"/>
