@@ -1,5 +1,9 @@
 package gobela
 
+import evento.EventoService
+import grails.gorm.PagedResultList
+import groovy.sql.GroovyRowResult
+
 import static org.springframework.http.HttpStatus.*
 import grails.util.Holders
 import grails.transaction.Transactional
@@ -11,11 +15,20 @@ class EventoController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     static final String UPLOAD_FOLDER = Holders.getGrailsApplication().config.uploadFolder + "/eventos"
+    EventoService eventoService
 
+   /* def index(Integer max) {
+        params.fechaIniDesde = '2016-11-07'
+        params.fechaIniHasta = '2017-11-07'
+        def eventoList = eventoService.filtrarEventos(params)
+        respond eventoList, model: [eventoCount: eventoList.size()]
+//        render template: "tablaEventos",  model: [eventoList: resultList, eventoCount: resultList.size()]
+    }*/
 
     def index(Integer max) {
         params.max = Math.min(max ?: 30, 100)
-        respond Evento.list(params), model: [eventoCount: Evento.count()]
+        def eventoList = Evento.findAllByEstadoNotInList(['Finalizado', 'Cancelado', 'Rechazado'])
+        respond eventoList, model: [eventoCount: eventoList.size()]
     }
 
     def show(Evento evento) {
@@ -219,5 +232,10 @@ class EventoController {
         Zona zona = Zona.get(zonaId)
         def listaLugares = Lugar.findAllByZona(zona)
         render template: "lugar", model: [listaLugares: listaLugares]
+    }
+
+    def filtrarEventos(params){
+        def eventoList = eventoService.filtrarEventos(params)
+        render template: "tablaEventos",  model: [eventoList: eventoList, eventoCount: eventoList.size()]
     }
 }

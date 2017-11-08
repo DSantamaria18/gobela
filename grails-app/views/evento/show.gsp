@@ -84,11 +84,22 @@
         <g:if test="${evento?.fecha}">
             <li class="fieldcontain">
                 <span id="fecha-label" class="property-label"><g:message
-                        code="evento.fecha.label"
+                        code="evento.fechaInicio.label"
                         default="Fecha del evento:"/></span>
 
-                <span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="dd-MM-yyyy"
+                <span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="dd-MM-yyyy HH:mm:SS"
                                                                                          date="${evento?.fecha}"/></span>
+            </li>
+        </g:if>
+
+        <g:if test="${evento?.fechaFin}">
+            <li class="fieldcontain">
+                <span id="fechaFin-label" class="property-label"><g:message
+                        code="evento.fechaFin.label"
+                        default="Fecha Fin:"/></span>
+
+                <span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="dd-MM-yyyy HH:mm:SS"
+                                                                                         date="${evento?.fechaFin}"/></span>
             </li>
         </g:if>
 

@@ -108,6 +108,16 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 8/11/2017:</h2>
+        <ul>
+            <li>Añadida lógica de filtrado de eventos</li>
+            <li>Añadido registro de errores en fichero de texto</li>
+            <li>Añadido formulario de filtrado de eventos</li>
+            <li>Añadido template para tablaEventos</li>
+            <li>Corregido label "Representa a una entidad" en Solicitud</li>
+            <li>Cambiado formato de fechas en vista de evento</li>
+        </ul>
+
         <h2>Modificaciones 5/11/2017:</h2>
         <ul>
             <li>Arreglado error en la creación de nuevas valoraciones con campo vacío</li>

@@ -169,3 +169,29 @@ function fillLugarByZona(zonaId, lugarId) {
         $('[name="lugar"]').val(lugarId);
     })
 }
+
+function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalidad, multikirola, adaptado){
+    // alert('filtrando!');
+    // console.log(zonaId);
+    var url = "/gobela/evento/filtrarEventos/";
+    console.log("URL: " + url);
+    $.ajax({
+        url: url,
+        type: 'get',
+        data: {
+            'estado': estado,
+            'fechaIniDesde': fechaIniDesde,
+            'fechaIniHasta': fechaIniHasta,
+            'actividad': actividad,
+            'modalidad': modalidad,
+            'multikirola': multikirola,
+            'adaptado': adaptado
+        }
+    }).done(function (data) {
+        console.log("data: " + data);
+        $('#tabla-eventos').html(data);
+        // var lugarId = "${lugarId}";
+        // console.log("LUGAR ID: " + lugarId);
+        // $('[name="lugar"]').val(lugarId);
+    })
+}
