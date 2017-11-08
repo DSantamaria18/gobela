@@ -19,13 +19,11 @@ class EventoService {
         String qActividad = (params.actividad != '')? " AND e.tipo_actividad = '${params.actividad}'" : ""
         String qMultikirola = " AND e.multikirola = ${params.multikirola}"
         String qAdaptado = " AND e.deporte_adaptado = ${params.adaptado}"
-        String query = qBase + qEstado + qActividad + qModalidad + qMultikirola + qAdaptado
+        String qOrder = " ORDER BY estado, fecha, tipoActividad, modalidad ASC"
+        String query = qBase + qEstado + qActividad + qModalidad + qMultikirola + qAdaptado + qOrder
 
         final Sql sql = new Sql(dataSource)
-        final results = sql.rows(query).collect()
+        final results = sql.rows(query)
         return results
-
-
-
     }
 }

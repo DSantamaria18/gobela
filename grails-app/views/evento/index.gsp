@@ -52,8 +52,10 @@
                             <label for="fechaInicioEntre">
                                 Fecha de inicio entre:
                             </label>
-                            <g:datePicker name="fechaInicioDesde" precision="day" id="qFechaIniDesde"/> y
-                            <g:datePicker name="fechaInicioHaste" precision="day" id="qFechaIniHasta"/>
+                            <g:datePicker name="fechaInicioDesde" precision="day" id="qFechaIniDesde"
+                                          years="${2016..2030}"/> y
+                            <g:datePicker name="fechaInicioHaste" precision="day" id="qFechaIniHasta"
+                                          years="${2016..2030}"/>
                         </div>
 
                         <div class="row fieldcontain">
@@ -149,11 +151,12 @@
             <div class="tabla-eventos" id="tabla-eventos">
                 <g:render template="tablaEventos" model="[eventoList: eventoList]"/>
             </div>
-
-            <div class="pagination">
-                <g:paginate total="${eventoCount ?: 0}"/>
-            </div>
         </div>
     </div>
+    <g:javascript>
+    $(document).ready(function (){
+        $('#qFechaIniDesde_year').val("2016")
+    })
+</g:javascript>
 </body>
 </html>

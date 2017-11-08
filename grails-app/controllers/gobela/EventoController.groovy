@@ -235,8 +235,7 @@ class EventoController {
     }
 
     def filtrarEventos(params){
-        def resultList = eventoService.filtrarEventos(params)
-        render template: "tablaEventos",  model: [eventoList: resultList, eventoCount: resultList.size()]
-//        [resultList: resultList, solicitudCount: resultList.size()]
+        def eventoList = eventoService.filtrarEventos(params)
+        render template: "tablaEventos",  model: [eventoList: eventoList, eventoCount: eventoList.size()]
     }
 }
