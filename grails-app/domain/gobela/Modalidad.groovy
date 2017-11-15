@@ -9,6 +9,6 @@ class Modalidad {
     }
 
     String toString(){
-        return nombre.toUpperCase()
+        return nombre?.toUpperCase()
     }
 }

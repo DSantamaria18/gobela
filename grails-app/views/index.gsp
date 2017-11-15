@@ -108,6 +108,12 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h1>Modificaciones 15/11/2017:</h1>
+        <ul>
+            <li>Arreglado problema oon menú en móviles</li>
+            <li>Corregido error en creación de modalidad nueva</li>
+        </ul>
+
         <h2>Modificaciones 8/11/2017:</h2>
         <ul>
             <li>Añadida lógica de filtrado de eventos</li>
