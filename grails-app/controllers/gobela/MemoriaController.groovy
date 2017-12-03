@@ -5,7 +5,7 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = false)
 class MemoriaController {
-
+    def PdfBoxService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -103,5 +103,12 @@ class MemoriaController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    def imprimirMemoria(){
+        def memoriaId = params.memoriaId
+        Memoria memoria = Memoria.get(memoriaId)
+        PdfBoxService.printMemoria(memoria)
+        redirect action:"index", method:"GET"
     }
 }
