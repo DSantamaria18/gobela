@@ -171,10 +171,13 @@ server:
 environments:
     development:
         uploadFolder: "c:/temp/uploads"
+        pdfTemplates: "c:/temp/uploads/subvenciones/pdfTemplates"
     test:
         uploadFolder: "c:/temp/uploads"
+        pdfTemplates: "c:/temp/uploads/subvenciones/pdfTemplates"
     production:
         uploadFolder: "/root/ficheros"
+        pdfTemplates: "/root/ficheros/subvenciones/pdfTemplates"
 ---
 grails:
     controllers:

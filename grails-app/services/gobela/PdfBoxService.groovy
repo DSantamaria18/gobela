@@ -1,6 +1,6 @@
 package gobela
 
-import grails.boot.GrailsApp
+
 import grails.gorm.transactions.Transactional
 import grails.util.Holders
 import org.apache.pdfbox.pdmodel.PDDocument
@@ -10,13 +10,13 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDField
 
 @Transactional
 class PdfBoxService {
+    static final String PDF_TEMPLATES_FOLDER = Holders.getGrailsApplication().config.uploadFolder + "/subvenciones/pdfTemplates/"
 
     def printMemoria(final Memoria memoria, final String path) {
-        final String PDF_TEMPLATE = this.class.getClassLoader().getResource("pdfTemplates/Memoria_deportiva.pdf").getPath()
         final def memoriaId = memoria.id
 
 //        println("Imprimiendo Memoria ${memoriaId}")
-        File file = new File(PDF_TEMPLATE)
+        File file = new File(PDF_TEMPLATES_FOLDER + "Memoria_deportiva.pdf")
         PDDocument pdfTemplate = PDDocument.load(file)
         PDDocumentCatalog docCatalog = pdfTemplate.getDocumentCatalog()
         PDAcroForm acroForm = docCatalog.getAcroForm()
