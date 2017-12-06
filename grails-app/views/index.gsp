@@ -110,6 +110,8 @@
 
         <h2>Modificaciones 06/12/2017</h2>
         <ul>
+            <li>Creada estructura de PDFs oficiales</li>
+            <li>Añadido servicio de impresión de formularios PDF</li>
             <li>Añadida descarga de PDF oficial de balance de subvención</li>
             <li>Nombre de evento en mayúsculas en listado de eventos</li>
         </ul>
