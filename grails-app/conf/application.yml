@@ -170,7 +170,7 @@ server:
 ---
 environments:
     development:
-        uploadFolder: "c:/temp/upload"
+        uploadFolder: "c:/temp/uploads"
     test:
         uploadFolder: "c:/temp/uploads"
     production:

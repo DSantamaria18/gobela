@@ -108,6 +108,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 06/12/2017</h2>
+        <ul>
+            <li>Añadida descarga de formulario PDF de balance de subvención</li>
+        </ul>
+
         <h2>Modificaciones 15/11/2017:</h2>
         <ul>
             <li>Arreglado problema con menú en móviles</li>
