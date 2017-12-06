@@ -110,7 +110,7 @@
 
         <h2>Modificaciones 06/12/2017</h2>
         <ul>
-            <li>Añadida descarga de formulario PDF de balance de subvención</li>
+            <li>Añadida descarga de PDF oficial de balance de subvención</li>
             <li>Nombre de evento en mayúsculas en listado de eventos</li>
         </ul>
 

@@ -10,14 +10,13 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDField
 
 @Transactional
 class PdfBoxService {
-    static final String UPLOAD_FOLDER = Holders.getGrailsApplication().config.uploadFolder + "/subvenciones/memorias"
-    static final PDF_TEMPLATES_PATH = "C:\\TB\\repos\\gobela\\grails-app\\assets\\pdfTemplates\\"
 
     def printMemoria(final Memoria memoria, final String path) {
+        final String PDF_TEMPLATE = this.class.getClassLoader().getResource("pdfTemplates/Memoria_deportiva.pdf").getPath()
         final def memoriaId = memoria.id
-        println("Imprimiendo Memoria ${memoriaId}")
 
-        File file = new File(PDF_TEMPLATES_PATH + "Memoria_Deportiva.pdf")
+//        println("Imprimiendo Memoria ${memoriaId}")
+        File file = new File(PDF_TEMPLATE)
         PDDocument pdfTemplate = PDDocument.load(file)
         PDDocumentCatalog docCatalog = pdfTemplate.getDocumentCatalog()
         PDAcroForm acroForm = docCatalog.getAcroForm()
@@ -106,24 +105,4 @@ class PdfBoxService {
         pdfTemplate.save(path + "/${memoriaId}/${memoriaId}_Memoria_Deportiva.pdf")
         pdfTemplate.close()
     }
-
-    /*def downloadFile(final long memoriaId) {
-        String ruta = "${UPLOAD_FOLDER}/${memoriaId}/"
-        final String fileName = "${memoriaId}_Memoria_Deportiva.pdf"
-        def file = new File(ruta + File.separatorChar + fileName)
-
-        response.setContentType("APPLICATION/OCTET-STREAM")
-        response.setHeader("Content-Disposition", "Attachment;Filename=\"${fileName}\"")
-        def fileInputStream = new FileInputStream(file)
-
-        def outputStream = response.getOutputStream()
-        byte[] buffer = new byte[4096]
-        int len
-        while ((len = fileInputStream.read(buffer)) > 0) {
-            outputStream.write(buffer, 0, len)
-        }
-        outputStream.flush()
-        outputStream.close()
-        fileInputStream.close()
-    }*/
 }
