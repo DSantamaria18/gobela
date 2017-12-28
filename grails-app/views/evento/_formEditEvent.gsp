@@ -35,7 +35,7 @@
         <g:message code="evento.fechaInicio.label" default="Fecha del evento:"/>
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="fecha" precision="minute" value="${this.evento?.fecha}"/>
+    <g:datePicker name="fecha" precision="day" value="${this.evento?.fecha}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'fechaFin', 'error')} required">
@@ -43,7 +43,15 @@
         <g:message code="evento.fechaFin.label" default="Fecha Fin:"/>
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="fechaFin" precision="minute" value="${this.evento?.fechaFin}"/>
+    <g:datePicker name="fechaFin" precision="day" value="${this.evento?.fechaFin}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'horario', 'error')}">
+    <label for="horario">
+        <g:message code="evento.horario.label" default="Horario:"/>
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="horario" value="${this.evento?.horario}" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'tipoActividad', 'error')} required">
@@ -102,8 +110,8 @@
               from="${gobela.Entidad.listOrderByNombreEntidad()}"
               value="${evento?.entidadOrganizadora?.id}"
               noSelection="${['': 'Selecciona una entidad organizadora...']}"
-              optionKey="id"
-              optionValue="nombreEntidad"/>
+              optionKey="id"/>
+              %{--optionValue="nombreEntidad"/>--}%
 </div>
 
 <div class="fieldcontain" ${hasErrors(bean: evento, field: 'contacto', 'error')}>
@@ -210,7 +218,7 @@
               optionValue="nombre"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: evento, field: 'entidadColaboradora', 'error')} required">
+%{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'entidadColaboradora', 'error')} required">
     <label for="entidadColaboradora">
         <g:message code="evento.entidadColaboradora.label" default="Entidad colaboradora:"/>
         <span class="required-indicator">*</span>
@@ -222,7 +230,7 @@
               noSelection="${['': 'Selecciona una entidad colaboradora...']}"
               optionKey="id"
               optionValue="nombreEntidad"/>
-</div>
+</div>--}%
 
 <br/>
 <hr/>

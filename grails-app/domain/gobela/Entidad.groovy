@@ -26,4 +26,8 @@ class Entidad {
         telefonoEntidad2(nullable: true, blank: true)
         numCuenta(nullable: true, blank: true)
     }
+
+    String toString(){
+        return nombreEntidad.toUpperCase()
+    }
 }

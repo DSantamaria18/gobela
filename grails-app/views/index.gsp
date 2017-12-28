@@ -108,6 +108,13 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 28/12/2017</h2>
+        <ul>
+            <li>Añadido campo "horario" como texto libre en Evento</li>
+            <li>Eliminado campo "Entidad colaboradora" de Evento</li>
+            <li>Nombres de entidades en mayúsculas en combos de Evento</li>
+        </ul>
+
         <h2>Modificaciones 06/12/2017</h2>
         <ul>
             <li>Creada estructura de PDFs oficiales</li>
