@@ -91,21 +91,19 @@ function addMaterial() {
     if (!isNaN(lastId)) {
         newId = lastId + 1;
     }
-    //var id = $('[name="material"]').find(':selected').val();
-    //alert("Id: " + id + " Nombre: " + material);
-    if (parseInt(cantidad) === 0 || isNaN(parseInt(cantidad))) {
-        alert("Error: La cantidad no es correcta");
-    } else {
+    // if (parseInt(cantidad) === 0 || isNaN(parseInt(cantidad))) {
+    //     alert("Error: La cantidad no es correcta");
+    // } else {
         var row = '<tr id="' + newId.toString() + '"><td>' + material + '</td><td>' + cantidad + '</td><td>' + fechaEntrega.toLocaleDateString() + '</td><td>' + lugarEntrega + '</td><td>' + fechaDevolucion.toLocaleDateString() + '</td><td>' + lugarDevolucion + '</td><td>' + observaciones + '</td><td>' + botonDelete + '</td></tr>';
         $('#lista-material').append(row);
-    }
+    // }
 }
 
 function deleteMaterial(elem) {
     elem.closest('tr').remove();
 }
 
-function fillAvailableStock(id) {
+/*function fillAvailableStock(id) {
     console.log(id);
     var url = "/gobela/solicitudMaterial/checkStock/" + id.toString();
     console.log("URL: " + url);
@@ -116,7 +114,7 @@ function fillAvailableStock(id) {
         console.log("data: " + data);
         $('#stock-container').html(data);
     })
-}
+}*/
 
 function buscar(tipo) {
     if (tipo === "info") {

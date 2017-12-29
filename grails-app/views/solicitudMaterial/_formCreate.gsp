@@ -58,19 +58,18 @@
               onchange="fillAvailableStock(this.value)"/>
 </div>
 
-<div class="fieldcontain" id="stock-container">
+%{--<div class="fieldcontain" id="stock-container">
     <label for="stock">
         <g:message code="stock.label" default="Disponible" readonly="true"/>
     </label>
     <g:field type="number" name="stock" id="stock" readonly="true"/>
-</div>
+</div>--}%
 
 <div class="fieldcontain">
     <label for="cantidad">
         <g:message code="cantidad.label" default="Cantidad:"/>
     </label>
     <g:field type="number" name="cantidad" id="cantidad"/>
-    %{--<input type="button" value="Añadir" class="btn btn-info" onclick="addMaterial()">--}%
 </div>
 
 %{--<div class="table-responsive tabla-material">

@@ -122,6 +122,7 @@
             <li>Añadido servicio de impresión de formularios PDF</li>
             <li>Añadida descarga de PDF oficial de balance de subvención</li>
             <li>Nombre de evento en mayúsculas en listado de eventos</li>
+            <li>Deshabilitada la gestión de Stock para solicitudes de material</li>
         </ul>
 
         <h2>Modificaciones 15/11/2017:</h2>
