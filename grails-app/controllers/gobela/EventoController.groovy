@@ -17,14 +17,6 @@ class EventoController {
     static final String UPLOAD_FOLDER = Holders.getGrailsApplication().config.uploadFolder + "/eventos"
     EventoService eventoService
 
-   /* def index(Integer max) {
-        params.fechaIniDesde = '2016-11-07'
-        params.fechaIniHasta = '2017-11-07'
-        def eventoList = eventoService.filtrarEventos(params)
-        respond eventoList, model: [eventoCount: eventoList.size()]
-//        render template: "tablaEventos",  model: [eventoList: resultList, eventoCount: resultList.size()]
-    }*/
-
     def index(Integer max) {
         params.max = Math.min(max ?: 30, 100)
         def eventoList = Evento.findAllByEstadoNotInList(['Finalizado', 'Cancelado', 'Rechazado'])
@@ -232,6 +224,13 @@ class EventoController {
         Zona zona = Zona.get(zonaId)
         def listaLugares = Lugar.findAllByZona(zona)
         render template: "lugar", model: [listaLugares: listaLugares]
+    }
+
+    def getInstalacionByRecinto(params){
+        def recintoId = params.id
+        Recinto recinto = Recinto.get(recintoId)
+        def listaInstalaciones = Instalacion.findAllByRecinto(recinto)
+        render template: "instalacion", model: [listaInstalaciones: listaInstalaciones]
     }
 
     def filtrarEventos(params){

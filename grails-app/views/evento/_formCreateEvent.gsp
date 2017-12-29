@@ -192,67 +192,26 @@
 
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'lugar', 'error')} required" id="lugar-container">
-    %{-- <label for="lugar">
-         <g:message code="evento.lugar.label" default="Lugar:"/>
-     </label>
-
-     <g:select name="lugar"
-               from="${gobela.Lugar.listOrderByNombreLugar()}"
-               value="${evento?.lugar?.id}"
-               noSelection="${['': 'Selecciona un lugar...']}"
-               optionKey="id"
-               optionValue="nombreLugar"/>--}%
-
     <g:render template="lugar"/>
 </div>
-
-
-
-
-
-
-%{--
-<div class="fieldcontain ${hasErrors(bean: evento, field: 'lugar', 'error')} required">
-<label for="lugar">
-    <g:message code="evento.lugar.label" default="Lugar:"/>
-</label>
-
-<g:select name="lugar"
-          from="${gobela.Lugar.listOrderByNombreLugar()}"
-          value="${evento?.lugar}"
-          noSelection="${['':'Selecciona un lugar...']}"
-          optionKey="id"
-          optionValue="nombreLugar"/>
-</div>
---}%
-
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'recinto', 'error')} required">
     <label for="recinto">
         <g:message code="evento.recinto.label" default="Recinto:"/>
     </label>
-
+    <g:set var="instalacionId" value="${evento?.instalacion?.id}"/>
     <g:select name="recinto"
               from="${gobela.Recinto.listOrderByNombre()}"
-              value="${evento?.recinto}"
+              value="${evento?.recinto?.id}"
               noSelection="${['': 'Selecciona un recinto...']}"
               optionKey="id"
-              optionValue="nombre"/>
+              optionValue="nombre"
+              onchange="fillInstalacionByRecinto(this.value, ${instalacionId})"/>
 </div>
 
-%{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'entidadColaboradora', 'error')} required">
-    <label for="entidadColaboradora">
-        <g:message code="evento.entidadColaboradora.label" default="Entidad colaboradora:"/>
-        <span class="required-indicator">*</span>
-    </label>
-
-    <g:select name="entidadColaboradora"
-              from="${gobela.Entidad.listOrderByNombreEntidad()}"
-              value="${evento?.entidadColaboradora}"
-              noSelection="${['': 'Selecciona una entidad colaboradora...']}"
-              optionKey="id"
-              optionValue="nombreEntidad"/>
-</div>--}%
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'instalacion', 'error')}" id="instalacion-container">
+    <g:render template="instalacion"/>
+</div>
 
 <br/>
 <hr/>

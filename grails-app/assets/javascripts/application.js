@@ -168,6 +168,21 @@ function fillLugarByZona(zonaId, lugarId) {
     })
 }
 
+function fillInstalacionByRecinto(recintoId, instalacionId) {
+    console.log("RECINTO ID: " + recintoId.toString());
+    var url = "/gobela/evento/getInstalacionByRecinto/" + recintoId.toString();
+    console.log("URL: " + url);
+    $.ajax({
+        url: url,
+        type: 'get'
+    }).done(function (data) {
+        console.log("data: " + data);
+        $('#instalacion-container').html(data);
+        console.log("INSTALACION ID: " + instalacionId);
+        $('[name="instalacion"]').val(instalacionId);
+    })
+}
+
 function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalidad, multikirola, adaptado){
     // alert('filtrando!');
     // console.log(zonaId);

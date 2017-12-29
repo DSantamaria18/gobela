@@ -40,6 +40,7 @@
                 %{--<li><g:link class="create" controller="evento" action="create">Nuevo Evento</g:link></li>--}%
                 <li><g:link class="list" controller="lugar" action="index">Lugares</g:link></li>
                 <li><g:link class="list" controller="recinto" action="index">Recintos</g:link></li>
+                <li><g:link class="list" controller="instalacion" action="index">Instalaciones</g:link></li>
                 <li><g:link class="list" controller="modalidad" action="index">Modalidades</g:link></li>
                 <li><g:link class="list" controller="material" action="index">Material</g:link></li>
                 <li><g:link class="list" controller="solicitudMaterial"
@@ -108,12 +109,14 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones 28/12/2017</h2>
+        <h2>Modificaciones 29/12/2017</h2>
         <ul>
             <li>Añadido campo "horario" como texto libre en Evento</li>
             <li>Eliminado campo "Entidad colaboradora" de Evento</li>
             <li>Nombres de entidades en mayúsculas en combos de Evento</li>
             <li>Añadida búsqueda de entidades por nombre</li>
+            <li>Añadida Instalaciones asociadas a los Recintos</li>
+            <li>En Evento sólo se muestran las instalaciones del recinto seleccionado</li>
         </ul>
 
         <h2>Modificaciones 06/12/2017</h2>

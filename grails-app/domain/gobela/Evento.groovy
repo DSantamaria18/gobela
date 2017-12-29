@@ -29,6 +29,7 @@ class Evento {
     String observaciones
     Boolean solidario
     Zona zona
+    Instalacion instalacion
 
     static hasMany = [solicitudesMaterial: SolicitudMaterial]
 
@@ -57,6 +58,7 @@ class Evento {
         publicoDest(inList: ['Todos', 'Femenino', 'Masculino'])
         lugar(nullable: true)
         recinto(nullable: true)
+        instalacion(nullable: true)
         entidadColaboradora(nullable: true)
         numParticipantes(nullable: true, blank: true)
         numParticipantesM(nullable: true, blank: true)
