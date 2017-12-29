@@ -3,8 +3,8 @@
 <html>
 <head>
     <meta name="layout" content="main">
-    <g:set var="entityName" value="${message(code: 'solicitud.label', default: 'Solicitud')}"/>
-    <title>Solicitudes</title>
+    <g:set var="entityName" value="${message(code: 'entidad.label', default: 'Entidad')}"/>
+    <title>Entidades</title>
 </head>
 
 <body>
@@ -23,10 +23,10 @@
         <div class="message" role="status">${flash.message}</div>
     </g:if>
 
-    <f:table collection="${resultList}" properties="['codigo', 'nombreSolicitante', 'solicitanteId', 'municipioSolicitante', 'emailSolicitante']"/>
+    <f:table collection="${resultList}" properties="['nombreEntidad', 'cif', 'direccionEntidad', 'emailEntidad', 'telefonoEntidad1', 'telefonoEntidad2']"/>
 
     <div class="pagination">
-        <g:paginate total="${solicitudInstanceCount ?: 0}"/>
+        <g:paginate total="${entidadInstanceCount ?: 0}"/>
     </div>
 </div>
 </body>

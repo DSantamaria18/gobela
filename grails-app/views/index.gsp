@@ -113,6 +113,7 @@
             <li>Añadido campo "horario" como texto libre en Evento</li>
             <li>Eliminado campo "Entidad colaboradora" de Evento</li>
             <li>Nombres de entidades en mayúsculas en combos de Evento</li>
+            <li>Añadida búsqueda de entidades por nombre</li>
         </ul>
 
         <h2>Modificaciones 06/12/2017</h2>

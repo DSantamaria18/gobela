@@ -1,11 +1,14 @@
 package gobela
 
+import grails.gorm.PagedResultList
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = false)
 class EntidadController {
 
+    def EntidadesService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -103,5 +106,10 @@ class EntidadController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    def buscarEntidad(params){
+        PagedResultList<Solicitud> resultList = EntidadesService.buscarEntidadesPorNombre(params).entidadInstanceList
+        [resultList: resultList, entidadCount: resultList.size()]
     }
 }
