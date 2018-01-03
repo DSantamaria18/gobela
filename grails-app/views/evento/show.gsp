@@ -87,7 +87,7 @@
                         code="evento.fechaInicio.label"
                         default="Fecha del evento:"/></span>
 
-                <span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="dd-MM-yyyy HH:mm:SS"
+                <span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="dd-MM-yyyy"
                                                                                          date="${evento?.fecha}"/></span>
             </li>
         </g:if>
@@ -98,8 +98,19 @@
                         code="evento.fechaFin.label"
                         default="Fecha Fin:"/></span>
 
-                <span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="dd-MM-yyyy HH:mm:SS"
+                <span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="dd-MM-yyyy"
                                                                                          date="${evento?.fechaFin}"/></span>
+            </li>
+        </g:if>
+
+        <g:if test="${evento?.horario}">
+            <li class="fieldcontain">
+
+                <span id="horario-label" class="property-label"><g:message code="evento.horario.label"
+                                                                          default="Horario:"/></span>
+                <span class="property-value" aria-labelledby="horario-label"><g:fieldValue
+                        bean="${evento}"
+                        field="horario"/></span>
             </li>
         </g:if>
 
@@ -237,6 +248,19 @@
             </li>
         </g:if>
 
+        <g:if test="${evento?.zona}">
+            <li class="fieldcontain">
+                <span id="zona-label" class="property-label">
+                    <g:message code="evento.zona.label"
+                               default="Zona:"/>
+                </span>
+                <span class="property-value" aria-labelledby="zona-label">
+                    <g:fieldValue bean="${evento.zona}"
+                                  field="nombre"/>
+                </span>
+            </li>
+        </g:if>
+
         <g:if test="${evento?.lugar}">
             <li class="fieldcontain">
                 <span id="lugar-label" class="property-label">
@@ -259,6 +283,19 @@
                 <span class="property-value" aria-labelledby="recinto-label">
                     <g:fieldValue bean="${evento.recinto}"
                                   field="nombre"/>
+                </span>
+            </li>
+        </g:if>
+
+        <g:if test="${evento?.instalacion}">
+            <li class="fieldcontain">
+                <span id="instalacion-label" class="property-label">
+                    <g:message code="evento.instalacion.label"
+                               default="Instalación:"/>
+                </span>
+                <span class="property-value" aria-labelledby="instalacion-label">
+                    <g:fieldValue bean="${evento.instalacion}"
+                                  field="nombreInstalacion"/>
                 </span>
             </li>
         </g:if>
@@ -341,11 +378,11 @@
             </li>
         </g:if>
 
-        %{--<g:if test="${evento?.solicitudesMaterial}">
-            <li class="fieldcontain">
-                <f:table collection="${SolicitudMaterial.findAllByEvento(this.evento)}"/>
-            </li>
-        </g:if>--}%
+    %{--<g:if test="${evento?.solicitudesMaterial}">
+        <li class="fieldcontain">
+            <f:table collection="${SolicitudMaterial.findAllByEvento(this.evento)}"/>
+        </li>
+    </g:if>--}%
 
         <g:if test="${evento?.solicitudesMaterial}">
             <li class="fieldcontain">

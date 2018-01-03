@@ -114,6 +114,8 @@
             <li>Corregido error al crear entidades nuevas</li>
             <li>Añadido campo recinto a vista de evento</li>
             <li>Añadido campo instalación a vista de evento</li>
+            <li>Añadido campo horario a vista de evento</li>
+            <li>Cambiado formato de fechas en vista de evento</li>
         </ul>
 
         <h2>Modificaciones 29/12/2017</h2>
