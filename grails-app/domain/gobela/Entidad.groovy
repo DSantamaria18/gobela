@@ -28,6 +28,6 @@ class Entidad {
     }
 
     String toString(){
-        return nombreEntidad.toUpperCase()
+        return nombreEntidad?.toUpperCase()
     }
 }

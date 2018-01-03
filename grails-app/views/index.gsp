@@ -109,6 +109,13 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 03/01/2018</h2>
+        <ul>
+            <li>Corregido error al crear entidades nuevas</li>
+            <li>Añadido campo recinto a vista de evento</li>
+            <li>Añadido campo instalación a vista de evento</li>
+        </ul>
+
         <h2>Modificaciones 29/12/2017</h2>
         <ul>
             <li>Añadido campo "horario" como texto libre en Evento</li>
