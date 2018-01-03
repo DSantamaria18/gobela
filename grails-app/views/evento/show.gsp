@@ -378,6 +378,19 @@
             </li>
         </g:if>
 
+        <g:if test="${evento?.observaciones}">
+            <li class="fieldcontain">
+                <span id="observaciones-label" class="property-label">
+                    <g:message code="evento.observaciones.label"
+                               default="Observaciones:"/>
+                </span>
+                <span class="property-value" aria-labelledby="observaciones-label">
+                    <g:fieldValue bean="${evento}"
+                                  field="observaciones"/>
+                </span>
+            </li>
+        </g:if>
+
     %{--<g:if test="${evento?.solicitudesMaterial}">
         <li class="fieldcontain">
             <f:table collection="${SolicitudMaterial.findAllByEvento(this.evento)}"/>

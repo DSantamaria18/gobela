@@ -115,6 +115,7 @@
             <li>Añadido campo recinto a vista de evento</li>
             <li>Añadido campo instalación a vista de evento</li>
             <li>Añadido campo horario a vista de evento</li>
+            <li>Añadido campo observaciones a vista de evento</li>
             <li>Cambiado formato de fechas en vista de evento</li>
         </ul>
 
