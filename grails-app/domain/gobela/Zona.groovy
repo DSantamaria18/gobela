@@ -9,6 +9,6 @@ class Zona {
     }
 
     String toString() {
-        return nombre
+        return nombre?.toUpperCase()
     }
 }

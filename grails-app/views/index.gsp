@@ -109,6 +109,12 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 04/01/2018</h2>
+        <ul>
+            <li>Corregido error al crear zonas nuevas</li>
+            <li>Cambiado estado por defecto para eventos nuevos a "Confirmado"</li>
+        </ul>
+
         <h2>Modificaciones 03/01/2018</h2>
         <ul>
             <li>Corregido error al crear entidades nuevas</li>

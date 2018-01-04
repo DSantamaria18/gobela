@@ -39,7 +39,7 @@ class Evento {
 
     static constraints = {
         nombre(nullable: false, blank: false)
-        estado(inList: ['Pendiente', 'Confirmado', 'Rechazado', 'Finalizado', 'Cancelado'])
+        estado(inList: ['Confirmado', 'Pendiente', 'Rechazado', 'Finalizado', 'Cancelado'])
         fecha(nullable: false)
         fechaFin(nullable: false)
         horario(nullable: true, blank: true)
