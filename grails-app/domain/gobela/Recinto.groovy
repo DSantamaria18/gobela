@@ -12,6 +12,6 @@ class Recinto {
     }
 
     String toString() {
-        return nombre.toUpperCase()
+        return nombre?.toUpperCase()
     }
 }
