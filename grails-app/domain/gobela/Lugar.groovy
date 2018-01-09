@@ -11,6 +11,6 @@ class Lugar {
     }
 
     String toString() {
-        return nombreLugar
+        return nombreLugar?.toUpperCase()
     }
 }

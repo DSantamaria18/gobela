@@ -6,3 +6,8 @@
           value="${evento?.instalacion}"
           noSelection="${['': 'Selecciona un instalacion...']}"
           optionKey="id"/>
+
+<label for="ocupacion">
+    <g:message code="evento.ocupacion.label" default="Ocupación:"/>
+</label>
+<g:textField name="ocupacion" value="${this.evento?.ocupacion}"/>%

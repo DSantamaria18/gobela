@@ -148,7 +148,22 @@ class EventoController {
             }
         }
         permDocsList.sort { a, b -> b.value <=> a.value }
-        [infoDocsList: infoDocsList, infoDocsCount: infoDocsList.size(), permDocsList: permDocsList, permDocsCount: permDocsList.size()]
+
+        ArrayList<Map> postEventDocsList = []
+        def f3 = new File("${UPLOAD_FOLDER}/${eventoId}/postEvento/")
+        if (f3.exists()) {
+            f3.eachFile() { file ->
+                if (!file.isDirectory()) {
+                    Map fileInfo = [:]
+                    fileInfo.nombre = file.name
+                    fileInfo.tamaño = file.size()
+                    postEventDocsList.add(fileInfo)
+                }
+            }
+        }
+        postEventDocsList.sort { a, b -> b.value <=> a.value }
+
+        [infoDocsList: infoDocsList, infoDocsCount: infoDocsList.size(), permDocsList: permDocsList, permDocsCount: permDocsList.size(), postEventDocsList: postEventDocsList, postEventDocsCount: postEventDocsList.size()]
     }
 
     def deleteFile() {
@@ -204,8 +219,24 @@ class EventoController {
     def uploadPermFile() {
         def eventoId = params.eventoId
         def f = request.getFile('permFileUpload')
-//        String tipo = params.tipo
         String ruta = "${UPLOAD_FOLDER}/${eventoId}/permisos/"
+        File folder = new File(ruta)
+        if(!folder.exists()){
+            folder.mkdirs()
+        }
+        if (!f.empty) {
+            flash.message = "Se ha subido ${f.getOriginalFilename()}"
+            f.transferTo(new File( ruta + File.separatorChar + f.getOriginalFilename()))
+        } else {
+            flash.message = 'Debes seleccionar un fichero'
+        }
+        redirect(action: 'listFiles', params: [eventoId: eventoId])
+    }
+
+    def uploadPostEventFile() {
+        def eventoId = params.eventoId
+        def f = request.getFile('postEventFileUpload')
+        String ruta = "${UPLOAD_FOLDER}/${eventoId}/postEvento/"
         File folder = new File(ruta)
         if(!folder.exists()){
             folder.mkdirs()

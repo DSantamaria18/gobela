@@ -113,6 +113,9 @@
         <ul>
             <li>Corregido error al crear zonas nuevas</li>
             <li>Cambiado estado por defecto para eventos nuevos a "Confirmado"</li>
+            <li>Añadido campo "% Ocupación" a Evento</li>
+            <li>Añadido campo "Email Contacto" a Evento</li>
+            <li>Añadido apartado de ficheros post-evento para Evento</li>
         </ul>
 
         <h2>Modificaciones 03/01/2018</h2>

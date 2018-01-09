@@ -123,6 +123,9 @@ function buscar(tipo) {
     } else if (tipo === "permisos") {
         console.log("buscando permisos");
         $('#permFileUpload').click();
+    } else if (tipo === "postEvento") {
+        console.log("buscando post-evento");
+        $('#postEventFileUpload').click();
     } else if (tipo === 'balance') {
         $('#balanceFileUpload').click();
     } else if (tipo === 'justificacion') {
@@ -141,6 +144,9 @@ function copyFileName(tipo) {
     } else if (tipo === "permisos") {
         filename = $('#permFileUpload').val().split('\\').pop();
         $('#permFileNameInput').val(filename);
+    } else if (tipo === "postEvento") {
+        filename = $('#postEventFileUpload').val().split('\\').pop();
+        $('#postEventFileNameInput').val(filename);
     } else if (tipo === "balance") {
         filename = $('#balanceFileUpload').val().split('\\').pop();
         $('#balanceFileNameInput').val(filename);
@@ -180,6 +186,7 @@ function fillInstalacionByRecinto(recintoId, instalacionId) {
         $('#instalacion-container').html(data);
         console.log("INSTALACION ID: " + instalacionId);
         $('[name="instalacion"]').val(instalacionId);
+        $('[name="ocupacion"]').val(100);
     })
 }
 
