@@ -159,40 +159,52 @@ function copyFileName(tipo) {
 }
 
 function fillLugarByZona(zonaId, lugarId) {
-    console.log(zonaId);
     var url = "/gobela/evento/getLugarByZona/" + zonaId.toString();
-    console.log("URL: " + url);
     $.ajax({
         url: url,
         type: 'get'
     }).done(function (data) {
-        console.log("data: " + data);
         $('#lugar-container').html(data);
-        // var lugarId = "${lugarId}";
-        console.log("LUGAR ID: " + lugarId);
         $('[name="lugar"]').val(lugarId);
     })
 }
 
 function fillInstalacionByRecinto(recintoId, instalacionId) {
-    console.log("RECINTO ID: " + recintoId.toString());
     var url = "/gobela/evento/getInstalacionByRecinto/" + recintoId.toString();
-    console.log("URL: " + url);
     $.ajax({
         url: url,
         type: 'get'
     }).done(function (data) {
-        console.log("data: " + data);
-        $('#instalacion-container').html(data);
-        console.log("INSTALACION ID: " + instalacionId);
+        $('#instalacion-container').html(data);        
         $('[name="instalacion"]').val(instalacionId);
         $('[name="ocupacion"]').val(100);
     })
 }
 
+function fillContactoByEntidad(entidadId, contactoId) {
+    var url = "/gobela/evento/getContactoByEntidad/" + entidadId.toString();
+    console.log("URL: " + url);
+    $.ajax({
+        url: url,
+        type: 'get'
+    }).done(function (data) {
+        $('#contacto-container').html(data);
+        $('[name="contacto"]').val(contactoId);
+    })
+}
+
+function fillContactoInfo(contactoId) {
+    var url = "/gobela/evento/getContactoInfo/" + contactoId.toString();
+    console.log("URL: " + url);
+    $.ajax({
+        url: url,
+        type: 'get'
+    }).done(function (data) {
+        $('#contactoInfo-container').html(data);
+    })
+}
+
 function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalidad, multikirola, adaptado){
-    // alert('filtrando!');
-    // console.log(zonaId);
     var url = "/gobela/evento/filtrarEventos/";
     console.log("URL: " + url);
     $.ajax({
@@ -210,8 +222,5 @@ function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalid
     }).done(function (data) {
         console.log("data: " + data);
         $('#tabla-eventos').html(data);
-        // var lugarId = "${lugarId}";
-        // console.log("LUGAR ID: " + lugarId);
-        // $('[name="lugar"]').val(lugarId);
     })
 }

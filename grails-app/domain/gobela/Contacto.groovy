@@ -6,13 +6,15 @@ class Contacto {
     String email
     String telefono
 
-//    static belongsTo = [evento: Evento, entidad: Entidad]
+    static belongsTo = [entidad: Entidad]
 
     static constraints = {
-        nombre(nullable: true, blank: true)
-        email(nullable: false, email: true)
+        nombre(nullable: false, blank: false)
+        email(nullable: true, email: true, blank: true)
         telefono(nullable: true, blank: true)
-//        evento(nullable: true)
-//        entidad(nullable: true)
+    }
+
+    String toString(){
+        return nombre?.toUpperCase()
     }
 }

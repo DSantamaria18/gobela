@@ -264,6 +264,18 @@ class EventoController {
         render template: "instalacion", model: [listaInstalaciones: listaInstalaciones]
     }
 
+    def getContactoByEntidad(params){
+        def entidadId = params.id
+        Entidad entidad = Entidad.get(entidadId)
+        def listaContactos = Contacto.findAllByEntidad(entidad)
+        render template: "contacto", model: [listaContactos: listaContactos]
+    }
+
+    def getContactoInfo(params){
+        Contacto contacto = Contacto.get(params.id)
+        render template: "contactoInfo", model: [emailContacto: contacto.email, telefonoContacto: contacto.telefono]
+    }
+
     def filtrarEventos(params){
         def eventoList = eventoService.filtrarEventos(params)
         render template: "tablaEventos",  model: [eventoList: eventoList, eventoCount: eventoList.size()]

@@ -55,6 +55,7 @@
                aria-expanded="false">Entidades<span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li><g:link class="list" controller="entidad" action="index">Entidades</g:link></li>
+                <li><g:link class="list" controller="contacto" action="index">Contactos</g:link></li>
                 %{--<li><g:link class="list" controller="club" action="index">Clubes</g:link></li>--}%
             </ul>
         </li>
@@ -116,6 +117,11 @@
             <li>Añadido campo "% Ocupación" a Evento</li>
             <li>Añadido campo "Email Contacto" a Evento</li>
             <li>Añadido apartado de ficheros post-evento para Evento</li>
+            <li>Añadido "Contactos" a menú de Entidades en página principal</li>
+            <li>Añadida relación entre Contacto y Entidad</li>
+            <li>Añadida lógica de contactos a Evento</li>
+            <li>Añadida carga de datos de contacto al seleccionar uno en creación de eventos</li>
+            <li>Añadida carga de datos de contacto al seleccionar uno en edición de eventos</li>
         </ul>
 
         <h2>Modificaciones 03/01/2018</h2>

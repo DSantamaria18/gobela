@@ -100,33 +100,51 @@
     <g:checkBox name="solidario" value="${evento?.solidario}"/>
 </div>
 
+<br/>
+<hr/>
+<br/>
+
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'entidadOrganizadora', 'error')} required">
     <label for="entidadOrganizadora">
         <g:message code="evento.entidadOrganizadora.label" default="Entidad organizadora:"/>
         <span class="required-indicator">*</span>
     </label>
-
+    <g:set var="contactoId" value="${evento?.contacto?.id}"/>
     <g:select name="entidadOrganizadora"
               from="${gobela.Entidad.listOrderByNombreEntidad()}"
               value="${evento?.entidadOrganizadora?.id}"
               noSelection="${['': 'Selecciona una entidad organizadora...']}"
-              optionKey="id"/>
-              %{--optionValue="nombreEntidad"/>--}%
+              optionKey="id"
+              onchange="fillContactoByEntidad(this.value, ${contactoId})"/>
 </div>
 
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'contacto', 'error')}>
+<div class="fieldcontain" ${hasErrors(bean: evento, field: 'contacto', 'error')} id="contacto-container">
+    <g:render template="contacto"/>
+</div>
+
+<g:set var="emailContacto" value="${this.evento?.emailContacto}"/>
+<g:set var="telefonoContacto" value="${this.evento?.telefonoContacto}"/>
+<div class="fieldcontain" id="contactoInfo-container">
+    <g:render template="contactoInfo"/>
+</div>
+
+%{--<div class="fieldcontain" ${hasErrors(bean: evento, field: 'contacto', 'error')}>
     <label for="contacto">
         <g:message code="evento.contacto.label" default="Contacto:"/>
     </label>
     <g:textField name="contacto" value="${this.evento?.contacto}"/>
-</div>
+</div>--}%
 
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'telefonoContacto', 'error')}>
+%{--<div class="fieldcontain" ${hasErrors(bean: evento, field: 'telefonoContacto', 'error')}>
     <label for="telefonoContacto">
         <g:message code="evento.telefonoContacto.label" default="Teléfono Contacto:"/>
     </label>
     <g:textField name="telefonoContacto" value="${this.evento?.telefonoContacto}"/>
-</div>
+</div>--}%
+
+<br/>
+<hr/>
+<br/>
 
 %{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'clubOrganizador', 'error')}">
     <label for="clubOrganizador">
@@ -255,42 +273,6 @@
     <g:textField name="numVoluntarios" value="${this.evento?.numVoluntarios}"/>
 </div>
 
-%{--
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'horasMant', 'error')}>
-    <label for="horasMant">
-        <g:message code="evento.horasMantM.label" default="Número de mantenimiento:"/>
-    </label>
-    <g:textField name="horasMant" value="${this.evento?.horasMant}"/>
-</div>
-
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'horasDeptivo', 'error')}>
-    <label for="horasDeptivo">
-        <g:message code="evento.horasDeptivoM.label" default="Número de polideportivo:"/>
-    </label>
-    <g:textField name="horasDeptivo" value="${this.evento?.horasDeptivo}"/>
-</div>
-
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'horasLimpieza', 'error')}>
-    <label for="horasLimpieza">
-        <g:message code="evento.horasLimpiezaM.label" default="Número de limpieza:"/>
-    </label>
-    <g:textField name="horasLimpieza" value="${this.evento?.horasLimpieza}"/>
-</div>
-
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'costesPersonal', 'error')}>
-    <label for="costesPersonal">
-        <g:message code="evento.costesPersonalM.label" default="Costes de personal:"/>
-    </label>
-    <g:textField name="costesPersonal" value="${this.evento?.costesPersonal}"/>
-</div>
-
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'totalInversion', 'error')}>
-    <label for="totalInversion">
-        <g:message code="evento.totalInversionM.label" default="Total inversión:"/>
-    </label>
-    <g:textField name="totalInversion" value="${this.evento?.totalInversion}"/>
-</div>--}%
-
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'observaciones', 'error')} ">
     <label for="observaciones">
         <g:message code="evento.observaciones.label" default="Observaciones:"/>
@@ -302,16 +284,26 @@
 
 <g:javascript>
     $(document).ready(function () {
+        console.log("*** EDIT EVENT ***");
         var zonaId = $('[name="zona"').val();
         var lugarId = ${lugarId};
-        console.log("LUGAR ID: " + lugarId.toString());
+        //console.log("LUGAR ID: " + lugarId.toString());
         fillLugarByZona(zonaId, lugarId);
         $('[name="lugar"]').val(lugarId);
 
         var recintoId = $('[name="recinto"').val();
         var instalacionId = ${instalacionId};
-        console.log("INSTALACION ID: " + instalacionId.toString());
+        //console.log("INSTALACION ID: " + instalacionId.toString());
         fillInstalacionByRecinto(recintoId, instalacionId);
         $('[name="instalacion"]').val(instalacionId);
+
+        var entidadId =  $('[name="entidadOrganizadora"').val();
+        var contactoId = ${contactoId};
+        // var email = ${emailContacto};
+        console.log("CONTACTO ID: " + contactoId.toString());
+        // console.log("EMAIL CONTACTO: " + email);
+        fillContactoByEntidad(entidadId, contactoId);
+        // $('[name="emailContacto"]').val(email);
+        //$('[name="telefonoContacto"]').val(telefonoContacto);
     });
 </g:javascript>

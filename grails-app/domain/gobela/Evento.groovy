@@ -6,7 +6,6 @@ class Evento {
     String horario
     String nombre
     Entidad entidadOrganizadora
-    String contacto
     Entidad clubOrganizador
     String tipoActividad
     String ambito
@@ -30,6 +29,10 @@ class Evento {
     Boolean solidario
     Zona zona
     Instalacion instalacion
+    Integer ocupacion
+    Contacto contacto
+    String emailContacto
+
 
     static hasMany = [solicitudesMaterial: SolicitudMaterial]
 
@@ -51,6 +54,7 @@ class Evento {
         solidario()
         entidadOrganizadora(nullable: false, blank: false)
         contacto(nullable: true, blank: true)
+        emailContacto(nullable: true, blank: true, email: true)
         telefonoContacto(nullable: true, blank: true)
         clubOrganizador(nullable: true, blank:true)
         ambito(inList: ['Local', 'Comarcal', 'Provincial', 'Autonómico', 'Nacional', 'Internacional'])
@@ -67,5 +71,6 @@ class Evento {
         numVoluntarios(nullable: true, blank: true)
         observaciones(nullable: true, blank: true, maxSize: 500)
         solicitudesMaterial()
+        ocupacion(nullable: false, blank: false)
     }
 }

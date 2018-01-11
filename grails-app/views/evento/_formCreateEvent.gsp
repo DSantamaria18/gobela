@@ -100,33 +100,36 @@
     <g:checkBox name="solidario" value="${evento?.solidario}"/>
 </div>
 
+<br/>
+<hr/>
+<br/>
+
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'entidadOrganizadora', 'error')} required">
     <label for="entidadOrganizadora">
         <g:message code="evento.entidadOrganizadora.label" default="Entidad organizadora:"/>
         <span class="required-indicator">*</span>
     </label>
+    <g:set var="contactoId" value="${evento?.contacto?.id}"/>
 
     <g:select name="entidadOrganizadora"
               from="${gobela.Entidad.listOrderByNombreEntidad()}"
-              value="${evento?.entidadOrganizadora}"
+              value="${evento?.entidadOrganizadora?.id}"
               noSelection="${['': 'Selecciona la entidad organizadora...']}"
-              optionKey="id"/>
-    %{--optionValue="nombreEntidad"/>--}%
+              optionKey="id"
+              onchange="fillContactoByEntidad(this.value, ${contactoId})" />
 </div>
 
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'contacto', 'error')}>
-    <label for="contacto">
-        <g:message code="evento.contacto.label" default="Contacto:"/>
-    </label>
-    <g:textField name="contacto" value="${this.evento?.contacto}"/>
+<div class="fieldcontain" ${hasErrors(bean: evento, field: 'contacto', 'error')} id="contacto-container">
+    <g:render template="contacto"/>
 </div>
 
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'telefonoContacto', 'error')}>
-    <label for="telefonoContacto">
-        <g:message code="evento.telefonoContacto.label" default="Teléfono Contacto:"/>
-    </label>
-    <g:textField name="telefonoContacto" value="${this.evento?.telefonoContacto}"/>
+<div class="fieldcontain" id="contactoInfo-container">
+    <g:render template="contactoInfo"/>
 </div>
+
+<br/>
+<hr/>
+<br/>
 
 %{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'clubOrganizador', 'error')}">
     <label for="clubOrganizador">
@@ -175,6 +178,10 @@
               value="${fieldValue(bean: evento, field: 'publicoDest')}"
               valueMessagePrefix="evento.publicoDest"/>
 </div>
+
+<br/>
+<hr/>
+<br/>
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'zona', 'error')} required">
     <label for="zona">

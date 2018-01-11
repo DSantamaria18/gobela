@@ -27,7 +27,8 @@
             </g:hasErrors>
             <g:form resource="${this.contacto}" method="POST">
                 <fieldset class="form">
-                    <f:all bean="contacto"/>
+                    <input type="hidden" name="entidad" value="${params.entidadId}" />
+                    <g:render template="formCreateContact"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
