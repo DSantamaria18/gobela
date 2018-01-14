@@ -40,7 +40,9 @@
         <li><g:link class="create" action="create"><g:message code="default.new.label"
                                                               args="[entityName]"/></g:link></li>
         <li><g:link class="create" controller="solicitudMaterial" action="create"
-                    params="['eventoId': evento.id]">Solicitar Material</g:link></li>
+                    params="['eventoId': evento.id
+                    , 'fecha': evento?.fecha
+                    , 'fechaFin': evento?.fechaFin]">Solicitar Material</g:link></li>
         <li><g:link class="create" action="listFiles"
                     params="['eventoId': evento.id]">Ficheros</g:link></li>
     </ul>

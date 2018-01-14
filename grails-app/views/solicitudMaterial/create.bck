@@ -25,6 +25,7 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
+
             <g:form resource="${this.solicitudMaterial}" method="POST">
                 <fieldset class="form">
                     %{--<f:all bean="solicitudMaterial"/>--}%
@@ -35,27 +36,5 @@
                 </fieldset>
             </g:form>
         </div>
-
-    <g:javascript>
-        $(document).ready(function (){
-            // $('#qFechaIniDesde_year').val("2016")
-            var fecha = `${params.fecha}`.toString();
-            var entregaAño = parseInt(fecha.split('-')[0]);
-            var entregaMes = parseInt(fecha.split('-')[1]);
-            var entregaDia = parseInt(fecha.split('-')[2].split(' ')[0]);
-            $('[name="entrega_year"]').val(entregaAño);
-            $('[name="entrega_month"]').val(entregaMes);
-            $('[name="entrega_day"]').val(entregaDia);
-
-            var fechaFin = `${params.fechaFin}`.toString();
-            var recogidaAño = parseInt(fechaFin.split('-')[0]);
-            var recogidaMes = parseInt(fechaFin.split('-')[1]);
-            var recogidaDia = parseInt(fechaFin.split('-')[2].split(' ')[0]);
-            $('[name="recogida_year"]').val(recogidaAño);
-            $('[name="recogida_month"]').val(recogidaMes);
-            $('[name="recogida_day"]').val(recogidaDia);
-        })
-    </g:javascript>
-
     </body>
 </html>

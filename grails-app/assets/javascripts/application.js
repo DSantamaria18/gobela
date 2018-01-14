@@ -74,29 +74,38 @@ function actualizaL2Values() {
 function addMaterial() {
     var material = $('[name="material"]').find(':selected').text();
     var cantidad = $('#cantidad').val();
-    var diaEntrega = $('#fentrega_day').val();
-    var mesEntrega = $('#fentrega_month').val() - 1;
-    var anoEntrega = $('#fentrega_year').val();
+    var diaEntrega = $('[name="entrega_day"]').val();
+    var mesEntrega = $('[name="entrega_month"]').val();
+    var anoEntrega = $('[name="entrega_year"]').val();
     var fechaEntrega = new Date(anoEntrega + "-" + mesEntrega + "-" + diaEntrega);
-    var lugarEntrega = $('[name="lugar-entrega"]').val();
-    var diaDevolucion = $('#frecogida_day').val();
-    var mesDevolucion = $('#frecogida_month').val();
-    var anoDevolucion = $('#frecogida_year').val();
+    // console.log(fechaEntrega);
+    var lugarEntrega = $('[name="lugarEntrega"]').val();
+    var diaDevolucion = $('[name="recogida_day"]').val();
+    var mesDevolucion = $('[name="recogida_month"]').val();
+    var anoDevolucion = $('[name="recogida_year"]').val();
     var fechaDevolucion = new Date(anoDevolucion + "-" + mesDevolucion + "-" + diaDevolucion);
-    var lugarDevolucion = $('[name="lugar-devolucion"]').val();
+    var lugarDevolucion = $('[name="lugarDevolucion"]').val();
     var observaciones = $('[name="observaciones"]').val();
+    var comentarios = $('[name="comentarios"]').val();
     var botonDelete = ('<input type="button" value="Borrar" onclick="deleteMaterial(this)"/>')
-    var lastId = parseInt($('#lista-material tr:last').attr("id"));
-    var newId = 1;
-    if (!isNaN(lastId)) {
-        newId = lastId + 1;
+    var lastIndex = parseInt($('#lista-material tr:last').attr("id"));
+    var newIndex = 1;
+    if (!isNaN(lastIndex)) {
+        newIndex = lastIndex + 1;
     }
     // if (parseInt(cantidad) === 0 || isNaN(parseInt(cantidad))) {
     //     alert("Error: La cantidad no es correcta");
     // } else {
-        var row = '<tr id="' + newId.toString() + '"><td>' + material + '</td><td>' + cantidad + '</td><td>' + fechaEntrega.toLocaleDateString() + '</td><td>' + lugarEntrega + '</td><td>' + fechaDevolucion.toLocaleDateString() + '</td><td>' + lugarDevolucion + '</td><td>' + observaciones + '</td><td>' + botonDelete + '</td></tr>';
-        $('#lista-material').append(row);
+    //     var row = '<tr id="' + newIndex.toString() + '"><td>' + material + '</td><td>' + cantidad + '</td><td>' + fechaEntrega.toLocaleDateString() + '</td><td>' + lugarEntrega + '</td><td>' + fechaDevolucion.toLocaleDateString() + '</td><td>' + lugarDevolucion + '</td><td>' + observaciones + '</td><td>' + botonDelete + '</td></tr>';
+
+        // $('#lista-material').append(row);
     // }
+    var row = '<tr index="' + newIndex.toString() + '"><td>' + material + '</td><td>' + cantidad + '</td><td>' + fechaEntrega.toLocaleDateString() + '</td><td>' + lugarEntrega + '</td><td>' + fechaDevolucion.toLocaleDateString() + '</td><td>' + lugarDevolucion + '</td><td>' + comentarios + '</td><td>' + observaciones + '</td><td>' + botonDelete + '</td></tr>';
+    // var row = '<tr id="' + newIndex.toString() + '"><td>' + material + '</td><td>' + cantidad + '</td><td>' + lugarEntrega + '</td><td>' + lugarDevolucion + '</td><td>' + comentarios + '</td><td>' + botonDelete + '</td></tr>';
+    $('#lista-material').append(row);
+    $('[name="material"]').val('');
+    $('#cantidad').val('');
+    $('[name="comentarios"]').val('');
 }
 
 function deleteMaterial(elem) {
@@ -175,7 +184,7 @@ function fillInstalacionByRecinto(recintoId, instalacionId) {
         url: url,
         type: 'get'
     }).done(function (data) {
-        $('#instalacion-container').html(data);        
+        $('#instalacion-container').html(data);
         $('[name="instalacion"]').val(instalacionId);
         $('[name="ocupacion"]').val(100);
     })

@@ -122,6 +122,7 @@
             <li>Añadida lógica de contactos a Evento</li>
             <li>Añadida carga de datos de contacto al seleccionar uno en creación de eventos</li>
             <li>Añadida carga de datos de contacto al seleccionar uno en edición de eventos</li>
+            <li>Añadidas fechas del evento como fechas por defecto para solicitudes de material</li>
         </ul>
 
         <h2>Modificaciones 03/01/2018</h2>
