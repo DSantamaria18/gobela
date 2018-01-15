@@ -47,7 +47,7 @@ class Evento {
         fechaFin(nullable: false)
         horario(nullable: true, blank: true)
         relevante()
-        tipoActividad(inList: ['Formación', 'Regular/Competición', 'Exhibición', 'Cultural', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Otros', 'Txapelketa/Torneo'])
+        tipoActividad(inList: ['Formación', 'Regular/Competición', 'Exhibición', 'Cultural', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Txapelketa/Torneo', 'Concentración/Tecnificación', 'Otros'])
         modalidad(nullable: true)
         multikirola()
         deporteAdaptado()

@@ -9,6 +9,7 @@ class SolicitudMaterial {
     String observaciones
     String lugarEntrega
     String lugarDevolucion
+    String comentarios
 
     static hasMany = [material: Material]
     static belongsTo = [evento: Evento]
@@ -21,5 +22,6 @@ class SolicitudMaterial {
         recogida(nullable: false, blank: false)
         lugarDevolucion()
         observaciones(nullable: true, blank: true, maxSize: 2000)
+        comentarios(nullable: true, blank: true, maxSize: 2000)
     }
 }

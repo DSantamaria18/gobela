@@ -78,7 +78,6 @@ function addMaterial() {
     var mesEntrega = $('[name="entrega_month"]').val();
     var anoEntrega = $('[name="entrega_year"]').val();
     var fechaEntrega = new Date(anoEntrega + "-" + mesEntrega + "-" + diaEntrega);
-    // console.log(fechaEntrega);
     var lugarEntrega = $('[name="lugarEntrega"]').val();
     var diaDevolucion = $('[name="recogida_day"]').val();
     var mesDevolucion = $('[name="recogida_month"]').val();
@@ -97,11 +96,9 @@ function addMaterial() {
     //     alert("Error: La cantidad no es correcta");
     // } else {
     //     var row = '<tr id="' + newIndex.toString() + '"><td>' + material + '</td><td>' + cantidad + '</td><td>' + fechaEntrega.toLocaleDateString() + '</td><td>' + lugarEntrega + '</td><td>' + fechaDevolucion.toLocaleDateString() + '</td><td>' + lugarDevolucion + '</td><td>' + observaciones + '</td><td>' + botonDelete + '</td></tr>';
-
-        // $('#lista-material').append(row);
+    //     $('#lista-material').append(row);
     // }
     var row = '<tr index="' + newIndex.toString() + '"><td>' + material + '</td><td>' + cantidad + '</td><td>' + fechaEntrega.toLocaleDateString() + '</td><td>' + lugarEntrega + '</td><td>' + fechaDevolucion.toLocaleDateString() + '</td><td>' + lugarDevolucion + '</td><td>' + comentarios + '</td><td>' + observaciones + '</td><td>' + botonDelete + '</td></tr>';
-    // var row = '<tr id="' + newIndex.toString() + '"><td>' + material + '</td><td>' + cantidad + '</td><td>' + lugarEntrega + '</td><td>' + lugarDevolucion + '</td><td>' + comentarios + '</td><td>' + botonDelete + '</td></tr>';
     $('#lista-material').append(row);
     $('[name="material"]').val('');
     $('#cantidad').val('');
