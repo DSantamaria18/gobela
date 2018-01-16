@@ -57,6 +57,7 @@ class EventoController {
                 redirect evento
             }
             '*' { respond evento, [status: CREATED] }
+
         }
     }
 

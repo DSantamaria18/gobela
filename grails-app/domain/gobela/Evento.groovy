@@ -32,6 +32,7 @@ class Evento {
     Integer ocupacion
     Contacto contacto
     String emailContacto
+    Boolean deporteInclusivo
 
 
     static hasMany = [solicitudesMaterial: SolicitudMaterial]
@@ -51,6 +52,7 @@ class Evento {
         modalidad(nullable: true)
         multikirola()
         deporteAdaptado()
+        deporteInclusivo()
         solidario()
         entidadOrganizadora(nullable: false, blank: false)
         contacto(nullable: true, blank: true)

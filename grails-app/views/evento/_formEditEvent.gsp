@@ -93,6 +93,13 @@
     <g:checkBox name="deporteAdaptado" value="${evento?.deporteAdaptado}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'deporteInclusivo', 'error')}">
+    <label for="deporteInclusivo">
+        <g:message code="evento.deporteInclusivo.label" default="Deporte Inclusivo:"/>
+    </label>
+    <g:checkBox name="deporteInclusivo" value="${evento?.deporteInclusivo}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'solidario', 'error')}">
     <label for="solidario">
         <g:message code="evento.solidario.label" default="Evento solidario:"/>
@@ -127,20 +134,6 @@
 <div class="fieldcontain" id="contactoInfo-container">
     <g:render template="contactoInfo"/>
 </div>
-
-%{--<div class="fieldcontain" ${hasErrors(bean: evento, field: 'contacto', 'error')}>
-    <label for="contacto">
-        <g:message code="evento.contacto.label" default="Contacto:"/>
-    </label>
-    <g:textField name="contacto" value="${this.evento?.contacto}"/>
-</div>--}%
-
-%{--<div class="fieldcontain" ${hasErrors(bean: evento, field: 'telefonoContacto', 'error')}>
-    <label for="telefonoContacto">
-        <g:message code="evento.telefonoContacto.label" default="Teléfono Contacto:"/>
-    </label>
-    <g:textField name="telefonoContacto" value="${this.evento?.telefonoContacto}"/>
-</div>--}%
 
 <br/>
 <hr/>
@@ -287,23 +280,17 @@
         console.log("*** EDIT EVENT ***");
         var zonaId = $('[name="zona"').val();
         var lugarId = ${lugarId};
-        //console.log("LUGAR ID: " + lugarId.toString());
         fillLugarByZona(zonaId, lugarId);
         $('[name="lugar"]').val(lugarId);
 
         var recintoId = $('[name="recinto"').val();
         var instalacionId = ${instalacionId};
-        //console.log("INSTALACION ID: " + instalacionId.toString());
         fillInstalacionByRecinto(recintoId, instalacionId);
         $('[name="instalacion"]').val(instalacionId);
 
         var entidadId =  $('[name="entidadOrganizadora"').val();
         var contactoId = ${contactoId};
-        // var email = ${emailContacto};
         console.log("CONTACTO ID: " + contactoId.toString());
-        // console.log("EMAIL CONTACTO: " + email);
         fillContactoByEntidad(entidadId, contactoId);
-        // $('[name="emailContacto"]').val(email);
-        //$('[name="telefonoContacto"]').val(telefonoContacto);
     });
 </g:javascript>

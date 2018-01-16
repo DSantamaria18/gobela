@@ -110,7 +110,7 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones 04/01/2018</h2>
+        <h2>Modificaciones 19/01/2018</h2>
         <ul>
             <li>Corregido error al crear zonas nuevas</li>
             <li>Cambiado estado por defecto para eventos nuevos a "Confirmado"</li>
@@ -126,6 +126,24 @@
             <li>Añadido "Concentración/Tecnificación" como tipo de actividad</li>
             <li>Cambiado formato de fechas de lista de materiales en vista de evento</li>
             <li>Corregido contacto en clonado de eventos</li>
+            <li>Añadido campo "Deporte Inclusivo" a evento</li>
+            <li>Añadido campo "Deporte Inclusivo a vista de evento</li>
+            <li>Añadido campo "Deporte Inclusivo a vista de creación de evento</li>
+            <li>Añadido campo "Deporte Inclusivo a vista de edición de evento</li>
+            <li>Añadido campo "Deporte Inclusivo a clonado de evento</li>
+            <li>Añadido "Contacto" a vista de evento</li>
+            <li>Añadido "Email Contacto" a vista de evento</li>
+            <li>Añadido "Instalación" a vista de evento</li>
+            <li>Añadido "Zona" a vista de evento</li>
+            <li>Añadido "Ocupación" a vista de evento</li>
+            <li>Añadido "Público Destinatario" a vista de evento</li>
+            <li>Añadido "Contacto" a clonado de evento</li>
+            <li>Añadido "Email Contacto" a clonado de evento</li>
+            <li>Añadido "Instalación" a clonado de evento</li>
+            <li>Añadido "Zona" a clonado de evento</li>
+            <li>Añadido "Ocupación" a clonado de evento</li>
+            <li>Añadido "Público Destinatario" a clonado de evento</li>
+
 
         </ul>
 

@@ -21,28 +21,35 @@
         <li><g:link class="create"
                     action="clone"
                     params="['nombre'               : evento?.nombre
+                             , 'horario'            : evento?.horario
                              , 'relevante'          : evento?.relevante
                              , 'tipoActividad'      : evento?.tipoActividad
                              , 'modalidad'          : evento?.modalidad?.id
                              , 'multikirola'        : evento?.multikirola
                              , 'deporteAdaptado'    : evento?.deporteAdaptado
+                             , 'deporteInclusivo'   : evento?.deporteInclusivo
                              , 'solidario'          : evento?.solidario
                              , 'entidadOrganizadora': evento?.entidadOrganizadora?.id
-                             , 'contacto'           : evento?.contacto
+                             , 'contacto'           : evento?.contacto?.id
+                             , 'emailContacto'      : evento?.emailContacto
                              , 'telefonoContacto'   : evento?.telefonoContacto
                              , 'clubOrganizador'    : evento?.clubOrganizador?.id
                              , 'ambito'             : evento?.ambito
                              , 'tipoPublico'        : evento?.tipoPublico
+                             , 'publicoDest'        : evento?.publicoDest
                              , 'lugar'              : evento?.lugar?.id
+                             , 'zona'               : evento?.zona?.id
                              , 'recinto'            : evento?.recinto?.id
+                             , 'instalacion'        : evento?.instalacion?.id
+                             , 'ocupacion'          : evento?.ocupacion
                              , 'entidadColaboradora': evento?.entidadColaboradora?.id]">
             <g:message code="default.clone.label" args="[entityName]"/></g:link></li>
         <li><g:link class="create" action="create"><g:message code="default.new.label"
                                                               args="[entityName]"/></g:link></li>
         <li><g:link class="create" controller="solicitudMaterial" action="create"
-                    params="['eventoId': evento.id
-                    , 'fecha': evento?.fecha
-                    , 'fechaFin': evento?.fechaFin]">Solicitar Material</g:link></li>
+                    params="['eventoId'  : evento.id
+                             , 'fecha'   : evento?.fecha
+                             , 'fechaFin': evento?.fechaFin]">Solicitar Material</g:link></li>
         <li><g:link class="create" action="listFiles"
                     params="['eventoId': evento.id]">Ficheros</g:link></li>
     </ul>
@@ -109,7 +116,7 @@
             <li class="fieldcontain">
 
                 <span id="horario-label" class="property-label"><g:message code="evento.horario.label"
-                                                                          default="Horario:"/></span>
+                                                                           default="Horario:"/></span>
                 <span class="property-value" aria-labelledby="horario-label"><g:fieldValue
                         bean="${evento}"
                         field="horario"/></span>
@@ -171,6 +178,16 @@
             </li>
         </g:if>
 
+        <g:if test="${evento?.deporteInclusivo}">
+            <li class="fieldcontain">
+                <span id="deporteInclusivo-label" class="property-label"><g:message
+                        code="evento.deporteInclusivo.label"
+                        default="Deporte Inclusivo:"/></span>
+                <span class="property-value" aria-labelledby="deporteInclusivo-label"><g:formatBoolean
+                        boolean="${evento?.deporteInclusivo}"/></span>
+            </li>
+        </g:if>
+
         <g:if test="${evento?.solidario}">
             <li class="fieldcontain">
                 <span id="solidario-label" class="property-label"><g:message
@@ -200,6 +217,16 @@
                 <span class="property-value" aria-labelledby="contacto-label"><g:fieldValue
                         bean="${evento}"
                         field="contacto"/></span>
+            </li>
+        </g:if>
+
+        <g:if test="${evento?.emailContacto}">
+            <li class="fieldcontain">
+                <span id="emailContacto-label" class="property-label"><g:message code="evento.emailContacto.label"
+                                                                            default="Email Contacto:"/></span>
+                <span class="property-value" aria-labelledby="emailContacto-label"><g:fieldValue
+                        bean="${evento}"
+                        field="emailContacto"/></span>
             </li>
         </g:if>
 
@@ -247,6 +274,18 @@
                 <span class="property-value" aria-labelledby="Ambito-label"><g:fieldValue
                         bean="${evento}"
                         field="tipoPublico"/></span>
+            </li>
+        </g:if>
+
+        <g:if test="${evento?.publicoDest}">
+            <li class="fieldcontain">
+                <span id="Ambito-label" class="property-label"><g:message
+                        code="evento.publicoDest.label"
+                        default="Público Destinatario:"/></span>
+
+                <span class="property-value" aria-labelledby="Ambito-label"><g:fieldValue
+                        bean="${evento}"
+                        field="publicoDest"/></span>
             </li>
         </g:if>
 
@@ -393,12 +432,6 @@
             </li>
         </g:if>
 
-    %{--<g:if test="${evento?.solicitudesMaterial}">
-        <li class="fieldcontain">
-            <f:table collection="${SolicitudMaterial.findAllByEvento(this.evento)}"/>
-        </li>
-    </g:if>--}%
-
         <g:if test="${evento?.solicitudesMaterial}">
             <li class="fieldcontain">
                 <div class="table-responsive tabla-material">
@@ -436,10 +469,8 @@
                                 </td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "material")}</td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "cantidad")}</td>
-                                %{--<td>${fieldValue(bean: solicitudMaterial, field: "fechaEntrega")}</td>--}%
                                 <td><g:formatDate date="${solicitudMaterial.fechaEntrega}" format="dd-MM-yyyy"/></td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "lugarEntrega")}</td>
-                                %{--<td>${fieldValue(bean: solicitudMaterial, field: "fechaDevolucion")}</td>--}%
                                 <td><g:formatDate date="${solicitudMaterial.fechaDevolucion}" format="dd-MM-yyyy"/></td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "lugarDevolucion")}</td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "comentarios")}</td>

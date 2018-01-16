@@ -93,6 +93,13 @@
     <g:checkBox name="deporteAdaptado" value="${evento?.deporteAdaptado}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'deporteInclusivo', 'error')}">
+    <label for="deporteInclusivo">
+        <g:message code="evento.deporteInclusivo.label" default="Deporte Inclusivo:"/>
+    </label>
+    <g:checkBox name="deporteInclusivo" value="${evento?.deporteInclusivo}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'solidario', 'error')}">
     <label for="solidario">
         <g:message code="evento.solidario.label" default="Evento solidario:"/>
