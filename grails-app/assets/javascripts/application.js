@@ -71,13 +71,64 @@ function actualizaL2Values() {
     }
 }
 
+function validaCamposSolicitudMaterial() {
+    var resultOK = true;
+
+    var diaEntrega = $('[name="entrega_day"]').val();
+    var mesEntrega = $('[name="entrega_month"]').val();
+    var anoEntrega = $('[name="entrega_year"]').val();
+    var fechaEntrega = new Date(anoEntrega + "-" + mesEntrega + "-" + diaEntrega);
+
+    var diaDevolucion = $('[name="recogida_day"]').val();
+    var mesDevolucion = $('[name="recogida_month"]').val();
+    var anoDevolucion = $('[name="recogida_year"]').val();
+    var fechaDevolucion = new Date(anoDevolucion + "-" + mesDevolucion + "-" + diaDevolucion);
+
+    if (fechaEntrega.getTime() > fechaDevolucion.getTime()) {
+        resultOK = false;
+        $('[name="entrega_day"]').css('border', '1px solid rgb(255, 15, 15)');
+        $('[name="entrega_month"]').css('border', '1px solid rgb(255, 15, 15)');
+        $('[name="entrega_year"]').css('border', '1px solid rgb(255, 15, 15)');
+        $('[name="recogida_day"]').css('border', '1px solid rgb(255, 15, 15)');
+        $('[name="recogida_month"]').css('border', '1px solid rgb(255, 15, 15)');
+        $('[name="recogida_year"]').css('border', '1px solid rgb(255, 15, 15)');
+    }
+
+    var lugarEntrega = $('[name="lugarEntrega"]').val();
+    if (lugarEntrega == "") {
+        resultOK = false;
+        $('[name="lugarEntrega"]').css('border', '1px solid rgb(255, 15, 15)');
+    }
+
+    var lugarDevolucion = $('[name="lugarDevolucion"]').val();
+    if (lugarDevolucion == "") {
+        resultOK = false;
+        $('[name="lugarDevolucion"]').css('border', '1px solid rgb(255, 15, 15)');
+    }
+
+
+    // var material = $('[name="material"]').find(':selected').text();
+    var materialId = parseInt($('[name="material"]').find(':selected').val());
+    if (materialId == "") {
+        resultOK = false;
+        $('[name="material"]').css('border', '1px solid rgb(255, 15, 15)');
+    }
+
+    var cantidad = $('#cantidadMat').val();
+    if (cantidad == "") {
+        resultOK = false;
+        $('#cantidadMat').css('border', '1px solid rgb(255, 15, 15)');
+    }
+
+    return resultOK;
+}
+
 function addMaterial(eventoId) {
     var diaEntrega = $('[name="entrega_day"]').val();
     var mesEntrega = $('[name="entrega_month"]').val();
     var anoEntrega = $('[name="entrega_year"]').val();
     var fechaEntrega = new Date(anoEntrega + "-" + mesEntrega + "-" + diaEntrega);
     var fechaEntregaSQL = new Date(anoEntrega, mesEntrega, diaEntrega).toISOString();
-    // var fechaEntregaSQL = new Date(anoEntrega, mesEntrega, diaEntrega).toISOString().slice(0, 19).replace('T', ' ');
     var lugarEntrega = $('[name="lugarEntrega"]').val();
 
     var diaDevolucion = $('[name="recogida_day"]').val();
@@ -85,59 +136,58 @@ function addMaterial(eventoId) {
     var anoDevolucion = $('[name="recogida_year"]').val();
     var fechaDevolucion = new Date(anoDevolucion + "-" + mesDevolucion + "-" + diaDevolucion);
     var fechaDevolucionSQL = new Date(anoDevolucion, mesDevolucion, diaDevolucion).toISOString();
-    // var fechaDevolucionSQL = new Date(anoDevolucion, mesDevolucion, diaDevolucion).toISOString().slice(0, 19).replace('T', ' ');
     var lugarDevolucion = $('[name="lugarDevolucion"]').val();
 
     var material = $('[name="material"]').find(':selected').text();
-    var materialId =parseInt($('[name="material"]').find(':selected').val());
+    var materialId = parseInt($('[name="material"]').find(':selected').val());
     var cantidad = $('#cantidadMat').val();
 
     var observaciones = $('[name="observaciones"]').val();
     var comentarios = $('[name="comentarios"]').val();
 
-    // var lastIndex = parseInt($('#lista-material tr:last').attr("index"));
-    var lastIndex = parseInt($('[name="newIndex"]'));
-    console.log("INDEX: " + lastIndex.toString());
-    var newIndex = 1;
-    if (!isNaN(lastIndex)) {
-        newIndex = lastIndex + 1;
+    var validationOK = validaCamposSolicitudMaterial();
+
+    if (validationOK) {
+        var lastIndex = parseInt($('#lista-material tr:last').attr("rowIndex"));
+        var newIndex = 0;
+        if (!isNaN(lastIndex)) {
+            newIndex = lastIndex + 1;
+        }
+        var params = {
+            evento: eventoId,
+            material: materialId,
+            cantidad: cantidad,
+            fechaEntrega: fechaEntregaSQL,
+            lugarEntrega: lugarEntrega,
+            fechaDevolucion: fechaDevolucionSQL,
+            lugarDevolucion: lugarDevolucion,
+            comentarios: comentarios,
+            observaciones: observaciones
+        };
+
+        console.log(params);
+        $.post("/gobela/solicitudMaterial/save"
+            , params
+            , function (data, status) {
+                // console.log("Data: " + data + "\nStatus: " + status);
+                $('#tabla-solicitudes-material').html(data);
+                $('[name="material"]').val('');
+                $('#cantidadMat').val('');
+                $('[name="comentarios"]').val('');
+
+                $('[name="lugarEntrega"]').val(lugarEntrega);
+                $('[name="lugarDevolucion"]').val(lugarDevolucion);
+
+                $('[name="entrega_day"]').val(diaEntrega);
+                $('[name="entrega_month"]').val(mesEntrega);
+                $('[name="entrega_year"]').val(anoEntrega);
+
+                $('[name="recogida_day"]').val(diaDevolucion);
+                $('[name="recogida_month"]').val(mesDevolucion);
+                $('[name="recogida_year"]').val(anoDevolucion);
+
+            });
     }
-    var params = {
-        evento: eventoId,
-        material: materialId,
-        cantidad: cantidad,
-        fechaEntrega: fechaEntregaSQL,
-        lugarEntrega: lugarEntrega,
-        fechaDevolucion: fechaDevolucionSQL,
-        lugarDevolucion: lugarDevolucion,
-        comentarios: comentarios,
-        observaciones: observaciones
-    };
-
-    console.log(params);
-    $.post("/gobela/solicitudMaterial/save"
-        , params
-        , function(data, status, newId){
-            // console.log(newId);
-            console.log("Data: " + data + "\nStatus: " + status);
-
-            var tdMaterial = '<td>' + material + '<input type="hidden" name="solicitudMaterial[' + newIndex + '].material" id="solicitudMaterial[' + newIndex + '].material" value="' + materialId + '"/></td>';
-            var tdCantidad = '<td>' + cantidad + '<input type="hidden" name="solicitudMaterial[' + newIndex + '].cantidad" id="solicitudMaterial[' + newIndex + '].cantidad" value="' + cantidad + '"/></td>';
-            var tdFechaEntrega = '<td>' + fechaEntrega.toLocaleDateString() + '<input type="hidden" name="solicitudMaterial[' + newIndex + '].fechaEntrega" id="solicitudMaterial[' + newIndex + '].fechaEntrega" value="' + fechaEntregaSQL + '"/></td>';
-            var tdLugarEntrega = '<td>' + lugarEntrega + '<input type="hidden" name="solicitudMaterial[' + newIndex + '].lugarEntrega" id="solicitudMaterial[' + newIndex + '].lugarEntrega" value="' + lugarEntrega + '"/></td>';
-            var tdFechaDevolucion = '<td>' + fechaDevolucion.toLocaleDateString() + '<input type="hidden" name="solicitudMaterial[' + newIndex + '].fechaDevolucion" id="solicitudMaterial[' + newIndex + '].fechaDevolucion" value="' + fechaDevolucionSQL + '"/></td>';
-            var tdLugarDevolucion = '<td>' + lugarDevolucion + '<input type="hidden" name="solicitudMaterial[' + newIndex + '].lugarDevolucion" id="solicitudMaterial[' + newIndex + '].lugarDevolucion" value="' + lugarDevolucion + '"/></td>';
-            var tdObservaciones = '<td>' + observaciones + '<input type="hidden" name="solicitudMaterial[' + newIndex + '].observaciones" id="solicitudMaterial[' + newIndex + '].observaciones" value="' + observaciones + '"/></td>';
-            var tdComentarios = '<td>' + comentarios + '<input type="hidden" name="solicitudMaterial[' + newIndex + '].comentarios" id="solicitudMaterial[' + newIndex + '].comentarios" value="' + comentarios + '"/></td>';
-            var botonDelete = '<td><input type="button" value="Borrar" onclick="deleteMaterial(this)"/></td>';
-            var row = '<tr index="' + newId + '">' + tdMaterial + tdCantidad + tdFechaEntrega + tdLugarEntrega + tdFechaDevolucion + tdLugarDevolucion + tdComentarios + tdObservaciones + botonDelete + '</tr>';
-            // var row = '<tr index="' + newIndex.toString() + '">' + tdMaterial + tdCantidad + tdFechaEntrega + tdLugarEntrega + tdFechaDevolucion + tdLugarDevolucion + tdComentarios + tdObservaciones + botonDelete + '</tr>';
-            $('#lista-material').append(row);
-
-            $('[name="material"]').val('');
-            $('#cantidadMat').val('');
-            $('[name="comentarios"]').val('');
-        });
 
 
     // if (parseInt(cantidad) === 0 || isNaN(parseInt(cantidad))) {
@@ -151,7 +201,14 @@ function addMaterial(eventoId) {
 }
 
 function deleteMaterial(elem) {
-    elem.closest('tr').remove();
+    var solicitudMaterialId = elem.closest('tr').getAttribute("rowId");
+
+    $.post("/gobela/solicitudMaterial/deleteById",
+        {
+            solicitudMaterialId: solicitudMaterialId
+        }, function (data, status) {
+            elem.closest('tr').remove();
+        });
 }
 
 /*function fillAvailableStock(id) {
@@ -201,7 +258,7 @@ function copyFileName(tipo) {
     } else if (tipo === "balance") {
         filename = $('#balanceFileUpload').val().split('\\').pop();
         $('#balanceFileNameInput').val(filename);
-    }else if (tipo === "justificacion") {
+    } else if (tipo === "justificacion") {
         filename = $('#justificacionFileUpload').val().split('\\').pop();
         $('#justificacionFileNameInput').val(filename);
     } else {
@@ -255,7 +312,7 @@ function fillContactoInfo(contactoId) {
     })
 }
 
-function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalidad, multikirola, adaptado){
+function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalidad, multikirola, adaptado) {
     var url = "/gobela/evento/filtrarEventos/";
     console.log("URL: " + url);
     $.ajax({

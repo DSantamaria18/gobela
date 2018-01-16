@@ -2,10 +2,12 @@
 <%@ page import="gobela.Material" %>
 <%@ page import="gobela.Evento" %>
 
-<input type="hidden" name="evento" value="${params.eventoId}"/>
-<input type="hidden" name="newIndex" value="${newIndex}"/>
+<input type="hidden" name="newId" value="${newId}"/>
+%{--<input type="hidden" name="oldFechaEntrega" value="${oldFechaEntrega}"/>--}%
+%{--<input type="hidden" name="oldLugarEntrega" value="${oldLugarEntrega}"/>--}%
+%{--<input type="hidden" name="oldFechaDevolucion" value="${oldFechaDevolucion}"/>--}%
+%{--<input type="hidden" name="oldLugarDevolucion" value="${oldLugarDevolucion}"/>--}%
 
-%{--<div class="fieldcontain ${hasErrors(bean: solicitudMaterial, field: 'entrega', 'error')} required">--}%
 <div class="fieldcontain required">
     %{--<label for="entrega">--}%
     <label>
@@ -25,7 +27,6 @@
     %{--<g:field type="text" name="lugarEntrega" id="lugarEntrega" value="${this.solicitudMaterial?.lugarEntrega}"/>--}%
 </div>
 
-%{--<div class="fieldcontain ${hasErrors(bean: solicitudMaterial, field: 'recogida', 'error')} required">--}%
 <div class="fieldcontain required">
     %{--<label for="recogida">--}%
     <label>
@@ -45,7 +46,6 @@
     %{--<g:field type="text" name="lugarDevolucion" id="lugarDevolucion" value="${this.solicitudMaterial?.lugarDevolucion}"/>--}%
 </div>
 
-%{--<div class="fieldcontain ${hasErrors(bean: solicitudMaterial, field: 'observaciones', 'error')} ">--}%
 <div class="fieldcontain">
     %{--<label for="observaciones">--}%
     <label>
@@ -95,12 +95,15 @@
                 value=""/>
     %{--value="${this.solicitudMaterial?.observaciones}"/>--}%
 
-    <button class="btn btn-dark btn-addMat" type="button" onclick="addMaterial(${params.eventoId})">Añadir</button>
+    <button class="btn btn-dark btn-addMat" type="button" onclick="addMaterial(${eventId})">Añadir</button>
+    %{--<button class="btn btn-dark btn-addMat" type="button" onclick="addMaterial(${params.eventoId})">Añadir</button>--}%
 
 </div>
 
 <div class="table-responsive tabla-material">
-    <table>
+
+
+    <table name="lista-solicitudes">
         <thead>
         <tr>
             <th>Solicitud</th>
@@ -116,32 +119,21 @@
         </tr>
         </thead>
         <tbody id="lista-material">
-        %{--<g:each in="${solicitudesMaterialList}" var="solicitudMaterial" status="i">--}%
-        %{--<g:each in="${this.evento?.solicitudesMaterial}" var="solicitudMaterial" status="i">--}%
-        <g:each in="${SolicitudMaterial.findAllByEvento(Evento.get(params.eventoId))}" var="solicitudMaterial"
-                status="i">
-            <tr rowId="${i}">
+        <g:each in="${SolicitudMaterial.findAllByEvento(Evento.get(eventId))}" var="solicitudMaterial" status="i">
+            <tr rowIndex="${i}" rowId="${fieldValue(bean: solicitudMaterial, field: "id")}">
                 <td><g:link controller="solicitudMaterial" action="show" id="${solicitudMaterial.id}">
                     ${fieldValue(bean: solicitudMaterial, field: "id")}
                 </g:link>
                 </td>
-                %{-- <td><g:fieldValue field="${solicitudMaterial?.material}" bean="${solicitudMaterial}"/></td>
-                 <td><g:fieldValue field="${solicitudMaterial?.cantidad}" bean="${solicitudMaterial}"/></td>
-                 <td><g:fieldValue field="${solicitudMaterial?.fechaEntrega}" bean="${solicitudMaterial}"/></td>
-                 <td><g:fieldValue field="${solicitudMaterial?.lugarEntrega}" bean="${solicitudMaterial}"/></td>
-                 <td><g:fieldValue field="${solicitudMaterial?.fechaDevolucion}" bean="${solicitudMaterial}"/></td>
-                 <td><g:fieldValue field="${solicitudMaterial?.lugarDevolucion}" bean="${solicitudMaterial}"/></td>
-                 <td><g:fieldValue field="${solicitudMaterial?.comentarios}" bean="${solicitudMaterial}"/></td>
-                 <td><g:fieldValue field="${solicitudMaterial?.observaciones}" bean="${solicitudMaterial}"/></td>--}%
                 <td>${fieldValue(bean: solicitudMaterial, field: "material")}</td>
                 <td>${fieldValue(bean: solicitudMaterial, field: "cantidad")}</td>
-                <td>${fieldValue(bean: solicitudMaterial, field: "fechaEntrega")}</td>
+                <td><g:formatDate date="${solicitudMaterial.fechaEntrega}" format="dd-MM-yyyy"/></td>
                 <td>${fieldValue(bean: solicitudMaterial, field: "lugarEntrega")}</td>
-                <td>${fieldValue(bean: solicitudMaterial, field: "fechaDevolucion")}</td>
+                <td><g:formatDate date="${solicitudMaterial.fechaDevolucion}" format="dd-MM-yyyy"/></td>
                 <td>${fieldValue(bean: solicitudMaterial, field: "lugarDevolucion")}</td>
                 <td>${fieldValue(bean: solicitudMaterial, field: "comentarios")}</td>
                 <td>${fieldValue(bean: solicitudMaterial, field: "observaciones")}</td>
-                <td><input type="button" value="Borrar" onclick="deleteMaterial(this)"/></td>
+                <td><input class="btn-danger" type="button" value="Borrar" onclick="deleteMaterial(this)"/></td>
             </tr>
         </g:each>
         </tbody>

@@ -436,9 +436,11 @@
                                 </td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "material")}</td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "cantidad")}</td>
-                                <td>${fieldValue(bean: solicitudMaterial, field: "fechaEntrega")}</td>
+                                %{--<td>${fieldValue(bean: solicitudMaterial, field: "fechaEntrega")}</td>--}%
+                                <td><g:formatDate date="${solicitudMaterial.fechaEntrega}" format="dd-MM-yyyy"/></td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "lugarEntrega")}</td>
-                                <td>${fieldValue(bean: solicitudMaterial, field: "fechaDevolucion")}</td>
+                                %{--<td>${fieldValue(bean: solicitudMaterial, field: "fechaDevolucion")}</td>--}%
+                                <td><g:formatDate date="${solicitudMaterial.fechaDevolucion}" format="dd-MM-yyyy"/></td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "lugarDevolucion")}</td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "comentarios")}</td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "observaciones")}</td>

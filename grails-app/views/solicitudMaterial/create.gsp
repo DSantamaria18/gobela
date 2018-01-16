@@ -30,17 +30,12 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-%{--<g:form resource="${this.solicitudMaterial}" method="POST">--}%
-    <g:form resource="${solicitudMaterialList}" method="POST">
-        <fieldset class="form">
-            %{--<f:all bean="solicitudMaterial"/>--}%
-            <g:render template="formCreate"/>
-        </fieldset>
-        <fieldset class="buttons">
-            <g:submitButton name="create" class="save"
-                            value="${message(code: 'default.button.create.label', default: 'Create')}"/>
-        </fieldset>
-    </g:form>
+
+    <g:set var="eventId" value="${params.eventoId}"/>
+    <input type="hidden" name="eventoId" value="${eventId}"/>
+    <div id="tabla-solicitudes-material">
+        <g:render template="formCreate"/>
+    </div>
 </div>
 
 <g:javascript>

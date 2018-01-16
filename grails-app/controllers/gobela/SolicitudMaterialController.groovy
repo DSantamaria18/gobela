@@ -32,44 +32,23 @@ class SolicitudMaterialController {
 
         if (solicitudMaterial.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond solicitudMaterial.errors, view: 'create'
+            render solicitudMaterial.errors
+//            respond solicitudMaterial.errors, view: 'create'
             return
         }
 
         solicitudMaterial.save flush: true
-        def newIndex = solicitudMaterial.id
+        def newId = solicitudMaterial.id
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'solicitudMaterial.label', default: 'SolicitudMaterial'), solicitudMaterial.id])
-                redirect solicitudMaterial
+//                redirect solicitudMaterial
             }
-            '*' { respond solicitudMaterial, model: [status: CREATED, newId: newIndex] }
+//            '*' { redirect(uri: request.getHeader('referer'),  status: CREATED) }
+//            '*' { respond solicitudMaterial, status: CREATED }
         }
-
-       /* solicitudMaterialList.each { SolicitudMaterial it ->
-            if (it == null) {
-                transactionStatus.setRollbackOnly()
-                notFound()
-                return
-            }
-
-            if (it.hasErrors()) {
-                transactionStatus.setRollbackOnly()
-                respond it.errors, view: 'create'
-                return
-            }
-
-            it.save flush: true
-
-            request.withFormat {
-                form multipartForm {
-                    flash.message = message(code: 'default.created.message', args: [message(code: 'it.label', default: 'SolicitudMaterial'), it.id])
-                    redirect it
-                }
-                '*' { respond it, [status: CREATED] }
-            }
-        }*/
+        render(template: 'formCreate', model: [eventId: solicitudMaterial.evento.id ,oldFechaEntrega: solicitudMaterial.fechaEntrega, oldFechaDevolucion: solicitudMaterial.fechaDevolucion, oldLugarEntrega: solicitudMaterial.lugarEntrega, oldLugarDevolucion: solicitudMaterial.lugarDevolucion, newId: newId])
     }
 
     def edit(SolicitudMaterial solicitudMaterial) {
@@ -103,6 +82,28 @@ class SolicitudMaterialController {
 
     @Transactional
     def delete(SolicitudMaterial solicitudMaterial) {
+
+        if (solicitudMaterial == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        solicitudMaterial.delete flush: true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'solicitudMaterial.label', default: 'SolicitudMaterial'), solicitudMaterial.id])
+                redirect action: "index", method: "GET"
+            }
+            '*' { render status: NO_CONTENT }
+        }
+    }
+
+    @Transactional
+    def deleteById(Long solicitudMaterialId) {
+
+        SolicitudMaterial solicitudMaterial = SolicitudMaterial.get(solicitudMaterialId)
 
         if (solicitudMaterial == null) {
             transactionStatus.setRollbackOnly()

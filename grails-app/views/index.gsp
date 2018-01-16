@@ -124,6 +124,9 @@
             <li>Añadida carga de datos de contacto al seleccionar uno en edición de eventos</li>
             <li>Añadidas fechas del evento como fechas por defecto para solicitudes de material</li>
             <li>Añadido "Concentración/Tecnificación" como tipo de actividad</li>
+            <li>Cambiado formato de fechas de lista de materiales en vista de evento</li>
+            <li>Corregido contacto en clonado de eventos</li>
+
         </ul>
 
         <h2>Modificaciones 03/01/2018</h2>
