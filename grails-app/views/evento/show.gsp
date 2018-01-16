@@ -411,14 +411,16 @@
                                               title="${message(code: 'solicitudMaterial.material.label', default: 'Material')}"/>
                             <g:sortableColumn property="Cantidad"
                                               title="${message(code: 'solicitudMaterial.cantidad.label', default: 'Cantidad')}"/>
-                            <g:sortableColumn property="entrega"
+                            <g:sortableColumn property="fechaEntrega"
                                               title="${message(code: 'solicitudMaterial.entrega.label', default: 'F. Entrega')}"/>
                             <g:sortableColumn property="lugarEntrega"
                                               title="${message(code: 'solicitudMaterial.lugarEntrega.label', default: 'Lugar Entrega')}"/>
-                            <g:sortableColumn property="recogida"
+                            <g:sortableColumn property="fechaDevolucion"
                                               title="${message(code: 'solicitudMaterial.recogida.label', default: 'F.Recogida')}"/>
                             <g:sortableColumn property="lugarDevolucion"
                                               title="${message(code: 'solicitudMaterial.lugarDevolucion.label', default: 'Lugar Recogida')}"/>
+                            <g:sortableColumn property="comentarios"
+                                              title="${message(code: 'solicitudMaterial.comentarios.label', default: 'Comentarios')}"/>
                             <g:sortableColumn property="observaciones"
                                               title="${message(code: 'solicitudMaterial.observaciones.label', default: 'Observaciones')}"/>
                         </tr>
@@ -434,10 +436,11 @@
                                 </td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "material")}</td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "cantidad")}</td>
-                                <td>${fieldValue(bean: solicitudMaterial, field: "entrega")}</td>
+                                <td>${fieldValue(bean: solicitudMaterial, field: "fechaEntrega")}</td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "lugarEntrega")}</td>
-                                <td>${fieldValue(bean: solicitudMaterial, field: "recogida")}</td>
+                                <td>${fieldValue(bean: solicitudMaterial, field: "fechaDevolucion")}</td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "lugarDevolucion")}</td>
+                                <td>${fieldValue(bean: solicitudMaterial, field: "comentarios")}</td>
                                 <td>${fieldValue(bean: solicitudMaterial, field: "observaciones")}</td>
                             </tr>
                         </g:each>
