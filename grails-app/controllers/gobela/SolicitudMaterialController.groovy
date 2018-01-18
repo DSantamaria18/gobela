@@ -147,7 +147,6 @@ class SolicitudMaterialController {
 
     def filtrarSolicitudesMaterial(params){
         def solicitudesMaterialList = solicitudesMaterialService.filtrarSolicitudesMaterial(params.fechaDesde, params.fechaHasta, params.lugarEntrega, params.lugarDevolucion)
-//        def solicitudesMaterialList = solicitudesMaterialService.filtrarSolicitudesMaterial(params)
         render template: "tablaSolicitudesMaterial",  model: [solicitudesMaterialList: solicitudesMaterialList]
     }
 }

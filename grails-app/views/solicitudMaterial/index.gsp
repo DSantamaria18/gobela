@@ -8,7 +8,7 @@
 
 <body>
 <a href="#list-solicitudesMaterial" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
-                                                                        default="Skip to content&hellip;"/></a>
+                                                                          default="Skip to content&hellip;"/></a>
 
 <div class="nav" role="navigation">
     <ul>
@@ -78,7 +78,7 @@
                         <div class="row fieldcontain">
                             <button type="button" class="row btn-block btn-primary"
                                     onclick="filtrarSolicitudesMaterial(
-                                          $('#qFechaDesde_year').val() + '-' + $('#qFechaDesde_month').val() + '-' + $('#qFechaDesde_day').val()
+                                        $('#qFechaDesde_year').val() + '-' + $('#qFechaDesde_month').val() + '-' + $('#qFechaDesde_day').val()
                                         , $('#qFechaHasta_year').val() + '-' + $('#qFechaHasta_month').val() + '-' + $('#qFechaHasta_day').val()
                                         , $('#qLugarEntrega').val()
                                         , $('#qLugarDevolucion').val()
@@ -171,9 +171,24 @@
             </div>
         </div>
     </div>
+
+
     <g:javascript>
         $(document).ready(function () {
-            $('#qFechaDesde_year').val("2018")
+            var today = new Date();
+            var fDesde = today.getFullYear() + '-' + today.getMonth() + '-' + today.getDay();
+            console.log("fDesde: " + fDesde);
+
+            var dateHasta = new Date(2199, today.getMonth(), today.getDay());
+            var fHasta = dateHasta.getFullYear() + "-" + dateHasta.getMonth() + "-" + dateHasta.getDay();
+            console.log("fHasta: " + fHasta);
+
+            /*$('#qFechaHasta_year').val(today.getFullYear());
+            $('#qFechaHasta_month').val("1");
+            $('#qFechaHasta_day').val("1");*/
+
+            filtrarSolicitudesMaterial(fDesde, fHasta, null, null);
+            $('#qFechaDesde_year').val(today.getFullYear());
         })
     </g:javascript>
 
