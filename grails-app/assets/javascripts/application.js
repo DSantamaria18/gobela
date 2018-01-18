@@ -75,12 +75,12 @@ function validaCamposSolicitudMaterial() {
     var resultOK = true;
 
     var diaEntrega = $('[name="entrega_day"]').val();
-    var mesEntrega = $('[name="entrega_month"]').val();
+    var mesEntrega = $('[name="entrega_month"]').val() - 1;
     var anoEntrega = $('[name="entrega_year"]').val();
     var fechaEntrega = new Date(anoEntrega + "-" + mesEntrega + "-" + diaEntrega);
 
     var diaDevolucion = $('[name="recogida_day"]').val();
-    var mesDevolucion = $('[name="recogida_month"]').val();
+    var mesDevolucion = $('[name="recogida_month"]').val() - 1;
     var anoDevolucion = $('[name="recogida_year"]').val();
     var fechaDevolucion = new Date(anoDevolucion + "-" + mesDevolucion + "-" + diaDevolucion);
 
@@ -128,14 +128,18 @@ function addMaterial(eventoId) {
     var mesEntrega = $('[name="entrega_month"]').val();
     var anoEntrega = $('[name="entrega_year"]').val();
     var fechaEntrega = new Date(anoEntrega + "-" + mesEntrega + "-" + diaEntrega);
-    var fechaEntregaSQL = new Date(anoEntrega, mesEntrega, diaEntrega).toISOString();
+    var fechaEntregaSQL = new Date(anoEntrega, mesEntrega - 1, diaEntrega).toISOString();
     var lugarEntrega = $('[name="lugarEntrega"]').val();
+
+    console.log(mesEntrega);
+    console.log(fechaEntrega);
+    console.log(fechaEntregaSQL);
 
     var diaDevolucion = $('[name="recogida_day"]').val();
     var mesDevolucion = $('[name="recogida_month"]').val();
     var anoDevolucion = $('[name="recogida_year"]').val();
     var fechaDevolucion = new Date(anoDevolucion + "-" + mesDevolucion + "-" + diaDevolucion);
-    var fechaDevolucionSQL = new Date(anoDevolucion, mesDevolucion, diaDevolucion).toISOString();
+    var fechaDevolucionSQL = new Date(anoDevolucion, mesDevolucion - 1, diaDevolucion).toISOString();
     var lugarDevolucion = $('[name="lugarDevolucion"]').val();
 
     var material = $('[name="material"]').find(':selected').text();
@@ -330,5 +334,28 @@ function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalid
     }).done(function (data) {
         console.log("data: " + data);
         $('#tabla-eventos').html(data);
+    })
+}
+
+function filtrarSolicitudesMaterial(fechaDesde, fechaHasta, lugarEntrega, lugarDevolucion) {
+    var url = "/gobela/solicitudMaterial/filtrarSolicitudesMaterial/";
+    console.log("URL: " + url);
+    console.log(fechaDesde);
+    console.log(fechaHasta);
+    console.log(lugarEntrega);
+    console.log(lugarDevolucion);
+
+    $.ajax({
+        url: url,
+        type: 'get',
+        data: {
+            'fechaDesde': fechaDesde,
+            'fechaHasta': fechaHasta,
+            'lugarEntrega': lugarEntrega,
+            'lugarDevolucion': lugarDevolucion
+        }
+    }).done(function (data) {
+        console.log("data: " + data);
+        $('#tabla-solicitudes-material').html(data);
     })
 }

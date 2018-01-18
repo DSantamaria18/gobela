@@ -120,7 +120,7 @@
         </thead>
         <tbody id="lista-material">
         <g:each in="${SolicitudMaterial.findAllByEvento(Evento.get(eventId))}" var="solicitudMaterial" status="i">
-            <tr rowIndex="${i}" rowId="${fieldValue(bean: solicitudMaterial, field: "id")}">
+            <tr rowIndex="${i}" rowId="${fieldValue(bean: solicitudMaterial, field: "id")}" class="${(i % 2) == 0 ? 'even' : 'odd'}">
                 <td><g:link controller="solicitudMaterial" action="show" id="${solicitudMaterial.id}">
                     ${fieldValue(bean: solicitudMaterial, field: "id")}
                 </g:link>

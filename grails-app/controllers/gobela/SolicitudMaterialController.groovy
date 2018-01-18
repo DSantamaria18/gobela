@@ -5,12 +5,18 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = false)
 class SolicitudMaterialController {
+    SolicitudesMaterialService solicitudesMaterialService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond SolicitudMaterial.list(params), model: [solicitudMaterialCount: SolicitudMaterial.count()]
+        String fechaDesde = new Date().toTimestamp().toString()
+        String fechaHasta = new Date().copyWith(year: 2199).toTimestamp().toString()
+        def solicitudesMaterialList = solicitudesMaterialService.filtrarSolicitudesMaterial(fechaDesde, fechaHasta, null, null)
+        respond solicitudesMaterialList, model: [solicitudesMateriaCount: solicitudesMaterialList.size()]
+//        respond solicitudMaterialList, model: [solicitudMaterialCount: solicitudMaterialList.size()]
+//        respond SolicitudMaterial.list(params), model: [solicitudMaterialCount: SolicitudMaterial.count()]
     }
 
     def show(SolicitudMaterial solicitudMaterial) {
@@ -116,7 +122,7 @@ class SolicitudMaterialController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'solicitudMaterial.label', default: 'SolicitudMaterial'), solicitudMaterial.id])
-                redirect action: "index", method: "GET"
+//                redirect action: "index", method: "GET"
             }
             '*' { render status: NO_CONTENT }
         }
@@ -137,5 +143,11 @@ class SolicitudMaterialController {
         //TODO: Crear método para obtener el stock disponible en la fecha del evento
 
         render template: "stock", model: [stock: materialInstance.stock]
+    }
+
+    def filtrarSolicitudesMaterial(params){
+        def solicitudesMaterialList = solicitudesMaterialService.filtrarSolicitudesMaterial(params.fechaDesde, params.fechaHasta, params.lugarEntrega, params.lugarDevolucion)
+//        def solicitudesMaterialList = solicitudesMaterialService.filtrarSolicitudesMaterial(params)
+        render template: "tablaSolicitudesMaterial",  model: [solicitudesMaterialList: solicitudesMaterialList]
     }
 }

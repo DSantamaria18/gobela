@@ -143,6 +143,8 @@
             <li>Añadido "Zona" a clonado de evento</li>
             <li>Añadido "Ocupación" a clonado de evento</li>
             <li>Añadido "Público Destinatario" a clonado de evento</li>
+            <li>Creada vista de filtrado de Solicitudes de Material</li>
+            <li>Añadido descarga en Excel de informe de Solicitudes de Material por fechas</li>
 
 
         </ul>
