@@ -64,7 +64,7 @@
     <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER'>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-               aria-expanded="false">Solicitudes<span class="caret"></span></a>
+               aria-expanded="false">Subvenciones<span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li><g:link class="list" controller="solicitud" action="index">Lista Solicitudes</g:link></li>
                 <li><g:link class="create" controller="solicitud" action="create">Crear Solicitud</g:link></li>
@@ -145,6 +145,7 @@
             <li>Añadido "Público Destinatario" a clonado de evento</li>
             <li>Creada vista de filtrado de Solicitudes de Material</li>
             <li>Añadido descarga en Excel de informe de Solicitudes de Material por fechas</li>
+            <li>Cambiado el orden de los eventos filtrados. Ahora se muestran en orden de fecha, estado, tipo de ctividad y modalidad</li>
 
 
         </ul>

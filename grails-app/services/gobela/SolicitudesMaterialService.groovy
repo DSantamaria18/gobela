@@ -10,9 +10,9 @@ class SolicitudesMaterialService {
     def filtrarSolicitudesMaterial(String fDesde, String fHasta, String lugarEntrega, String lugarDevolucion){
 
 
-        String baseQuery =  "SELECT sm.id, m.nombre as material, sm.cantidad, sm.fecha_entrega, sm.lugar_entrega, " +
-                            "sm.fecha_devolucion, sm.lugar_devolucion, sm.comentarios, sm.observaciones, " +
-                            "e.nombre as evento, e.fecha as fecha_evento " +
+        String baseQuery =  "SELECT sm.id, e.nombre as evento, e.fecha as fecha_evento, m.nombre as material, " +
+                            "sm.cantidad, sm.fecha_entrega, sm.lugar_entrega, " +
+                            "sm.fecha_devolucion, sm.lugar_devolucion, sm.comentarios, sm.observaciones " +
                             "FROM solicitud_material sm, material m, evento e " +
                             "WHERE sm.material_id = m.id AND e.id = sm.evento_id " +
                             "AND e.estado like '%Confirmado%'" +

@@ -36,125 +36,60 @@
 <br/>
 
 <div class="container">
-    <div class="row" id="filter-options">
-        <div class="panel-group" id="accordion-cat-1">
-            <div class="panel panel-default panel-faq">
-                <div class="panel-heading">
-                    <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
-                        <h4 class="panel-title">
-                            OPCIONES DE FILTRADO
-                            <span class="pull-right"></span>
-                        </h4>
-                    </a>
-                </div>
+<div class="row" id="filter-options">
+<div class="panel-group" id="accordion-cat-1">
+<div class="panel panel-default panel-faq">
+    <div class="panel-heading">
+        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
+            <h4 class="panel-title">
+                OPCIONES DE FILTRADO
+                <span class="pull-right"></span>
+            </h4>
+        </a>
+    </div>
 
-                <div id="faq-cat-1-sub-1" class="panel-collapse collapse">
-                    <div class="panel-body form-group">
-
-                        <div class="row fieldcontain">
-                            <label>
-                                Fechas:
-                            </label>
-                            <g:datePicker name="fechaDesde" precision="day" id="qFechaDesde"
-                                          years="${2016..2030}"/> y
-                            <g:datePicker name="fechaHasta" precision="day" id="qFechaHasta"
-                                          years="${2016..2030}"/>
-                        </div>
-
-                        <div class="row fieldcontain">
-                            <label>
-                                Lugar de Entrega:
-                            </label>
-                            <g:textField name="lugarEntrega" id="qLugarEntrega"/>
-                        </div>
-
-                        <div class="row fieldcontain">
-                            <label>
-                                Lugar de Devolución:
-                            </label>
-                            <g:textField name="lugarDevolucion" id="qLugarDevolucion"/>
-                        </div>
-
-                        <div class="row fieldcontain">
-                            <button type="button" class="row btn-block btn-primary"
-                                    onclick="filtrarSolicitudesMaterial(
-                                        $('#qFechaDesde_year').val() + '-' + $('#qFechaDesde_month').val() + '-' + $('#qFechaDesde_day').val()
-                                        , $('#qFechaHasta_year').val() + '-' + $('#qFechaHasta_month').val() + '-' + $('#qFechaHasta_day').val()
-                                        , $('#qLugarEntrega').val()
-                                        , $('#qLugarDevolucion').val()
-                                    );">FILTRAR</button>
-                        </div>
-
-                        %{--<div class="row  fieldcontain">
-                            <label for="estado">
-                                <g:message code="evento.estado.label" default="Estado:"/>
-                            </label>
-                            <g:select name="estado"
-                                      from="${['Cualquiera', 'Pendiente', 'Confirmado', 'Rechazado', 'Finalizado', 'Cancelado']}"
-                                      value=""
-                                      id="qEstado"/>
-                        </div>--}%
-
-                        %{--<div class="row fieldcontain">
-                            <label for="fechaInicioEntre">
-                                Fecha de inicio entre:
-                            </label>
-                            <g:datePicker name="fechaInicioDesde" precision="day" id="qFechaIniDesde"
-                                          years="${2016..2030}"/> y
-                            <g:datePicker name="fechaInicioHaste" precision="day" id="qFechaIniHasta"
-                                          years="${2016..2030}"/>
-                        </div>--}%
-
-                        %{--<div class="row fieldcontain">
-                            <label for="tipoActividad">
-                                <g:message code="evento.tipoActividad.label" default="Tipo de actividad:"/>
-                            </label>
-                            <g:select name="tipoActividad" id="qActividad"
-                                      from="${['Formación', 'Regular/Competición', 'Exhibición', 'Cultural', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Otros', 'Txapelketa/Torneo']}"
-                                      noSelection="['': 'Cualquiera']"/>
-                        </div>--}%
-
-                        %{--<div class="row fieldcontain">
-                            <label for="modalidad">
-                                <g:message code="evento.modalidad.label" default="Modalidad:"/>
-                            </label>
-                            <g:select name="modalidad"
-                                      from="${Modalidad.listOrderByNombre()}"
-                                      value="''"
-                                      noSelection="${['': 'Cualquiera']}"
-                                      optionKey="id"
-                                      optionValue="nombre"
-                                      id="qModalidad"/>
-                        </div>--}%
-
-                        %{--<div class="row fieldcontain">
-                            <label for="multikirola">
-                                <g:message code="evento.multikirola.label" default="Multikirola:"/>
-                            </label>
-                            <g:checkBox name="multikirola" id="qMultikirola"/>
-                        </div>--}%
-
-                        %{--<div class="row fieldcontain">
-                            <label for="deporteAdaptado">
-                                <g:message code="evento.deporteAdaptado.label" default="Deporte Adaptado:"/>
-                            </label>
-                            <g:checkBox name="deporteAdaptado" id="qAdaptado"/>
-                        </div>--}%
-
-                        %{--<div class="row fieldcontain">
-                            <button type="button" class="row btn-block btn-primary"
-                                    onclick="filtrarEventos($('#qEstado').val()
-                                        , $('#qFechaIniDesde_year').val() + '-' + $('#qFechaIniDesde_month').val() + '-' + $('#qFechaIniDesde_day').val()
-                                        , $('#qFechaIniHasta_year').val() + '-' + $('#qFechaIniHasta_month').val() + '-' + $('#qFechaIniHasta_day').val()
-                                        , $('#qActividad option:selected').val()
-                                        , $('#qModalidad option:selected').val()
-                                        , $('#qMultikirola').prop('checked')
-                                        , $('#qAdaptado').prop('checked'));">FILTRAR EVENTOS</button>
-                        </div>--}%
-                    </div>
-                </div>
+<div id="faq-cat-1-sub-1" class="panel-collapse collapse">
+<div class="panel-body form-group">
+    <g:form resource="${this.query}" method="POST" action="exportarListadoSolicitudesMaterial">
+        <fieldset class="form">
+            <div class="row fieldcontain">
+                <label>
+                    Fechas:
+                </label>
+                <g:datePicker name="fechaDesde" precision="day" id="qFechaDesde"
+                              years="${2016..2030}"/> y
+                <g:datePicker name="fechaHasta" precision="day" id="qFechaHasta"
+                              years="${2016..2030}"/>
             </div>
+
+            <div class="row fieldcontain">
+                <label>
+                    Lugar de Entrega:
+                </label>
+                <g:textField name="lugarEntrega" id="qLugarEntrega"/>
+            </div>
+
+            <div class="row fieldcontain">
+                <label>
+                    Lugar de Devolución:
+                </label>
+                <g:textField name="lugarDevolucion" id="qLugarDevolucion"/>
+            </div>
+        </fieldset>
+
+        <div class="row fieldcontain">
+            <button type="button" class="row btn-block btn-primary"
+                    onclick="filtrarSolicitudesMaterial(
+                        $('#qFechaDesde_year').val() + '-' + $('#qFechaDesde_month').val() + '-' + $('#qFechaDesde_day').val()
+                        , $('#qFechaHasta_year').val() + '-' + $('#qFechaHasta_month').val() + '-' + $('#qFechaHasta_day').val()
+                        , $('#qLugarEntrega').val()
+                        , $('#qLugarDevolucion').val()
+                    );">FILTRAR</button>
         </div>
+        </div>
+    </div>
+</div>
+</div>
 
         <br/>
         <hr/>
@@ -170,25 +105,28 @@
                           model="[solicitudesMaterialList: solicitudesMaterialList]"/>
             </div>
         </div>
-    </div>
-
+        </div>
+        <div class="row fieldcontain">
+            <fieldset class="buttons">
+                <g:submitButton name="exportarSolicitudesMat" class="edit"
+                                value="Descargar en Excel" type="submit"/>
+            </fieldset>
+        </div>
+    </g:form>
 
     <g:javascript>
         $(document).ready(function () {
             var today = new Date();
             var fDesde = today.getFullYear() + '-' + today.getMonth() + '-' + today.getDay();
-            console.log("fDesde: " + fDesde);
 
-            var dateHasta = new Date(2199, today.getMonth(), today.getDay());
-            var fHasta = dateHasta.getFullYear() + "-" + dateHasta.getMonth() + "-" + dateHasta.getDay();
+            // var dateHasta = new Date(2199, today.getMonth(), today.getDay());
+            var fHasta = today.getFullYear() + "-12-31";
             console.log("fHasta: " + fHasta);
-
-            /*$('#qFechaHasta_year').val(today.getFullYear());
-            $('#qFechaHasta_month').val("1");
-            $('#qFechaHasta_day').val("1");*/
 
             filtrarSolicitudesMaterial(fDesde, fHasta, null, null);
             $('#qFechaDesde_year').val(today.getFullYear());
+            $('#qFechaHasta_month').val(12);
+            $('#qFechaHasta_day').val(31);
         })
     </g:javascript>
 

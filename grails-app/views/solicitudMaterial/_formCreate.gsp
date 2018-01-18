@@ -3,10 +3,6 @@
 <%@ page import="gobela.Evento" %>
 
 <input type="hidden" name="newId" value="${newId}"/>
-%{--<input type="hidden" name="oldFechaEntrega" value="${oldFechaEntrega}"/>--}%
-%{--<input type="hidden" name="oldLugarEntrega" value="${oldLugarEntrega}"/>--}%
-%{--<input type="hidden" name="oldFechaDevolucion" value="${oldFechaDevolucion}"/>--}%
-%{--<input type="hidden" name="oldLugarDevolucion" value="${oldLugarDevolucion}"/>--}%
 
 <div class="fieldcontain required">
     %{--<label for="entrega">--}%
@@ -19,40 +15,32 @@
 </div>
 
 <div class="fieldcontain">
-    %{--<label for="lugarEntrega">--}%
     <label>
         <g:message code="lugarEntrega.label" default="Lugar Entrega:"/>
     </label>
     <g:field type="text" name="lugarEntrega" id="lugarEntrega" value=""/>
-    %{--<g:field type="text" name="lugarEntrega" id="lugarEntrega" value="${this.solicitudMaterial?.lugarEntrega}"/>--}%
 </div>
 
 <div class="fieldcontain required">
-    %{--<label for="recogida">--}%
     <label>
         <g:message code="solicitudMaterial.recogida.label" default="Fecha de Recogida:"/>
         <span class="required-indicator">*</span>
     </label>
     <g:datePicker name="recogida" precision="day" relativeYears="[-1..2]" value=""/>
-    %{--<g:datePicker name="recogida" precision="day" relativeYears="[-1..2]" value="${solicitudMaterial?.recogida}"/>--}%
 </div>
 
 <div class="fieldcontain">
-    %{--<label for="lugarDevolucion">--}%
     <label>
         <g:message code="lugardevolucion.label" default="Lugar de Recogida:"/>
     </label>
     <g:field type="text" name="lugarDevolucion" id="lugarDevolucion" value=""/>
-    %{--<g:field type="text" name="lugarDevolucion" id="lugarDevolucion" value="${this.solicitudMaterial?.lugarDevolucion}"/>--}%
 </div>
 
 <div class="fieldcontain">
-    %{--<label for="observaciones">--}%
     <label>
         <g:message code="solicitudMaterial.observaciones.label" default="Observaciones:"/>
     </label>
     <g:textArea name="observaciones" cols="60" rows="15" maxlength="2000" value=""/>
-    %{--<g:textArea name="observaciones" cols="60" rows="15" maxlength="2000" value="${this.solicitudMaterial?.observaciones}"/>--}%
 </div>
 
 <div class="fieldcontain">
@@ -80,7 +68,6 @@
 </div>--}%
 
 <div class="fieldcontain">
-    %{--<label for="cantidad">--}%
     <label>
         <g:message code="cantidad.label" default="Cantidad:"/>
     </label>
@@ -91,18 +78,11 @@
     <label for="comentarios">
         <g:message code="comentarios.label" default="Comentarios Material:"/>
     </label>
-    <g:textArea name="comentarios" cols="60" rows="15" maxlength="2000"
-                value=""/>
-    %{--value="${this.solicitudMaterial?.observaciones}"/>--}%
-
+    <g:textArea name="comentarios" cols="60" rows="15" maxlength="2000" value=""/>
     <button class="btn btn-dark btn-addMat" type="button" onclick="addMaterial(${eventId})">Añadir</button>
-    %{--<button class="btn btn-dark btn-addMat" type="button" onclick="addMaterial(${params.eventoId})">Añadir</button>--}%
-
 </div>
 
 <div class="table-responsive tabla-material">
-
-
     <table name="lista-solicitudes">
         <thead>
         <tr>
