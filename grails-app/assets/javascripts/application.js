@@ -190,6 +190,8 @@ function addMaterial(eventoId) {
                 $('[name="recogida_month"]').val(mesDevolucion);
                 $('[name="recogida_year"]').val(anoDevolucion);
 
+                $('[name="observaciones"]').val(observaciones);
+
             });
     }
 
