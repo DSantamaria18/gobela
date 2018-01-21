@@ -72,13 +72,16 @@
         </li>
     </sec:ifAnyGranted>
 
-    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER'>
+    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false">Estadísticas<span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li class="controller"><g:link controller="Estadisticas"
-                                               action="index">Informe Subvenciones</g:link></li>
+                <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER'>
+                    <li class="controller"><g:link controller="Estadisticas"
+                                                   action="index">Informe Subvenciones</g:link></li>
+                </sec:ifAnyGranted>
+                <li><g:link class="list" controller="Estadisticas" action="index">Informe Eventos</g:link></li>
             </ul>
         </li>
     </sec:ifAnyGranted>
@@ -110,7 +113,7 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones 19/01/2018</h2>
+        <h2>Modificaciones 21/01/2018</h2>
         <ul>
             <li>Corregido error al crear zonas nuevas</li>
             <li>Cambiado estado por defecto para eventos nuevos a "Confirmado"</li>
@@ -121,7 +124,6 @@
             <li>Añadida relación entre Contacto y Entidad</li>
             <li>Añadida lógica de contactos a Evento</li>
             <li>Añadida carga de datos de contacto al seleccionar uno en creación de eventos</li>
-            <li>Añadida carga de datos de contacto al seleccionar uno en edición de eventos</li>
             <li>Añadidas fechas del evento como fechas por defecto para solicitudes de material</li>
             <li>Añadido "Concentración/Tecnificación" como tipo de actividad</li>
             <li>Cambiado formato de fechas de lista de materiales en vista de evento</li>
@@ -143,11 +145,10 @@
             <li>Añadido "Zona" a clonado de evento</li>
             <li>Añadido "Ocupación" a clonado de evento</li>
             <li>Añadido "Público Destinatario" a clonado de evento</li>
+            <li>Creada consulta de Solicitudes de Material por fechas y lugares</li>
             <li>Creada vista de filtrado de Solicitudes de Material</li>
-            <li>Añadido descarga en Excel de informe de Solicitudes de Material por fechas</li>
-            <li>Cambiado el orden de los eventos filtrados. Ahora se muestran en orden de fecha, estado, tipo de ctividad y modalidad</li>
-
-
+            <li>Añadido descarga en Excel de informe de Solicitudes de Material por fechas y lugares</li>
+            <li>Cambiado el criterio de ordenación de los eventos filtrados. Ahora se muestran en orden de fecha, estado, tipo de ctividad y modalidad</li>
         </ul>
 
         <h2>Modificaciones 03/01/2018</h2>
@@ -219,7 +220,7 @@
             <li>Creada vista de gestión de ficheros en Evento</li>
             <li>Añadido botón en Evento para la gestión de ficheros</li>
             <li>Habilitada la descarga de ficheros de Evento</li>
-            <li>Añadido botón para el borrado de ficheros de Evento </li>
+            <li>Añadido botón para el borrado de ficheros de Evento</li>
             <li>Añadida doble comprobación para el borrado de ficheros de evento</li>
             <li>Mejoras visuales en formulario de gestión de ficheros de evento</li>
             <li>Añadido JS de control para formulario de gestión de ficheros de evento</li>
