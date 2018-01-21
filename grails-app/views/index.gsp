@@ -149,6 +149,7 @@
             <li>Creada vista de filtrado de Solicitudes de Material</li>
             <li>Añadido descarga en Excel de informe de Solicitudes de Material por fechas y lugares</li>
             <li>Cambiado el criterio de ordenación de los eventos filtrados. Ahora se muestran en orden de fecha, estado, tipo de ctividad y modalidad</li>
+            <li>Añadido filtrado de eventos por relevancia</li>
         </ul>
 
         <h2>Modificaciones 03/01/2018</h2>

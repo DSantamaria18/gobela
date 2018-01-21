@@ -95,6 +95,15 @@
                         </div>
 
                         <div class="row fieldcontain">
+                            <label for="tipoActividad">
+                                <g:message code="evento.relevante.label" default="Relevante:"/>
+                            </label>
+                            <g:select name="relevante" id="qRelevante"
+                                      from="${['SI', 'NO']}"
+                                      noSelection="['': 'TODOS']"/>
+                        </div>
+
+                        <div class="row fieldcontain">
                             <button type="button" class="row btn-block btn-primary"
                                     onclick="filtrarEventos($('#qEstado').val()
                                         , $('#qFechaIniDesde_year').val() + '-' + $('#qFechaIniDesde_month').val() + '-' + $('#qFechaIniDesde_day').val()
@@ -102,7 +111,8 @@
                                         , $('#qActividad option:selected').val()
                                         , $('#qModalidad option:selected').val()
                                         , $('#qMultikirola').prop('checked')
-                                        , $('#qAdaptado').prop('checked'));">FILTRAR EVENTOS</button>
+                                        , $('#qAdaptado').prop('checked')
+                                        , $('#qRelevante option:selected').val());">FILTRAR EVENTOS</button>
                         </div>
                     </div>
                 </div>
