@@ -75,4 +75,8 @@ class Evento {
         solicitudesMaterial()
         ocupacion(nullable: false, blank: false)
     }
+
+   /* String toString(){
+        return nombre.toUpperCase()
+    }*/
 }

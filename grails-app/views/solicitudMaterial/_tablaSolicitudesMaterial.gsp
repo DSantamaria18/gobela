@@ -19,7 +19,8 @@
     <g:each in="${solicitudesMaterialList}" status="i" var="solicitudMaterial">
         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
             <td><g:link action="show" id="${solicitudMaterial.id}">${solicitudMaterial.id}</g:link></td>
-            <td><g:link controller="evento" action="show" id="${solicitudMaterial.evento}">${solicitudMaterial.evento}</g:link></td>
+            <td>${solicitudMaterial.evento}</td>
+            %{--<td><g:link controller="evento" action="show" id="${solicitudMaterial.evento}">${solicitudMaterial.evento}</g:link></td>--}%
             <td><g:formatDate format="dd-MM-yyyy"
                               date="${solicitudMaterial?.fecha_evento}"/>
             %{--<td>${solicitudMaterial?.nombre}</td>--}%
