@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ page import="gobela.Modalidad" %>
+    <%@ page import="gobela.Lugar; gobela.Modalidad" %>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'evento.label', default: 'Evento')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
@@ -80,12 +80,18 @@
                                       id="qModalidad"/>
                         </div>
 
-                        %{--<div class="row fieldcontain">
-                            <label for="multikirola">
-                                <g:message code="evento.multikirola.label" default="Multikirola:"/>
+                        <div class="row fieldcontain">
+                            <label for="lugar">
+                                <g:message code="evento.lugar.label" default="Modalidad:"/>
                             </label>
-                            <g:checkBox name="multikirola" id="qMultikirola"/>
-                        </div>--}%
+                            <g:select name="lugar"
+                                      from="${Lugar.listOrderByNombreLugar()}"
+                                      value="''"
+                                      noSelection="${['': 'Cualquiera']}"
+                                      optionKey="id"
+                                      optionValue="nombreLugar"
+                                      id="qLugar"/>
+                        </div>
 
                         <div class="row fieldcontain">
                             <label for="multikirola">
@@ -95,13 +101,6 @@
                                       from="${['SI', 'NO']}"
                                       noSelection="['': 'TODOS']"/>
                         </div>
-
-                        %{--<div class="row fieldcontain">
-                            <label for="deporteAdaptado">
-                                <g:message code="evento.deporteAdaptado.label" default="Deporte Adaptado:"/>
-                            </label>
-                            <g:checkBox name="deporteAdaptado" id="qAdaptado"/>
-                        </div>--}%
 
                         <div class="row fieldcontain">
                             <label for="deporteAdaptado">
@@ -137,6 +136,7 @@
                                         , $('#qFechaIniHasta_year').val() + '-' + $('#qFechaIniHasta_month').val() + '-' + $('#qFechaIniHasta_day').val()
                                         , $('#qActividad option:selected').val()
                                         , $('#qModalidad option:selected').val()
+                                        , $('#qLugar option:selected').val()
                                         , $('#qMultikirola option:selected').val()
                                         , $('#qAdaptado option:selected').val()
                                         , $('#qInclusivo option:selected').val()

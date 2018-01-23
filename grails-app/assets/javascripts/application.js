@@ -318,7 +318,9 @@ function fillContactoInfo(contactoId) {
     })
 }
 
-function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalidad, multikirola, adaptado, inclusivo, relevante) {
+function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalidad, lugar, multikirola, adaptado, inclusivo, relevante) {
+    console.log(lugar);
+
    var importante;
    if (relevante === "SI") {
        importante = true;
@@ -367,6 +369,7 @@ function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalid
             'fechaIniHasta': fechaIniHasta,
             'actividad': actividad,
             'modalidad': modalidad,
+            'lugar': lugar,
             'multikirola': depMultikirola,
             'adaptado': depAdaptado,
             'inclusivo': depInclusivo,
