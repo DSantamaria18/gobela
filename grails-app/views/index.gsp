@@ -116,6 +116,13 @@
 
         <h2>Modificaciones 21/01/2018</h2>
         <ul>
+            <li>Añadido campo "Deporte Inclusivo" a filtrado de eventos</li>
+            <li>Cambiado "Multikirola" a combo en filtrado de eventos</li>
+            <li>Cambiado "Deporte Adaptado" a combo en filtrado de eventos</li>
+        </ul>
+
+        <h2>Modificaciones 21/01/2018</h2>
+        <ul>
             <li>Corregido error al crear zonas nuevas</li>
             <li>Cambiado estado por defecto para eventos nuevos a "Confirmado"</li>
             <li>Añadido campo "% Ocupación" a Evento</li>

@@ -80,25 +80,52 @@
                                       id="qModalidad"/>
                         </div>
 
-                        <div class="row fieldcontain">
+                        %{--<div class="row fieldcontain">
                             <label for="multikirola">
                                 <g:message code="evento.multikirola.label" default="Multikirola:"/>
                             </label>
                             <g:checkBox name="multikirola" id="qMultikirola"/>
+                        </div>--}%
+
+                        <div class="row fieldcontain">
+                            <label for="multikirola">
+                                <g:message code="evento.multikirola.label" default="Multikirola:"/>
+                            </label>
+                            <g:select name="multikirola" id="qMultikirola"
+                                      from="${['SI', 'NO']}"
+                                      noSelection="['': 'TODOS']"/>
                         </div>
+
+                        %{--<div class="row fieldcontain">
+                            <label for="deporteAdaptado">
+                                <g:message code="evento.deporteAdaptado.label" default="Deporte Adaptado:"/>
+                            </label>
+                            <g:checkBox name="deporteAdaptado" id="qAdaptado"/>
+                        </div>--}%
 
                         <div class="row fieldcontain">
                             <label for="deporteAdaptado">
                                 <g:message code="evento.deporteAdaptado.label" default="Deporte Adaptado:"/>
                             </label>
-                            <g:checkBox name="deporteAdaptado" id="qAdaptado"/>
+                            <g:select name="deporteAdaptado" id="qAdaptado"
+                                      from="${['SI', 'NO']}"
+                                      noSelection="['': 'TODOS']"/>
                         </div>
 
                         <div class="row fieldcontain">
-                            <label for="tipoActividad">
+                            <label for="relevante">
                                 <g:message code="evento.relevante.label" default="Relevante:"/>
                             </label>
                             <g:select name="relevante" id="qRelevante"
+                                      from="${['SI', 'NO']}"
+                                      noSelection="['': 'TODOS']"/>
+                        </div>
+
+                        <div class="row fieldcontain">
+                            <label for="deporteInclusivo">
+                                <g:message code="evento.deporteInclusivo.label" default="Deporte Inclusivo:"/>
+                            </label>
+                            <g:select name="inclusivo" id="qInclusivo"
                                       from="${['SI', 'NO']}"
                                       noSelection="['': 'TODOS']"/>
                         </div>
@@ -110,8 +137,9 @@
                                         , $('#qFechaIniHasta_year').val() + '-' + $('#qFechaIniHasta_month').val() + '-' + $('#qFechaIniHasta_day').val()
                                         , $('#qActividad option:selected').val()
                                         , $('#qModalidad option:selected').val()
-                                        , $('#qMultikirola').prop('checked')
-                                        , $('#qAdaptado').prop('checked')
+                                        , $('#qMultikirola option:selected').val()
+                                        , $('#qAdaptado option:selected').val()
+                                        , $('#qInclusivo option:selected').val()
                                         , $('#qRelevante option:selected').val());">FILTRAR EVENTOS</button>
                         </div>
                     </div>

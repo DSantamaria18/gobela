@@ -318,7 +318,7 @@ function fillContactoInfo(contactoId) {
     })
 }
 
-function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalidad, multikirola, adaptado, relevante) {
+function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalidad, multikirola, adaptado, inclusivo, relevante) {
    var importante;
    if (relevante === "SI") {
        importante = true;
@@ -327,6 +327,34 @@ function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalid
            importante = false;
        }
    }
+
+    var depInclusivo;
+    if (inclusivo === "SI") {
+        depInclusivo = true;
+    } else {
+        if (inclusivo === "NO") {
+            depInclusivo = false;
+        }
+    }
+
+    var depAdaptado;
+    if (adaptado === "SI") {
+        depAdaptado = true;
+    } else {
+        if (adaptado === "NO") {
+            depAdaptado = false;
+        }
+    }
+
+    var depMultikirola;
+    if (multikirola === "SI") {
+        depMultikirola = true;
+    } else {
+        if (multikirola === "NO") {
+            depMultikirola = false;
+        }
+    }
+
 
     var url = "/gobela/evento/filtrarEventos/";
     console.log("URL: " + url);
@@ -339,8 +367,9 @@ function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalid
             'fechaIniHasta': fechaIniHasta,
             'actividad': actividad,
             'modalidad': modalidad,
-            'multikirola': multikirola,
-            'adaptado': adaptado,
+            'multikirola': depMultikirola,
+            'adaptado': depAdaptado,
+            'inclusivo': depInclusivo,
             'relevante': importante
         }
     }).done(function (data) {
