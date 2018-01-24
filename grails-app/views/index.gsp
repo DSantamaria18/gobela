@@ -120,6 +120,7 @@
             <li>Cambiado "Multikirola" a combo en filtrado de eventos</li>
             <li>Cambiado "Deporte Adaptado" a combo en filtrado de eventos</li>
             <li>Añadido campo "Lugar" a filtrado de eventos</li>
+            <li>Corregido error de pérdida de datos en campos al editar evento</li>
         </ul>
 
         <h2>Modificaciones 21/01/2018</h2>
