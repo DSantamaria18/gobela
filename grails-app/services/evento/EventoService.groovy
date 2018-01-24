@@ -10,10 +10,18 @@ class EventoService {
     def dataSource
 
     def filtrarEventos(params) {
-        String fDesde = params.fechaIniDesde
-        String fHasta = params.fechaIniHasta
-        String qBase = "SELECT e.id, e.nombre, e.estado, e.fecha, e.tipo_actividad as tipoActividad, m.nombre as modalidad " +
-                "FROM evento e, modalidad m WHERE e.modalidad_id = m.id AND fecha BETWEEN '${fDesde}' AND '${fHasta}'"
+//        String fDesde = params.fechaIniDesde
+//        String fHasta = params.fechaIniHasta
+        /*String qBase = "SELECT e.id, e.nombre, e.estado, e.fecha, e.tipo_actividad as tipoActividad, m.nombre as modalidad " +
+                "FROM evento e, modalidad m WHERE e.modalidad_id = m.id AND fecha BETWEEN '${fDesde}' AND '${fHasta}'"*/
+
+        String fDesde = params.fechaDesde
+        String fHasta = params.fechaHasta
+        String qBase = "SELECT e.id, e.nombre, e.estado, e.fecha, e.tipo_actividad as tipoActividad, m.nombre as " +
+                "modalidad FROM evento e, modalidad m WHERE e.modalidad_id = m.id " +
+                "AND ( fecha BETWEEN '${fDesde}' AND '${fHasta}' " +
+                "OR fecha_fin BETWEEN '${fDesde}' AND '${fHasta}' " +
+                "OR (fecha < '${fDesde}' AND fecha_fin > '${fHasta}')) "
         String qModalidad = (params.modalidad != '')? " AND e.modalidad_id = ${params.modalidad}" : ""
         String qEstado = (params.estado != 'Cualquiera')? " AND e.estado = '${params.estado}'" : ""
         String qActividad = (params.actividad != '')? " AND e.tipo_actividad = '${params.actividad}'" : ""

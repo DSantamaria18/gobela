@@ -365,8 +365,10 @@ function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, actividad, modalid
         type: 'get',
         data: {
             'estado': estado,
-            'fechaIniDesde': fechaIniDesde,
-            'fechaIniHasta': fechaIniHasta,
+            // 'fechaIniDesde': fechaIniDesde,
+            // 'fechaIniHasta': fechaIniHasta,
+            'fechaDesde': fechaIniDesde,
+            'fechaHasta': fechaIniHasta,
             'actividad': actividad,
             'modalidad': modalidad,
             'lugar': lugar,

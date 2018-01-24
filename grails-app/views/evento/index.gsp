@@ -48,13 +48,23 @@
                                       id="qEstado"/>
                         </div>
 
-                        <div class="row fieldcontain">
+                        %{--<div class="row fieldcontain">
                             <label for="fechaInicioEntre">
                                 Fecha de inicio entre:
                             </label>
                             <g:datePicker name="fechaInicioDesde" precision="day" id="qFechaIniDesde"
                                           years="${2016..2030}"/> y
                             <g:datePicker name="fechaInicioHaste" precision="day" id="qFechaIniHasta"
+                                          years="${2016..2030}"/>
+                        </div>--}%
+
+                        <div class="row fieldcontain">
+                            <label for="fechaEntre">
+                                Tiene lugar entre:
+                            </label>
+                            <g:datePicker name="fechaDesda" precision="day" id="qFechaDesde"
+                                          years="${2016..2030}"/> y
+                            <g:datePicker name="fechaHasta" precision="day" id="qFechaHasta"
                                           years="${2016..2030}"/>
                         </div>
 
@@ -129,11 +139,25 @@
                                       noSelection="['': 'TODOS']"/>
                         </div>
 
-                        <div class="row fieldcontain">
+                       %{-- <div class="row fieldcontain">
                             <button type="button" class="row btn-block btn-primary"
                                     onclick="filtrarEventos($('#qEstado').val()
                                         , $('#qFechaIniDesde_year').val() + '-' + $('#qFechaIniDesde_month').val() + '-' + $('#qFechaIniDesde_day').val()
                                         , $('#qFechaIniHasta_year').val() + '-' + $('#qFechaIniHasta_month').val() + '-' + $('#qFechaIniHasta_day').val()
+                                        , $('#qActividad option:selected').val()
+                                        , $('#qModalidad option:selected').val()
+                                        , $('#qLugar option:selected').val()
+                                        , $('#qMultikirola option:selected').val()
+                                        , $('#qAdaptado option:selected').val()
+                                        , $('#qInclusivo option:selected').val()
+                                        , $('#qRelevante option:selected').val());">FILTRAR EVENTOS</button>
+                        </div>--}%
+
+                        <div class="row fieldcontain">
+                            <button type="button" class="row btn-block btn-primary"
+                                    onclick="filtrarEventos($('#qEstado').val()
+                                        , $('#qFechaDesde_year').val() + '-' + $('#qFechaDesde_month').val() + '-' + $('#qFechaDesde_day').val()
+                                        , $('#qFechaHasta_year').val() + '-' + $('#qFechaHasta_month').val() + '-' + $('#qFechaHasta_day').val()
                                         , $('#qActividad option:selected').val()
                                         , $('#qModalidad option:selected').val()
                                         , $('#qLugar option:selected').val()
@@ -163,7 +187,9 @@
     </div>
     <g:javascript>
     $(document).ready(function (){
-        $('#qFechaIniDesde_year').val("2016")
+        var date = new Date();
+        // $('#qFechaIniDesde_year').val("2016")
+        $('#qFechaDesde_year').val(date.getFullYear());
     })
 </g:javascript>
 </body>
