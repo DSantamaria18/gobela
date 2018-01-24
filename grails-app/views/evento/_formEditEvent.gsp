@@ -22,14 +22,6 @@
     <g:checkBox name="relevante" value="${evento?.relevante}"/>
 </div>
 
-%{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'fecha', 'error')} required">
-    <label for="fecha">
-        <g:message code="evento.fecha.label" default="Fecha del evento:"/>
-        <span class="required-indicator">*</span>
-    </label>
-    <g:datePicker name="fecha" precision="day" value="${this.evento?.fecha}"/>
-</div>--}%
-
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'fecha', 'error')} required">
     <label for="fecha">
         <g:message code="evento.fechaInicio.label" default="Fecha del evento:"/>
@@ -278,19 +270,15 @@
 <g:javascript>
     $(document).ready(function () {
         console.log("*** EDIT EVENT ***");
+        var entidadId =  $('[name="entidadOrganizadora"').val();
+        fillContactoByEntidad(entidadId, ${contactoId});
+
         var zonaId = $('[name="zona"').val();
-        var lugarId = ${lugarId};
-        fillLugarByZona(zonaId, lugarId);
-        $('[name="lugar"]').val(lugarId);
+        fillLugarByZona(zonaId, ${lugarId});
+        $('[name="lugar"]').val(${lugarId});
 
         var recintoId = $('[name="recinto"').val();
-        var instalacionId = ${instalacionId};
-        fillInstalacionByRecinto(recintoId, instalacionId);
-        $('[name="instalacion"]').val(instalacionId);
-
-        var entidadId =  $('[name="entidadOrganizadora"').val();
-        var contactoId = ${contactoId};
-        console.log("CONTACTO ID: " + contactoId.toString());
-        fillContactoByEntidad(entidadId, contactoId);
+        fillInstalacionByRecinto(recintoId, ${instalacionId});
+        $('[name="instalacion"]').val(${instalacionId});
     });
 </g:javascript>
