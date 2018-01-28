@@ -72,9 +72,22 @@
                             <label for="tipoActividad">
                                 <g:message code="evento.tipoActividad.label" default="Tipo de actividad:"/>
                             </label>
-                            <g:select name="tipoActividad" id="qActividad"
+                            <g:select name="tipoActividad" id="qTipoActividad"
                                       from="${['Formación', 'Regular/Competición', 'Exhibición', 'Cultural', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Otros', 'Txapelketa/Torneo']}"
                                       noSelection="['': 'Cualquiera']"/>
+                        </div>
+
+                        <div class="row fieldcontain">
+                            <label for="actividad">
+                                <g:message code="evento.actividad.label" default="Actividad:"/>
+                            </label>
+                            <g:select name="actividad"
+                                      from="${Actividad.listOrderByNombre()}"
+                                      value="''"
+                                      noSelection="${['': 'Cualquiera']}"
+                                      optionKey="id"
+                                      optionValue="nombre"
+                                      id="qActividad"/>
                         </div>
 
                         <div class="row fieldcontain">
@@ -158,6 +171,7 @@
                                     onclick="filtrarEventos($('#qEstado').val()
                                         , $('#qFechaDesde_year').val() + '-' + $('#qFechaDesde_month').val() + '-' + $('#qFechaDesde_day').val()
                                         , $('#qFechaHasta_year').val() + '-' + $('#qFechaHasta_month').val() + '-' + $('#qFechaHasta_day').val()
+                                        , $('#qTipoActividad option:selected').val()
                                         , $('#qActividad option:selected').val()
                                         , $('#qModalidad option:selected').val()
                                         , $('#qLugar option:selected').val()

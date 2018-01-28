@@ -5,7 +5,8 @@
         <th>${message(code: 'evento.estado.label', default: 'Estado')}</th>
         <th>${message(code: 'evento.fecha.label', default: 'Fecha Inicio')}</th>
         <th>${message(code: 'evento.tipoActividad.label', default: 'Tipo Actividad')}</th>
-        <th>${message(code: 'evento.modalidad.label', default: 'modalidad')}</th>
+        <th>${message(code: 'evento.actividad.label', default: 'Actividad')}</th>
+        <th>${message(code: 'evento.modalidad.label', default: 'Modalidad')}</th>
 
     </tr>
     </thead>
@@ -18,6 +19,7 @@
                               date="${eventoInstance?.fecha}"/>
             </td>
             <td>${eventoInstance.tipoActividad}</td>
+            <td>${eventoInstance.actividad}</td>
             <td>${eventoInstance.modalidad}</td>
         </tr>
     </g:each>

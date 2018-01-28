@@ -131,6 +131,7 @@
             <li>Añadido campo "Actividad" a vista de creación de Evento</li>
             <li>Añadido campo "Actividad" a vista de Evento</li>
             <li>Añadido campo "Actividad" a vista de clonar Evento</li>
+            <li>Añadido campo "Actividad" a filtrado de Eventos</li>
         </ul>
 
         <h2>Modificaciones 21/01/2018</h2>
