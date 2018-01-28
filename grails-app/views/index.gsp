@@ -46,6 +46,7 @@
                 <li><g:link class="list" controller="solicitudMaterial"
                             action="index">Solicitudes Material</g:link></li>
                 <li><g:link class="list" controller="zona" action="index">Zonas</g:link></li>
+                <li><g:link class="list" controller="tipoActividad" action="index">Tipos de Actividad</g:link></li>
                 <li><g:link class="list" controller="actividad" action="index">Actividades</g:link></li>
             </ul>
         </li></sec:ifAnyGranted>
@@ -132,6 +133,11 @@
             <li>Añadido campo "Actividad" a vista de Evento</li>
             <li>Añadido campo "Actividad" a vista de clonar Evento</li>
             <li>Añadido campo "Actividad" a filtrado de Eventos</li>
+            <li>Añadida entidad "Tipo de Actividad"</li>
+            <li>Creada vista para añadir tipos de actividad</li>
+            <li>Creada vista para añadir editar de actividad</li>
+            <li>Creada vista para añadir ver info de actividad</li>
+
         </ul>
 
         <h2>Modificaciones 21/01/2018</h2>
