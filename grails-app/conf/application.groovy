@@ -33,7 +33,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         [pattern: '/Club/**', access: ['ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER']],
         [pattern: '/Zona/**', access: ['ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER']],
         [pattern: '/Instalacion/**', access: ['ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER']],
-        [pattern: '/Contacto/**', access: ['ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER']]
+        [pattern: '/Contacto/**', access: ['ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER']],
+        [pattern: '/Actividad/**', access: ['ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER']]
 
 ]
 

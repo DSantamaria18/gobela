@@ -46,6 +46,7 @@
                 <li><g:link class="list" controller="solicitudMaterial"
                             action="index">Solicitudes Material</g:link></li>
                 <li><g:link class="list" controller="zona" action="index">Zonas</g:link></li>
+                <li><g:link class="list" controller="actividad" action="index">Actividades</g:link></li>
             </ul>
         </li></sec:ifAnyGranted>
 
@@ -114,7 +115,7 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones 21/01/2018</h2>
+        <h2>Modificaciones 28/01/2018</h2>
         <ul>
             <li>Añadido campo "Deporte Inclusivo" a filtrado de eventos</li>
             <li>Cambiado "Multikirola" a combo en filtrado de eventos</li>
@@ -122,6 +123,7 @@
             <li>Añadido campo "Lugar" a filtrado de eventos</li>
             <li>Corregido error de pérdida de datos en campos al editar evento</li>
             <li>Modificado criterio de fechas para filtrado de eventos</li>
+            <li>Creada entidad "Actividad" para definir los tipos de actividad actuales</li>
         </ul>
 
         <h2>Modificaciones 21/01/2018</h2>
