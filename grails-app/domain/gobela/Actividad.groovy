@@ -7,4 +7,8 @@ class Actividad {
     static constraints = {
         nombre(unique: true, nullable: false, blank: false)
     }
+
+    String toString(){
+        return nombre?.toUpperCase()
+    }
 }
