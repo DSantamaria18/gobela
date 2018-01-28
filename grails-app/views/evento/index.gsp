@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ page import="gobela.Lugar; gobela.Modalidad" %>
+    <%@ page import="gobela.Actividad; gobela.Lugar; gobela.Modalidad" %>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'evento.label', default: 'Evento')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>

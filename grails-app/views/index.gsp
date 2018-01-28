@@ -124,6 +124,13 @@
             <li>Corregido error de pérdida de datos en campos al editar evento</li>
             <li>Modificado criterio de fechas para filtrado de eventos</li>
             <li>Creada entidad "Actividad" para definir los tipos de actividad actuales</li>
+            <li>Creada vista para crear actividades</li>
+            <li>Creada vista para editar actividades</li>
+            <li>Creada vista para ver info de las actividades</li>
+            <li>Añadido campo "Actividad" a Evento</li>
+            <li>Añadido campo "Actividad" a vista de creación de Evento</li>
+            <li>Añadido campo "Actividad" a vista de Evento</li>
+            <li>Añadido campo "Actividad" a vista de clonar Evento</li>
         </ul>
 
         <h2>Modificaciones 21/01/2018</h2>

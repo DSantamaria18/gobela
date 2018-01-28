@@ -24,6 +24,7 @@
                              , 'horario'            : evento?.horario
                              , 'relevante'          : evento?.relevante
                              , 'tipoActividad'      : evento?.tipoActividad
+                             , 'actividad'          : evento?.actividad?.id
                              , 'modalidad'          : evento?.modalidad?.id
                              , 'multikirola'        : evento?.multikirola
                              , 'deporteAdaptado'    : evento?.deporteAdaptado
@@ -145,6 +146,19 @@
             </li>
         </g:if>
 
+        <g:if test="${evento?.actividad}">
+            <li class="fieldcontain">
+                <span id="actividad-label" class="property-label">
+                    <g:message code="evento.actividad.label"
+                               default="Actividad:"/>
+                </span>
+                <span class="property-value" aria-labelledby="actividad-label">
+                    <g:fieldValue bean="${evento.actividad}"
+                                  field="nombre"/>
+                </span>
+            </li>
+        </g:if>
+
         <g:if test="${evento?.modalidad}">
             <li class="fieldcontain">
                 <span id="modalidad-label" class="property-label">
@@ -223,7 +237,7 @@
         <g:if test="${evento?.emailContacto}">
             <li class="fieldcontain">
                 <span id="emailContacto-label" class="property-label"><g:message code="evento.emailContacto.label"
-                                                                            default="Email Contacto:"/></span>
+                                                                                 default="Email Contacto:"/></span>
                 <span class="property-value" aria-labelledby="emailContacto-label"><g:fieldValue
                         bean="${evento}"
                         field="emailContacto"/></span>
