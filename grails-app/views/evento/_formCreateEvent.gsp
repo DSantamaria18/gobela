@@ -1,4 +1,4 @@
-<%@ page import="gobela.Modalidad; gobela.Evento" %>
+<%@ page import="gobela.Actividad; gobela.Modalidad; gobela.Evento" %>
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'nombre', 'error')} required">
     <label for="nombre">
@@ -64,6 +64,19 @@
               required=""
               value="${fieldValue(bean: evento, field: 'tipoActividad')}"
               valueMessagePrefix="evento.tipoActividad"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'actividad', 'error')} required">
+    <label for="actividad">
+        <g:message code="evento.actividad.label" default="Actividad:"/>
+        <span class="required-indicator">*</span>
+    </label>
+    <g:select name="actividad"
+              from="${gobela.Actividad.listOrderByNombre()}"
+              value="${evento?.actividad?.id}"
+              noSelection="${['': 'Selecciona una actividad...']}"
+              optionKey="id"
+              optionValue="nombre"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'modalidad', 'error')} required">

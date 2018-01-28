@@ -33,6 +33,7 @@ class Evento {
     Contacto contacto
     String emailContacto
     Boolean deporteInclusivo
+    Actividad actividad
 
 
     static hasMany = [solicitudesMaterial: SolicitudMaterial]
@@ -49,6 +50,7 @@ class Evento {
         horario(nullable: true, blank: true)
         relevante()
         tipoActividad(inList: ['Formación', 'Regular/Competición', 'Exhibición', 'Cultural', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Txapelketa/Torneo', 'Concentración/Tecnificación', 'Otros'])
+        actividad(nullable: true, blank: true)
         modalidad(nullable: true)
         multikirola()
         deporteAdaptado()
