@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ page import="gobela.Actividad; gobela.Lugar; gobela.Modalidad" %>
+    <%@ page import="gobela.TipoActividad; gobela.Actividad; gobela.Lugar; gobela.Modalidad" %>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'evento.label', default: 'Evento')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
@@ -68,13 +68,26 @@
                                           years="${2016..2030}"/>
                         </div>
 
-                        <div class="row fieldcontain">
+                       %{-- <div class="row fieldcontain">
                             <label for="tipoActividad">
                                 <g:message code="evento.tipoActividad.label" default="Tipo de actividad:"/>
                             </label>
                             <g:select name="tipoActividad" id="qTipoActividad"
                                       from="${['Formación', 'Regular/Competición', 'Exhibición', 'Cultural', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Otros', 'Txapelketa/Torneo']}"
                                       noSelection="['': 'Cualquiera']"/>
+                        </div>--}%
+
+                        <div class="row fieldcontain">
+                            <label for="tActividad">
+                                <g:message code="evento.tActividad.label" default="Tipo de Actividad:"/>
+                            </label>
+                            <g:select name="tActividad"
+                                      from="${gobela.TipoActividad.listOrderByNombre()}"
+                                      value="''"
+                                      noSelection="${['': 'Cualquiera']}"
+                                      optionKey="id"
+                                      optionValue="nombre"
+                                      id="qTActividad"/>
                         </div>
 
                         <div class="row fieldcontain">
@@ -171,7 +184,8 @@
                                     onclick="filtrarEventos($('#qEstado').val()
                                         , $('#qFechaDesde_year').val() + '-' + $('#qFechaDesde_month').val() + '-' + $('#qFechaDesde_day').val()
                                         , $('#qFechaHasta_year').val() + '-' + $('#qFechaHasta_month').val() + '-' + $('#qFechaHasta_day').val()
-                                        , $('#qTipoActividad option:selected').val()
+                                        //, $('#qTipoActividad option:selected').val()
+                                        , $('#qTActividad option:selected').val()
                                         , $('#qActividad option:selected').val()
                                         , $('#qModalidad option:selected').val()
                                         , $('#qLugar option:selected').val()

@@ -58,6 +58,19 @@
               valueMessagePrefix="evento.tipoActividad"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'tActividad', 'error')} required">
+    <label for="tActividad">
+        <g:message code="evento.tActividad.label" default="Tipo de Actividad:"/>
+        <span class="required-indicator">*</span>
+    </label>
+    <g:select name="tActividad"
+              from="${gobela.TipoActividad.listOrderByNombre()}"
+              value="${evento?.tActividad?.id}"
+              noSelection="${['': 'Selecciona un tipo de actividad...']}"
+              optionKey="id"
+              optionValue="nombre"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'actividad', 'error')} required">
     <label for="actividad">
         <g:message code="evento.actividad.label" default="Actividad:"/>
