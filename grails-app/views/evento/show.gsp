@@ -24,6 +24,7 @@
                              , 'horario'            : evento?.horario
                              , 'relevante'          : evento?.relevante
                              , 'tipoActividad'      : evento?.tipoActividad
+                             , 'tActividad'         : evento?.tActividad?.id
                              , 'actividad'          : evento?.actividad?.id
                              , 'modalidad'          : evento?.modalidad?.id
                              , 'multikirola'        : evento?.multikirola
@@ -143,6 +144,19 @@
                 <span class="property-value" aria-labelledby="tipoActividad-label"><g:fieldValue
                         bean="${evento}"
                         field="tipoActividad"/></span>
+            </li>
+        </g:if>
+
+        <g:if test="${evento?.tActividad}">
+            <li class="fieldcontain">
+                <span id="tActividad-label" class="property-label">
+                    <g:message code="evento.tActividad.label"
+                               default="Tipo de Actividad:"/>
+                </span>
+                <span class="property-value" aria-labelledby="tActividad-label">
+                    <g:fieldValue bean="${evento?.tActividad}"
+                                  field="nombre"/>
+                </span>
             </li>
         </g:if>
 

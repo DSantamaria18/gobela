@@ -318,7 +318,8 @@ function fillContactoInfo(contactoId) {
     })
 }
 
-function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, tipoActividad, actividad, modalidad, lugar, multikirola, adaptado, inclusivo, relevante) {
+// function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, tipoActividad, tActividad, actividad, modalidad, lugar, multikirola, adaptado, inclusivo, relevante) {
+function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, tActividad, actividad, modalidad, lugar, multikirola, adaptado, inclusivo, relevante) {
     console.log(lugar);
 
    var importante;
@@ -367,7 +368,8 @@ function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, tipoActividad, act
             'estado': estado,
             'fechaDesde': fechaIniDesde,
             'fechaHasta': fechaIniHasta,
-            'tipoActividad': tipoActividad,
+            // 'tipoActividad': tipoActividad,
+            'tActividad': tActividad,
             'actividad': actividad,
             'modalidad': modalidad,
             'lugar': lugar,
