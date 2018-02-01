@@ -116,7 +116,7 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones 28/01/2018</h2>
+        <h2>Modificaciones 02/02/2018</h2>
         <ul>
             <li>Añadido campo "Deporte Inclusivo" a filtrado de eventos</li>
             <li>Cambiado "Multikirola" a combo en filtrado de eventos</li>
@@ -135,21 +135,29 @@
             <li>Añadido campo "Actividad" a filtrado de Eventos</li>
             <li>Añadida entidad "Tipo de Actividad"</li>
             <li>Creada vista para añadir tipos de actividad</li>
-            <li>Creada vista para añadir editar de actividad</li>
-            <li>Creada vista para añadir ver info de actividad</li>
-            <li>Añadido campo para "Comunicación con GK" en Evento</li>
-            <li>Añadido campo para "Comunicación con GK" en vista Evento</li>
-            <li>Añadido campo para "Comunicación con GK" en vista crear Evento</li>
-            <li>Añadido campo para "Comunicación con GK" en vista editar Evento</li>
-            <li>Añadido campo para "Comunicación con GK" en vista clonar Evento</li>
-            <li>Añadido campo para "desarrollo evento" en vista Evento</li>
-            <li>Añadido campo para "desarrollo evento" en vista crear Evento</li>
-            <li>Añadido campo para "desarrollo evento" en vista editar Evento</li>
-            <li>Añadido campo para "desarrollo evento" en vista clonar Evento</li>
-            <li>Añadido campo para "speaker" en vista Evento</li>
-            <li>Añadido campo para "speaker" en vista crear Evento</li>
-            <li>Añadido campo para "speaker" en vista editar Evento</li>
-            <li>Añadido campo para "speaker" en vista clonar Evento</li>
+            <li>Creada vista para editar tipos de actividad</li>
+            <li>Creada vista para ver info de tipo de actividad</li>
+            <li>[Perfil Lingüístico] Añadido campo para "Comunicación con GK" en Evento</li>
+            <li>[Perfil Lingüístico] Añadido campo para "Comunicación con GK" en vista Evento</li>
+            <li>[Perfil Lingüístico] Añadido campo para "Comunicación con GK" en vista crear Evento</li>
+            <li>[Perfil Lingüístico] Añadido campo para "Comunicación con GK" en vista editar Evento</li>
+            <li>[Perfil Lingüístico] Añadido campo para "Comunicación con GK" en vista clonar Evento</li>
+            <li>[Perfil Lingüístico] Añadido campo para "desarrollo evento" en vista Evento</li>
+            <li>[Perfil Lingüístico] Añadido campo para "desarrollo evento" en vista crear Evento</li>
+            <li>[Perfil Lingüístico] Añadido campo para "desarrollo evento" en vista editar Evento</li>
+            <li>[Perfil Lingüístico] Añadido campo para "desarrollo evento" en vista clonar Evento</li>
+            <li>[Perfil Lingüístico] Añadido campo para "speaker" en vista Evento</li>
+            <li>[Perfil Lingüístico] Añadido campo para "speaker" en vista crear Evento</li>
+            <li>[Perfil Lingüístico] Añadido campo para "speaker" en vista editar Evento</li>
+            <li>[Perfil Lingüístico] Añadido campo para "speaker" en vista clonar Evento</li>
+            <li>[Informe Eventos] Crear consulta Total Eventos</li>
+            <li>[Informe Eventos] Crear consulta Total Eventos relevantes</li>
+            <li>[Informe Eventos] Crear consulta Total Eventos deporte adaptado</li>
+            <li>[Informe Eventos] Crear consulta Total Eventos deporte inclusivo</li>
+            <li>[Informe Eventos] Crear consulta Total Eventos por Recinto</li>
+            <li>[Informe Eventos] Crear consulta Total Eventos por Lugar</li>
+            <li>[Informe Eventos] Crear consulta Total Eventos por Tipo de Actividad</li>
+            <li>[Informe Eventos] Crear consulta Total Eventos por Actividad</li>
 
         </ul>
 
