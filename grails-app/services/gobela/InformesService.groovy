@@ -35,4 +35,35 @@ class InformesService {
 
         return resultList
     }
+
+    def eventosPorFechas(def fDesde, def fHasta) {
+        Sql sql = new Sql(dataSource)
+        def resultList = []
+
+        def totalEventos = sql.rows("SELECT count(e.id) as Eventos FROM evento e WHERE estado IN ('Confirmado','Finalizado') AND (fecha BETWEEN :desde AND :hasta  OR fecha_fin BETWEEN :desde AND :hasta OR (fecha < :desde AND fecha_fin > :hasta))", desde: fDesde, hasta: fHasta)
+        resultList.add(totalEventos)
+
+        def totalEventosRelevantes = sql.rows("SELECT count(e.id) as Eventos FROM evento e WHERE relevante = TRUE AND estado IN ('Confirmado','Finalizado') AND (fecha BETWEEN :desde AND :hasta  OR fecha_fin BETWEEN :desde AND :hasta OR (fecha < :desde AND fecha_fin > :hasta))", desde: fDesde, hasta: fHasta)
+        resultList.add(totalEventosRelevantes)
+
+        def eventosDeporteAdaptado = sql.rows("SELECT count(e.id) as Eventos FROM evento e WHERE deporte_adaptado = TRUE AND estado IN ('Confirmado','Finalizado') AND (fecha BETWEEN :desde AND :hasta  OR fecha_fin BETWEEN :desde AND :hasta OR (fecha < :desde AND fecha_fin > :hasta))", desde: fDesde, hasta: fHasta)
+        resultList.add(eventosDeporteAdaptado)
+
+        def eventosDeporteInclusivo = sql.rows("SELECT count(e.id) as Eventos FROM evento e WHERE deporte_inclusivo = TRUE AND estado IN ('Confirmado','Finalizado') AND (fecha BETWEEN :desde AND :hasta  OR fecha_fin BETWEEN :desde AND :hasta OR (fecha < :desde AND fecha_fin > :hasta))", desde: fDesde, hasta: fHasta)
+        resultList.add(eventosDeporteInclusivo)
+
+        def eventosPorTipoActividad = sql.rows("SELECT t.nombre as 'ta', count(e.id) as num FROM evento e LEFT JOIN tipo_actividad t ON e.t_actividad_id = t.id WHERE estado IN ('Confirmado','Finalizado') AND (fecha BETWEEN :desde AND :hasta OR fecha_fin BETWEEN :desde AND :hasta OR (fecha < :desde AND fecha_fin > :hasta)) GROUP BY t.nombre", desde: fDesde, hasta: fHasta)
+        resultList.add(eventosPorTipoActividad)
+
+        def eventosPorActividad = sql.rows("SELECT a.nombre AS act, COUNT(e.id) AS num FROM evento e LEFT JOIN actividad a ON e.actividad_id = a.id WHERE estado IN ('Confirmado','Finalizado') AND (fecha BETWEEN :desde AND :hasta OR fecha_fin BETWEEN :desde AND :hasta OR (fecha < :desde AND fecha_fin > :hasta)) GROUP BY a.nombre", desde: fDesde, hasta: fHasta)
+        resultList.add(eventosPorActividad)
+
+        def eventosPorRecinto = sql.rows("SELECT r.nombre AS recinto, COUNT(e.id) AS num FROM evento e LEFT JOIN recinto r ON e.recinto_id = r.id WHERE estado IN ('Confirmado','Finalizado') AND (fecha BETWEEN :desde AND :hasta OR fecha_fin BETWEEN :desde AND :hasta OR (fecha < :desde AND fecha_fin > :hasta)) GROUP BY r.nombre", desde: fDesde, hasta: fHasta)
+        resultList.add(eventosPorRecinto)
+
+        def eventosPorLugar = sql.rows("SELECT l.nombre_lugar AS lugar, COUNT(e.id) AS num FROM evento e LEFT JOIN lugar l ON e.lugar_id = l.id WHERE estado IN ('Confirmado','Finalizado') AND (fecha BETWEEN :desde AND :hasta OR fecha_fin BETWEEN :desde AND :hasta OR (fecha < :desde AND fecha_fin > :hasta)) GROUP BY l.nombre_lugar", desde: fDesde, hasta: fHasta)
+        resultList.add(eventosPorLugar)
+
+        return resultList
+    }
 }
