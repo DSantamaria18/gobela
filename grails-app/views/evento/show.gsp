@@ -39,6 +39,9 @@
                              , 'ambito'             : evento?.ambito
                              , 'tipoPublico'        : evento?.tipoPublico
                              , 'publicoDest'        : evento?.publicoDest
+                             , 'euskeraComGK'       : evento?.euskeraComGK
+                             , 'euskeraDesarrollo'  : evento?.euskeraDesarrollo
+                             , 'euskeraSpeaker'     : evento?.euskeraSpeaker
                              , 'lugar'              : evento?.lugar?.id
                              , 'zona'               : evento?.zona?.id
                              , 'recinto'            : evento?.recinto?.id
@@ -314,6 +317,42 @@
                 <span class="property-value" aria-labelledby="Ambito-label"><g:fieldValue
                         bean="${evento}"
                         field="publicoDest"/></span>
+            </li>
+        </g:if>
+
+        <g:if test="${evento?.euskeraComGK}">
+            <li class="fieldcontain">
+                <span id="euskeraComGK-label" class="property-label"><g:message
+                        code="evento.euskeraComGK.label"
+                        default="Comunicación con GK:"/></span>
+
+                <span class="property-value" aria-labelledby="euskeraComGK-label"><g:fieldValue
+                        bean="${evento}"
+                        field="euskeraComGK"/></span>
+            </li>
+        </g:if>
+
+        <g:if test="${evento?.euskeraDesarrollo}">
+            <li class="fieldcontain">
+                <span id="euskeraDesarrollo-label" class="property-label"><g:message
+                        code="evento.euskeraDesarrollo.label"
+                        default="Desarrollo del Evento:"/></span>
+
+                <span class="property-value" aria-labelledby="euskeraDesarrollo-label"><g:fieldValue
+                        bean="${evento}"
+                        field="euskeraDesarrollo"/></span>
+            </li>
+        </g:if>
+
+        <g:if test="${evento?.euskeraSpeaker}">
+            <li class="fieldcontain">
+                <span id="euskeraSpeaker-label" class="property-label"><g:message
+                        code="evento.euskeraSpeaker.label"
+                        default="Speaker:"/></span>
+
+                <span class="property-value" aria-labelledby="euskeraSpeaker-label"><g:fieldValue
+                        bean="${evento}"
+                        field="euskeraSpeaker"/></span>
             </li>
         </g:if>
 

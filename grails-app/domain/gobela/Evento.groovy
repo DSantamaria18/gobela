@@ -35,12 +35,15 @@ class Evento {
     Boolean deporteInclusivo
     Actividad actividad
     TipoActividad tActividad
+    String euskeraComGK
+    String euskeraDesarrollo
+    String euskeraSpeaker
 
 
     static hasMany = [solicitudesMaterial: SolicitudMaterial]
 
     static mapping = {
-        solicitudesMaterial cascade:"all-delete-orphan"
+        solicitudesMaterial cascade: "all-delete-orphan"
     }
 
     static constraints = {
@@ -62,10 +65,13 @@ class Evento {
         contacto(nullable: true, blank: true)
         emailContacto(nullable: true, blank: true, email: true)
         telefonoContacto(nullable: true, blank: true)
-        clubOrganizador(nullable: true, blank:true)
+        clubOrganizador(nullable: true, blank: true)
         ambito(inList: ['Local', 'Comarcal', 'Provincial', 'Autonómico', 'Nacional', 'Internacional'])
         tipoPublico(inList: ['Todos los públicos', 'Infantil y juvenil', 'Adultos'])
         publicoDest(inList: ['Todos', 'Femenino', 'Masculino'])
+        euskeraComGK(inList: ['Sin Especificar', 'Euskera', 'Bilingüe', 'Otros'])
+        euskeraDesarrollo(inList: ['Sin Especificar', 'Euskera', 'Bilingüe', 'Otros'])
+        euskeraSpeaker(inList: ['Sin Especificar', 'Sin Speaker', 'Euskera', 'Bilingüe', 'Otros'])
         lugar(nullable: true)
         recinto(nullable: true)
         instalacion(nullable: true)
@@ -80,7 +86,7 @@ class Evento {
         ocupacion(nullable: false, blank: false)
     }
 
-   /* String toString(){
-        return nombre.toUpperCase()
-    }*/
+    /* String toString(){
+         return nombre.toUpperCase()
+     }*/
 }

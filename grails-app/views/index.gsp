@@ -137,6 +137,19 @@
             <li>Creada vista para añadir tipos de actividad</li>
             <li>Creada vista para añadir editar de actividad</li>
             <li>Creada vista para añadir ver info de actividad</li>
+            <li>Añadido campo para "Comunicación con GK" en Evento</li>
+            <li>Añadido campo para "Comunicación con GK" en vista Evento</li>
+            <li>Añadido campo para "Comunicación con GK" en vista crear Evento</li>
+            <li>Añadido campo para "Comunicación con GK" en vista editar Evento</li>
+            <li>Añadido campo para "Comunicación con GK" en vista clonar Evento</li>
+            <li>Añadido campo para "desarrollo evento" en vista Evento</li>
+            <li>Añadido campo para "desarrollo evento" en vista crear Evento</li>
+            <li>Añadido campo para "desarrollo evento" en vista editar Evento</li>
+            <li>Añadido campo para "desarrollo evento" en vista clonar Evento</li>
+            <li>Añadido campo para "speaker" en vista Evento</li>
+            <li>Añadido campo para "speaker" en vista crear Evento</li>
+            <li>Añadido campo para "speaker" en vista editar Evento</li>
+            <li>Añadido campo para "speaker" en vista clonar Evento</li>
 
         </ul>
 
