@@ -100,4 +100,25 @@ class EstadisticasController {
         workbook.write()
         workbook.close()
     }
+
+
+    def infEventos() {
+//        def resultList = InformesService.eventosPorFechas(params.fDesde, params.fHasta)
+//        [resultList: resultList]
+    }
+
+    def generaInfEventos(params){
+        def resultList = InformesService.eventosPorFechas(params.fDesde, params.fHasta)
+        def total =  resultList[0].Eventos.first()
+        def relevantes = resultList[1].Eventos.first()
+        def adaptado = resultList[2].Eventos.first()
+        def inclusivo = resultList[3].Eventos.first()
+        def tipoActividadList = resultList[4]
+        def actividadList = resultList[5]
+        def recintoList = resultList[6]
+        def lugarList = resultList[7]
+
+
+        render template: "tablasInfEventos",  model: [total: total, relevantes: relevantes, adaptado: adaptado, incusivo:inclusivo, tipoActividadList: tipoActividadList, actividadList: actividadList, recintoList: recintoList, lugarList: lugarList]
+    }
 }

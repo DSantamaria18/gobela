@@ -74,17 +74,16 @@
         </li>
     </sec:ifAnyGranted>
 
-    %{--<sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>--}%
-    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER'>
+    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
+    %{--<sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER'>--}%
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false">Estadísticas<span class="caret"></span></a>
             <ul class="dropdown-menu">
-                %{--<sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER'>--}%
-                    <li class="controller"><g:link controller="Estadisticas"
-                                                   action="index">Informe Subvenciones</g:link></li>
-                %{--</sec:ifAnyGranted>--}%
-                %{--<li><g:link class="list" controller="Estadisticas" action="index">Informe Eventos</g:link></li>--}%
+                <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER'>
+                    <li><g:link class="list" controller="Estadisticas" action="index">Informe Subvenciones</g:link></li>
+                </sec:ifAnyGranted>
+                <li><g:link class="list" controller="Estadisticas" action="infEventos">Informe Eventos</g:link></li>
             </ul>
         </li>
     </sec:ifAnyGranted>
@@ -158,6 +157,9 @@
             <li>[Informe Eventos] Crear consulta Total Eventos por Lugar</li>
             <li>[Informe Eventos] Crear consulta Total Eventos por Tipo de Actividad</li>
             <li>[Informe Eventos] Crear consulta Total Eventos por Actividad</li>
+            <li>[Informe Eventos] Añadido link a informe de eventos en menú Estadísticas</li>
+            <li>[Informe Eventos] Añadidos permisos a informe de eventos en menú Estadísticas</li>
+            <li>[Informe Eventos] Creada vista de generación de informe de Eventos</li>
 
         </ul>
 
