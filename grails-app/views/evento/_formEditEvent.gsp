@@ -204,6 +204,43 @@
               valueMessagePrefix="evento.publicoDest"/>
 </div>
 
+<br/>
+<hr/>
+<br/>
+
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'euskeraComGK', 'error')} required">
+    <label for="euskeraComGK">
+        <g:message code="evento.euskeraComGK.label" default="Comunicación con GK:"/>
+    </label>
+    <g:select name="euskeraComGK"
+              from="${this.evento.constrainedProperties.euskeraComGK.inList}"
+              required=""
+              value="${fieldValue(bean: evento, field: 'euskeraComGK')}"
+              valueMessagePrefix="evento.euskeraComGK"/>
+
+    <label for="euskeraDesarrollo">
+        <g:message code="evento.euskeraDesarrollo.label" default="Desarrollo del Evento:"/>
+    </label>
+    <g:select name="euskeraDesarrollo"
+              from="${this.evento.constrainedProperties.euskeraDesarrollo.inList}"
+              required=""
+              value="${fieldValue(bean: evento, field: 'euskeraDesarrollo')}"
+              valueMessagePrefix="evento.euskeraDesarrollo"/>
+
+    <label for="euskeraSpeaker">
+        <g:message code="evento.euskeraSpeaker.label" default="Speaker:"/>
+    </label>
+    <g:select name="euskeraSpeaker"
+              from="${this.evento.constrainedProperties.euskeraSpeaker.inList}"
+              required=""
+              value="${fieldValue(bean: evento, field: 'euskeraSpeaker')}"
+              valueMessagePrefix="evento.euskeraSpeaker"/>
+</div>
+
+<br/>
+<hr/>
+<br/>
+
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'zona', 'error')} required">
     <label for="zona">
         <g:message code="evento.zona.label" default="Zona:"/>
