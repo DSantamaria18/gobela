@@ -157,6 +157,7 @@
             <li>[Informe Eventos] Crear consulta Total Eventos por Lugar</li>
             <li>[Informe Eventos] Crear consulta Total Eventos por Tipo de Actividad</li>
             <li>[Informe Eventos] Crear consulta Total Eventos por Actividad</li>
+            <li>[Informe Eventos] Crear consulta Total Eventos por Modalidad</li>
             <li>[Informe Eventos] Añadido link a informe de eventos en menú Estadísticas</li>
             <li>[Informe Eventos] Añadidos permisos a informe de eventos en menú Estadísticas</li>
             <li>[Informe Eventos] Creada vista de generación de informe de Eventos</li>

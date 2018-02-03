@@ -117,8 +117,9 @@ class EstadisticasController {
         def actividadList = resultList[5]
         def recintoList = resultList[6]
         def lugarList = resultList[7]
+        def modalidadList = resultList[8]
 
 
-        render template: "tablasInfEventos",  model: [total: total, relevantes: relevantes, adaptado: adaptado, incusivo:inclusivo, tipoActividadList: tipoActividadList, actividadList: actividadList, recintoList: recintoList, lugarList: lugarList]
+        render template: "tablasInfEventos",  model: [total: total, relevantes: relevantes, adaptado: adaptado, incusivo:inclusivo, tipoActividadList: tipoActividadList, actividadList: actividadList, recintoList: recintoList, lugarList: lugarList, modalidadList: modalidadList]
     }
 }

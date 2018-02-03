@@ -410,6 +410,8 @@ function filtrarSolicitudesMaterial(fechaDesde, fechaHasta, lugarEntrega, lugarD
 function infEventosPorFechas(fechaIniDesde, fechaIniHasta) {
     console.log("GENERANDO!!!")
     var url = "/gobela/estadisticas/generaInfEventos/";
+    console.log(fechaIniDesde);
+    console.log(fechaIniHasta);
     console.log("URL: " + url);
     $.ajax({
         url: url,
