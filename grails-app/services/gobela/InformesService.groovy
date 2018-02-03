@@ -64,6 +64,9 @@ class InformesService {
         def eventosPorLugar = sql.rows("SELECT l.nombre_lugar AS lugar, COUNT(e.id) AS num FROM evento e LEFT JOIN lugar l ON e.lugar_id = l.id WHERE estado IN ('Confirmado','Finalizado') AND (fecha BETWEEN :desde AND :hasta OR fecha_fin BETWEEN :desde AND :hasta OR (fecha < :desde AND fecha_fin > :hasta)) GROUP BY l.nombre_lugar", desde: fDesde, hasta: fHasta)
         resultList.add(eventosPorLugar)
 
+        def eventosPorModalidad = sql.rows("SELECT m.nombre AS modalidad, COUNT(e.id) AS num FROM evento e LEFT JOIN modalidad m ON e.modalidad_id = m.id WHERE estado IN ('Confirmado','Finalizado') AND (fecha BETWEEN :desde AND :hasta OR fecha_fin BETWEEN :desde AND :hasta OR (fecha < :desde AND fecha_fin > :hasta)) GROUP BY m.nombre", desde: fDesde, hasta: fHasta)
+        resultList.add(eventosPorModalidad)
+
         return resultList
     }
 }

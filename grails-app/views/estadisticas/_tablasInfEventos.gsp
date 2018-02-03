@@ -94,3 +94,26 @@
     </g:each>
     </tbody>
 </table>
+
+<br/>
+<hr>
+<br/>
+
+<h3>Eventos por Modalidad:</h3>
+
+<table>
+    <thead>
+    <tr>
+        <th>Modalidad</th>
+        <th>Nº Eventos</th>
+    </tr>
+    </thead>
+    <tbody>
+    <g:each in="${modalidadList}" status="i" var="modalidad">
+        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+            <td>${modalidad.modalidad}</td>
+            <td>${modalidad.num}</td>
+        </tr>
+    </g:each>
+    </tbody>
+</table>
