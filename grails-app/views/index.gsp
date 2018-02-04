@@ -164,6 +164,7 @@
             <li>[Informe Eventos] Añadido link a informe de eventos en menú Estadísticas</li>
             <li>[Informe Eventos] Añadidos permisos a informe de eventos en menú Estadísticas</li>
             <li>[Informe Eventos] Creada vista de generación de informe de Eventos</li>
+            <li>[Informe Eventos] Exportación a Excel de informe de Eventos</li>
         </ul>
 
         <h2>Modificaciones 21/01/2018</h2>
