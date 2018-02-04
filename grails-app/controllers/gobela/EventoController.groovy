@@ -3,11 +3,25 @@ package gobela
 import evento.EventoService
 import grails.gorm.PagedResultList
 import groovy.sql.GroovyRowResult
+import jxl.Workbook
+import jxl.WorkbookSettings
+import jxl.write.Border
+import jxl.write.BorderLineStyle
+import jxl.write.Colour
+import jxl.write.DateTime
+import jxl.write.Label
+import jxl.write.Number
+import jxl.write.WritableCellFormat
+import jxl.write.WritableFont
+import jxl.write.WritableSheet
+import jxl.write.WritableWorkbook
+import org.codehaus.groovy.runtime.NullObject
+
+import java.sql.Timestamp
 
 import static org.springframework.http.HttpStatus.*
 import grails.util.Holders
 import grails.transaction.Transactional
-
 
 
 @Transactional(readOnly = false)
@@ -172,7 +186,7 @@ class EventoController {
         def eventoId = params.eventoId
         String tipo = params.tipo
         String ruta = "${UPLOAD_FOLDER}/${eventoId}/${tipo}/"
-        def file = new File( ruta + File.separatorChar + filename)
+        def file = new File(ruta + File.separatorChar + filename)
         file.delete()
         flash.message = "El fichero ${filename} ha sido borrado"
         redirect(action: 'listFiles', params: [eventoId: eventoId])
@@ -205,12 +219,12 @@ class EventoController {
         def f = request.getFile('infoFileUpload')
         String ruta = "${UPLOAD_FOLDER}/${eventoId}/info/"
         File folder = new File(ruta)
-        if(!folder.exists()){
+        if (!folder.exists()) {
             folder.mkdirs()
         }
         if (!f.empty) {
             flash.message = "Se ha subido ${f.getOriginalFilename()}"
-            f.transferTo(new File( ruta + File.separatorChar + f.getOriginalFilename()))
+            f.transferTo(new File(ruta + File.separatorChar + f.getOriginalFilename()))
         } else {
             flash.message = 'Debes seleccionar un fichero'
         }
@@ -222,12 +236,12 @@ class EventoController {
         def f = request.getFile('permFileUpload')
         String ruta = "${UPLOAD_FOLDER}/${eventoId}/permisos/"
         File folder = new File(ruta)
-        if(!folder.exists()){
+        if (!folder.exists()) {
             folder.mkdirs()
         }
         if (!f.empty) {
             flash.message = "Se ha subido ${f.getOriginalFilename()}"
-            f.transferTo(new File( ruta + File.separatorChar + f.getOriginalFilename()))
+            f.transferTo(new File(ruta + File.separatorChar + f.getOriginalFilename()))
         } else {
             flash.message = 'Debes seleccionar un fichero'
         }
@@ -239,46 +253,148 @@ class EventoController {
         def f = request.getFile('postEventFileUpload')
         String ruta = "${UPLOAD_FOLDER}/${eventoId}/postEvento/"
         File folder = new File(ruta)
-        if(!folder.exists()){
+        if (!folder.exists()) {
             folder.mkdirs()
         }
         if (!f.empty) {
             flash.message = "Se ha subido ${f.getOriginalFilename()}"
-            f.transferTo(new File( ruta + File.separatorChar + f.getOriginalFilename()))
+            f.transferTo(new File(ruta + File.separatorChar + f.getOriginalFilename()))
         } else {
             flash.message = 'Debes seleccionar un fichero'
         }
         redirect(action: 'listFiles', params: [eventoId: eventoId])
     }
 
-    def getLugarByZona(params){
+    def getLugarByZona(params) {
         def zonaId = params.id
         Zona zona = Zona.get(zonaId)
         def listaLugares = Lugar.findAllByZona(zona)
         render template: "lugar", model: [listaLugares: listaLugares]
     }
 
-    def getInstalacionByRecinto(params){
+    def getInstalacionByRecinto(params) {
         def recintoId = params.id
         Recinto recinto = Recinto.get(recintoId)
         def listaInstalaciones = Instalacion.findAllByRecinto(recinto)
         render template: "instalacion", model: [listaInstalaciones: listaInstalaciones]
     }
 
-    def getContactoByEntidad(params){
+    def getContactoByEntidad(params) {
         def entidadId = params.id
         Entidad entidad = Entidad.get(entidadId)
         def listaContactos = Contacto.findAllByEntidad(entidad)
         render template: "contacto", model: [listaContactos: listaContactos]
     }
 
-    def getContactoInfo(params){
+    def getContactoInfo(params) {
         Contacto contacto = Contacto.get(params.id)
         render template: "contactoInfo", model: [emailContacto: contacto.email, telefonoContacto: contacto.telefono]
     }
 
-    def filtrarEventos(params){
+    def filtrarEventos(params) {
         def eventoList = eventoService.filtrarEventos(params)
-        render template: "tablaEventos",  model: [eventoList: eventoList, eventoCount: eventoList.size()]
+        render template: "tablaEventos", model: [eventoList: eventoList, eventoCount: eventoList.size()]
     }
+
+    def exportEventosFiltrados(params) {
+        String fDesde = params.fechaDesde_year + "-" + params.fechaDesde_month + "-" + params.fechaDesde_day
+        String fHasta = params.fechaHasta_year + "-" + params.fechaHasta_month + "-" + params.fechaHasta_day
+        String fechaDesde = fDesde.split('-').reverse().join('-')
+        String fechaHasta = fHasta.split('-').reverse().join('-')
+
+        params.fechaDesde = fDesde
+        params.fechaHasta = fHasta
+
+        def eventosList = eventoService.filtrarEventosFullInfo(params)
+
+        response.setContentType('application/vnd.ms-excel')
+        response.setHeader('Content-Disposition', "Attachment;Filename='Eventos.xls'")
+        WorkbookSettings ws = new WorkbookSettings()
+        ws.setLocale(new Locale("es", "ES"))
+        WritableWorkbook workbook = Workbook.createWorkbook(response.outputStream, ws)
+
+        WritableFont titleFont = new WritableFont(WritableFont.ARIAL, 16, WritableFont.BOLD)
+        WritableCellFormat titleFormat = new WritableCellFormat()
+        titleFormat.setFont(titleFont)
+
+        WritableFont headerFont = new WritableFont(WritableFont.ARIAL, 11, WritableFont.BOLD)
+        WritableCellFormat headerFormat = new WritableCellFormat()
+        headerFormat.with {
+            setBackground(Colour.GREY_25_PERCENT)
+            setBorder(Border.ALL, BorderLineStyle.THIN)
+            setFont(headerFont)
+            setWrap(true)
+        }
+
+        WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 10)
+        WritableCellFormat cellFormat = new WritableCellFormat()
+        cellFormat.with {
+            setFont(cellFont)
+            setBorder(Border.ALL, BorderLineStyle.THIN)
+            setWrap(true)
+        }
+
+        String nombreHoja = "Eventos"
+        WritableSheet sheet = workbook.createSheet(nombreHoja, 0)
+
+        sheet.addCell(new Label(0, 0, "Eventos", titleFormat))
+
+        int columna = 0
+        int fila = 3
+        try {
+
+            def cabeceras = eventosList[0].keySet()
+            cabeceras.each {
+                sheet.addCell(new Label(columna, fila, it, headerFormat))
+                columna++
+            }
+            fila++
+            columna = 0
+            eventosList.each {
+                def datosEvento = it.values()
+                datosEvento.each {
+                    println("DATO: ${it} - ${it.getClass()}")
+
+                    if (it?.getClass() == String) {
+                        sheet.addCell(new Label(columna, fila, it.toUpperCase(), cellFormat))
+                    } else {
+                        if (it?.getClass() == Boolean) {
+                            if (it == true) {
+                                sheet.addCell(new Label(columna, fila, "SI", cellFormat))
+                            } else {
+                                sheet.addCell(new Label(columna, fila, "NO", cellFormat))
+                            }
+                        } else {
+                            if (it?.getClass() == Timestamp) {
+                                sheet.addCell(new Label(columna, fila, it.toString(), cellFormat))
+                            } else {
+                                if (it.getClass() == NullObject) {
+                                    sheet.addCell(new Label(columna, fila, "", cellFormat))
+                                } else {
+                                    if (it) sheet.addCell(new Number(columna, fila, it as int, cellFormat))
+                                }
+                            }
+                        }
+                    }
+
+                    columna++
+                }
+                fila++
+                columna = 0
+            }
+
+            fila = fila + 2
+
+            for (int c = 0; c < 40; c++) {
+                sheet.setColumnView(c, 25)
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace()
+        }
+
+        workbook.write()
+        workbook.close()
+    }
+
 }
