@@ -46,7 +46,7 @@
     </g:if>
 </g:each>
 <fieldset class="buttons">
-    <g:link class="edit" controller="estadisticas" action="exportarInformeSub">Descargar Excel</g:link>
+    <g:link class="edit" controller="estadisticas" action="exportarInformeSub">Descargar Informe</g:link>
 </fieldset>
 </body>
 </html>
