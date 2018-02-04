@@ -23,175 +23,45 @@
 <br/>
 
 <div class="container">
-    <div class="row" id="filter-options">
-        <div class="panel-group" id="accordion-cat-1">
-            <div class="panel panel-default panel-faq">
-                <div class="panel-heading">
-                    <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
-                        <h4 class="panel-title">
-                            OPCIONES DE INFORME
-                            <span class="pull-right"></span>
-                        </h4>
-                    </a>
-                </div>
+<div class="row" id="filter-options">
+<div class="panel-group" id="accordion-cat-1">
+<div class="panel panel-default panel-faq">
+    <div class="panel-heading">
+        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
+            <h4 class="panel-title">
+                OPCIONES DE INFORME
+                <span class="pull-right"></span>
+            </h4>
+        </a>
+    </div>
 
-                <div id="faq-cat-1-sub-1" class="panel-collapse collapse">
-                    <div class="panel-body form-group">
-                        %{--<div class="row  fieldcontain">
-                            <label for="estado">
-                                <g:message code="evento.estado.label" default="Estado:"/>
-                            </label>
-                            <g:select name="estado"
-                                      from="${['Cualquiera', 'Pendiente', 'Confirmado', 'Rechazado', 'Finalizado', 'Cancelado']}"
-                                      value=""
-                                      id="qEstado"/>
-                        </div>--}%
-
-                        %{--<div class="row fieldcontain">
-                            <label for="fechaInicioEntre">
-                                Fecha de inicio entre:
-                            </label>
-                            <g:datePicker name="fechaInicioDesde" precision="day" id="qFechaIniDesde"
-                                          years="${2016..2030}"/> y
-                            <g:datePicker name="fechaInicioHaste" precision="day" id="qFechaIniHasta"
-                                          years="${2016..2030}"/>
-                        </div>--}%
-
-                        <div class="row fieldcontain">
-                            <label for="fechaDesde">
-                                Fecha Desde:
-                            </label>
-                            <g:datePicker name="fechaDesde" precision="day" id="qFechaDesde"
-                                          years="${2016..2030}"/>
-                        <label for="fechaHasta">
-                            Fecha Hasta:
-                        </label>
-                            <g:datePicker name="fechaHasta" precision="day" id="qFechaHasta"
-                                          years="${2016..2030}"/>
-                        </div>
-
-                        %{-- <div class="row fieldcontain">
-                             <label for="tipoActividad">
-                                 <g:message code="evento.tipoActividad.label" default="Tipo de actividad:"/>
-                             </label>
-                             <g:select name="tipoActividad" id="qTipoActividad"
-                                       from="${['Formación', 'Regular/Competición', 'Exhibición', 'Cultural', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Otros', 'Txapelketa/Torneo']}"
-                                       noSelection="['': 'Cualquiera']"/>
-                         </div>--}%
-
-                   %{--     <div class="row fieldcontain">
-                            <label for="tActividad">
-                                <g:message code="evento.tActividad.label" default="Tipo de Actividad:"/>
-                            </label>
-                            <g:select name="tActividad"
-                                      from="${gobela.TipoActividad.listOrderByNombre()}"
-                                      value="''"
-                                      noSelection="${['': 'Cualquiera']}"
-                                      optionKey="id"
-                                      optionValue="nombre"
-                                      id="qTActividad"/>
-                        </div>
-
-                        <div class="row fieldcontain">
-                            <label for="actividad">
-                                <g:message code="evento.actividad.label" default="Actividad:"/>
-                            </label>
-                            <g:select name="actividad"
-                                      from="${Actividad.listOrderByNombre()}"
-                                      value="''"
-                                      noSelection="${['': 'Cualquiera']}"
-                                      optionKey="id"
-                                      optionValue="nombre"
-                                      id="qActividad"/>
-                        </div>
-
-                        <div class="row fieldcontain">
-                            <label for="modalidad">
-                                <g:message code="evento.modalidad.label" default="Modalidad:"/>
-                            </label>
-                            <g:select name="modalidad"
-                                      from="${Modalidad.listOrderByNombre()}"
-                                      value="''"
-                                      noSelection="${['': 'Cualquiera']}"
-                                      optionKey="id"
-                                      optionValue="nombre"
-                                      id="qModalidad"/>
-                        </div>
-
-                        <div class="row fieldcontain">
-                            <label for="lugar">
-                                <g:message code="evento.lugar.label" default="Modalidad:"/>
-                            </label>
-                            <g:select name="lugar"
-                                      from="${Lugar.listOrderByNombreLugar()}"
-                                      value="''"
-                                      noSelection="${['': 'Cualquiera']}"
-                                      optionKey="id"
-                                      optionValue="nombreLugar"
-                                      id="qLugar"/>
-                        </div>
-
-                        <div class="row fieldcontain">
-                            <label for="multikirola">
-                                <g:message code="evento.multikirola.label" default="Multikirola:"/>
-                            </label>
-                            <g:select name="multikirola" id="qMultikirola"
-                                      from="${['SI', 'NO']}"
-                                      noSelection="['': 'TODOS']"/>
-                        </div>
-
-                        <div class="row fieldcontain">
-                            <label for="deporteAdaptado">
-                                <g:message code="evento.deporteAdaptado.label" default="Deporte Adaptado:"/>
-                            </label>
-                            <g:select name="deporteAdaptado" id="qAdaptado"
-                                      from="${['SI', 'NO']}"
-                                      noSelection="['': 'TODOS']"/>
-                        </div>
-
-                        <div class="row fieldcontain">
-                            <label for="relevante">
-                                <g:message code="evento.relevante.label" default="Relevante:"/>
-                            </label>
-                            <g:select name="relevante" id="qRelevante"
-                                      from="${['SI', 'NO']}"
-                                      noSelection="['': 'TODOS']"/>
-                        </div>
-
-                        <div class="row fieldcontain">
-                            <label for="deporteInclusivo">
-                                <g:message code="evento.deporteInclusivo.label" default="Deporte Inclusivo:"/>
-                            </label>
-                            <g:select name="inclusivo" id="qInclusivo"
-                                      from="${['SI', 'NO']}"
-                                      noSelection="['': 'TODOS']"/>
-                        </div>--}%
-
-                        %{-- <div class="row fieldcontain">
-                             <button type="button" class="row btn-block btn-primary"
-                                     onclick="filtrarEventos($('#qEstado').val()
-                                         , $('#qFechaIniDesde_year').val() + '-' + $('#qFechaIniDesde_month').val() + '-' + $('#qFechaIniDesde_day').val()
-                                         , $('#qFechaIniHasta_year').val() + '-' + $('#qFechaIniHasta_month').val() + '-' + $('#qFechaIniHasta_day').val()
-                                         , $('#qActividad option:selected').val()
-                                         , $('#qModalidad option:selected').val()
-                                         , $('#qLugar option:selected').val()
-                                         , $('#qMultikirola option:selected').val()
-                                         , $('#qAdaptado option:selected').val()
-                                         , $('#qInclusivo option:selected').val()
-                                         , $('#qRelevante option:selected').val());">FILTRAR EVENTOS</button>
-                         </div>--}%
-
-                        <div class="row fieldcontain">
-                            <button type="button" class="row btn-block btn-primary"
-                                    onclick="infEventosPorFechas(
-                                          $('#qFechaDesde_year').val() + '-' + $('#qFechaDesde_month').val() + '-' + $('#qFechaDesde_day').val()
-                                        , $('#qFechaHasta_year').val() + '-' + $('#qFechaHasta_month').val() + '-' + $('#qFechaHasta_day').val()
-                                    );">GENERAR INFORME</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div id="faq-cat-1-sub-1" class="panel-collapse collapse">
+<div class="panel-body form-group">
+    <g:form resource="${this.query}" method="POST" action="exportarInformeEventos">
+        <div class="row fieldcontain">
+            <label for="fechaDesde">
+                Fecha Desde:
+            </label>
+            <g:datePicker name="fechaDesde" precision="day" id="qFechaDesde"
+                          years="${2016..2030}"/>
+            <label for="fechaHasta">
+                Fecha Hasta:
+            </label>
+            <g:datePicker name="fechaHasta" precision="day" id="qFechaHasta"
+                          years="${2016..2030}"/>
         </div>
+
+        <div class="row fieldcontain">
+            <button type="button" class="row btn-block btn-primary"
+                    onclick="infEventosPorFechas(
+                        $('#qFechaDesde_year').val() + '-' + $('#qFechaDesde_month').val() + '-' + $('#qFechaDesde_day').val()
+                        , $('#qFechaHasta_year').val() + '-' + $('#qFechaHasta_month').val() + '-' + $('#qFechaHasta_day').val()
+                    );">GENERAR INFORME</button>
+        </div>
+        </div>
+    </div>
+</div>
+</div>
 
         <br/>
         <hr/>
@@ -202,9 +72,18 @@
                 %{--<g:render template="tablasInfEventos" model="[total: ${resultList[0].Eventos}]"/>--}%
             </div>
         </div>
-    </div>
+        </div>
+
+        <div class="row fieldcontain">
+            <fieldset class="buttons">
+                <g:submitButton name="exportarInformeEventos" class="edit"
+                                value="Descargar en Excel" type="submit"/>
+            </fieldset>
+        </div>
+    </g:form>
+
     <g:javascript>
-        $(document).ready(function (){
+        $(document).ready(function () {
             $('.collapse').eq(1).collapse("show");
             var date = new Date();
             $('#qFechaDesde_day').val(1);

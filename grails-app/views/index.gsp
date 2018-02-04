@@ -115,7 +115,7 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones 02/02/2018</h2>
+        <h2>Modificaciones 04/02/2018</h2>
         <ul>
             <li>Añadido campo "Deporte Inclusivo" a filtrado de eventos</li>
             <li>Cambiado "Multikirola" a combo en filtrado de eventos</li>
@@ -158,10 +158,12 @@
             <li>[Informe Eventos] Crear consulta Total Eventos por Tipo de Actividad</li>
             <li>[Informe Eventos] Crear consulta Total Eventos por Actividad</li>
             <li>[Informe Eventos] Crear consulta Total Eventos por Modalidad</li>
+            <li>[Informe Eventos] Crear consulta Eventos por Perfil de género</li>
+            <li>[Informe Eventos] Crear consulta Eventos por Perfil de edad</li>
+            <li>[Informe Eventos] Crear consulta Eventos por Perfil lingüístico</li>
             <li>[Informe Eventos] Añadido link a informe de eventos en menú Estadísticas</li>
             <li>[Informe Eventos] Añadidos permisos a informe de eventos en menú Estadísticas</li>
             <li>[Informe Eventos] Creada vista de generación de informe de Eventos</li>
-
         </ul>
 
         <h2>Modificaciones 21/01/2018</h2>
