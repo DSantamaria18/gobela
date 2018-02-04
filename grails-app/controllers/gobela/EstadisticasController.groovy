@@ -204,7 +204,7 @@ class EstadisticasController {
             sheet.addCell(new Number(columna + 1, fila, inclusivo, titleFormat))
             fila = fila + 2
 
-            sheet.addCell(new Label(columna, fila, "EEVENTOS POR TIPO DE ACTIVIDAD: ", titleFormat))
+            sheet.addCell(new Label(columna, fila, "EVENTOS POR TIPO DE ACTIVIDAD: ", titleFormat))
             sheet.addCell(new Label(columna, fila+1, "Tipo de Actividad", headerFormat))
             sheet.addCell(new Label(columna + 1, fila + 1, "Num Eventos", headerFormat))
             fila = fila + 2
@@ -215,7 +215,7 @@ class EstadisticasController {
             }
             fila = fila + 2
 
-            sheet.addCell(new Label(columna, fila, "EEVENTOS POR ACTIVIDAD: ", titleFormat))
+            sheet.addCell(new Label(columna, fila, "EVENTOS POR ACTIVIDAD: ", titleFormat))
             sheet.addCell(new Label(columna, fila+1, "Actividad", headerFormat))
             sheet.addCell(new Label(columna + 1, fila + 1, "Num Eventos", headerFormat))
             fila = fila + 2
@@ -308,8 +308,9 @@ class EstadisticasController {
             }
             fila = fila + 2
 
-            for (int c = 0; c < 5; c++) {
-                sheet.setColumnView(c, 20)
+            sheet.setColumnView(0, 35)
+            for (int c = 1; c < 5; c++) {
+                sheet.setColumnView(c, 15)
             }
 
         } catch (Exception e) {
