@@ -115,6 +115,12 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 04/02/2018 - 2</h2>
+        <ul>
+            <li>[Export eventos filtrados] Creada consulta</li>
+            <li>[Export eventos filtrados] Añadido botón para exportación</li>
+            <li>[Export eventos filtrados] Añadido lógica de exportación</li>
+        </ul>
         <h2>Modificaciones 04/02/2018</h2>
         <ul>
             <li>Añadido campo "Deporte Inclusivo" a filtrado de eventos</li>

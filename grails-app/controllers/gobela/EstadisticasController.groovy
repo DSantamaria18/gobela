@@ -131,11 +131,6 @@ class EstadisticasController {
         String fechaDesde = fDesde.split('-').reverse().join('-')
         String fechaHasta = fHasta.split('-').reverse().join('-')
 
-        def nombresTabla = ['Total Eventos', 'EVentos Relevantes', 'Deporte Adaptado', 'Deporte Inclusivo',
-                            'Eventos por Tipo de Actividad', 'Eventos por Actividad', 'Eventos por Recinto', 'Eventos por Lugar',
-                            'Eventos por Modalidad', 'Eventos por Público Destinatario', 'Eventos por Edad',
-                            'Eventos por Perfil Lingüístico']
-
         def resultList = InformesService.eventosPorFechas(fDesde, fHasta)
         def total = resultList[0].Eventos.first()
         def relevantes = resultList[1].Eventos.first()
@@ -205,7 +200,7 @@ class EstadisticasController {
             fila = fila + 2
 
             sheet.addCell(new Label(columna, fila, "EVENTOS POR TIPO DE ACTIVIDAD: ", titleFormat))
-            sheet.addCell(new Label(columna, fila+1, "Tipo de Actividad", headerFormat))
+            sheet.addCell(new Label(columna, fila + 1, "Tipo de Actividad", headerFormat))
             sheet.addCell(new Label(columna + 1, fila + 1, "Num Eventos", headerFormat))
             fila = fila + 2
             tipoActividadList.each {
@@ -216,7 +211,7 @@ class EstadisticasController {
             fila = fila + 2
 
             sheet.addCell(new Label(columna, fila, "EVENTOS POR ACTIVIDAD: ", titleFormat))
-            sheet.addCell(new Label(columna, fila+1, "Actividad", headerFormat))
+            sheet.addCell(new Label(columna, fila + 1, "Actividad", headerFormat))
             sheet.addCell(new Label(columna + 1, fila + 1, "Num Eventos", headerFormat))
             fila = fila + 2
             actividadList.each {
@@ -227,7 +222,7 @@ class EstadisticasController {
             fila = fila + 2
 
             sheet.addCell(new Label(columna, fila, "EVENTOS POR RECINTO: ", titleFormat))
-            sheet.addCell(new Label(columna, fila+1, "Tipo de Actividad", headerFormat))
+            sheet.addCell(new Label(columna, fila + 1, "Tipo de Actividad", headerFormat))
             sheet.addCell(new Label(columna + 1, fila + 1, "Num Eventos", headerFormat))
             fila = fila + 2
             recintoList.each {
@@ -238,7 +233,7 @@ class EstadisticasController {
             fila = fila + 2
 
             sheet.addCell(new Label(columna, fila, "EVENTOS POR LUGAR: ", titleFormat))
-            sheet.addCell(new Label(columna, fila+1, "LUGAR", headerFormat))
+            sheet.addCell(new Label(columna, fila + 1, "LUGAR", headerFormat))
             sheet.addCell(new Label(columna + 1, fila + 1, "Num Eventos", headerFormat))
             fila = fila + 2
             lugarList.each {
@@ -249,7 +244,7 @@ class EstadisticasController {
             fila = fila + 2
 
             sheet.addCell(new Label(columna, fila, "EVENTOS POR MODALIDAD: ", titleFormat))
-            sheet.addCell(new Label(columna, fila+1, "Modalidad", headerFormat))
+            sheet.addCell(new Label(columna, fila + 1, "Modalidad", headerFormat))
             sheet.addCell(new Label(columna + 1, fila + 1, "Num Eventos", headerFormat))
             fila = fila + 2
             modalidadList.each {
@@ -260,7 +255,7 @@ class EstadisticasController {
             fila = fila + 2
 
             sheet.addCell(new Label(columna, fila, "EVENTOS POR PERFIL DE GENERO: ", titleFormat))
-            sheet.addCell(new Label(columna, fila+1, "Público Destinatario", headerFormat))
+            sheet.addCell(new Label(columna, fila + 1, "Público Destinatario", headerFormat))
             sheet.addCell(new Label(columna + 1, fila + 1, "Num Eventos", headerFormat))
             fila = fila + 2
             publicoDestList.each {
@@ -271,7 +266,7 @@ class EstadisticasController {
             fila = fila + 2
 
             sheet.addCell(new Label(columna, fila, "EVENTOS POR PERFIL DE EDAD: ", titleFormat))
-            sheet.addCell(new Label(columna, fila+1, "Tipo de Público", headerFormat))
+            sheet.addCell(new Label(columna, fila + 1, "Tipo de Público", headerFormat))
             sheet.addCell(new Label(columna + 1, fila + 1, "Num Eventos", headerFormat))
             fila = fila + 2
             edadList.each {
@@ -282,7 +277,7 @@ class EstadisticasController {
             fila = fila + 2
 
             sheet.addCell(new Label(columna, fila, "EVENTOS POR PERFIL LINGÜÍSTICO: ", titleFormat))
-            sheet.addCell(new Label(columna, fila+1, "Comunicación con GK", headerFormat))
+            sheet.addCell(new Label(columna, fila + 1, "Comunicación con GK", headerFormat))
             sheet.addCell(new Label(columna + 1, fila + 1, "Num Eventos", headerFormat))
             fila = fila + 2
             euskeraGKList.each {
@@ -290,7 +285,7 @@ class EstadisticasController {
                 sheet.addCell(new Number(columna + 1, fila, it[1], cellFormat))
                 fila++
             }
-            sheet.addCell(new Label(columna, fila+1, "Desarrollo del Evento", headerFormat))
+            sheet.addCell(new Label(columna, fila + 1, "Desarrollo del Evento", headerFormat))
             sheet.addCell(new Label(columna + 1, fila + 1, "Num Eventos", headerFormat))
             fila = fila + 2
             euskeraDesarrolloList.each {
@@ -298,7 +293,7 @@ class EstadisticasController {
                 sheet.addCell(new Number(columna + 1, fila, it[1], cellFormat))
                 fila++
             }
-            sheet.addCell(new Label(columna, fila+1, "Speaker", headerFormat))
+            sheet.addCell(new Label(columna, fila + 1, "Speaker", headerFormat))
             sheet.addCell(new Label(columna + 1, fila + 1, "Num Eventos", headerFormat))
             fila = fila + 2
             euskeraSpeakerList.each {

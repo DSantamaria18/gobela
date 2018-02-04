@@ -318,7 +318,6 @@ function fillContactoInfo(contactoId) {
     })
 }
 
-// function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, tipoActividad, tActividad, actividad, modalidad, lugar, multikirola, adaptado, inclusivo, relevante) {
 function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, tActividad, actividad, modalidad, lugar, multikirola, adaptado, inclusivo, relevante) {
     console.log(lugar);
 
@@ -383,6 +382,7 @@ function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, tActividad, activi
         $('#tabla-eventos').html(data);
     })
 }
+
 
 function filtrarSolicitudesMaterial(fechaDesde, fechaHasta, lugarEntrega, lugarDevolucion) {
     var url = "/gobela/solicitudMaterial/filtrarSolicitudesMaterial/";
