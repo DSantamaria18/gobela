@@ -107,10 +107,10 @@ class EventoService {
         String qEstado = (params.estado != 'Cualquiera')? " AND e.estado = '${params.estado}'" : ""
 //        String qTipoActividad = (params.tipoActividad != '')? " AND e.tipo_actividad = '${params.tipoActividad}'" : ""
         String qLugar = (params.lugar != '')? " AND e.lugar_id = '${params.lugar}'" : ""
-        String qMultikirola = (params.multikirola) ? " AND e.multikirola = ${params.multikirola} " : ""
-        String qAdaptado = (params.adaptado) ? " AND e.deporte_adaptado = ${params.adaptado} " : ""
-        String qInclusivo = (params.inclusivo) ? " AND e.deporte_inclusivo = ${params.inclusivo} " : ""
-        String qRelevante = (params.relevante) ? " AND e.relevante = ${params.relevante} " : ""
+        String qMultikirola = (params.multikirola != "") ? " AND e.multikirola = ${params.multikirola} " : ""
+        String qAdaptado = (params.deporteAdaptado != "") ? " AND e.deporte_adaptado = ${params.deporteAdaptado} " : ""
+        String qInclusivo = (params.inclusivo != "") ? " AND e.deporte_inclusivo = ${params.inclusivo} " : ""
+        String qRelevante = (params.relevante != "") ? " AND e.relevante = ${params.relevante} " : ""
         String qOrder = " ORDER BY e.fecha, e.estado, e.tipo_actividad, m.nombre ASC"
 //        String query = qBase + qEstado + qTipoActividad + qTActividad + qActividad + qModalidad + qLugar + qMultikirola + qAdaptado + qInclusivo + qRelevante + qOrder
         String query = qBase + qEstado + qTActividad + qActividad + qModalidad + qLugar + qMultikirola + qAdaptado + qInclusivo + qRelevante + qOrder

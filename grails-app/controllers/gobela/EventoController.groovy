@@ -305,96 +305,120 @@ class EventoController {
         params.fechaDesde = fDesde
         params.fechaHasta = fHasta
 
+        if (params.multikirola) {
+            if (params.multikirola == "SI") params.multikirola = true else params.multikirola = false
+        }
+
+        if (params.deporteAdaptado) {
+            if (params.deporteAdaptado == "SI") params.deporteAdaptado = true else params.deporteAdaptado = false
+        }
+
+        if (params.inclusivo) {
+            if (params.inclusivo == "SI") params.inclusivo = true else params.inclusivo = false
+        }
+
+        if (params.relevante) {
+            if (params.relevante == "SI") params.relevante = true else params.relevante = false
+        }
+
         def eventosList = eventoService.filtrarEventosFullInfo(params)
 
-        response.setContentType('application/vnd.ms-excel')
-        response.setHeader('Content-Disposition', "Attachment;Filename='Eventos.xls'")
-        WorkbookSettings ws = new WorkbookSettings()
-        ws.setLocale(new Locale("es", "ES"))
-        WritableWorkbook workbook = Workbook.createWorkbook(response.outputStream, ws)
+        if (eventosList.size() > 0) {
+            response.setContentType('application/vnd.ms-excel')
+            response.setHeader('Content-Disposition', "Attachment;Filename='Eventos.xls'")
+            WorkbookSettings ws = new WorkbookSettings()
+            ws.setLocale(new Locale("es", "ES"))
+            WritableWorkbook workbook = Workbook.createWorkbook(response.outputStream, ws)
 
-        WritableFont titleFont = new WritableFont(WritableFont.ARIAL, 16, WritableFont.BOLD)
-        WritableCellFormat titleFormat = new WritableCellFormat()
-        titleFormat.setFont(titleFont)
+            WritableFont titleFont = new WritableFont(WritableFont.ARIAL, 16, WritableFont.BOLD)
+            WritableCellFormat titleFormat = new WritableCellFormat()
+            titleFormat.setFont(titleFont)
 
-        WritableFont headerFont = new WritableFont(WritableFont.ARIAL, 11, WritableFont.BOLD)
-        WritableCellFormat headerFormat = new WritableCellFormat()
-        headerFormat.with {
-            setBackground(Colour.GREY_25_PERCENT)
-            setBorder(Border.ALL, BorderLineStyle.THIN)
-            setFont(headerFont)
-            setWrap(true)
-        }
-
-        WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 10)
-        WritableCellFormat cellFormat = new WritableCellFormat()
-        cellFormat.with {
-            setFont(cellFont)
-            setBorder(Border.ALL, BorderLineStyle.THIN)
-            setWrap(true)
-        }
-
-        String nombreHoja = "Eventos"
-        WritableSheet sheet = workbook.createSheet(nombreHoja, 0)
-
-        sheet.addCell(new Label(0, 0, "Eventos", titleFormat))
-
-        int columna = 0
-        int fila = 3
-        try {
-
-            def cabeceras = eventosList[0].keySet()
-            cabeceras.each {
-                sheet.addCell(new Label(columna, fila, it, headerFormat))
-                columna++
+            WritableFont headerFont = new WritableFont(WritableFont.ARIAL, 11, WritableFont.BOLD)
+            WritableCellFormat headerFormat = new WritableCellFormat()
+            headerFormat.with {
+                setBackground(Colour.GREY_25_PERCENT)
+                setBorder(Border.ALL, BorderLineStyle.THIN)
+                setFont(headerFont)
+                setWrap(true)
             }
-            fila++
-            columna = 0
-            eventosList.each {
-                def datosEvento = it.values()
-                datosEvento.each {
-                    println("DATO: ${it} - ${it.getClass()}")
 
-                    if (it?.getClass() == String) {
-                        sheet.addCell(new Label(columna, fila, it.toUpperCase(), cellFormat))
-                    } else {
-                        if (it?.getClass() == Boolean) {
-                            if (it == true) {
-                                sheet.addCell(new Label(columna, fila, "SI", cellFormat))
-                            } else {
-                                sheet.addCell(new Label(columna, fila, "NO", cellFormat))
-                            }
-                        } else {
-                            if (it?.getClass() == Timestamp) {
-                                sheet.addCell(new Label(columna, fila, it.toString(), cellFormat))
-                            } else {
-                                if (it.getClass() == NullObject) {
-                                    sheet.addCell(new Label(columna, fila, "", cellFormat))
-                                } else {
-                                    if (it) sheet.addCell(new Number(columna, fila, it as int, cellFormat))
-                                }
-                            }
-                        }
-                    }
+            WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 10)
+            WritableCellFormat cellFormat = new WritableCellFormat()
+            cellFormat.with {
+                setFont(cellFont)
+                setBorder(Border.ALL, BorderLineStyle.THIN)
+                setWrap(true)
+            }
 
+            String nombreHoja = "Eventos"
+            WritableSheet sheet = workbook.createSheet(nombreHoja, 0)
+
+            sheet.addCell(new Label(0, 0, "Eventos", titleFormat))
+
+            int columna = 0
+            int fila = 3
+
+            try {
+
+                def cabeceras = eventosList[0].keySet()
+                cabeceras.each {
+                    sheet.addCell(new Label(columna, fila, it, headerFormat))
                     columna++
                 }
                 fila++
                 columna = 0
+                eventosList.each {
+                    def datosEvento = it.values()
+                    datosEvento.each {
+//                    println("FILA: ${it} - ${it.getClass()}")
+                        if (it?.getClass() == String) {
+                            sheet.addCell(new Label(columna, fila, it.toUpperCase(), cellFormat))
+                        } else {
+                            if (it?.getClass() == Boolean) {
+                                if (it == true) {
+                                    sheet.addCell(new Label(columna, fila, "SI", cellFormat))
+                                } else {
+                                    sheet.addCell(new Label(columna, fila, "NO", cellFormat))
+                                }
+                            } else {
+                                if (it?.getClass() == Timestamp) {
+                                    String fecha = new java.text.SimpleDateFormat("dd/MM/yyyy").format(it)
+                                    sheet.addCell(new Label(columna, fila, fecha, cellFormat))
+                                } else {
+                                    if (it.getClass() == NullObject) {
+                                        sheet.addCell(new Label(columna, fila, "", cellFormat))
+                                    } else {
+                                        if (it == 0) {
+                                            sheet.addCell(new Label(columna, fila, it.toString(), cellFormat))
+                                        } else {
+                                            if (it) sheet.addCell(new Number(columna, fila, it as int, cellFormat))
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        columna++
+                    }
+                    fila++
+                    columna = 0
+                }
+                fila = fila + 2
+
+                for (int c = 0; c < 40; c++) {
+                    sheet.setColumnView(c, 25)
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace()
             }
 
-            fila = fila + 2
-
-            for (int c = 0; c < 40; c++) {
-                sheet.setColumnView(c, 25)
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace()
+            workbook.write()
+            workbook.close()
+        } else {
+            flash.message = "Error al exportar. El filtro seleccionado no devolvió ningún resultado"
+            redirect(uri: "/evento/index")
         }
-
-        workbook.write()
-        workbook.close()
     }
 
 }
