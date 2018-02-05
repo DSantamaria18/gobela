@@ -75,7 +75,6 @@
     </sec:ifAnyGranted>
 
     <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
-    %{--<sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER'>--}%
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false">Estadísticas<span class="caret"></span></a>
@@ -84,6 +83,17 @@
                     <li><g:link class="list" controller="Estadisticas" action="index">Informe Subvenciones</g:link></li>
                 </sec:ifAnyGranted>
                 <li><g:link class="list" controller="Estadisticas" action="infEventos">Informe Eventos</g:link></li>
+            </ul>
+        </li>
+    </sec:ifAnyGranted>
+
+    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Multikirola<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><g:link class="list" controller="Curso" action="index">Cursos</g:link></li>
+                <li><g:link class="list" controller="Centro" action="index">Centros</g:link></li>
             </ul>
         </li>
     </sec:ifAnyGranted>
@@ -114,6 +124,15 @@
 <div id="content" role="main">
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
+
+        <h2>Modificaciones </h2>
+        <ul>
+            <li>[Multikirola] Creada entidad Centro</li>
+            <li>[Multikirola] Creadas vistas para Centro</li>
+            <li>[Multikirola] Creada entidad Curso</li>
+            <li>[Multikirola] Creadas vistas Curso</li>
+            <li>[Multikirola] Añadido menú Multikirola</li>
+        </ul>
 
         <h2>Modificaciones 04/02/2018 - 2</h2>
         <ul>
