@@ -115,6 +115,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 05/02/2018</h2>
+        <ul>
+            <li>Corregido valor del campo "Inclusivo" en vista de Informe de Evento</li>
+        </ul>
+
         <h2>Modificaciones 04/02/2018 - 2</h2>
         <ul>
             <li>[Export eventos filtrados] Creada consulta</li>

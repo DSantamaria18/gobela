@@ -122,7 +122,7 @@ class EstadisticasController {
         def euskeraDesarrolloList = resultList[12]
         def euskeraSpeakerList = resultList[13]
 
-        render template: "tablasInfEventos", model: [total: total, relevantes: relevantes, adaptado: adaptado, incusivo: inclusivo, tipoActividadList: tipoActividadList, actividadList: actividadList, recintoList: recintoList, lugarList: lugarList, modalidadList: modalidadList, publicoDestList: publicoDestList, edadList: edadList, euskeraGKList: euskeraGKList, euskeraDesarrolloList: euskeraDesarrolloList, euskeraSpeakerList: euskeraSpeakerList]
+        render template: "tablasInfEventos", model: [total: total, relevantes: relevantes, adaptado: adaptado, inclusivo: inclusivo, tipoActividadList: tipoActividadList, actividadList: actividadList, recintoList: recintoList, lugarList: lugarList, modalidadList: modalidadList, publicoDestList: publicoDestList, edadList: edadList, euskeraGKList: euskeraGKList, euskeraDesarrolloList: euskeraDesarrolloList, euskeraSpeakerList: euskeraSpeakerList]
     }
 
     def exportarInformeEventos(params) {
