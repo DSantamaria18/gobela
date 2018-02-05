@@ -18,6 +18,7 @@ import jxl.write.WritableWorkbook
 import org.codehaus.groovy.runtime.NullObject
 
 import java.sql.Timestamp
+import java.text.SimpleDateFormat
 
 import static org.springframework.http.HttpStatus.*
 import grails.util.Holders
@@ -383,7 +384,7 @@ class EventoController {
                                 }
                             } else {
                                 if (it?.getClass() == Timestamp) {
-                                    String fecha = new java.text.SimpleDateFormat("dd/MM/yyyy").format(it)
+                                    String fecha = new SimpleDateFormat("dd/MM/yyyy").format(it)
                                     sheet.addCell(new Label(columna, fila, fecha, cellFormat))
                                 } else {
                                     if (it.getClass() == NullObject) {
