@@ -75,7 +75,6 @@
     </sec:ifAnyGranted>
 
     <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
-    %{--<sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER'>--}%
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false">Estadísticas<span class="caret"></span></a>
@@ -100,6 +99,16 @@
         </li>
     </sec:ifAnyGranted>
 
+    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Incidencias<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><g:link class="list" controller="Incidencia" action="index">Incidencias</g:link></li>
+            </ul>
+        </li>
+    </sec:ifAnyGranted>
+
     <li><sec:ifLoggedIn><g:link controller='logout'>Cerrar Sesión</g:link></sec:ifLoggedIn></li>
     <li><sec:ifNotLoggedIn><g:link controller='login'>Identificarse</g:link></sec:ifNotLoggedIn></li>
 
@@ -114,6 +123,13 @@
 <div id="content" role="main">
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
+
+        <h2>Modificaciones 06/02/2018</h2>
+        <ul>
+            <li>[Incidencias] Creada entidad Incidencia</li>
+            <li>[Incidencias] Creadas vistas para Incidencia</li>
+            <li>[Incidencias] Añadido menú incidencias en página principal</li>
+        </ul>
 
         <h2>Modificaciones 05/02/2018</h2>
         <ul>
