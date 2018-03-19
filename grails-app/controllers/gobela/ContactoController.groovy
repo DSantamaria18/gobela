@@ -6,6 +6,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = false)
 class ContactoController {
 
+    ContactoService contactoService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -103,5 +104,10 @@ class ContactoController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    def filtrarContactos(params){
+        def contactoList = contactoService.filtrarContactos(params)
+        render template: "tablaContactos", model: [contactoList: contactoList, contactoCount: contactoList.size()]
     }
 }
