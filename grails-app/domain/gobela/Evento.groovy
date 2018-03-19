@@ -81,7 +81,7 @@ class Evento {
         numParticipantesH(nullable: true, blank: true)
         numAsistentes(nullable: true, blank: true)
         numVoluntarios(nullable: true, blank: true)
-        observaciones(nullable: true, blank: true, maxSize: 500)
+        observaciones(nullable: true, blank: true, maxSize: 5000)
         solicitudesMaterial()
         ocupacion(nullable: false, blank: false)
     }
