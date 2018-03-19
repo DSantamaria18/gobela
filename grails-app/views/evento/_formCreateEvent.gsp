@@ -375,3 +375,9 @@
                 value="${this.evento?.observaciones}"/>
 
 </div>
+
+<g:javascript>
+        $(document).ready(function () {
+            $('#ocupacion').val('100');
+        })
+</g:javascript>
