@@ -124,6 +124,15 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 19/03/2018</h2>
+        <ul>
+            <li>Se establece el portentaje de ocupación por defecto en 100%</li>
+            <li>Se ha incrementado el tamaño del campo "Observaciones" de Evento a 5000 caracteres</li>
+            <li>Añadido filtrado de contactos por Entidad en vista de listado de contactos</li>
+            <li>Añadido filtrado de eventos por recinto</li>
+            <li>Añadido filtrado de eventos por Entidad Organizadora</li>
+        </ul>
+
         <h2>Modificaciones 06/02/2018</h2>
         <ul>
             <li>[Incidencias] Creada entidad Incidencia</li>
