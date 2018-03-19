@@ -14,7 +14,7 @@ class EventoService {
         String fHasta = params.fechaHasta
         String qBase = "SELECT e.id" +
                 ", e.nombre, e.estado, e.fecha, e.tipo_actividad as tipoActividad, t.nombre as tActividad, " +
-                "a.nombre as actividad, m.nombre as modalidad, e.lugar_id, e.recinto_id " +
+                "a.nombre as actividad, m.nombre as modalidad, e.lugar_id, e.recinto_id, e.entidad_organizadora_id " +
                 "FROM evento e " +
                 "LEFT JOIN modalidad m ON e.modalidad_id = m.id " +
                 "LEFT JOIN actividad a ON e.actividad_id = a.id " +
@@ -23,6 +23,7 @@ class EventoService {
                 "OR fecha_fin BETWEEN '${fDesde}' AND '${fHasta}' " +
                 "OR (fecha < '${fDesde}' AND fecha_fin > '${fHasta}')) "
 
+        String qEntidad = (params.entidad != '')? " AND e.entidad_organizadora_id = '${params.entidad}'" : ""
         String qModalidad = (params.modalidad != '')? " AND e.modalidad_id = ${params.modalidad}" : ""
         String qTActividad = (params.tActividad != '')? " AND e.t_actividad_id = ${params.tActividad}" : ""
         String qActividad = (params.actividad != '')? " AND e.actividad_id = ${params.actividad}" : ""
@@ -34,7 +35,7 @@ class EventoService {
         String qInclusivo = (params.inclusivo) ? " AND e.deporte_inclusivo = ${params.inclusivo} " : ""
         String qRelevante = (params.relevante) ? " AND e.relevante = ${params.relevante} " : ""
         String qOrder = " ORDER BY fecha, estado, tipoActividad, modalidad ASC"
-        String query = qBase + qEstado + qTActividad + qActividad + qModalidad + qLugar + qRecinto + qMultikirola + qAdaptado + qInclusivo + qRelevante + qOrder
+        String query = qBase + qEstado + qEntidad + qTActividad + qActividad + qModalidad + qLugar + qRecinto + qMultikirola + qAdaptado + qInclusivo + qRelevante + qOrder
 
         final Sql sql = new Sql(dataSource)
         final results = sql.rows(query)

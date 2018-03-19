@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ page import="gobela.Recinto; gobela.TipoActividad; gobela.Actividad; gobela.Lugar; gobela.Modalidad" %>
+    <%@ page import="gobela.Entidad; gobela.Recinto; gobela.TipoActividad; gobela.Actividad; gobela.Lugar; gobela.Modalidad" %>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'evento.label', default: 'Evento')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
@@ -57,6 +57,19 @@
                               years="${2016..2030}"/> y
                 <g:datePicker name="fechaHasta" precision="day" id="qFechaHasta"
                               years="${2016..2030}"/>
+            </div>
+
+            <div class="row fieldcontain">
+                <label for="entidad">
+                    <g:message code="evento.entidadOrganizadora.label" default="Entidad Organizadora:"/>
+                </label>
+                <g:select name="entidad"
+                          from="${Entidad.listOrderByNombreEntidad()}"
+                          value="''"
+                          noSelection="${['': 'Cualquiera']}"
+                          optionKey="id"
+                          optionValue="nombreEntidad"
+                          id="qEntidad"/>
             </div>
 
             <div class="row fieldcontain">
@@ -179,6 +192,7 @@
                         onclick="filtrarEventos($('#qEstado').val()
                             , $('#qFechaDesde_year').val() + '-' + $('#qFechaDesde_month').val() + '-' + $('#qFechaDesde_day').val()
                             , $('#qFechaHasta_year').val() + '-' + $('#qFechaHasta_month').val() + '-' + $('#qFechaHasta_day').val()
+                            , $('#qEntidad option:selected').val()
                             , $('#qTActividad option:selected').val()
                             , $('#qActividad option:selected').val()
                             , $('#qModalidad option:selected').val()
