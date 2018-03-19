@@ -201,7 +201,9 @@
                             , $('#qMultikirola option:selected').val()
                             , $('#qAdaptado option:selected').val()
                             , $('#qInclusivo option:selected').val()
-                            , $('#qRelevante option:selected').val());">FILTRAR EVENTOS</button>
+                            , $('#qRelevante option:selected').val());">
+                    FILTRAR EVENTOS
+                </button>
             </div>
             </div>
         </div>

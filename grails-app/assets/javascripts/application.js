@@ -383,6 +383,21 @@ function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, entidad, tActivida
     })
 }
 
+function filtrarContactos(entidad){
+    var url = "/gobela/contacto/filtrarContactos/";
+    console.log("URL: " + url);
+    $.ajax({
+        url: url,
+        type: 'get',
+        data: {
+            'entidad': entidad
+        }
+    }).done(function (data, status) {
+        console.log(status);
+        $('#tabla-contactos').html(data);
+    })
+}
+
 
 function filtrarSolicitudesMaterial(fechaDesde, fechaHasta, lugarEntrega, lugarDevolucion) {
     var url = "/gobela/solicitudMaterial/filtrarSolicitudesMaterial/";
