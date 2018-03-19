@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ page import="gobela.TipoActividad; gobela.Actividad; gobela.Lugar; gobela.Modalidad" %>
+    <%@ page import="gobela.Recinto; gobela.TipoActividad; gobela.Actividad; gobela.Lugar; gobela.Modalidad" %>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'evento.label', default: 'Evento')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
@@ -100,7 +100,7 @@
 
             <div class="row fieldcontain">
                 <label for="lugar">
-                    <g:message code="evento.lugar.label" default="Modalidad:"/>
+                    <g:message code="evento.lugar.label" default="Lugar:"/>
                 </label>
                 <g:select name="lugar"
                           from="${Lugar.listOrderByNombreLugar()}"
@@ -109,6 +109,19 @@
                           optionKey="id"
                           optionValue="nombreLugar"
                           id="qLugar"/>
+            </div>
+
+            <div class="row fieldcontain">
+                <label for="recinto">
+                    <g:message code="evento.recinto.label" default="Recinto:"/>
+                </label>
+                <g:select name="recinto"
+                          from="${Recinto.listOrderByNombre()}"
+                          value="''"
+                          noSelection="${['': 'Cualquiera']}"
+                          optionKey="id"
+                          optionValue="nombre"
+                          id="qRecinto"/>
             </div>
 
             <div class="row fieldcontain">
@@ -166,11 +179,11 @@
                         onclick="filtrarEventos($('#qEstado').val()
                             , $('#qFechaDesde_year').val() + '-' + $('#qFechaDesde_month').val() + '-' + $('#qFechaDesde_day').val()
                             , $('#qFechaHasta_year').val() + '-' + $('#qFechaHasta_month').val() + '-' + $('#qFechaHasta_day').val()
-                            //, $('#qTipoActividad option:selected').val()
                             , $('#qTActividad option:selected').val()
                             , $('#qActividad option:selected').val()
                             , $('#qModalidad option:selected').val()
                             , $('#qLugar option:selected').val()
+                            , $('#qRecinto option:selected').val()
                             , $('#qMultikirola option:selected').val()
                             , $('#qAdaptado option:selected').val()
                             , $('#qInclusivo option:selected').val()
