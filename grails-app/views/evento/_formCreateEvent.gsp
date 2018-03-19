@@ -371,7 +371,7 @@
         <g:message code="evento.observaciones.label" default="Observaciones:"/>
 
     </label>
-    <g:textArea name="observaciones" cols="60" rows="15" maxlength="2000"
+    <g:textArea name="observaciones" cols="60" rows="15" maxlength="5000"
                 value="${this.evento?.observaciones}"/>
 
 </div>
