@@ -124,6 +124,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 20/03/2018</h2>
+        <ul>
+            <li>Añadido campo "Edad Mínima" a evento</li>
+        </ul>
+
         <h2>Modificaciones 19/03/2018</h2>
         <ul>
             <li>Se establece el portentaje de ocupación por defecto en 100%</li>

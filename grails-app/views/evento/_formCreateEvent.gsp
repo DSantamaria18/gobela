@@ -110,6 +110,9 @@
         <g:message code="evento.multikirola.label" default="Multikirola:"/>
     </label>
     <g:checkBox name="multikirola" value="${evento?.multikirola}"/>
+
+    <label for="edadMinima">Edad Mínima </label>
+    <g:textField name="edadMinima" type="number" id="edadMinima" value="${this.evento?.edadMinima}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'deporteAdaptado', 'error')}">

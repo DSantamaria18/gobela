@@ -38,6 +38,7 @@ class Evento {
     String euskeraComGK
     String euskeraDesarrollo
     String euskeraSpeaker
+    Integer edadMinima
 
 
     static hasMany = [solicitudesMaterial: SolicitudMaterial]

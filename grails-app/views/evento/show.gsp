@@ -199,6 +199,17 @@
             </li>
         </g:if>
 
+        <g:if test="${evento?.edadMinima}">
+            <li class="fieldcontain">
+                <span id="edadMinima-label" class="property-label"><g:message
+                        code="evento.edadMinima.label"
+                        default="Edad Mínima:"/></span>
+                <span class="property-value" aria-labelledby="edadMinima-label"><g:fieldValue
+                        bean="${evento}"
+                        field="edadMinima"/></span>
+            </li>
+        </g:if>
+
         <g:if test="${evento?.deporteAdaptado}">
             <li class="fieldcontain">
                 <span id="deporteAdaptado-label" class="property-label"><g:message
