@@ -173,20 +173,6 @@
                           noSelection="['': 'TODOS']"/>
             </div>
 
-        %{-- <div class="row fieldcontain">
-             <button type="button" class="row btn-block btn-primary"
-                     onclick="filtrarEventos($('#qEstado').val()
-                         , $('#qFechaIniDesde_year').val() + '-' + $('#qFechaIniDesde_month').val() + '-' + $('#qFechaIniDesde_day').val()
-                         , $('#qFechaIniHasta_year').val() + '-' + $('#qFechaIniHasta_month').val() + '-' + $('#qFechaIniHasta_day').val()
-                         , $('#qActividad option:selected').val()
-                         , $('#qModalidad option:selected').val()
-                         , $('#qLugar option:selected').val()
-                         , $('#qMultikirola option:selected').val()
-                         , $('#qAdaptado option:selected').val()
-                         , $('#qInclusivo option:selected').val()
-                         , $('#qRelevante option:selected').val());">FILTRAR EVENTOS</button>
-         </div>--}%
-
             <div class="row fieldcontain">
                 <button type="button" class="row btn-block btn-primary"
                         onclick="filtrarEventos($('#qEstado').val()

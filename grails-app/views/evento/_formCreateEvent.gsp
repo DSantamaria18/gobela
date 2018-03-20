@@ -382,5 +382,6 @@
 <g:javascript>
         $(document).ready(function () {
             $('#ocupacion').val('100');
+            $('#edadMinima').val(0);
         })
 </g:javascript>
