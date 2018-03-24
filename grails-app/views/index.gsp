@@ -128,12 +128,12 @@
 
         <h2>Modificaciones XX-XX-XXXX</h2>
         <ul>
-            <li>Añadidos Niveles de Euskera</li>
-            <li>Añadida vista creación de Niveles de Euslkera</li>
-            <li>Añadida vista edición de Niveles de Euslkera</li>
-            <li>Añadidas Titulaciones</li>
-            <li>Añadida vista de creación de Titulaciones</li>
-            <li>Añadida vista de edición de Titulaciones</li>
+            <li>[Clubes] Añadidos Niveles de Euskera</li>
+            <li>[Clubes] Añadida vista creación de Niveles de Euslkera</li>
+            <li>[Clubes] Añadida vista edición de Niveles de Euslkera</li>
+            <li>[Clubes] Añadidas Titulaciones</li>
+            <li>[Clubes] Añadida vista de creación de Titulaciones</li>
+            <li>[Clubes] Añadida vista de edición de Titulaciones</li>
         </ul>
 
         <h2>Modificaciones 20/03/2018</h2>
