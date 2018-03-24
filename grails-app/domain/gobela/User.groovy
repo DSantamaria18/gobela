@@ -13,6 +13,10 @@ class User implements Serializable {
 
     String username
     String password
+    String telefono
+    String movil
+    boolean whatsapp = false
+
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
@@ -27,6 +31,9 @@ class User implements Serializable {
         username nullable: false, blank: false, unique: true
         password nullable: false, blank: false, password: true
         email nullable: true, blank: true, email: true
+        telefono nullable: true, blank: true
+        movil nullable: true, blank: true
+        whatsapp()
     }
 
     static mapping = {
