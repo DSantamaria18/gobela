@@ -142,8 +142,8 @@
 
         <h2>Modificaciones 20/03/2018</h2>
         <ul>
-            <li>Añadido campo "Edad Mínima" a evento</li>
-            <li>Edad mínima por defecto es 0</li>
+            <li>[Multikirolak] Añadido campo "Edad Mínima" a evento</li>
+            <li>[Multikirolak] Edad mínima por defecto es 0</li>
         </ul>
 
         <h2>Modificaciones 19/03/2018</h2>
