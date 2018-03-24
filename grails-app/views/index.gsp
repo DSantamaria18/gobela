@@ -60,6 +60,7 @@
                 <li><g:link class="list" controller="contacto" action="index">Contactos</g:link></li>
                 <li><g:link class="list" controller="nivelEuskera" action="index">Niveles Euskera</g:link></li>
                 <li><g:link class="list" controller="titulacion" action="index">Titulaciones</g:link></li>
+                <li><g:link class="list" controller="tecnico" action="index">Técnicos</g:link></li>
                 %{--<li><g:link class="list" controller="club" action="index">Clubes</g:link></li>--}%
             </ul>
         </li>
@@ -134,6 +135,9 @@
             <li>[Clubes] Añadidas Titulaciones</li>
             <li>[Clubes] Añadida vista de creación de Titulaciones</li>
             <li>[Clubes] Añadida vista de edición de Titulaciones</li>
+            <li>[Clubes] Añadidos Técnicos</li>
+            <li>[Clubes] Añadida vista de creación de Técnicos</li>
+            <li>[Clubes] Añadida vista de edición de Técnicos</li>
         </ul>
 
         <h2>Modificaciones 20/03/2018</h2>
@@ -144,11 +148,11 @@
 
         <h2>Modificaciones 19/03/2018</h2>
         <ul>
-            <li>Se establece el portentaje de ocupación por defecto en 100%</li>
-            <li>Se ha incrementado el tamaño del campo "Observaciones" de Evento a 5000 caracteres</li>
-            <li>Añadido filtrado de contactos por Entidad en vista de listado de contactos</li>
-            <li>Añadido filtrado de eventos por recinto</li>
-            <li>Añadido filtrado de eventos por Entidad Organizadora</li>
+            <li>[Incidencias] Se establece el portentaje de ocupación por defecto en 100%</li>
+            <li>[Incidencias] Se ha incrementado el tamaño del campo "Observaciones" de Evento a 5000 caracteres</li>
+            <li>[Incidencias] Añadido filtrado de contactos por Entidad en vista de listado de contactos</li>
+            <li>[Incidencias] Añadido filtrado de eventos por recinto</li>
+            <li>[Incidencias] Añadido filtrado de eventos por Entidad Organizadora</li>
         </ul>
 
         <h2>Modificaciones 06/02/2018</h2>
