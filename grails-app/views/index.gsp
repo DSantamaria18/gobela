@@ -58,6 +58,8 @@
             <ul class="dropdown-menu">
                 <li><g:link class="list" controller="entidad" action="index">Entidades</g:link></li>
                 <li><g:link class="list" controller="contacto" action="index">Contactos</g:link></li>
+                <li><g:link class="list" controller="nivelEuskera" action="index">Niveles Euskera</g:link></li>
+                <li><g:link class="list" controller="titulacion" action="index">Titulaciones</g:link></li>
                 %{--<li><g:link class="list" controller="club" action="index">Clubes</g:link></li>--}%
             </ul>
         </li>
@@ -123,6 +125,16 @@
 <div id="content" role="main">
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
+
+        <h2>Modificaciones XX-XX-XXXX</h2>
+        <ul>
+            <li>Añadidos Niveles de Euskera</li>
+            <li>Añadida vista creación de Niveles de Euslkera</li>
+            <li>Añadida vista edición de Niveles de Euslkera</li>
+            <li>Añadidas Titulaciones</li>
+            <li>Añadida vista de creación de Titulaciones</li>
+            <li>Añadida vista de edición de Titulaciones</li>
+        </ul>
 
         <h2>Modificaciones 20/03/2018</h2>
         <ul>
