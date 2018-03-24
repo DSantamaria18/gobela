@@ -13,6 +13,14 @@
                 <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
                 <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
                 <li><g:link class="create" action="create" controller="contacto" params="['entidadId': entidad.id]">Añadir Contacto</g:link></li>
+                <g:if test="${this.entidad.es_club}">
+                    <li><g:link class="list" action="show" controller="club"
+                                params="['entidadId': entidad.id]">Club</g:link></li>
+                </g:if>
+                <g:else>
+                    <li><g:link class="create" action="create" controller="club"
+                                params="['entidad': entidad.id]">Crear Club</g:link></li>
+                </g:else>
             </ul>
         </div>
         <div id="show-entidad" class="content scaffold-show" role="main">

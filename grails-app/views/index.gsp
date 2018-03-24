@@ -61,7 +61,7 @@
                 <li><g:link class="list" controller="nivelEuskera" action="index">Niveles Euskera</g:link></li>
                 <li><g:link class="list" controller="titulacion" action="index">Titulaciones</g:link></li>
                 <li><g:link class="list" controller="tecnico" action="index">Técnicos</g:link></li>
-                %{--<li><g:link class="list" controller="club" action="index">Clubes</g:link></li>--}%
+                <li><g:link class="list" controller="club" action="index">Clubes</g:link></li>
             </ul>
         </li>
     </sec:ifAnyGranted>
@@ -138,6 +138,9 @@
             <li>[Clubes] Añadidos Técnicos</li>
             <li>[Clubes] Añadida vista de creación de Técnicos</li>
             <li>[Clubes] Añadida vista de edición de Técnicos</li>
+            <li>[Clubes] Añadidos Clubes</li>
+            <li>[Clubes] Añadida vista de creación de Clubes</li>
+            <li>[Clubes] Añadida vista de edición de Clubes</li>
         </ul>
 
         <h2>Modificaciones 20/03/2018</h2>
