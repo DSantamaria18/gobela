@@ -1,3 +1,4 @@
+<%@ page import="gobela.Entidad" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,7 +28,31 @@
             </g:hasErrors>
             <g:form resource="${this.club}" method="POST">
                 <fieldset class="form">
-                    <f:all bean="club"/>
+                    <div class="fieldcontain">
+                        <label for="entidad">Entidad</label>
+                        %{--<g:textField name="entidad" value="${this.club.entidad}" readonly="true" style="width: 69ch"/>--}%
+                        <g:select name="entidad" from="${Entidad.findAllById(this.club.entidad.id)}" value="nombreEntidad" optionKey="id" readonly="true"/>
+                    </div>
+
+                    <div class="fieldcontain">
+                        <label for="fechaFundacion">Fecha Fundación</label>
+                        <g:datePicker name="fechaFundacion" value="${this.club?.fechaFundacion}" precision="day"/>
+                    </div>
+
+                    <div class="fieldcontain">
+                        <label for="fechaElecciones">Fecha Elecciones</label>
+                        <g:datePicker name="fechaElecciones" value="${this.club?.fechaElecciones}" precision="day"/>
+                    </div>
+                    <div class="fieldcontain">
+                        <label for="numDirectivos">Num Directivos</label>
+                        <g:textField type="number" name="numDirectivos" value="${this.club?.numDirectivos}"/>
+                    </div>
+
+                    <div class="fieldcontain">
+                        <label for="carnetGK">Carnet GK</label>
+                        <g:checkBox name="carnetGK" value="${this.club?.carnetGK}"/>
+                    </div>
+                    %{--<f:all bean="club"/>--}%
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
