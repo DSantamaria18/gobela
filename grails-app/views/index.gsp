@@ -62,6 +62,7 @@
                 <li><g:link class="list" controller="titulacion" action="index">Titulaciones</g:link></li>
                 <li><g:link class="list" controller="tecnico" action="index">Técnicos</g:link></li>
                 <li><g:link class="list" controller="club" action="index">Clubes</g:link></li>
+                %{--<li><g:link class="list" controller="categoria" action="index">Categorías</g:link></li>--}%
             </ul>
         </li>
     </sec:ifAnyGranted>
@@ -127,7 +128,7 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones XX-XX-XXXX</h2>
+        <h2>Modificaciones 26-03-2018</h2>
         <ul>
             <li>[Clubes] Añadidos Niveles de Euskera</li>
             <li>[Clubes] Añadida vista creación de Niveles de Euslkera</li>
@@ -141,6 +142,9 @@
             <li>[Clubes] Añadidos Clubes</li>
             <li>[Clubes] Añadida vista de creación de Clubes</li>
             <li>[Clubes] Añadida vista de edición de Clubes</li>
+            <li>[Clubes] Añadidas Asambleas</li>
+            <li>[Clubes] Añadida vista de creación de Asamblea</li>
+            <li>[Clubes] Añadida vista de edición de Asamblea</li>
         </ul>
 
         <h2>Modificaciones 20/03/2018</h2>
