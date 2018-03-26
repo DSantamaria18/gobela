@@ -58,7 +58,11 @@
             <ul class="dropdown-menu">
                 <li><g:link class="list" controller="entidad" action="index">Entidades</g:link></li>
                 <li><g:link class="list" controller="contacto" action="index">Contactos</g:link></li>
-                %{--<li><g:link class="list" controller="club" action="index">Clubes</g:link></li>--}%
+                <li><g:link class="list" controller="nivelEuskera" action="index">Niveles Euskera</g:link></li>
+                <li><g:link class="list" controller="titulacion" action="index">Titulaciones</g:link></li>
+                <li><g:link class="list" controller="tecnico" action="index">Técnicos</g:link></li>
+                <li><g:link class="list" controller="club" action="index">Clubes</g:link></li>
+                %{--<li><g:link class="list" controller="categoria" action="index">Categorías</g:link></li>--}%
             </ul>
         </li>
     </sec:ifAnyGranted>
@@ -124,19 +128,38 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 26-03-2018</h2>
+        <ul>
+            <li>[Clubes] Añadidos Niveles de Euskera</li>
+            <li>[Clubes] Añadida vista creación de Niveles de Euslkera</li>
+            <li>[Clubes] Añadida vista edición de Niveles de Euslkera</li>
+            <li>[Clubes] Añadidas Titulaciones</li>
+            <li>[Clubes] Añadida vista de creación de Titulaciones</li>
+            <li>[Clubes] Añadida vista de edición de Titulaciones</li>
+            <li>[Clubes] Añadidos Técnicos</li>
+            <li>[Clubes] Añadida vista de creación de Técnicos</li>
+            <li>[Clubes] Añadida vista de edición de Técnicos</li>
+            <li>[Clubes] Añadidos Clubes</li>
+            <li>[Clubes] Añadida vista de creación de Clubes</li>
+            <li>[Clubes] Añadida vista de edición de Clubes</li>
+            <li>[Clubes] Añadidas Asambleas</li>
+            <li>[Clubes] Añadida vista de creación de Asamblea</li>
+            <li>[Clubes] Añadida vista de edición de Asamblea</li>
+        </ul>
+
         <h2>Modificaciones 20/03/2018</h2>
         <ul>
-            <li>Añadido campo "Edad Mínima" a evento</li>
-            <li>Edad mínima por defecto es 0</li>
+            <li>[Multikirolak] Añadido campo "Edad Mínima" a evento</li>
+            <li>[Multikirolak] Edad mínima por defecto es 0</li>
         </ul>
 
         <h2>Modificaciones 19/03/2018</h2>
         <ul>
-            <li>Se establece el portentaje de ocupación por defecto en 100%</li>
-            <li>Se ha incrementado el tamaño del campo "Observaciones" de Evento a 5000 caracteres</li>
-            <li>Añadido filtrado de contactos por Entidad en vista de listado de contactos</li>
-            <li>Añadido filtrado de eventos por recinto</li>
-            <li>Añadido filtrado de eventos por Entidad Organizadora</li>
+            <li>[Incidencias] Se establece el portentaje de ocupación por defecto en 100%</li>
+            <li>[Incidencias] Se ha incrementado el tamaño del campo "Observaciones" de Evento a 5000 caracteres</li>
+            <li>[Incidencias] Añadido filtrado de contactos por Entidad en vista de listado de contactos</li>
+            <li>[Incidencias] Añadido filtrado de eventos por recinto</li>
+            <li>[Incidencias] Añadido filtrado de eventos por Entidad Organizadora</li>
         </ul>
 
         <h2>Modificaciones 06/02/2018</h2>
