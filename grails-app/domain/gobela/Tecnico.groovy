@@ -8,6 +8,8 @@ class Tecnico {
     NivelEuskera nivelEuskera
     Integer antiguedad = 1
 
+    static hasMany = [tecnicosCategorias: TecnicoCategoria]
+
     static constraints = {
         apellidos(nullable: false, blank: false)
         nombre(nullable: false, blank: false)
