@@ -10,6 +10,7 @@ class Categoria {
     Integer edadMax
 
     static belongsTo = [club: Club]
+    static hasMany = [tecnicosCategorias: TecnicoCategoria]
 
     static constraints = {
         modalidad(nullable: false, blank: false)
@@ -17,5 +18,6 @@ class Categoria {
         sexo(inList: ['MASC', 'FEM'])
         edadMin(nullable: false, blank: false)
         edadMax(nullable: false, blank: false)
+        numDeportistas(nullable: false, blank: false)
     }
 }
