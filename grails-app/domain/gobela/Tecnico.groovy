@@ -16,10 +16,10 @@ class Tecnico {
         titulacion(nullable: false)
         nivelEuskera(nullable: false)
         antiguedad(nullable: false, blank: false)
-
+        tecnicosCategorias(nullable: true)
     }
 
     String toString(){
-        return this?.nombre?.toUpperCase()
+        return this?.nombre?.toUpperCase() + " " + this?.apellidos?.toUpperCase()
     }
 }

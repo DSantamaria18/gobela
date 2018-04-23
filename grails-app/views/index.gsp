@@ -128,6 +128,15 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 16-04-2018</h2>
+        <ul>
+            <li>[Clubes] Creada relación Técnicos <-> Categorías</li>
+            <li>[Clubes] Creada entidad Categoría</li>
+            <li>[Clubes] Creada lógica de categorías vacías</li>
+            <li>[Clubes] Creada plantilla de categoría</li>
+            <li>[Clubes] Creada vista de asociación técnicos-categorías</li>
+        </ul>
+
         <h2>Modificaciones 26-03-2018</h2>
         <ul>
             <li>[Clubes] Añadidos Niveles de Euskera</li>

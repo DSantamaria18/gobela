@@ -8,6 +8,16 @@ class CategoriaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def mostrarCategorias(){
+        Club club = Club.get(params.clubId as Long)
+        def categoriasList = Categoria.findAllByClub(club)
+        respond categoriasList, model:[categoriasList: categoriasList, categoriasCount: categoriasList.size()]
+    }
+
+    def generarArbolCategorias(){
+
+    }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Categoria.list(params), model:[categoriaCount: Categoria.count()]
