@@ -10,7 +10,9 @@ class CategoriaController {
 
     def mostrarCategorias(){
         Club club = Club.get(params.clubId as Long)
-        def categoriasList = Categoria.findAllByClub(club)
+        def categoriasList = Categoria.findAllByClub(club).sort{
+            it.edadMin
+        }
         respond categoriasList, model:[categoriasList: categoriasList, categoriasCount: categoriasList.size()]
     }
 

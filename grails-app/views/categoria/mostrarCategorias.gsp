@@ -66,6 +66,7 @@
         </div>
     </div>--}%
         <div class="container-fluid">
+            <h1>CATEGORIAS ${categoriasList[0].modalidad}</h1>
             <section class="row ">
                 <div class="grid-container" id="grid-categorias">
                     <g:each in="${categoriasList}" var="categoria" status="i">
