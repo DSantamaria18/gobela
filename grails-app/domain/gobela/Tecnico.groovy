@@ -7,6 +7,7 @@ class Tecnico {
     Titulacion titulacion
     NivelEuskera nivelEuskera
     Integer antiguedad = 1
+    Boolean contrato
 
     static hasMany = [tecnicosCategorias: TecnicoCategoria]
 
@@ -16,6 +17,7 @@ class Tecnico {
         titulacion(nullable: false)
         nivelEuskera(nullable: false)
         antiguedad(nullable: false, blank: false)
+        contrato()
         tecnicosCategorias(nullable: true)
     }
 

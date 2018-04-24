@@ -137,6 +137,7 @@
             <li>[Clubes] Creada vista de asociación técnicos-categorías</li>
             <li>[Clubes] Añadida opción de categorías mixtas</li>
             <li>[Clubes] Categorías ordenadas por edad</li>
+            <li>[Clubes] Añadida relación laboral a Técnicos</li>
         </ul>
 
         <h2>Modificaciones 26-03-2018</h2>
