@@ -22,6 +22,6 @@ class Categoria {
     }
 
     String toString(){
-        return this?.nombre.toUpperCase() + " " + this?.sexo.toUpperCase()
+        return this?.nombre?.toUpperCase() + " " + this?.sexo?.toUpperCase()
     }
 }

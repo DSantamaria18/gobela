@@ -5,6 +5,35 @@
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'categoria.label', default: 'Categoria')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
+
+     <style>
+
+         .grid-container {
+             display: grid;
+             grid-template-columns: auto auto auto auto;
+             padding: 10px;
+             justify-content: space-evenly;
+         }
+
+         @media (max-width: 1000px) {
+             .grid-container {
+                 display: grid;
+                 grid-template-columns: auto auto;
+                 padding: 10px;
+                 justify-content: space-evenly;
+             }
+         }
+
+         @media (max-width: 600px) {
+             .grid-container {
+                 display: grid;
+                 grid-template-columns: auto;
+                 padding: 10px;
+                 justify-content: space-evenly;
+             }
+         }
+
+     </style>
 </head>
 
 <body>
@@ -38,8 +67,7 @@
     </div>--}%
         <div class="container-fluid">
             <section class="row ">
-                <div class="grid-container" id="grid-categorias"
-                     style="display: grid; grid-template-columns: auto   ; padding: 10px; justify-content: space-evenly;">
+                <div class="grid-container" id="grid-categorias">
                     <g:each in="${categoriasList}" var="categoria" status="i">
                         <div class="grid-item" id="${categoria.id}">
                             <g:link controller="categoria" action="show" params="[id: categoria.id]"

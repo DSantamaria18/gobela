@@ -135,6 +135,7 @@
             <li>[Clubes] Creada lógica de categorías vacías</li>
             <li>[Clubes] Creada plantilla de categoría</li>
             <li>[Clubes] Creada vista de asociación técnicos-categorías</li>
+            <li>[Clubes] Añadida opción de categorías mixtas</li>
         </ul>
 
         <h2>Modificaciones 26-03-2018</h2>
