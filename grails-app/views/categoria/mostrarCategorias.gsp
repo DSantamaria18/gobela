@@ -100,9 +100,21 @@
                                                     <span>${tecnico}</span>
                                                     <br />
                                                 </g:each>
-
                                             </div>
                                         </g:if>
+
+                                        <g:if test="${categoria?.sesiones.size() > 0}">
+                                            <div class="list-cat-sesiones">
+                                                <h2 class="text-center text-uppercase">SESIONES</strong></h2>
+                                                <g:each in="${categoria?.sesiones}" status="k"
+                                                        var="sesion">
+                                                    <span>${sesion}</span>
+                                                    <br />
+                                                </g:each>
+                                            </div>
+                                        </g:if>
+
+
                                     </div>
                                 </div>
                             </g:link>

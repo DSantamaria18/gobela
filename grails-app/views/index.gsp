@@ -62,7 +62,7 @@
                 <li><g:link class="list" controller="titulacion" action="index">Titulaciones</g:link></li>
                 <li><g:link class="list" controller="tecnico" action="index">Técnicos</g:link></li>
                 <li><g:link class="list" controller="club" action="index">Clubes</g:link></li>
-                %{--<li><g:link class="list" controller="categoria" action="index">Categorías</g:link></li>--}%
+                <li><g:link class="list" controller="categoria" action="index">Categorías</g:link></li>
             </ul>
         </li>
     </sec:ifAnyGranted>
@@ -138,6 +138,10 @@
             <li>[Clubes] Añadida opción de categorías mixtas</li>
             <li>[Clubes] Categorías ordenadas por edad</li>
             <li>[Clubes] Añadida relación laboral a Técnicos</li>
+            <li>[Clubes] Creada entidad Sesiones de Entrenamiento</li>
+            <li>[Clubes] Creada lógica para Sesiones de Entrenamiento</li>
+            <li>[Clubes] Creadas vista de creación de Sesiones de Entrenamiento</li>
+            <li>[Clubes] Creadas vista de edición de Sesiones de Entrenamiento</li>
         </ul>
 
         <h2>Modificaciones 26-03-2018</h2>

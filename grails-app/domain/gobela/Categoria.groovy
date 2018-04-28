@@ -10,7 +10,7 @@ class Categoria {
     Integer edadMax
 
     static belongsTo = [club: Club]
-    static hasMany = [tecnicosCategorias: TecnicoCategoria]
+    static hasMany = [tecnicosCategorias: TecnicoCategoria, sesiones: Sesion]
 
     static constraints = {
         modalidad(nullable: false, blank: false)
