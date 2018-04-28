@@ -53,8 +53,8 @@
                             <g:message code="evento.horaInicio.label" default="Hora Inicio:"/>
                             <span class="required-indicator">*</span>
                         </label>
-                        <g:textField class="date" name="horaInicio"
-                                     value="${this.sesion?.horaInicio}" required=""/> (hh:mm)
+                        <input type="time" class="date" name="horaInicio" step="900"
+                               value="${this.sesion?.horaInicio}" required=""/> (hh:mm)
                     </div>
 
                     <div class="fieldcontain ${hasErrors(bean: sesion, field: 'horaFin', 'error')} required">
@@ -62,9 +62,8 @@
                             <g:message code="evento.horaFin.label" default="Hora Fin:"/>
                             <span class="required-indicator">*</span>
                         </label>
-                        <g:textField class="date" name="horaFin"
-                                     value="${this.sesion?.horaFin}"
-                                     required=""/> (hh:mm)
+                        <input type="time" class="date" name="horaFin" step="900"
+                               value="${this.sesion?.horaFin}" required=""/> (hh:mm)
                     </div>
 
                     <div class="fieldcontain ${hasErrors(bean: sesion, field: 'recinto', 'error')} required">
