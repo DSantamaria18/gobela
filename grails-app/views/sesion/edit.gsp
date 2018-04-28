@@ -31,14 +31,6 @@
                 <g:hiddenField name="version" value="${this.sesion?.version}" />
                 <fieldset class="form">
 
-                   %{-- <div class="fieldcontain ${hasErrors(bean: sesion, field: 'categoria', 'error')} required">
-                        <label for="nombre">
-                            Categoría:
-                        </label>
-                        <span>${this.categoria}</span>
-                        <input type="hidden" value="${this.categoria.id}" name="categoria">
-                    </div>--}%
-
                     <div class="fieldcontain ${hasErrors(bean: sesion, field: 'diaSemana', 'error')} required">
                         <label for="diaSemana">
                             <g:message code="evento.diaSemana.label" default="Día:"/>
@@ -84,7 +76,6 @@
                          id="instalacion-container">
                         <g:render template="instalacion"/>
                     </div>
-                    %{--<f:all bean="sesion"/>--}%
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

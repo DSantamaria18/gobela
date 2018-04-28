@@ -46,7 +46,6 @@
                     <g:message code="evento.diaSemana.label" default="Día:"/>
                     <span class="required-indicator">*</span>
                 </label>
-                %{--<g:textField name="diaSemana" value="${this.evento?.nombre}" required=""/>--}%
                 <g:select name="diaSemana"
                           from="['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO']"/>
             </div>
@@ -90,7 +89,8 @@
 
         </fieldset>
         <fieldset class="buttons">
-            <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+            <g:submitButton name="create" class="save"
+                            value="${message(code: 'default.button.create.label', default: 'Create')}"/>
         </fieldset>
     </g:form>
 </div>
