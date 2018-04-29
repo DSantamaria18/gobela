@@ -18,6 +18,8 @@
                                                               args="[entityName]"/></g:link></li>--}%
         <li><g:link class="create" controller="sesion" action="create"
                     params="['categoria': this.categoria.id]">Añadir Sesión</g:link></li>
+        <li><g:link class="create" controller="tecnicoCategoria" action="create"
+                    params="['categoriaId': this.categoria.id]">Asignar Técnico</g:link></li>
     </ul>
 </div>
 

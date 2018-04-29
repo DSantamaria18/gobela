@@ -18,7 +18,8 @@ class TecnicoCategoriaController {
     }
 
     def create() {
-        respond new TecnicoCategoria(params)
+        Categoria categoria = Categoria.get(params.categoriaId as Long)
+        respond new TecnicoCategoria(params), model: ['categoria': categoria]
     }
 
     @Transactional

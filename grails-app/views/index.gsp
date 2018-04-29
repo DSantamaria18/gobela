@@ -61,8 +61,8 @@
                 <li><g:link class="list" controller="nivelEuskera" action="index">Niveles Euskera</g:link></li>
                 <li><g:link class="list" controller="titulacion" action="index">Titulaciones</g:link></li>
                 <li><g:link class="list" controller="tecnico" action="index">Técnicos</g:link></li>
-                <li><g:link class="list" controller="club" action="index">Clubes</g:link></li>
-                <li><g:link class="list" controller="categoria" action="index">Categorías</g:link></li>
+                %{--<li><g:link class="list" controller="club" action="index">Clubes</g:link></li>--}%
+                %{--<li><g:link class="list" controller="categoria" action="index">Categorías</g:link></li>--}%
             </ul>
         </li>
     </sec:ifAnyGranted>
@@ -130,7 +130,7 @@
 
         <h2>Modificaciones 16-04-2018</h2>
         <ul>
-            <li>[Clubes] Creada relación Técnicos <-> Categorías</li>
+            <li>[Clubes] Creada relación Técnicos <-> Categorías</li>s
             <li>[Clubes] Creada entidad Categoría</li>
             <li>[Clubes] Creada lógica de categorías vacías</li>
             <li>[Clubes] Creada plantilla de categoría</li>
@@ -142,6 +142,8 @@
             <li>[Clubes] Creada lógica para Sesiones de Entrenamiento</li>
             <li>[Clubes] Creadas vista de creación de Sesiones de Entrenamiento</li>
             <li>[Clubes] Creadas vista de edición de Sesiones de Entrenamiento</li>
+            <li>[Clubes] Generación automática de árbol de categorías por defecto</li>
+            <li>[Clubes] Asignación directa de técnicos desde vista de categoría</li>
         </ul>
 
         <h2>Modificaciones 26-03-2018</h2>

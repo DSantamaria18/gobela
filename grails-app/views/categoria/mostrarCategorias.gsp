@@ -6,34 +6,34 @@
     <g:set var="entityName" value="${message(code: 'categoria.label', default: 'Categoria')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
 
-     <style>
+    <style>
 
-         .grid-container {
-             display: grid;
-             grid-template-columns: auto auto auto auto;
-             padding: 10px;
-             justify-content: space-evenly;
-         }
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        padding: 10px;
+        justify-content: space-evenly;
+    }
 
-         @media (max-width: 1000px) {
-             .grid-container {
-                 display: grid;
-                 grid-template-columns: auto auto;
-                 padding: 10px;
-                 justify-content: space-evenly;
-             }
-         }
+    @media (max-width: 1000px) {
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto;
+            padding: 10px;
+            justify-content: space-evenly;
+        }
+    }
 
-         @media (max-width: 600px) {
-             .grid-container {
-                 display: grid;
-                 grid-template-columns: auto;
-                 padding: 10px;
-                 justify-content: space-evenly;
-             }
-         }
+    @media (max-width: 600px) {
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto;
+            padding: 10px;
+            justify-content: space-evenly;
+        }
+    }
 
-     </style>
+    </style>
 </head>
 
 <body>
@@ -51,7 +51,7 @@
 </div>
 
 <div id="show-evento" class="content scaffold-show" role="main">
-
+    <input type="hidden" id="club_id" value="${clubId}"/>
     <g:if test="${categoriasCount > 0}">
     %{--<div id="list-categoria" class="content scaffold-list" role="main">
         --}%%{--<h1><g:message code="default.list.label" args="[entityName]"/></h1>--}%%{--
@@ -67,6 +67,7 @@
     </div>--}%
         <div class="container-fluid">
             <h1>CATEGORIAS ${categoriasList[0].club} ${categoriasList[0].modalidad}</h1>
+
             <section class="row ">
                 <div class="grid-container" id="grid-categorias">
                     <g:each in="${categoriasList}" var="categoria" status="i">
@@ -95,10 +96,11 @@
                                                 <g:each in="${categoria?.tecnicosCategorias}" status="j"
                                                         var="tecnico">
                                                     <g:if test="${tecnico.principal}">
-                                                        <span class="pull-left" style="padding-right: 10px;"><i class="glyphicon glyphicon-check"></i> </span>
+                                                        <span class="pull-left" style="padding-right: 10px;"><i
+                                                                class="glyphicon glyphicon-check"></i></span>
                                                     </g:if>
                                                     <span>${tecnico}</span>
-                                                    <br />
+                                                    <br/>
                                                 </g:each>
                                             </div>
                                         </g:if>
@@ -109,11 +111,10 @@
                                                 <g:each in="${categoria?.sesiones}" status="k"
                                                         var="sesion">
                                                     <span>${sesion}</span>
-                                                    <br />
+                                                    <br/>
                                                 </g:each>
                                             </div>
                                         </g:if>
-
 
                                     </div>
                                 </div>
@@ -128,33 +129,48 @@
     <g:else>
         <h1>No existe ningún árbol de categorias definido para este club.</h1>
 
-        <div class="message" role="status">
-            <span>Si quieres generar un árbol completo, selecciona la modalidad y pincha en el siguiente botón:</span>
-            <br/>
-        </div>
-
-        <div class="property-list">
-            <div class="fieldcontain">
-                <label for="modalidad">Selecciona una modalidad</label>
-                <g:select name="modalidad"
-                          from="${Modalidad.listOrderByNombre()}"
-                          value="${id}"
-                          noSelection="${['': 'Selecciona una modalidad...']}"
-                          optionKey="id"
-                          optionValue="nombre"/>
-                <span><input type="button" class="btn btn-primary" onclick="generarArbolCategorias();"
-                             value="Generar Categorias"/></span>
-            </div>
-        </div>
     </g:else>
+
+    <div class="message" role="status">
+        <span>Si quieres generar un nuevo árbol completo, selecciona la modalidad y pincha en el siguiente botón:</span>
+        <br/>
+    </div>
+
+    <div class="property-list">
+        <div class="fieldcontain">
+            <label for="modalidad">Selecciona una modalidad</label>
+            <g:select name="modalidad"
+                      from="${Modalidad.listOrderByNombre()}"
+                      value="${id}"
+                      noSelection="${['': 'Selecciona...']}"
+                      optionKey="id"
+                      optionValue="nombre"/>
+            <span><input type="button" class="btn btn-primary" onclick="generarArbolCategorias();"
+                         value="Generar Categorias"/></span>
+        </div>
+    </div>
+    %{--</g:else>--}%
 
 </div>
 
 <g:javascript>
 
     function generarArbolCategorias() {
+        var res = confirm('Se generará un nuevo árbol de categorías. ¿Estás seguro/a?');
+        // console.log(res);
+        if (res) {
+            var modalidadId = $('[name="modalidad"]').val();
+            console.log(modalidadId);
+            var clubId = $('#club_id').val();
+            console.log(clubId);
 
-
+            $.post("/gobela/categoria/generarArbolCategorias", {
+                modalidadId: modalidadId,
+                clubId: clubId
+            }, function (data, status) {
+                console.log(status);
+            });
+        }
     }
 
 </g:javascript>
