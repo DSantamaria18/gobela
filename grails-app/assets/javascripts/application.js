@@ -440,3 +440,19 @@ function infEventosPorFechas(fechaIniDesde, fechaIniHasta) {
         $('#tabla-informe-eventos').html(data);
     })
 }
+
+function generarArbolCategorias() {
+    var res = confirm('Se generará un nuevo árbol de categorías. ¿Estás seguro/a?');
+    if (res) {
+        var modalidadId = $('[name="modalidad"]').val();
+        var clubId = $('#club_id').val();
+
+        $.post("/gobela/categoria/generarArbolCategorias", {
+            modalidadId: modalidadId,
+            clubId: clubId
+        }, function (data, status) {
+            console.log(status);
+            $('body').html(data);
+        });
+    }
+}

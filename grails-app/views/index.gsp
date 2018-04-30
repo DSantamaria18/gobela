@@ -144,6 +144,8 @@
             <li>[Clubes] Creadas vista de edición de Sesiones de Entrenamiento</li>
             <li>[Clubes] Generación automática de árbol de categorías por defecto</li>
             <li>[Clubes] Asignación directa de técnicos desde vista de categoría</li>
+            <li>[Clubes] Varios árboles de categorías para un mismo club</li>
+            <li>[Clubes] Modificada vista de fichas de categorías para soportar varios árboles de categorías para un mismo club</li>
         </ul>
 
         <h2>Modificaciones 26-03-2018</h2>

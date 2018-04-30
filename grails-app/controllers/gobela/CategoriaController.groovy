@@ -9,7 +9,7 @@ class CategoriaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     private static final BASE_CATEGORIES = [
-            ['PRE-BENJAMIN','MASC', 7, 9, 0],
+            ['PRE-BENJAMIN', 'MASC', 7, 9, 0],
             ['PRE-BENJAMIN', 'FEM', 7, 9, 0],
             ['BENJAMIN 1', 'MASC', 9, 10, 0],
             ['BENJAMIN 1', 'FEM', 9, 10, 0],
@@ -39,9 +39,26 @@ class CategoriaController {
 
     def mostrarCategorias() {
         Club club = Club.get(params.clubId as Long)
-        def categoriasList = Categoria.createCriteria().list {
+
+        def modalidadesList = Categoria.createCriteria().list {
             eq('club', club)
-            order("edadMin", "asc")
+            projections {
+                groupProperty('modalidad')
+            }
+        }
+
+        def categoriasList = []
+
+        modalidadesList.each {
+            Modalidad modalidad = Modalidad.findByNombre(it)
+            def categoriasModalidad = Categoria.createCriteria().list {
+                and {
+                    eq('club', club)
+                    eq("modalidad", modalidad)
+                }
+                order("edadMin", "asc")
+            }
+            categoriasList.add(categoriasModalidad)
         }
 
         respond categoriasList, model: [categoriasList: categoriasList, categoriasCount: categoriasList.size(), clubId: params.clubId]
@@ -62,6 +79,12 @@ class CategoriaController {
             cat.modalidad = modalidad
 
             cat.save flush: true
+        }
+
+
+        def categoriasList = Categoria.createCriteria().list {
+            eq('club', club)
+            order("edadMin", "asc")
         }
 
         redirect action: 'mostrarCategorias', params: ['clubId': params.clubId]

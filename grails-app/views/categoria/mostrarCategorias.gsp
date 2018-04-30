@@ -65,64 +65,64 @@
             <g:paginate total="${categoriasCount ?: 0}"/>
         </div>
     </div>--}%
-        <div class="container-fluid">
-            <h1>CATEGORIAS ${categoriasList[0].club} ${categoriasList[0].modalidad}</h1>
+        <div class="container-fluid" id="container-grid">
+            <g:each in="${categoriasList}" var="categoriasModalidad" status="i">
+                <h1>CATEGORIAS ${categoriasModalidad[0].club} ${categoriasModalidad[0].modalidad}</h1>
 
-            <section class="row ">
-                <div class="grid-container" id="grid-categorias">
-                    <g:each in="${categoriasList}" var="categoria" status="i">
-                        <div class="grid-item" id="${categoria.id}">
-                            <g:link controller="categoria" action="show" params="[id: categoria.id]"
-                                    class="link-categoria" style="text-decoration: none">
+                <section class="row ">
+                    <div class="grid-container" id="grid-categorias">
+                        <g:each in="${categoriasModalidad}" var="categoria">
+                            <div class="grid-item" id="${categoria.id}">
+                                <g:link controller="categoria" action="show" params="[id: categoria.id]"
+                                        class="link-categoria" style="text-decoration: none">
 
-                                <div class="list-cat-item thumbnail">
-                                    <div class="caption">
-                                        <h1 class="text-center text-uppercase"><strong>${categoria.nombre} ${categoria.sexo}</strong>
-                                        </h1>
+                                    <div class="list-cat-item thumbnail">
+                                        <div class="caption">
+                                            <h1 class="text-center text-uppercase"><strong>${categoria.nombre} ${categoria.sexo}</strong>
+                                            </h1>
 
-                                        <div class="list-cat-edades">
-                                            <span class="text-capitalize">
-                                                ${categoria.edadMin} - ${categoria.edadMax} años
-                                            </span>
-                                        </div>
-
-                                        <div class="list-cat-deportistas">
-                                            <span>${categoria.numDeportistas}</span> Deportistas
-                                        </div>
-
-                                        <g:if test="${categoria?.tecnicosCategorias.size() > 0}">
-                                            <div class="list-cat-tecnicos">
-                                                <h2 class="text-center text-uppercase">TECNICOS</strong></h2>
-                                                <g:each in="${categoria?.tecnicosCategorias}" status="j"
-                                                        var="tecnico">
-                                                    <g:if test="${tecnico.principal}">
-                                                        <span class="pull-left" style="padding-right: 10px;"><i
-                                                                class="glyphicon glyphicon-check"></i></span>
-                                                    </g:if>
-                                                    <span>${tecnico}</span>
-                                                    <br/>
-                                                </g:each>
+                                            <div class="list-cat-edades">
+                                                <span class="text-capitalize">
+                                                    ${categoria.edadMin} - ${categoria.edadMax} años
+                                                </span>
                                             </div>
-                                        </g:if>
 
-                                        <g:if test="${categoria?.sesiones.size() > 0}">
-                                            <div class="list-cat-sesiones">
-                                                <h2 class="text-center text-uppercase">SESIONES</strong></h2>
-                                                <g:each in="${categoria?.sesiones}" status="k"
-                                                        var="sesion">
-                                                    <span>${sesion}</span>
-                                                    <br/>
-                                                </g:each>
+                                            <div class="list-cat-deportistas">
+                                                <span>${categoria.numDeportistas}</span> Deportistas
                                             </div>
-                                        </g:if>
 
+                                            <g:if test="${categoria?.tecnicosCategorias.size() > 0}">
+                                                <div class="list-cat-tecnicos">
+                                                    <h2 class="text-center text-uppercase">TECNICOS</strong></h2>
+                                                    <g:each in="${categoria?.tecnicosCategorias}" var="tecnico">
+                                                        <g:if test="${tecnico.principal}">
+                                                            <span class="pull-left" style="padding-right: 10px;"><i
+                                                                    class="glyphicon glyphicon-check"></i></span>
+                                                        </g:if>
+                                                        <span>${tecnico}</span>
+                                                        <br/>
+                                                    </g:each>
+                                                </div>
+                                            </g:if>
+
+                                            <g:if test="${categoria?.sesiones.size() > 0}">
+                                                <div class="list-cat-sesiones">
+                                                    <h2 class="text-center text-uppercase">SESIONES</strong></h2>
+                                                    <g:each in="${categoria?.sesiones}" var="sesion">
+                                                        <span>${sesion}</span>
+                                                        <br/>
+                                                    </g:each>
+                                                </div>
+                                            </g:if>
+
+                                        </div>
                                     </div>
-                                </div>
-                            </g:link>
-                        </div>
-                    </g:each>
-                </div>
-            </section>
+                                </g:link>
+                            </div>
+                        </g:each>
+                    </div>
+                </section>
+            </g:each>
         </div>
     </g:if>
 
@@ -149,31 +149,7 @@
                          value="Generar Categorias"/></span>
         </div>
     </div>
-    %{--</g:else>--}%
 
 </div>
-
-<g:javascript>
-
-    function generarArbolCategorias() {
-        var res = confirm('Se generará un nuevo árbol de categorías. ¿Estás seguro/a?');
-        // console.log(res);
-        if (res) {
-            var modalidadId = $('[name="modalidad"]').val();
-            console.log(modalidadId);
-            var clubId = $('#club_id').val();
-            console.log(clubId);
-
-            $.post("/gobela/categoria/generarArbolCategorias", {
-                modalidadId: modalidadId,
-                clubId: clubId
-            }, function (data, status) {
-                console.log(status);
-            });
-        }
-    }
-
-</g:javascript>
-
 </body>
 </html>
