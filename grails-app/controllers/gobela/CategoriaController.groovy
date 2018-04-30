@@ -100,7 +100,7 @@ class CategoriaController {
     }
 
     def create() {
-        respond new Categoria(params)
+        respond new Categoria(params), model: ['clubId': params.clubId]
     }
 
     @Transactional

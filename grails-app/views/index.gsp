@@ -128,7 +128,7 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones 16-04-2018</h2>
+        <h2>Modificaciones 01-05-2018</h2>
         <ul>
             <li>[Clubes] Creada relación Técnicos <-> Categorías</li>s
             <li>[Clubes] Creada entidad Categoría</li>
