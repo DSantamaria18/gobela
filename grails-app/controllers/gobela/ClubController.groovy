@@ -16,6 +16,49 @@ class ClubController {
     def show(params) {
         Entidad entidad = Entidad.get(params.entidadId as Long)
         Club club = Club.findAllByEntidad(entidad).first()
+        def modalidadesList = Categoria.createCriteria().list {
+            eq('club', club)
+            projections {
+                groupProperty('modalidad')
+            }
+        }
+
+        def categoriasList = []
+
+        modalidadesList.each {
+            Modalidad modalidad = Modalidad.findByNombre(it)
+            def categoriasModalidad = Categoria.createCriteria().list {
+                and {
+                    eq('club', club)
+                    eq("modalidad", modalidad)
+                }
+                order("edadMin", "asc")
+            }
+            categoriasList.add(categoriasModalidad)
+        }
+
+        def tecnicosList = TecnicoCategoria.executeQuery("select distinct(tc.tecnico) from TecnicoCategoria tc " +
+                "where tc.categoria.club = :club", [club: club])
+
+        def instalacionesList = Sesion.executeQuery("select distinct(s.instalacion) from Sesion s where s.categoria.club = :club", [club: club])
+
+        def sesionesList = []
+        DiaSemana.each{
+            def sesionesDia = Sesion.executeQuery("from Sesion s where s.categoria.club = :club and diaSemana = :dia order by horaInicio", [club: club, dia: it])
+            sesionesList.add(sesionesDia)
+        }
+
+        def asambleasList = Asamblea.createCriteria().list {
+            eq('club', club)
+            order('fecha', 'desc')
+        }
+
+        [club: club, categoriasList: categoriasList, tecnicosList: tecnicosList, instalacionesList: instalacionesList, sesionesList: sesionesList, asambleasList: asambleasList]
+    }
+
+    def show2(params) {
+        Entidad entidad = Entidad.get(params.entidadId as Long)
+        Club club = Club.findAllByEntidad(entidad).first()
         [club: club]
     }
 
