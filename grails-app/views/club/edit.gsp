@@ -38,7 +38,6 @@
         <fieldset class="form">
             <div class="fieldcontain">
                 <label for="entidad">Entidad</label>
-                %{--<g:textField name="entidad" value="${this.club.entidad}" readonly="true" style="width: 69ch"/>--}%
                 <g:select name="entidad" from="${Entidad.findAllById(this.club.entidad.id)}" value="nombreEntidad" optionKey="id" readonly="true"/>
             </div>
 
