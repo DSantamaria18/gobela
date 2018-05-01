@@ -130,7 +130,7 @@
 
         <h2>Modificaciones 01-05-2018</h2>
         <ul>
-            <li>[Clubes] Creada relación Técnicos <-> Categorías</li>s
+            <li>[Clubes] Creada relación Técnicos <-> Categorías</li>
             <li>[Clubes] Creada entidad Categoría</li>
             <li>[Clubes] Creada lógica de categorías vacías</li>
             <li>[Clubes] Creada plantilla de categoría</li>
