@@ -1,3 +1,4 @@
+<%@ page import="gobela.Modalidad; gobela.Categoria" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,8 +11,8 @@
         <div class="nav" role="navigation">
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+                %{--<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>--}%
+                %{--<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--}%
             </ul>
         </div>
         <div id="edit-categoria" class="content scaffold-edit" role="main">
@@ -29,7 +30,69 @@
             <g:form resource="${this.categoria}" method="PUT">
                 <g:hiddenField name="version" value="${this.categoria?.version}" />
                 <fieldset class="form">
-                    <f:all bean="categoria"/>
+                    <input type="hidden" name="club" value="${this.categoria?.clubId}"/>
+                    <div class="fieldcontain ${hasErrors(bean: categoria, field: 'modalidad', 'error')} required">
+                        <label for="modalidad">
+                            <g:message code="categoria.modalidad.label" default="Modalidad:"/>
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <g:select name="modalidad"
+                                  from="${Modalidad.listOrderByNombre()}"
+                                  value="${categoria?.modalidad?.id}"
+                                  noSelection="${['': 'Selecciona una modalidad...']}"
+                                  optionKey="id"
+                                  optionValue="nombre"/>
+                    </div>
+
+                    <div class="fieldcontain ${hasErrors(bean: categoria, field: 'nombre', 'error')} required">
+                        <label for="nombre">
+                            <g:message code="categoria.nombre.label" default="Nombre:"/>
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <g:textField name="nombre" value="${categoria?.nombre}" />
+                    </div>
+
+                    <div class="fieldcontain ${hasErrors(bean: categoria, field: 'sexo', 'error')} required">
+                        <label for="sexo">
+                            <g:message code="categoria.sexo.label" default="Sexo:"/>
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <g:select name="sexo"
+                                  from="${Categoria.constrainedProperties.sexo.inList}"
+                                  value="${categoria?.sexo}"
+                                  noSelection="${['': 'Selecciona un sexo...']}"/>
+                    </div>
+
+                    <div class="fieldcontain ${hasErrors(bean: categoria, field: 'edadMin', 'error')} required">
+                        <label for="edadMin">
+                            <g:message code="categoria.edadMin.label" default="Edad Min:"/>
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <g:textField name="edadMin" value="${categoria?.edadMin}" />
+                    </div>
+
+                    <div class="fieldcontain ${hasErrors(bean: categoria, field: 'edadMax', 'error')} required">
+                        <label for="edadMax">
+                            <g:message code="categoria.edadMax.label" default="Edad Max:"/>
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <g:textField name="edadMax" value="${categoria?.edadMax}" />
+                    </div>
+
+                    <div class="fieldcontain ${hasErrors(bean: categoria, field: 'numDeportistas', 'error')} required">
+                        <label for="numDeportistas">
+                            <g:message code="categoria.numDeportistas.label" default="Nº Deportistas:"/>
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <g:textField name="numDeportistas" value="${categoria?.numDeportistas}" />
+                    </div>
+
+                </fieldset>
+
+
+
+
+                    %{--<f:all bean="categoria"/>--}%
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

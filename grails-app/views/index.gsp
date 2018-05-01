@@ -61,7 +61,7 @@
                 <li><g:link class="list" controller="nivelEuskera" action="index">Niveles Euskera</g:link></li>
                 <li><g:link class="list" controller="titulacion" action="index">Titulaciones</g:link></li>
                 <li><g:link class="list" controller="tecnico" action="index">Técnicos</g:link></li>
-                <li><g:link class="list" controller="club" action="index">Clubes</g:link></li>
+                %{--<li><g:link class="list" controller="club" action="index">Clubes</g:link></li>--}%
                 %{--<li><g:link class="list" controller="categoria" action="index">Categorías</g:link></li>--}%
             </ul>
         </li>
@@ -127,6 +127,26 @@
 <div id="content" role="main">
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
+
+        <h2>Modificaciones 01-05-2018</h2>
+        <ul>
+            <li>[Clubes] Creada relación Técnicos <-> Categorías</li>s
+            <li>[Clubes] Creada entidad Categoría</li>
+            <li>[Clubes] Creada lógica de categorías vacías</li>
+            <li>[Clubes] Creada plantilla de categoría</li>
+            <li>[Clubes] Creada vista de asociación técnicos-categorías</li>
+            <li>[Clubes] Añadida opción de categorías mixtas</li>
+            <li>[Clubes] Categorías ordenadas por edad</li>
+            <li>[Clubes] Añadida relación laboral a Técnicos</li>
+            <li>[Clubes] Creada entidad Sesiones de Entrenamiento</li>
+            <li>[Clubes] Creada lógica para Sesiones de Entrenamiento</li>
+            <li>[Clubes] Creadas vista de creación de Sesiones de Entrenamiento</li>
+            <li>[Clubes] Creadas vista de edición de Sesiones de Entrenamiento</li>
+            <li>[Clubes] Generación automática de árbol de categorías por defecto</li>
+            <li>[Clubes] Asignación directa de técnicos desde vista de categoría</li>
+            <li>[Clubes] Varios árboles de categorías para un mismo club</li>
+            <li>[Clubes] Modificada vista de fichas de categorías para soportar varios árboles de categorías para un mismo club</li>
+        </ul>
 
         <h2>Modificaciones 26-03-2018</h2>
         <ul>

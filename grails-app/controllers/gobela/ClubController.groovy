@@ -10,12 +10,12 @@ class ClubController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Club.list(params), model:[clubCount: Club.count()]
+        respond Club.list(params), model: [clubCount: Club.count()]
     }
 
     def show(params) {
         Entidad entidad = Entidad.get(params.entidadId as Long)
-        Club club =Club.findAllByEntidad(entidad).first()
+        Club club = Club.findAllByEntidad(entidad).first()
         [club: club]
     }
 
@@ -33,19 +33,19 @@ class ClubController {
 
         if (club.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond club.errors, view:'create'
+            respond club.errors, view: 'create'
             return
         }
 
         Entidad entidad = Entidad.get(club.entidad.id)
-        club.save flush:true
-        entidad.es_club= true
-        entidad.save(flush:true)
+        club.save flush: true
+        entidad.es_club = true
+        entidad.save(flush: true)
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'club.label', default: 'Club'), club.id])
-                redirect (action: "show", params:[entidadId: entidad.id])
+                redirect(action: "show", params: [entidadId: entidad.id])
             }
             '*' { respond club, [status: CREATED] }
         }
@@ -65,19 +65,19 @@ class ClubController {
 
         if (club.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond club.errors, view:'edit'
+            respond club.errors, view: 'edit'
             return
         }
 
         Entidad entidad = Entidad.get(club.entidad.id)
-        club.save flush:true
+        club.save flush: true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'club.label', default: 'Club'), club.id])
-                redirect (action: "show", params:[entidadId: entidad.id])
+                redirect(action: "show", params: [entidadId: entidad.id])
             }
-            '*'{ respond club, [status: OK] }
+            '*' { respond club, [status: OK] }
         }
     }
 
@@ -91,17 +91,17 @@ class ClubController {
         }
 
         Entidad entidad = Entidad.get(club.entidad.id)
-        club.delete flush:true
+        club.delete flush: true
 
-        entidad.es_club= false
+        entidad.es_club = false
         entidad.save(flush: true)
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'club.label', default: 'Club'), club.id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
-            '*'{ render status: NO_CONTENT }
+            '*' { render status: NO_CONTENT }
         }
     }
 
@@ -111,7 +111,7 @@ class ClubController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'club.label', default: 'Club'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
 }

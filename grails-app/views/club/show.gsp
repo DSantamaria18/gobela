@@ -14,7 +14,10 @@
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
         <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]"/></g:link></li>
-        <li><g:link class="create" controller="asamblea" action="create" params="['clubId': club.id]">Añadir Asamblea</g:link></li>
+        <li><g:link class="create" controller="asamblea" action="create"
+                    params="['clubId': club.id]">Añadir Asamblea</g:link></li>
+            <li><g:link class="list" controller="categoria" action="mostrarCategorias"
+                        params="['clubId': club.id]">Categorías</g:link></li>
     </ul>
 </div>
 
@@ -23,12 +26,6 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-
-    <div class="fieldcontain">
-        <label for="nombre">Nombre:</label>
-        <label name="nombre">${this?.entidad?.nombre}</label>
-    </div>
-
 
     <f:display bean="club"/>
     <g:form resource="${this.club}" method="DELETE">

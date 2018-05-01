@@ -11,6 +11,7 @@ class Instalacion {
     }
 
     String toString() {
+//        return "[${this.recinto}] - ${nombreInstalacion?.toUpperCase()}"
         return nombreInstalacion?.toUpperCase()
     }
 }
