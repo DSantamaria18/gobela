@@ -53,18 +53,6 @@
 <div id="show-evento" class="content scaffold-show" role="main">
     <input type="hidden" id="club_id" value="${clubId}"/>
     <g:if test="${categoriasCount > 0}">
-    %{--<div id="list-categoria" class="content scaffold-list" role="main">
-        --}%%{--<h1><g:message code="default.list.label" args="[entityName]"/></h1>--}%%{--
-        <h1>${categoriasList[0].club.entidad.nombreEntidad} - ${categoriasList[0].modalidad.nombre}</h1>
-        <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-        </g:if>
-        <f:table collection="${categoriasList}"/>
-
-        <div class="pagination">
-            <g:paginate total="${categoriasCount ?: 0}"/>
-        </div>
-    </div>--}%
         <div class="container-fluid" id="container-grid">
             <g:each in="${categoriasList}" var="categoriasModalidad" status="i">
                 <h1>CATEGORIAS ${categoriasModalidad[0].club} ${categoriasModalidad[0].modalidad}</h1>
@@ -128,7 +116,6 @@
 
     <g:else>
         <h1>No existe ningún árbol de categorias definido para este club.</h1>
-
     </g:else>
 
     <div class="message" role="status">
@@ -138,11 +125,11 @@
 
     <div class="property-list">
         <div class="fieldcontain">
-            <label for="modalidad">Selecciona una modalidad</label>
+            <label for="modalidad">Selecciona una </label>
             <g:select name="modalidad"
                       from="${Modalidad.listOrderByNombre()}"
                       value="${id}"
-                      noSelection="${['': 'Selecciona...']}"
+                      noSelection="${['': 'Modalidad...']}"
                       optionKey="id"
                       optionValue="nombre"/>
             <span><input type="button" class="btn btn-primary" onclick="generarArbolCategorias();"
