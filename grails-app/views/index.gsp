@@ -146,6 +146,7 @@
             <li>[Clubes] Asignación directa de técnicos desde vista de categoría</li>
             <li>[Clubes] Varios árboles de categorías para un mismo club</li>
             <li>[Clubes] Modificada vista de fichas de categorías para soportar varios árboles de categorías para un mismo club</li>
+            <li>[Clubes] Cambios en gestión de días de la semana para las sesiones de entrenamiento</li>
         </ul>
 
         <h2>Modificaciones 26-03-2018</h2>

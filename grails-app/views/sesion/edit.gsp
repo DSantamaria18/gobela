@@ -1,3 +1,4 @@
+<%@ page import="gobela.Recinto" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,7 +38,8 @@
                             <span class="required-indicator">*</span>
                         </label>
                         <g:select name="diaSemana"
-                                  from="['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO']"/>
+                                  from="['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO']" value="${this.sesion?.diaSemana}"
+                        />
                     </div>
 
                     <div class="fieldcontain ${hasErrors(bean: sesion, field: 'horaInicio', 'error')} required">
@@ -64,7 +66,7 @@
                         </label>
                         <g:set var="instalacionId" value="${sesion?.instalacion?.id}"/>
                         <g:select name="recinto"
-                                  from="${gobela.Recinto.listOrderByNombre()}"
+                                  from="${Recinto.listOrderByNombre()}"
                                   value="${sesion?.recinto?.id}"
                                   noSelection="${['': 'Selecciona un recinto...']}"
                                   optionKey="id"

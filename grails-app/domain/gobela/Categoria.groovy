@@ -21,6 +21,10 @@ class Categoria {
         numDeportistas(nullable: false, blank: false)
     }
 
+    static mapping = {
+        sesiones sort: 'diaSemana', order: 'asc'
+    }
+
     String toString(){
         return this?.nombre?.toUpperCase() + " " + this?.sexo?.toUpperCase()
     }
