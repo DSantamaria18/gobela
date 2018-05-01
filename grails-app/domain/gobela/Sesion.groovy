@@ -1,10 +1,24 @@
 package gobela
 
-import java.time.LocalTime
+
+enum DiaSemana{
+    LUNES(1), MARTES(2), MIERCOLES(3), JUEVES(4), VIERNES(5), SABADO(6), DOMINGO(7)
+
+    private final int orden
+
+    DiaSemana(int orden) {
+        this.orden = orden
+    }
+
+    int getOrden() {
+        return orden
+    }
+}
 
 class Sesion {
 
-    String diaSemana
+    DiaSemana diaSemana
+//    String diaSemana
     String horaInicio
     String horaFin
     Recinto recinto
@@ -14,7 +28,6 @@ class Sesion {
     static belongsTo = [categoria: Categoria]
 
     static constraints = {
-        diaSemana(inList: ['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO'])
     }
 
     String toString(){
