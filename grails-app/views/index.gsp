@@ -130,6 +130,11 @@
 
         <h2>Modificaciones 01-05-2018</h2>
         <ul>
+            <li>[Clubes] Exportación a Excel de datos de club</li>
+        </ul>
+
+        <h2>Modificaciones 01-05-2018</h2>
+        <ul>
             <li>[Clubes] Creada relación Técnicos <-> Categorías</li>
             <li>[Clubes] Creada entidad Categoría</li>
             <li>[Clubes] Creada lógica de categorías vacías</li>

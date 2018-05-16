@@ -39,6 +39,7 @@
                     params="['clubId': club.id]">Añadir Asamblea</g:link></li>
         <li><g:link class="list" controller="categoria" action="mostrarCategorias"
                     params="['clubId': club.id]">Categorías</g:link></li>
+        <li><g:link class="list" controller="club" action="exportaClub" params="['clubId': club.id]">Exportar a Excel</g:link> </li>
     </ul>
 </div>
 
