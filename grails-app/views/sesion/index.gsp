@@ -37,9 +37,8 @@
                                 <ul class="list-group">
                                     <g:each in="${recinto}" var="instalacion">
                                         <a class="list-group-item lista-instalaciones-item" href="#"
-                                           id="${instalacion.id}" data-id="${instalacion.id}"
-                                           data-target-id="2"
-                                           onclick="filtraSesiones(${instalacion.id});">${instalacion}
+                                           id="${instalacion.id}" data-id="${instalacion.id}" data-target-id="2">
+                                            ${instalacion}
                                         </a>
                                     </g:each>
                                 </ul>
