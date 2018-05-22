@@ -52,15 +52,9 @@
 
         <div class="col-sm-9 col-md-9 ">
             <div class="row">
-                <g:if test="${sesionesList.isEmpty()}">
-                    <h1>Sesiones de Entrenamiento</h1>
-
-                    <p><small>Selecciona una instalación para ver las sesiones de entrenamiento programadas...</small>
-                    </p>
-                </g:if>
-                <g:else>
-                    <h1>Sesiones de Entrenamiento ${sesionesList[0].recinto} ${sesionesList[0].instalacion}</h1>
-                </g:else>
+                <h1>Sesiones de Entrenamiento</h1>
+                <p><small>Selecciona una instalación para ver las sesiones de entrenamiento programadas...</small>
+                </p>
             </div>
 
             <br/>
@@ -74,20 +68,13 @@
 
                     <div class="input-group">
                         <div id="radioBtn" class="btn-group">
-                            <span class="btn btn-default btn-sm btn-dia" data-toggle="estado"
-                                  data-value="LUNES">LUNES</span>
-                            <span class="btn btn-default btn-sm btn-dia" data-toggle="estado"
-                                  data-value="MARTES">MARTES</span>
-                            <span class="btn btn-default btn-sm btn-dia" data-toggle="estado"
-                                  data-value="MIERCOLES">MIERCOLES</span>
-                            <span class="btn btn-default btn-sm btn-dia" data-toggle="estado"
-                                  data-value="JUEVES">JUEVES</span>
-                            <span class="btn btn-default btn-sm btn-dia" data-toggle="estado"
-                                  data-value="VIERNES">VIERNES</span>
-                            <span class="btn btn-default btn-sm btn-dia" data-toggle="estado"
-                                  data-value="SABADO">SABADO</span>
-                            <span class="btn btn-default btn-sm btn-dia" data-toggle="estado"
-                                  data-value="DOMINGO">DOMINGO</span>
+                            <span class="btn btn-default btn-sm btn-dia" data-value="LUNES">LUNES</span>
+                            <span class="btn btn-default btn-sm btn-dia" data-value="MARTES">MARTES</span>
+                            <span class="btn btn-default btn-sm btn-dia" data-value="MIERCOLES">MIERCOLES</span>
+                            <span class="btn btn-default btn-sm btn-dia" data-value="JUEVES">JUEVES</span>
+                            <span class="btn btn-default btn-sm btn-dia" data-value="VIERNES">VIERNES</span>
+                            <span class="btn btn-default btn-sm btn-dia" data-value="SABADO">SABADO</span>
+                            <span class="btn btn-default btn-sm btn-dia" data-value="DOMINGO">DOMINGO</span>
                         </div>
                     </div>
                 </div> <!-- Botones día de la semana -->
