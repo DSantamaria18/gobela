@@ -102,49 +102,16 @@
 
 </div> <!-- row -->
 
-%{--<div id="lightbox1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true">×</button>
-
-            <div class="modal-content">
-                <div class="row" style="background: #fff; padding: 30px 10px 30px 10px;">
-                    <div class="col-md-12"><h3>Bitustick 1000</h3></br>
-                        <img src="https://bufiles.blob.core.windows.net/co3657/icon/bvh_icon2.png"
-                             style="width: 90px;"></img></br></br>
-                        <strong>DESCRIPTION</strong></br></br>
-                        BITUSTICK 1000 is a 1mm thick preformed self adhesive modified bituminous membrane specifically designed for waterproofing and damp proofing of below ground concrete structures where the ground water table is low.
-                        BITUSTICK 1000 conforms to the requirements of  BS 8102.</br></br>
-                        <strong style="color: orange;">ADVANTAGES</strong></br></br>
-                        Preformed thickness. Ensures application of a minimum and uniform thick membrane.</br>
-                        Easy and fast application. Same day screeding or backfilling.</br>
-                        Seamless adhesion on overlaps.</br>
-                        Resistant to chlorides, sulphates, dilute alkalis and acids.</br>
-                        Good crack bridging ability.</br>
-                        Good tear and puncture resistance.</br>
-                        Good resistance to hydrostatic pressure.</br>
-                        Effective sealing of pin holes & blow holes.</br></br>
-                        <strong style="color: orange;">USES</strong></br></br>
-                        Footings & Foundations
-                        Retaining walls
-                        Underpasses & subways
-                        Manholes
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>--}%
-
 </div> <!-- container -->
 
 <g:javascript>
+    var hoy = new Date();
+
     $('#radioBtn span').on('click', function () {
         var sel = $(this).data('value');
-        var tog = $(this).data('toggle');
         $('#dia-seleccionado').val(sel);
-        $('span[data-toggle="' + tog + '"]').not('[data-value="' + sel + '"]').removeClass('active btn-primary').addClass('notActive btn-default');
-        $('span[data-toggle="' + tog + '"][data-value="' + sel + '"]').removeClass('notActive btn-default').addClass('active btn-primary');
+        $('span').not('[data-value="' + sel + '"]').removeClass('active btn-primary').addClass('notActive btn-default');
+        $('span[data-value="' + sel + '"]').removeClass('notActive btn-default').addClass('active btn-primary');
     });
 
     function filtraSesiones(instalacionId, diaSemana) {
@@ -170,9 +137,9 @@
         var diaSemana = $(this).data('value');
         $('#dia-seleccionado').val(diaSemana);
         var instalacionId = $('#instalacion-seleccionada').val();
-        if(instalacionId === "" || instalacionId === undefined){
+        if (instalacionId === "" || instalacionId === undefined) {
             alert("No has seleccionado una instalación...")
-        } else{
+        } else {
             filtraSesiones(instalacionId, diaSemana);
         }
     });
@@ -184,15 +151,15 @@
         filtraSesiones(instalacionId, diaSemana)
     });
 
+
     $(document).ready(function () {
 
-        $("#spinner").bind("ajaxSend", function() {
+        $("#spinner").bind("ajaxSend", function () {
             $(this).fadeIn();
-        }).bind("ajaxComplete", function() {
+        }).bind("ajaxComplete", function () {
             $(this).fadeOut();
         });
 
-        var hoy = new Date();
         var diaSemana = hoy.toString().split(" ")[0];
         var dia = "";
 
