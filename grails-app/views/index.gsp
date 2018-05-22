@@ -128,9 +128,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones 01-05-2018</h2>
+        <h2>Modificaciones 12-05-2018</h2>
         <ul>
             <li>[Clubes] Exportación a Excel de datos de club</li>
+            <li>[Clubes] Vista general de sesiones de entrenamiento</li>
+            <li>[Clubes] Filtrado en vista general de sesiones de entrenamiento</li>
         </ul>
 
         <h2>Modificaciones 01-05-2018</h2>

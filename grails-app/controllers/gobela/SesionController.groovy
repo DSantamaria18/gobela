@@ -1,5 +1,7 @@
 package gobela
 
+import org.hibernate.Criteria
+
 import java.time.LocalTime
 
 import static org.springframework.http.HttpStatus.*
@@ -10,9 +12,25 @@ class SesionController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Sesion.list(params), model:[sesionCount: Sesion.count()]
+    def index() {
+        def recintosConSesion = Sesion.executeQuery("select distinct s.recinto from Sesion s order by s.instalacion.recinto")
+        def recintosList = []
+        recintosConSesion.each {
+            def instalaciones = Sesion.executeQuery("select distinct s.instalacion from Sesion s where s.instalacion.recinto = :recinto order by s.instalacion", [recinto: it])
+            recintosList.add(instalaciones)
+        }
+
+        def sesionesList = []
+        [recintosList: recintosList, sesionesList: sesionesList]
+    }
+
+    def filtraSesiones(params){
+        DiaSemana dia = params.diaSemana as DiaSemana
+        Instalacion instalacion = Instalacion.get(params.instalacionId as Long)
+
+        def sesionesList = Sesion.executeQuery("from Sesion s where s.diaSemana = :dia and s.instalacion = :instalacion", [dia: dia, instalacion: instalacion])
+
+        render template: "listaSesiones", model: [sesionesList: sesionesList, dia: dia.toString(), instalacion: instalacion]
     }
 
     def show(Sesion sesion) {
