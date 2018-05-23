@@ -136,6 +136,7 @@
             <li>[Clubes] Filtrado en vista general de sesiones de entrenamiento</li>
             <li>[Clubes] Añadido enlace a Sesiones en menú de Entidades</li>
             <li>[Clubes] Creado modal de verificación de sesiones de entrenamiento</li>
+            <li>[Clubes] Cambios visuales en tabla de sesiones</li>
         </ul>
 
         <h2>Modificaciones 01-05-2018</h2>

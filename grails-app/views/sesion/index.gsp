@@ -5,6 +5,77 @@
     <g:set var="entityName" value="${message(code: 'sesion.label', default: 'Sesion')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
 
+    <style>
+
+        .list-group-item {
+            display:inline-flex;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .item-div {
+            display: inline-block;
+            padding-left: 5px;
+        }
+
+        .btn-info {
+            .center-block();
+        }
+
+        .hour-box {
+            color: white;
+            /*background-color: #4D8618;*/
+            background-color: #8b0035;
+            padding-right: 10px;
+        }
+
+        .cat-box {
+            padding-right: 5px;
+        }
+
+        .data-box{
+            color: white;
+            background-color: #8b0035;
+            padding-right: 5px;
+        }
+
+        .verify-box {
+            background-color: #8b0035;
+            padding-right: 5px;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        .check {
+            display: table-cell;
+            vertical-align: middle;
+            text-decoration: none;
+            color: white;
+            text-decoration: none;
+        }
+
+        .verify-btn {
+            margin-top: 50%;
+            text-decoration: none;
+        }
+
+        .check:visited {
+            color: white;
+        }
+
+        .check:focus {
+            color: white;
+        }
+
+        .check:hover {
+            color: white;
+        }
+
+        .check:active {
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,7 +90,7 @@
 </div>
 
 <div class="container">
-    <div class="row">
+    %{--<div class="row">--}%
         <div class="col-sm-3 col-md-3"><!-- sidebar -->
             <div class="panel-group" id="accordion">
                 <g:each in="${recintosList}" var="recinto" status="i">
@@ -52,6 +123,7 @@
         <div class="col-sm-9 col-md-9 ">
             <div class="row">
                 <h1>Sesiones de Entrenamiento</h1>
+
                 <p><small>Selecciona una instalación para ver las sesiones de entrenamiento programadas...</small>
                 </p>
             </div>
@@ -78,15 +150,17 @@
                     </div>
                 </div> <!-- Botones día de la semana -->
 
-                <div class="table-responsive" id="tabla-sesiones">
+                %{--<div class="table-responsive" id="tabla-sesiones">--}%
+                <div id="tabla-sesiones">
 
                 </div>
+
             </div>
         </div> <!-- Listado de sesiones -->
 
     </div>
 
-</div> <!-- row -->
+%{--</div> <!-- row -->--}%
 
 </div> <!-- container -->
 
