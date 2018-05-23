@@ -1,26 +1,32 @@
 <g:if test="${!sesionesList.isEmpty()}">
-    <h1>Entrenamientos <span>${sesionesList[0].recinto}</span> <span>${sesionesList[0].instalacion}</span></h1>
+    <h1>Entrenamientos <span>${sesionesList[0].recinto}</span> <span>${sesionesList[0].instalacion}</span></h1><br/>
 
     <g:each in="${sesionesList}" var="sesion">
-        <div class="list-group">
+        <div class="list-group" id="lista-sesiones">
             <div class="list-group-item">
                 <div class="item-div hour-box center-block">
                     <div class="desde text-center">${sesion.horaInicio}</div>
+
                     <div class="hasta text-center">${sesion.horaFin}</div>
                 </div>
 
                 <div class="item-div cat-box">
                     <div class="club text-center">${sesion.categoria.club}</div>
+
                     <div class="categoria text-center">${sesion.categoria}</div>
                 </div>
 
                 <div class="item-div data-box">
-                    <div class="participantes text-center"><i class="glyphicon glyphicon-user"></i> ${sesion.categoria.numDeportistas}</div>
-                    <div class="ocupacion text-center"><i class="glyphicon glyphicon-stats"></i> ${sesion.ocupacion}</div>
+                    <div class="participantes text-center"><i
+                            class="glyphicon glyphicon-user"></i> ${sesion.categoria.numDeportistas}</div>
+
+                    <div class="ocupacion text-center"><i class="glyphicon glyphicon-stats"></i> ${sesion.ocupacion}
+                    </div>
                 </div>
 
                 <div class="item-div verify-box text-center">
-                    <a class="check" id="boton-verificar" data-toggle="modal" data-sesion="${sesion.id}" data-categoria="${sesion.categoria}"
+                    <a class="check" id="boton-verificar" data-toggle="modal" data-sesion="${sesion.id}"
+                       data-categoria="${sesion.categoria}"
                        data-participantes="${sesion.categoria.numDeportistas}"
                        data-club="${sesion.categoria.club}" data-horario="${sesion.horaInicio}-${sesion.horaFin}"
                        id="boton-verificar" href="#modal-verificacion" data-ocupacion="${sesion.ocupacion}">

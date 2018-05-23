@@ -7,6 +7,10 @@
 
     <style>
 
+        #lista-sesiones {
+            margin-bottom: 10px;
+        }
+
         .list-group-item {
             display:inline-flex;
             margin: 0px;
@@ -150,11 +154,9 @@
                     </div>
                 </div> <!-- Botones día de la semana -->
 
-                %{--<div class="table-responsive" id="tabla-sesiones">--}%
-                <div id="tabla-sesiones">
-
+                <div id="tabla-sesiones"><br />
+                    <!-- Template _listaSesiones -->
                 </div>
-
             </div>
         </div> <!-- Listado de sesiones -->
 
