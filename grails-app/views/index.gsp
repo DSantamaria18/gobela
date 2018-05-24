@@ -137,6 +137,10 @@
             <li>[Clubes] Añadido enlace a Sesiones en menú de Entidades</li>
             <li>[Clubes] Creado modal de verificación de sesiones de entrenamiento</li>
             <li>[Clubes] Cambios visuales en tabla de sesiones</li>
+            <li>[Clubes] Creada entidad "Histórico de Sesiones"</li>
+            <li>[Clubes] Creada vista edición de "Histórico de Sesiones"</li>
+            <li>[Clubes] Creado modal de creación "Histórico de Sesiones"</li>
+            <li>[Clubes] Creada lógica "Histórico de Sesiones"</li>
         </ul>
 
         <h2>Modificaciones 01-05-2018</h2>

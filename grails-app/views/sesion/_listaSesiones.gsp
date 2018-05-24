@@ -94,9 +94,9 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="verificacion-ok"><i
+                <button type="button" class="btn btn-success" id="verificacion-ok" data-dismiss="modal"><i
                         class="glyphicon glyphicon-ok"></i></button>
-                <button type="button" class="btn btn-danger" id="verificacion-fail"><i
+                <button type="button" class="btn btn-danger" id="verificacion-fail" data-dismiss="modal"><i
                         class="glyphicon glyphicon-remove"></i></button>
             </div>
         </div>
@@ -106,6 +106,7 @@
 
 <g:javascript>
     $('#boton-verificar').on('click', function () {
+        var hoy = new Date();
         $('#sesion-id').val($(this).data('sesion'));
         $('#fecha').val(hoy.toISOString().substring(0, 10));
         $('#horario').val($(this).data('horario'));
@@ -113,13 +114,34 @@
         $('#categoria').val($(this).data('categoria'));
         $('#participantes').val($(this).data('participantes'));
         $('#ocupacion').val($(this).data('ocupacion'));
-    })
+    });
 
     $('#verificacion-ok').on('click', function () {
-
-    })
+       createHistoricoSesion(true);
+    });
 
     $('#verificacion-fail').on('click', function () {
+        createHistoricoSesion(false);
+    });
 
-    })
+    function createHistoricoSesion(result){
+        $('#spinner').show();
+        var data = {
+            sesionId: $('#sesion-id').val(),
+            fecha: $('#fecha').val(),
+            participantes: $('#participantes').val(),
+            ocupacion: $('#ocupacion').val(),
+            observaciones: $('#observaciones').val(),
+            resultOk: result
+        };
+
+        $.post("/gobela/historicoSesiones/create", data)
+                .done(function (data, status) {
+            console.log(status);
+            $('#spinner').hide();
+        }).error(function (error) {
+            console.log(error);
+            $('#spinner').hide();
+        });
+    }
 </g:javascript>

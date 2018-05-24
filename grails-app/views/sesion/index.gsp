@@ -86,10 +86,12 @@
 <a href="#list-sesion" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
                                                              default="Skip to content&hellip;"/></a>
 
+
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
         %{--<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--}%
+        <li><g:link class="list" controller="historicoSesiones" action="index">Histórico de Sesiones</g:link></li>
     </ul>
 </div>
 
@@ -167,7 +169,6 @@
 </div> <!-- container -->
 
 <g:javascript>
-    var hoy = new Date();
 
     $('#radioBtn span').on('click', function () {
         var sel = $(this).data('value');
@@ -215,12 +216,9 @@
 
 
     $(document).ready(function () {
-
-        $("#spinner").bind("ajaxSend", function () {
-            $(this).fadeIn();
-        }).bind("ajaxComplete", function () {
-            $(this).fadeOut();
-        });
+        var hoy = new Date();
+        // $('#fecha').val(hoy.toISOString().substring(0, 10));
+        console.log(hoy.toISOString().substring(0, 10));
 
         var diaSemana = hoy.toString().split(" ")[0];
         var dia = "";
