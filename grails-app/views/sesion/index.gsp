@@ -186,8 +186,8 @@
                 diaSemana: diaSemana
             }, success: function (data, status) {
                 $('#spinner').hide();
-                console.log(status);
                 $('#tabla-sesiones').html(data);
+                formateaSesiones();
             }, error: function (error) {
                 $('#spinner').hide();
                 console.debug(error);
@@ -216,7 +216,6 @@
 
     $(document).ready(function () {
         var hoy = new Date();
-        // $('#fecha').val(hoy.toISOString().substring(0, 10));
         console.log(hoy.toISOString().substring(0, 10));
 
         var diaSemana = hoy.toString().split(" ")[0];

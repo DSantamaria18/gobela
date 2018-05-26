@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="item-div cat-box">
-                    <div class="club text-center">${sesion[1].categoria.club}</div>
+                    <div class="club text-center"><strong>${sesion[1].categoria.club}</strong></div>
 
                     <div class="categoria text-center">${sesion[1].categoria}</div>
                 </div>
@@ -197,6 +197,23 @@
         }
     });
 
+    function formateaSesiones(){
+        for(var i = 0; i < $('.check').size(); i++){
+            if($('.check').eq(i).data('hsresult') == true){
+                console.log(true);
+                $('.cat-box').eq(i).removeClass('bg-danger').addClass('bg-success');
+            }else{
+                if($('.check').eq(i).data('hsresult') === false){
+                    console.log(false);
+                    $('.cat-box').eq(i).removeClass('bg-success').addClass('bg-danger');
+                }else {
+                    console.log("Sin registrar");
+                    $('.cat-box').eq(i).removeClass('bg-success bg-danger');
+                }
+            }
+        }
+    }
+
     function updateHistoricoSesion(hs) {
         $('#spinner').show();
         var data = {
@@ -209,6 +226,7 @@
         $.post("/gobela/historicoSesiones/edit/" + hs, data)
                 .done(function (data, status) {
             $('#tabla-sesiones').html(data);
+            formateaSesiones();
             $('#spinner').hide();
 
         }).error(function (error) {
@@ -231,8 +249,8 @@
         $.post("/gobela/historicoSesiones/create", data)
                 .done(function (data, status) {
             $('#tabla-sesiones').html(data);
+            formateaSesiones();
             $('#spinner').hide();
-
         }).error(function (error) {
             $('#tabla-sesiones').html(data);
             $('#spinner').hide();
