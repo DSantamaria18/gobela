@@ -129,7 +129,7 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones 22-05-2018</h2>
+        <h2>Modificaciones 27-05-2018</h2>
         <ul>
             <li>[Clubes] Exportación a Excel de datos de club</li>
             <li>[Clubes] Vista general de sesiones de entrenamiento</li>
@@ -138,9 +138,8 @@
             <li>[Clubes] Creado modal de verificación de sesiones de entrenamiento</li>
             <li>[Clubes] Cambios visuales en tabla de sesiones</li>
             <li>[Clubes] Creada entidad "Histórico de Sesiones"</li>
-            <li>[Clubes] Creada vista edición de "Histórico de Sesiones"</li>
-            <li>[Clubes] Creado modal de creación "Histórico de Sesiones"</li>
             <li>[Clubes] Creada lógica "Histórico de Sesiones"</li>
+            <li>[Clubes] Creado modal de creación-edición "Histórico de Sesiones"</li>
         </ul>
 
         <h2>Modificaciones 01-05-2018</h2>

@@ -4,7 +4,6 @@
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'sesion.label', default: 'Sesion')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
-
     <style>
 
         #lista-sesiones {

@@ -1,7 +1,5 @@
 package gobela
 
-import org.hibernate.Criteria
-
 import java.time.LocalTime
 
 import static org.springframework.http.HttpStatus.*
@@ -9,6 +7,8 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = false)
 class SesionController {
+
+    SesionService sesionService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -27,8 +27,8 @@ class SesionController {
     def filtraSesiones(params){
         DiaSemana dia = params.diaSemana as DiaSemana
         Instalacion instalacion = Instalacion.get(params.instalacionId as Long)
-
-        def sesionesList = Sesion.executeQuery("from Sesion s where s.diaSemana = :dia and s.instalacion = :instalacion", [dia: dia, instalacion: instalacion])
+//        def sesionesList = Sesion.executeQuery("from HistoricoSesiones hs right join hs.sesion s where s.diaSemana = :dia and s.instalacion = :instalacion", [dia: dia, instalacion: instalacion])
+        def sesionesList = sesionService.filtraSesiones(dia, instalacion)
 
         render template: "listaSesiones", model: [sesionesList: sesionesList, dia: dia.toString(), instalacion: instalacion]
     }

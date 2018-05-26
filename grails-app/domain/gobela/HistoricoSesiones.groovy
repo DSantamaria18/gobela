@@ -6,6 +6,7 @@ class HistoricoSesiones {
     int participantes
     int ocupacion
     String observaciones
+    boolean resultadoOk
 
     static belongsTo = [sesion: Sesion]
 

@@ -6,11 +6,13 @@ import grails.transaction.Transactional
 @Transactional(readOnly = false)
 class HistoricoSesionesController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    SesionService sesionService
+
+    static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond HistoricoSesiones.list(params), model:[historicoSesionesCount: HistoricoSesiones.count()]
+        respond HistoricoSesiones.list(params), model: [historicoSesionesCount: HistoricoSesiones.count()]
     }
 
     def show(HistoricoSesiones historicoSesiones) {
@@ -25,7 +27,8 @@ class HistoricoSesionesController {
         historicoSesiones1.fecha = fecha
         historicoSesiones1.participantes = params.participantes as int
         historicoSesiones1.ocupacion = params.ocupacion as int
-        String observaciones = params.observaciones
+        historicoSesiones1.observaciones = params.observaciones
+        boolean resultadoOk = (params.resultadoOk == "true") ? true : false
 
         save(historicoSesiones1)
     }
@@ -40,23 +43,29 @@ class HistoricoSesionesController {
 
         if (historicoSesiones.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond historicoSesiones.errors, view:'create'
+            respond historicoSesiones.errors, view: 'create'
             return
         }
 
-        historicoSesiones.save flush:true
+        historicoSesiones.save flush: true
+        def sesionesList = sesionService.filtraSesiones(historicoSesiones.sesion.diaSemana, historicoSesiones.sesion.instalacion)
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'historicoSesiones.label', default: 'HistoricoSesiones'), historicoSesiones.id])
-                redirect historicoSesiones
+                render template: "/sesion/listaSesiones", model: [sesionesList: sesionesList, dia: historicoSesiones.sesion.diaSemana.toString(), instalacion: historicoSesiones.sesion.instalacion]
+//                redirect historicoSesiones
             }
-            '*' { respond historicoSesiones, [status: CREATED] }
+//            '*' { respond historicoSesiones, [status: CREATED] }
         }
     }
 
     def edit(HistoricoSesiones historicoSesiones) {
-        respond historicoSesiones
+        historicoSesiones.participantes = params.participantes as int
+        historicoSesiones.ocupacion = params.ocupacion as int
+        historicoSesiones.observaciones = params.observaciones
+        historicoSesiones.resultadoOk = (params.resultadoOk == "true") ? true : false
+        update(historicoSesiones)
     }
 
     @Transactional
@@ -69,18 +78,22 @@ class HistoricoSesionesController {
 
         if (historicoSesiones.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond historicoSesiones.errors, view:'edit'
+            respond historicoSesiones.errors, view: 'edit'
             return
         }
 
-        historicoSesiones.save flush:true
+        historicoSesiones.save flush: true
+
+        def sesionesList = sesionService.filtraSesiones(historicoSesiones.sesion.diaSemana, historicoSesiones.sesion.instalacion)
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'historicoSesiones.label', default: 'HistoricoSesiones'), historicoSesiones.id])
-                redirect historicoSesiones
+                render template: "/sesion/listaSesiones", model: [sesionesList: sesionesList, dia: historicoSesiones.sesion.diaSemana.toString(), instalacion: historicoSesiones.sesion.instalacion]
+//                redirect historicoSesiones
             }
-            '*'{ respond historicoSesiones, [status: OK] }
+//            '*' { respond historicoSesiones, [status: OK] }
+//            render template: "/sesion/listaSesiones", model: [sesionesList: sesionesList, dia: historicoSesiones.sesion.diaSemana.toString(), instalacion: historicoSesiones.sesion.instalacion]
         }
     }
 
@@ -93,14 +106,14 @@ class HistoricoSesionesController {
             return
         }
 
-        historicoSesiones.delete flush:true
+        historicoSesiones.delete flush: true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'historicoSesiones.label', default: 'HistoricoSesiones'), historicoSesiones.id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
-            '*'{ render status: NO_CONTENT }
+            '*' { render status: NO_CONTENT }
         }
     }
 
@@ -110,7 +123,7 @@ class HistoricoSesionesController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'historicoSesiones.label', default: 'HistoricoSesiones'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
 }
