@@ -61,6 +61,7 @@
                 <li><g:link class="list" controller="nivelEuskera" action="index">Niveles Euskera</g:link></li>
                 <li><g:link class="list" controller="titulacion" action="index">Titulaciones</g:link></li>
                 <li><g:link class="list" controller="tecnico" action="index">Técnicos</g:link></li>
+                <li><g:link class="list" controller="sesion" action="index">Sesiones</g:link></li>
                 %{--<li><g:link class="list" controller="club" action="index">Clubes</g:link></li>--}%
                 %{--<li><g:link class="list" controller="categoria" action="index">Categorías</g:link></li>--}%
             </ul>
@@ -127,6 +128,19 @@
 <div id="content" role="main">
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
+
+        <h2>Modificaciones 27-05-2018</h2>
+        <ul>
+            <li>[Clubes] Exportación a Excel de datos de club</li>
+            <li>[Clubes] Vista general de sesiones de entrenamiento</li>
+            <li>[Clubes] Filtrado en vista general de sesiones de entrenamiento</li>
+            <li>[Clubes] Añadido enlace a Sesiones en menú de Entidades</li>
+            <li>[Clubes] Creado modal de verificación de sesiones de entrenamiento</li>
+            <li>[Clubes] Cambios visuales en tabla de sesiones</li>
+            <li>[Clubes] Creada entidad "Histórico de Sesiones"</li>
+            <li>[Clubes] Creada lógica "Histórico de Sesiones"</li>
+            <li>[Clubes] Creado modal de creación-edición "Histórico de Sesiones"</li>
+        </ul>
 
         <h2>Modificaciones 01-05-2018</h2>
         <ul>

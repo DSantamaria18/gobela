@@ -18,7 +18,6 @@ enum DiaSemana{
 class Sesion {
 
     DiaSemana diaSemana
-//    String diaSemana
     String horaInicio
     String horaFin
     Recinto recinto
