@@ -177,7 +177,7 @@
     });
 
     function filtraSesiones(instalacionId, diaSemana) {
-        $('#spinner').show();
+        // $('#spinner').show();
         $.ajax({
             url: "/gobela/sesion/filtraSesiones",
             type: "get",
@@ -185,11 +185,11 @@
                 instalacionId: instalacionId,
                 diaSemana: diaSemana
             }, success: function (data, status) {
-                $('#spinner').hide();
+                // $('#spinner').hide();
                 $('#tabla-sesiones').html(data);
                 formateaSesiones();
             }, error: function (error) {
-                $('#spinner').hide();
+                // $('#spinner').hide();
                 console.debug(error);
             }
         })
