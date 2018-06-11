@@ -129,6 +129,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 11-06-2018</h2>
+        <ul>
+            <li>[Clubes] Corregido error check-in de sesiones</li>
+        </ul>
+
         <h2>Modificaciones 27-05-2018</h2>
         <ul>
             <li>[Clubes] Exportación a Excel de datos de club</li>
