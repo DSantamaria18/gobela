@@ -46,7 +46,7 @@
                         <div class="row fieldcontain">
                             <button type="button" class="row btn-block btn-primary"
                                     onclick="filtrarContactos($('#qEntidad option:selected').val());">
-                                FILTRAR EVENTOS
+                                FILTRAR CONTACTOS
                             </button>
                         </div>
                     </div>
