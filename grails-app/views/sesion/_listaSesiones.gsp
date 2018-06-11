@@ -215,7 +215,6 @@
     }
 
     function updateHistoricoSesion(hs) {
-        $('#spinner').show();
         var data = {
             participantes: $('#participantes').val(),
             ocupacion: $('#ocupacion').val(),
@@ -227,16 +226,13 @@
                 .done(function (data, status) {
             $('#tabla-sesiones').html(data);
             formateaSesiones();
-            $('#spinner').hide();
 
         }).error(function (error) {
             $('#tabla-sesiones').html(data);
-            $('#spinner').hide();
         });
     }
 
     function createHistoricoSesion() {
-        $('#spinner').show();
         var data = {
             sesionId: $('#sesion-id').val(),
             fecha: $('#fecha').val(),
@@ -250,10 +246,8 @@
                 .done(function (data, status) {
             $('#tabla-sesiones').html(data);
             formateaSesiones();
-            $('#spinner').hide();
         }).error(function (error) {
             $('#tabla-sesiones').html(data);
-            $('#spinner').hide();
         });
     }
 </g:javascript>
