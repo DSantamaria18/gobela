@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="item-div verify-box text-center">
-                    <a class="check" id="boton-verificar" id="boton-verificar" href="#modal-verificacion"
+                    <a class="check" id="boton-verificar" href="#modal-verificacion"
                        data-toggle="modal" data-sesion="${sesion[1].id}" data-categoria="${sesion[1].categoria}"
                        data-participantes="${sesion[1].categoria.numDeportistas}"
                        data-club="${sesion[1].categoria.club}" data-horario="${sesion[1].horaInicio}-${sesion[1].horaFin}"
@@ -52,7 +52,8 @@
 
 
 <!-- Modal de verificación -->
-<div class="modal fade" id="modal-verificacion" role="dialog" aria-labelledby="modal-verificacion" aria-hidden="true">
+%{--<div class="modal fade" id="modal-verificacion" role="dialog" aria-labelledby="modal-verificacion" aria-hidden="true">--}%
+<div class="modal" id="modal-verificacion" role="dialog" aria-labelledby="modal-verificacion" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -122,7 +123,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="enviarBtn" data-dismiss="modal" disabled>ENVIAR</button>
+                <button type="button" class="btn btn-primary" id="enviarBtn" data-dismiss="modal">ENVIAR</button>
             </div>
         </div>
     </div>
@@ -180,12 +181,10 @@
 
     $('#verificacion-ok').on('click', function () {
         $('#resultadoOk').val("true");
-        $('#enviarBtn').removeAttr('disabled');
     });
 
     $('#verificacion-fail').on('click', function () {
         $('#resultadoOk').val("false");
-        $('#enviarBtn').removeAttr('disabled');
     });
 
     $('#enviarBtn').on('click', function () {

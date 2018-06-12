@@ -95,7 +95,6 @@
 </div>
 
 <div class="container">
-    %{--<div class="row">--}%
         <div class="col-sm-3 col-md-3"><!-- sidebar -->
             <div class="panel-group" id="accordion">
                 <g:each in="${recintosList}" var="recinto" status="i">
@@ -163,8 +162,6 @@
 
     </div>
 
-%{--</div> <!-- row -->--}%
-
 </div> <!-- container -->
 
 <g:javascript>
@@ -177,7 +174,6 @@
     });
 
     function filtraSesiones(instalacionId, diaSemana) {
-        // $('#spinner').show();
         $.ajax({
             url: "/gobela/sesion/filtraSesiones",
             type: "get",
@@ -189,7 +185,6 @@
                 $('#tabla-sesiones').html(data);
                 formateaSesiones();
             }, error: function (error) {
-                // $('#spinner').hide();
                 console.debug(error);
             }
         })
@@ -250,6 +245,7 @@
         $('span').not('[data-value="' + sel + '"]').removeClass('active btn-primary').addClass('notActive btn-default');
         $('span[data-value="' + sel + '"]').removeClass('notActive btn-default').addClass('active btn-primary');
     });
+
 </g:javascript>
 </body>
 </html>
