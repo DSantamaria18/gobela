@@ -7,7 +7,6 @@ class Evento {
     String nombre
     Entidad entidadOrganizadora
     Entidad clubOrganizador
-    String tipoActividad
     String ambito
     String tipoPublico
     String publicoDest
@@ -54,7 +53,6 @@ class Evento {
         fechaFin(nullable: false)
         horario(nullable: true, blank: true)
         relevante()
-        tipoActividad(inList: ['Formación', 'Regular/Competición', 'Exhibición', 'Cultural', 'Txangoa - Excursión', 'Topaketa - Encuentro Deportivo', 'Txapelketa/Torneo', 'Concentración/Tecnificación', 'Otros'])
         tActividad(nullable: true, blank: true)
         actividad(nullable: true, blank: true)
         modalidad(nullable: true)
@@ -86,8 +84,4 @@ class Evento {
         solicitudesMaterial()
         ocupacion(nullable: false, blank: false)
     }
-
-    /* String toString(){
-         return nombre.toUpperCase()
-     }*/
 }

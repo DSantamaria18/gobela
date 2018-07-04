@@ -221,7 +221,6 @@
     <g:javascript>
         $(document).ready(function () {
             var date = new Date();
-            // $('#qFechaIniDesde_year').val("2016")
             $('#qFechaDesde_year').val(date.getFullYear());
         })
     </g:javascript>

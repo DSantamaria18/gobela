@@ -132,6 +132,7 @@
         <h2>Modificaciones 4-07-2018</h2>
         <ul>
             <li>[Entidades] Eliminado campo "Es Club" de vistas de entidad</li>
+            <li>[Eventos] Eliminado antigüo campo de Tipos de actividad</li>
         </ul>
 
         <h2>Modificaciones 15-06-2018</h2>

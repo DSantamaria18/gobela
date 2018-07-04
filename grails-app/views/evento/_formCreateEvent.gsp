@@ -54,18 +54,6 @@
     <g:textField name="horario" value="${this.evento?.horario}" required=""/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: evento, field: 'tipoActividad', 'error')} required">
-    <label for="tipoActividad">
-        <g:message code="evento.tipoActividad.label" default="Tipo de actividad:"/>
-        <span class="required-indicator">*</span>
-    </label>
-    <g:select name="tipoActividad"
-              from="${this.evento.constrainedProperties.tipoActividad.inList}"
-              required=""
-              value="${fieldValue(bean: evento, field: 'tipoActividad')}"
-              valueMessagePrefix="evento.tipoActividad"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'tActividad', 'error')} required">
     <label for="tActividad">
         <g:message code="evento.tActividad.label" default="Tipo de Actividad:"/>
