@@ -129,6 +129,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 4-07-2018</h2>
+        <ul>
+            <li>[Entidades] Eliminado campo "Es Club" de vistas de entidad</li>
+        </ul>
+
         <h2>Modificaciones 15-06-2018</h2>
         <ul>
             <li>[Eventos] Incrementeado tamaño máximo de fichero a 25 MB</li>

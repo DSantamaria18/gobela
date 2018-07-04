@@ -16,7 +16,7 @@ class Entidad {
     static constraints = {
         nombreEntidad(nullable: false, blank: false, unique: true)
         cif (nullable: false, blank: false)
-        es_club()
+        es_club(display: false)
         direccionEntidad(nullable: true, blank: true)
         municipioEntidad(nullable: true, blank: true)
         cpEntidad(nullable: true, blank: true)
