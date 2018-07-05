@@ -23,7 +23,6 @@
                     params="['nombre'               : evento?.nombre
                              , 'horario'            : evento?.horario
                              , 'relevante'          : evento?.relevante
-                             , 'tipoActividad'      : evento?.tipoActividad
                              , 'tActividad'         : evento?.tActividad?.id
                              , 'actividad'          : evento?.actividad?.id
                              , 'modalidad'          : evento?.modalidad?.id
@@ -135,18 +134,6 @@
                         default="Evento importante:"/></span>
                 <span class="property-value" aria-labelledby="relevante-label"><g:formatBoolean
                         boolean="${evento?.relevante}"/></span>
-            </li>
-        </g:if>
-
-        <g:if test="${evento?.tipoActividad}">
-            <li class="fieldcontain">
-                <span id="tipoActividad-label" class="property-label"><g:message
-                        code="evento.tipoActividad.label"
-                        default="Tipo de actividad:"/></span>
-
-                <span class="property-value" aria-labelledby="tipoActividad-label"><g:fieldValue
-                        bean="${evento}"
-                        field="tipoActividad"/></span>
             </li>
         </g:if>
 
