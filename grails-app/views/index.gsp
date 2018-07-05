@@ -129,6 +129,13 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h1>ULTIMOS CAMBIOS</h1>
+
+        <h2>Modificaciones 5-07-2018</h2>
+        <ul>
+            <li>[Eventos] Corregido error al mostrar evento</li>
+        </ul>
+
         <h2>Modificaciones 4-07-2018</h2>
         <ul>
             <li>[Entidades] Eliminado campo "Es Club" de vistas de entidad</li>
