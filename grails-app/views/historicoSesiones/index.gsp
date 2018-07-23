@@ -33,7 +33,7 @@
                 <th>Categoria</th>
                 <th>Sesión</th>
                 <th>Participantes</th>
-                <th>Ocupacón</th>
+                <th>Ocupación</th>
                 <th>Resultado</th>
                 <th>Observaciones</th>
             </tr>
