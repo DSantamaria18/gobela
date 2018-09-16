@@ -133,6 +133,8 @@
         <ul>
             <li>[Eventos] Corregido error al crear evento</li>
             <li>[Eventos] Corregido error al clonar evento</li>
+            <li>[Sesiones] Modificaciones en los campos de la tabla de Histórico de Sesiones"</li>
+            <li>[Sesiones] Modificado el orden de la tabla de Histórico de Sesiones</li>
         </ul>
 
         <h2>Modificaciones 5-07-2018</h2>
