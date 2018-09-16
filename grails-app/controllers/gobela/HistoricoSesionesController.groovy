@@ -1,5 +1,7 @@
 package gobela
 
+import grails.converters.JSON
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -12,7 +14,9 @@ class HistoricoSesionesController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond HistoricoSesiones.list(params), model: [historicoSesionesCount: HistoricoSesiones.count()]
+        params.order = "desc"
+        def historicoSesionesList = HistoricoSesiones.listOrderByFecha(params).collect{[fecha: it.fecha, sesion: it.sesion, club: it.sesion.categoria.club, categoria: it.sesion.categoria, resultado: it.resultadoOk]} as List
+        respond historicoSesionesList , model: [historicoSesionesList: historicoSesionesList,  historicoSesionesCount: HistoricoSesiones.count()]
     }
 
     def show(HistoricoSesiones historicoSesiones) {
