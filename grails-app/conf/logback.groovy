@@ -31,8 +31,8 @@ appender('STDOUT', ConsoleAppender) {
     }
 }
 
-if (Environment.currentEnvironment in [Environment.TEST, Environment.PRODUCTION]) {
-    LOGS_DIR = (Environment.currentEnvironment == Environment.TEST) ? TEST_LOGS_DIR : PROD_LOGS_DIR
+if (Environment.currentEnvironment in [Environment.TEST, Environment.PRODUCTION, Environment.DEVELOPMENT]) {
+    LOGS_DIR = (Environment.currentEnvironment == Environment.DEVELOPMENT || Environment.currentEnvironment == Environment.TEST) ? TEST_LOGS_DIR : PROD_LOGS_DIR
 }
 
 appender("ROLLING", RollingFileAppender) {

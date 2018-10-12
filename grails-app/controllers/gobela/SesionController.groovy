@@ -1,5 +1,6 @@
 package gobela
 
+import java.text.SimpleDateFormat
 import java.time.LocalTime
 
 import static org.springframework.http.HttpStatus.*
@@ -13,24 +14,54 @@ class SesionController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index() {
-        def recintosConSesion = Sesion.executeQuery("select distinct s.recinto from Sesion s order by s.instalacion.recinto")
-        def recintosList = []
-        recintosConSesion.each {
-            def instalaciones = Sesion.executeQuery("select distinct s.instalacion from Sesion s where s.instalacion.recinto = :recinto order by s.instalacion", [recinto: it])
-            recintosList.add(instalaciones)
-        }
+        Date fecha = new Date().clearTime()
+        DiaSemana diaSemana = getDiaSemana(fecha)
+        def listaSesiones = sesionService.filtraSesiones(diaSemana, fecha)
 
-        def sesionesList = []
-        [recintosList: recintosList, sesionesList: sesionesList]
+        [diaSemana: diaSemana, listaSesiones: listaSesiones]
     }
 
-    def filtraSesiones(params){
-        DiaSemana dia = params.diaSemana as DiaSemana
-        Instalacion instalacion = Instalacion.get(params.instalacionId as Long)
-//        def sesionesList = Sesion.executeQuery("from HistoricoSesiones hs right join hs.sesion s where s.diaSemana = :dia and s.instalacion = :instalacion", [dia: dia, instalacion: instalacion])
-        def sesionesList = sesionService.filtraSesiones(dia, instalacion)
+    DiaSemana getDiaSemana(Date fecha) {
+        String dia = new SimpleDateFormat("EEEE", new Locale('es', 'ES')).format(fecha).toUpperCase()
+//        String eguna = new SimpleDateFormat("EEEE", new Locale('eu', 'ES')).format(hoy)
 
-        render template: "listaSesiones", model: [sesionesList: sesionesList, dia: dia.toString(), instalacion: instalacion]
+        DiaSemana diaSemana
+        if (dia.equals("MIÉRCOLES")) {
+            diaSemana = DiaSemana.MIERCOLES
+        } else if (dia.equals("SÁBADO")) {
+            diaSemana = DiaSemana.SABADO
+        } else {
+            diaSemana = dia
+        }
+        diaSemana
+    }
+
+    def filtraInstalacionesPorRecinto(params) {
+        Long recintoId = params?.recinto ? params.recinto as Long : null
+        if (recintoId) {
+            Recinto recinto = Recinto.findById(recintoId)
+            def instalacionesList = Instalacion.findAllByRecinto(recinto)
+            render template: "comboInstalaciones", model: [instalacionesList: instalacionesList]
+        }
+    }
+
+    def filtraSesiones(params) {
+        Date fecha = new Date().clearTime()
+        DiaSemana diaSemana = getDiaSemana(fecha)
+
+        Long recintoId = params?.recintoId ? params.recintoId as Long : null
+        Long instalacionId = params?.instalacionId ? params.instalacionId as Long : null
+        def sesionesList
+        if(instalacionId){
+            Instalacion instalacion = Instalacion.get(instalacionId)
+            sesionesList = sesionService.filtraSesionesPorInstalacion(diaSemana, fecha, instalacion)
+        } else if(recintoId){
+            Recinto recinto = Recinto.get(recintoId)
+            sesionesList = sesionService.filtraSesionesPorRecinto(diaSemana, fecha, recinto)
+        }else {
+            sesionesList = sesionService.filtraSesiones(diaSemana, fecha)
+        }
+        render template: "listaSesiones2", model: [diaSemana: diaSemana, listaSesiones: sesionesList]
     }
 
     def show(Sesion sesion) {
@@ -57,11 +88,11 @@ class SesionController {
 
         if (sesion.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond sesion.errors, view:'create'
+            respond sesion.errors, view: 'create'
             return
         }
 
-        sesion.save flush:true
+        sesion.save flush: true
 
         request.withFormat {
             form multipartForm {
@@ -73,12 +104,6 @@ class SesionController {
     }
 
     def edit(Sesion sesion) {
-
-       /* horaInicio = LocalTime.of(sesion.horaInicio.split(':')[0] as Integer, sesion.horaInicio.split(':')[1] as Integer)
-        LocalTime horaFin = LocalTime.of(sesion.horaFin.split(':')[0] as Integer, sesion.horaFin.split(':')[1] as Integer)
-        sesion.horaInicio = horaInicio as Date
-        sesion.horaFin = horaFin as Date*/
-
         respond sesion
     }
 
@@ -97,18 +122,18 @@ class SesionController {
 
         if (sesion.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond sesion.errors, view:'edit'
+            respond sesion.errors, view: 'edit'
             return
         }
 
-        sesion.save flush:true
+        sesion.save flush: true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'sesion.label', default: 'Sesion'), sesion.id])
                 redirect sesion
             }
-            '*'{ respond sesion, [status: OK] }
+            '*' { respond sesion, [status: OK] }
         }
     }
 
@@ -121,14 +146,14 @@ class SesionController {
             return
         }
 
-        sesion.delete flush:true
+        sesion.delete flush: true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'sesion.label', default: 'Sesion'), sesion.id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
-            '*'{ render status: NO_CONTENT }
+            '*' { render status: NO_CONTENT }
         }
     }
 
@@ -138,7 +163,7 @@ class SesionController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'sesion.label', default: 'Sesion'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
 }

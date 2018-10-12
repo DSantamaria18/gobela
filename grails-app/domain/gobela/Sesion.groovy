@@ -25,6 +25,7 @@ class Sesion {
     Integer ocupacion
 
     static belongsTo = [categoria: Categoria]
+    static hasMany = [historicoSesiones: HistoricoSesiones]
 
     static constraints = {
     }

@@ -52,7 +52,6 @@
 
 
 <!-- Modal de verificación -->
-%{--<div class="modal fade" id="modal-verificacion" role="dialog" aria-labelledby="modal-verificacion" aria-hidden="true">--}%
 <div class="modal" id="modal-verificacion" role="dialog" aria-labelledby="modal-verificacion" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
