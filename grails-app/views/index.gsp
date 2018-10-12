@@ -129,6 +129,10 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 12-10-2018</h2>
+        <ul>
+            <li>[Sesiones] rediseño completo de checking de sesiones de entrenamiento</li>
+        </ul>
         <h2>Modificaciones 16-09-2018</h2>
         <ul>
             <li>[Eventos] Corregido error al crear evento</li>
