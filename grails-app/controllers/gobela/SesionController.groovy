@@ -14,22 +14,8 @@ class SesionController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index() {
-        def recintosConSesion = Sesion.executeQuery("select distinct s.recinto from Sesion s order by s.instalacion.recinto")
-        def recintosConSesionList = Sesion.executeQuery("select distinct s.recinto from Sesion s order by s.instalacion.recinto")
-        def recintosList = []
-        recintosConSesion.each {
-            def instalaciones = Sesion.executeQuery("select distinct s.instalacion from Sesion s where s.instalacion.recinto = :recinto order by s.instalacion", [recinto: it])
-            recintosList.add(instalaciones)
-        }
-
-        def sesionesList = []
-        [recintosList: recintosList, sesionesList: sesionesList, recintosConSesionList: recintosConSesionList]
-    }
-
-    def index2() {
         Date fecha = new Date().clearTime()
         DiaSemana diaSemana = getDiaSemana(fecha)
-//        def listaSesiones = HistoricoSesiones.executeQuery("from HistoricoSesiones hs right join hs.sesion s where (s.diaSemana = :dia and hs.fecha is null) or hs.fecha = :hoy order by s.horaInicio asc, s.horaFin asc", [dia: diaSemana, hoy: fecha])
         def listaSesiones = sesionService.filtraSesiones(diaSemana, fecha)
 
         [diaSemana: diaSemana, listaSesiones: listaSesiones]
@@ -51,19 +37,31 @@ class SesionController {
     }
 
     def filtraInstalacionesPorRecinto(params) {
-        Long recintoId = params.recinto as Long
-        Recinto recinto = Recinto.findById(recintoId)
-        def instalacionesList = Instalacion.findAllByRecinto(recinto)
-        render template: "comboInstalaciones", model: [instalacionesList: instalacionesList]
+        Long recintoId = params?.recinto ? params.recinto as Long : null
+        if (recintoId) {
+            Recinto recinto = Recinto.findById(recintoId)
+            def instalacionesList = Instalacion.findAllByRecinto(recinto)
+            render template: "comboInstalaciones", model: [instalacionesList: instalacionesList]
+        }
     }
 
     def filtraSesiones(params) {
-        DiaSemana dia = params.diaSemana as DiaSemana
-        Instalacion instalacion = Instalacion.get(params.instalacionId as Long)
-//        def sesionesList = Sesion.executeQuery("from HistoricoSesiones hs right join hs.sesion s where s.diaSemana = :dia and s.instalacion = :instalacion", [dia: dia, instalacion: instalacion])
-        def sesionesList = sesionService.filtraSesiones(dia, instalacion)
+        Date fecha = new Date().clearTime()
+        DiaSemana diaSemana = getDiaSemana(fecha)
 
-        render template: "listaSesiones", model: [sesionesList: sesionesList, dia: dia.toString(), instalacion: instalacion]
+        Long recintoId = params?.recintoId ? params.recintoId as Long : null
+        Long instalacionId = params?.instalacionId ? params.instalacionId as Long : null
+        def sesionesList
+        if(instalacionId){
+            Instalacion instalacion = Instalacion.get(instalacionId)
+            sesionesList = sesionService.filtraSesionesPorInstalacion(diaSemana, fecha, instalacion)
+        } else if(recintoId){
+            Recinto recinto = Recinto.get(recintoId)
+            sesionesList = sesionService.filtraSesionesPorRecinto(diaSemana, fecha, recinto)
+        }else {
+            sesionesList = sesionService.filtraSesiones(diaSemana, fecha)
+        }
+        render template: "listaSesiones2", model: [diaSemana: diaSemana, listaSesiones: sesionesList]
     }
 
     def show(Sesion sesion) {
@@ -106,12 +104,6 @@ class SesionController {
     }
 
     def edit(Sesion sesion) {
-
-        /* horaInicio = LocalTime.of(sesion.horaInicio.split(':')[0] as Integer, sesion.horaInicio.split(':')[1] as Integer)
-         LocalTime horaFin = LocalTime.of(sesion.horaFin.split(':')[0] as Integer, sesion.horaFin.split(':')[1] as Integer)
-         sesion.horaInicio = horaInicio as Date
-         sesion.horaFin = horaFin as Date*/
-
         respond sesion
     }
 
