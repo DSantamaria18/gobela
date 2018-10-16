@@ -24,10 +24,10 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    %{--<g:form>--}%
-        <div class="row">
-            <div id="filtro">
 
+    <div class="row">
+        <div id="filtro">
+            <g:form method="POST" action="exportarListadoHistoricoSesiones">
                 <fieldset>
                     <div class="fieldcontain">
                         <label for="filtrofechadesde">Fecha desde</label>
@@ -66,65 +66,66 @@
                     </div>
 
                     <div class="row fieldcontain" style="display: flow">
-                        <button id="btnfiltrar" class="btn btn-info"
-                                style="margin-left: 25%">Filtrar</button>
+                        <a href="#" id="btnfiltrar" class="btn btn-info"
+                           style="margin-left: 25%; text-decoration: none">Filtrar</a>
 
-                        %{--<g:actionSubmit class="btn btn-info" value="Descargar"
-                                        action="exportarListadoHistoricoSesiones"/>--}%
+                        <g:actionSubmit class="btn btn-info" value="Descargar"
+                                        action="exportarListadoHistoricoSesiones"/>
                     </div>
                 </fieldset>
-
-            </div>
+            </g:form>
         </div>
+    </div>
 
-        <div class="row" id="tablaListaSesiones">
-            <g:render template="listaHistoricoSesiones" model="[historicoSesionesList: historicoSesionesList, historicoSesionesCount: historicoSesionesList.size()]"/>
-            %{--<div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
+    <div class="row" id="tablaListaSesiones">
+        <g:render template="listaHistoricoSesiones"/>
+        %{--<g:render template="listaHistoricoSesiones" model="[historicoSesionesList: historicoSesionesList, historicoSesionesCount: historicoSesionesList.size()]"/>--}%
+        %{--<div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Club</th>
+                    <th>Categoria</th>
+                    <th>Sesión</th>
+                    <th>Participantes</th>
+                    <th>Ocupación</th>
+                    <th>Resultado</th>
+                    <th>Observaciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <g:each in="${historicoSesionesList}" var="hs">
                     <tr>
-                        <th>Fecha</th>
-                        <th>Club</th>
-                        <th>Categoria</th>
-                        <th>Sesión</th>
-                        <th>Participantes</th>
-                        <th>Ocupación</th>
-                        <th>Resultado</th>
-                        <th>Observaciones</th>
+                        <td><g:link controller="historicoSesiones" action="show"
+                                    id="${hs.id}">${formatDate(format: "dd-MM-yyyy", date: hs.fecha)}</g:link></td>
+                        <td><g:link
+                                uri="/club/show?entidadId=${hs.sesion.categoria.club.entidadId}">${hs.sesion.categoria.club}</g:link></td>
+                        <td><g:link uri="/categoria/show/${hs.sesion.categoria.id}">${hs.sesion.categoria}</g:link></td>
+                        <td><g:link uri="/sesion/show/${hs.sesion.id}">${hs.sesion}</g:link></td>
+                        <td>${hs.participantes}</td>
+                        <td>${hs.ocupacion}</td>
+                        <td>
+                            <g:if test="${hs.resultadoOk}">
+                                OK
+                            </g:if>
+                            <g:else>
+                                NO OK
+                            </g:else>
+                        </td>
+                        <td>${hs.observaciones}</td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <g:each in="${historicoSesionesList}" var="hs">
-                        <tr>
-                            <td><g:link controller="historicoSesiones" action="show"
-                                        id="${hs.id}">${formatDate(format: "dd-MM-yyyy", date: hs.fecha)}</g:link></td>
-                            <td><g:link
-                                    uri="/club/show?entidadId=${hs.sesion.categoria.club.entidadId}">${hs.sesion.categoria.club}</g:link></td>
-                            <td><g:link uri="/categoria/show/${hs.sesion.categoria.id}">${hs.sesion.categoria}</g:link></td>
-                            <td><g:link uri="/sesion/show/${hs.sesion.id}">${hs.sesion}</g:link></td>
-                            <td>${hs.participantes}</td>
-                            <td>${hs.ocupacion}</td>
-                            <td>
-                                <g:if test="${hs.resultadoOk}">
-                                    OK
-                                </g:if>
-                                <g:else>
-                                    NO OK
-                                </g:else>
-                            </td>
-                            <td>${hs.observaciones}</td>
-                        </tr>
-                    </g:each>
-                    </tbody>
-                </table>
-            </div>
+                </g:each>
+                </tbody>
+            </table>
         </div>
+    </div>
 
-        <div class="pagination">
-            <g:paginate total="${historicoSesionesCount ?: 0}"/>
-        </div>--}%
-        </div>
-    %{--</g:form>--}%
+    <div class="pagination">
+        <g:paginate total="${historicoSesionesCount ?: 0}"/>
+    </div>--}%
+    </div>
+
 
     <g:javascript>
 

@@ -32,7 +32,7 @@ class HistoricoSesionesController {
         respond historicoSesionesList, model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: HistoricoSesiones.count()]
     }
 
-    /*def exportarListadoHistoricoSesiones(params) {
+    def exportarListadoHistoricoSesiones(params) {
         Date filtrofechadesde = (params?.filtrofechadesde == "") ? null : Date.parse("yyyy-MM-dd", params.filtrofechadesde)
         Date filtrofechahasta = (params?.filtrofechahasta == "null") ? null : Date.parse("yyyy-MM-dd", params.filtrofechahasta)
         def filtroclub = (params?.filtroclub == "null") ? null : params.filtroclub as Long
@@ -124,7 +124,7 @@ class HistoricoSesionesController {
 
         workbook.write()
         workbook.close()
-    }*/
+    }
 
     def filtraHistoricoSesiones(params) {
         Date fdesde = (params?.fdesde == "null") ? null : Date.parse("yyyy-MM-dd", params.fdesde)
