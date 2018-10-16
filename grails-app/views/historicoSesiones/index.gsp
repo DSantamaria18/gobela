@@ -64,9 +64,15 @@
                               keys="[true, false]"/>
                 </div>
 
-                <div class="fieldcontain">
-                    <button id="btnfiltrar" class="btn-block btn btn-info"
-                            style="width: 25%; margin-left: 25%">Filtrar</button>
+                <div class="row fieldcontain" style="display: flow">
+                    <button id="btnfiltrar" class="btn btn-info"
+                            style="margin-left: 25%">Filtrar</button>
+
+                    %{--<button id="btndescargar" class="btn btn-info">Descargar</button>--}%
+                    <g:link class="btn btn-primary" action="exportarListadoHistoricoSesiones"
+                            params="[historicoSesionesList: historicoSesionesList.collect{it.id}]">
+                        <i class="glyphicon glyphicon-download"></i>
+                    </g:link>
                 </div>
             </fieldset>
         </div>
@@ -120,7 +126,41 @@
     </div>--}%
 </div>
 
-<g:javascript>$('#btnfiltrar').on('click', function () {
+<g:javascript>
+
+    $('#btndescargar').on('click', function () {
+        let params = '?';
+
+        let fdesde = $('#filtrofechadesde').val();
+        fdesde = (fdesde.length > 0) ? fdesde : 'null';
+        params = params + 'fdesde=' + fdesde;
+        let fhasta = $('#filtrofechahasta').val();
+        fhasta = (fhasta.length > 0) ? fhasta : 'null';
+        params = params + '&fhasta=' + fhasta;
+        const clubId = $('#filtroclub').val();
+        params = params + '&clubId=' + clubId;
+        const categoriaId = $('#filtrocategoria').val();
+        params = params + '&categoriaId=' + categoriaId;
+        const resultado = $('#filtroresultado').val();
+        params = params + '&resultado=' + resultado;
+
+        let url = '/gobela/historicoSesiones/exportarListadoHistoricoSesiones/' + params;
+        console.log(url);
+
+        $.ajax({
+            url: url,
+            method: "GET",
+            success: function (data) {
+                console.log(data);
+                window.location ='/gobela/historicoSesiones/index';
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    });
+
+    $('#btnfiltrar').on('click', function () {
     let params = '?';
 
     let fdesde = $('#filtrofechadesde').val();

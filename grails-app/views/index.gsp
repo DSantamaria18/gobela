@@ -134,6 +134,7 @@
             <li>[Sesiones] Corregidos campos sin valor en vista de Lista de Histórico de Sesiones</li>
             <li>[Sesiones] Añadidos campos de filtrado en vista de Lista de Histórico de Sesiones</li>
             <li>[Sesiones] Añadida lógica de filtrado en vista de Lista de Histórico de Sesiones</li>
+            <li>[Sesiones] Añadida descarga de listado de Histórico de Sesiones</li>
         </ul>
 
         <h2>Modificaciones 12-10-2018</h2>

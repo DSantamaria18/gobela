@@ -1,6 +1,17 @@
 package gobela
 
-import grails.converters.JSON
+import jxl.Workbook
+import jxl.WorkbookSettings
+import jxl.write.Border
+import jxl.write.BorderLineStyle
+import jxl.write.Colour
+import jxl.write.Formula
+import jxl.write.Label
+import jxl.write.Number
+import jxl.write.WritableCellFormat
+import jxl.write.WritableFont
+import jxl.write.WritableSheet
+import jxl.write.WritableWorkbook
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -19,6 +30,94 @@ class HistoricoSesionesController {
             [id: it.id, fecha: it.fecha, sesion: it.sesion, club: it.sesion.categoria.club, categoria: it.sesion.categoria, participantes: it.participantes, ocupacion: it.ocupacion, resultadoOk: it.resultadoOk, observaciones: it.observaciones]
         } as List
         respond historicoSesionesList, model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: HistoricoSesiones.count()]
+    }
+
+    def exportarListadoHistoricoSesiones(params) {
+        def listaSesiones = []
+        params.historicoSesionesList.each {
+            listaSesiones.push(HistoricoSesiones.findById(it as long))
+        }
+
+        response.setContentType('application/vnd.ms-excel')
+        response.setHeader('Content-Disposition', "Attachment;Filename='Informe_Historico_Sesiones.xls'")
+
+        WorkbookSettings ws = new WorkbookSettings()
+        ws.setLocale(new Locale("es", "ES"))
+        WritableWorkbook workbook = Workbook.createWorkbook(response.outputStream, ws)
+
+        WritableSheet sheet = workbook.createSheet("Sesiones", 0)
+
+        WritableFont titleFont = new WritableFont(WritableFont.ARIAL, 16, WritableFont.BOLD)
+        WritableCellFormat titleFormat = new WritableCellFormat()
+        titleFormat.setFont(titleFont)
+
+        WritableFont headerFont = new WritableFont(WritableFont.ARIAL, 11, WritableFont.BOLD)
+        WritableCellFormat headerFormat = new WritableCellFormat()
+        headerFormat.with {
+            setBackground(Colour.GREY_25_PERCENT)
+            setBorder(Border.ALL, BorderLineStyle.THIN)
+            setFont(headerFont)
+            setWrap(true)
+        }
+
+        WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 10)
+        WritableCellFormat cellFormat = new WritableCellFormat()
+        cellFormat.with {
+            setFont(cellFont)
+            setBorder(Border.ALL, BorderLineStyle.THIN)
+            setWrap(true)
+        }
+
+        sheet.addCell(new Label(1, 1, "Histórico de Sesiones de Entrenamiento", titleFormat))
+
+        def cabeceras = ['FECHA', 'CLUB', 'CATEGORIA', 'SESION', 'PARTICIPANTES', 'OCUPACION', 'RESULTADO', 'OBSERVACIONES']
+
+        final int COLUMNA_INICIAL = 1
+        final int MAX_COLUMN = COLUMNA_INICIAL + cabeceras.size() - 1
+        final int FILA_CABECERA = 3
+        for (int j = 0; j < cabeceras.size(); j++) {
+            sheet.addCell(new Label(COLUMNA_INICIAL + j, FILA_CABECERA, cabeceras[j].toUpperCase(), headerFormat))
+        }
+        final int PRIMERA_FILA_SESIONES = FILA_CABECERA + 1
+        final int ULTIMA_FILA_SESIONES =  PRIMERA_FILA_SESIONES + listaSesiones.size() - 1
+        int fila_actual = PRIMERA_FILA_SESIONES
+
+        listaSesiones.each {
+            final HistoricoSesiones hs = it as HistoricoSesiones
+            sheet.addCell(new Label(COLUMNA_INICIAL, fila_actual, hs.fecha.format("dd-MM-yyyy"), cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 1, fila_actual, hs.sesion.categoria.club.toString(), cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 2, fila_actual, hs.sesion.categoria.toString(), cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 3, fila_actual, hs.sesion.toString(), cellFormat))
+            sheet.addCell(new Number(COLUMNA_INICIAL + 4, fila_actual, hs.participantes, cellFormat))
+            sheet.addCell(new Number(COLUMNA_INICIAL + 5, fila_actual, hs.ocupacion, cellFormat))
+            String resultado = (hs.resultadoOk) ? "OK" : "NO OK"
+            sheet.addCell(new Label(COLUMNA_INICIAL + 6, fila_actual, resultado, cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 7, fila_actual, hs.observaciones, cellFormat))
+            fila_actual++
+        }
+
+        // La fórmula se evalua en Excel, donde las filas empiezan por 1, no por 0, por lo que hay que sumar 1 a las filas
+        sheet.addCell(new Formula(COLUMNA_INICIAL, fila_actual, "CONTARA(B${PRIMERA_FILA_SESIONES+1}:B${ULTIMA_FILA_SESIONES+1})", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL +1, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL +2, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL +3, fila_actual, "TOTALES:", headerFormat))
+        sheet.addCell(new Formula(COLUMNA_INICIAL +4, fila_actual, "SUMA(F${PRIMERA_FILA_SESIONES+1}:F${ULTIMA_FILA_SESIONES+1})", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL +5, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL +6, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL +7, fila_actual, "", headerFormat))
+
+
+        sheet.setColumnView(1, 15)
+        sheet.setColumnView(2, 20)
+        sheet.setColumnView(3, 30)
+        sheet.setColumnView(4, 35)
+        sheet.setColumnView(5, 25)
+        sheet.setColumnView(6, 20)
+        sheet.setColumnView(8, 40)
+
+
+        workbook.write()
+        workbook.close()
     }
 
     def filtraHistoricoSesiones(params) {
