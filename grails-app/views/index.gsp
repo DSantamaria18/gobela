@@ -132,6 +132,7 @@
         <h2>Modificaciones 16/10/2018</h2>
         <ul>
             <li>[Sesiones] Corregidos campos sin valor en vista de Lista de Histórico de Sesiones</li>
+            <li>[Sesiones] Añadidos campos de filtrado en vista de Lista de Histórico de Sesiones</li>
         </ul>
 
         <h2>Modificaciones 12-10-2018</h2>

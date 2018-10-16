@@ -19,6 +19,14 @@ class HistoricoSesionesController {
         respond historicoSesionesList , model: [historicoSesionesList: historicoSesionesList,  historicoSesionesCount: HistoricoSesiones.count()]
     }
 
+    def filtraCategoriasPorClub(params){
+        Long clubId = params?.clubId as Long
+        Club club = Club.get(clubId)
+        def categoriasPorClubList = Categoria.findAllByClub(club)
+
+        render template: "filtroCategoria", model: [categoriasPorClubList: categoriasPorClubList]
+    }
+
     def show(HistoricoSesiones historicoSesiones) {
         respond historicoSesiones
     }

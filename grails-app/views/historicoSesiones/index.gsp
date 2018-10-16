@@ -1,3 +1,4 @@
+<%@ page import="gobela.Club" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +24,43 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
+
+    <div id="filtro">
+        <fieldset>
+            <div class="fieldcontain">
+                <label for="filtrofecha">Fecha</label>
+                <input name="filtrofecha" id="filtrofecha" type="date">
+            </div>
+
+            <div class="fieldcontain">
+                <label for="filtroclub">Club</label>
+                <g:select name="filtroclub" id="filtroclub"
+                          from="${gobela.Club.list(sort: "entidad.nombreEntidad", order: "asc")}"
+                          optionKey="id"
+                          noSelection="['null': 'Selecciona un club...']">
+                </g:select>
+            </div>
+
+            <div class="fieldcontain">
+                <label for="filtrocategoria">Categoria</label>
+                <span id="combofiltrocategoria">
+                    <g:render template="filtroCategoria"/>
+                </span>
+            </div>
+
+            <div class="fieldcontain">
+                <label for="filtroresultado">Resultado</label>
+                <g:select name="filtroresultado"
+                          from="['OK', 'NO OK']"
+                          noSelection="['null': 'Resultado...']"
+                          id="filtroresultado"
+                          keys="[true, false]"/>
+            </div>
+            <div class="fieldcontain">
+                <button class="btn-block btn btn-info" style="width: 15%; margin-left: 25%" >Filtrar</button>
+            </div>
+        </fieldset>
+    </div>
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -68,5 +106,29 @@
         <g:paginate total="${historicoSesionesCount ?: 0}"/>
     </div>
 </div>
+
+<g:javascript>
+
+    $('#filtroclub').on('change', function () {
+        const clubId = $(this).val();
+        console.log(clubId);
+        let uri = '/historicoSesiones/filtraCategoriasPorClub/?clubId=' + clubId.toString();
+        console.log(uri);
+        let url = '/gobela/historicoSesiones/filtraCategoriasPorClub/?clubId=' + clubId.toString();
+
+        $.ajax({
+            // uri: uri,
+            url: url,
+            method: "GET",
+            success: function (data) {
+                console.log(data);
+                $('#combofiltrocategoria').html(data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    })
+</g:javascript>
 </body>
 </html>
