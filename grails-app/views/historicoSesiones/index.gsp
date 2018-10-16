@@ -24,195 +24,195 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
+    %{--<g:form>--}%
+        <div class="row">
+            <div id="filtro">
 
-    <div class="row">
-        <div id="filtro">
-            <fieldset>
-                <div class="fieldcontain">
-                    <label for="filtrofechadesde">Fecha desde</label>
-                    <input name="filtrofechadesde" id="filtrofechadesde" type="date">
-                </div>
+                <fieldset>
+                    <div class="fieldcontain">
+                        <label for="filtrofechadesde">Fecha desde</label>
+                        <input name="filtrofechadesde" id="filtrofechadesde" type="date">
+                    </div>
 
-                <div class="fieldcontain">
-                    <label for="filtrofechahasta">Fecha hasta</label>
-                    <input name="filtrofechahasta" id="filtrofechahasta" type="date"
-                           value="${new Date().format('yyyy-MM-dd')}">
-                </div>
+                    <div class="fieldcontain">
+                        <label for="filtrofechahasta">Fecha hasta</label>
+                        <input name="filtrofechahasta" id="filtrofechahasta" type="date"
+                               value="${new Date().format('yyyy-MM-dd')}">
+                    </div>
 
-                <div class="fieldcontain">
-                    <label for="filtroclub">Club</label>
-                    <g:select name="filtroclub" id="filtroclub"
-                              from="${gobela.Club.list(sort: "entidad.nombreEntidad", order: "asc")}"
-                              optionKey="id"
-                              noSelection="['null': 'Selecciona un club...']">
-                    </g:select>
-                </div>
+                    <div class="fieldcontain">
+                        <label for="filtroclub">Club</label>
+                        <g:select name="filtroclub" id="filtroclub"
+                                  from="${gobela.Club.list(sort: "entidad.nombreEntidad", order: "asc")}"
+                                  optionKey="id"
+                                  noSelection="['null': 'Selecciona un club...']">
+                        </g:select>
+                    </div>
 
-                <div class="fieldcontain">
-                    <label for="filtrocategoria">Categoria</label>
-                    <span id="combofiltrocategoria">
-                        <g:render template="filtroCategoria"/>
-                    </span>
-                </div>
+                    <div class="fieldcontain">
+                        <label for="filtrocategoria">Categoria</label>
+                        <span id="combofiltrocategoria">
+                            <g:render template="filtroCategoria"/>
+                        </span>
+                    </div>
 
-                <div class="fieldcontain">
-                    <label for="filtroresultado">Resultado</label>
-                    <g:select name="filtroresultado"
-                              from="['OK', 'NO OK']"
-                              noSelection="['null': 'Resultado...']"
-                              id="filtroresultado"
-                              keys="[true, false]"/>
-                </div>
+                    <div class="fieldcontain">
+                        <label for="filtroresultado">Resultado</label>
+                        <g:select name="filtroresultado"
+                                  from="['OK', 'NO OK']"
+                                  noSelection="['null': 'Resultado...']"
+                                  id="filtroresultado"
+                                  keys="[true, false]"/>
+                    </div>
 
-                <div class="row fieldcontain" style="display: flow">
-                    <button id="btnfiltrar" class="btn btn-info"
-                            style="margin-left: 25%">Filtrar</button>
+                    <div class="row fieldcontain" style="display: flow">
+                        <button id="btnfiltrar" class="btn btn-info"
+                                style="margin-left: 25%">Filtrar</button>
 
-                    %{--<button id="btndescargar" class="btn btn-info">Descargar</button>--}%
-                    <g:link class="btn btn-primary" action="exportarListadoHistoricoSesiones"
-                            params="[historicoSesionesList: historicoSesionesList.collect{it.id}]">
-                        <i class="glyphicon glyphicon-download"></i>
-                    </g:link>
-                </div>
-            </fieldset>
+                        %{--<g:actionSubmit class="btn btn-info" value="Descargar"
+                                        action="exportarListadoHistoricoSesiones"/>--}%
+                    </div>
+                </fieldset>
+
+            </div>
         </div>
-    </div>
 
-    <div class="row" id="tablaListaSesiones">
-        <g:render template="listaHistoricoSesiones"/>
-        %{--<div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Club</th>
-                    <th>Categoria</th>
-                    <th>Sesión</th>
-                    <th>Participantes</th>
-                    <th>Ocupación</th>
-                    <th>Resultado</th>
-                    <th>Observaciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                <g:each in="${historicoSesionesList}" var="hs">
+        <div class="row" id="tablaListaSesiones">
+            <g:render template="listaHistoricoSesiones" model="[historicoSesionesList: historicoSesionesList, historicoSesionesCount: historicoSesionesList.size()]"/>
+            %{--<div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <td><g:link controller="historicoSesiones" action="show"
-                                    id="${hs.id}">${formatDate(format: "dd-MM-yyyy", date: hs.fecha)}</g:link></td>
-                        <td><g:link
-                                uri="/club/show?entidadId=${hs.sesion.categoria.club.entidadId}">${hs.sesion.categoria.club}</g:link></td>
-                        <td><g:link uri="/categoria/show/${hs.sesion.categoria.id}">${hs.sesion.categoria}</g:link></td>
-                        <td><g:link uri="/sesion/show/${hs.sesion.id}">${hs.sesion}</g:link></td>
-                        <td>${hs.participantes}</td>
-                        <td>${hs.ocupacion}</td>
-                        <td>
-                            <g:if test="${hs.resultadoOk}">
-                                OK
-                            </g:if>
-                            <g:else>
-                                NO OK
-                            </g:else>
-                        </td>
-                        <td>${hs.observaciones}</td>
+                        <th>Fecha</th>
+                        <th>Club</th>
+                        <th>Categoria</th>
+                        <th>Sesión</th>
+                        <th>Participantes</th>
+                        <th>Ocupación</th>
+                        <th>Resultado</th>
+                        <th>Observaciones</th>
                     </tr>
-                </g:each>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <g:each in="${historicoSesionesList}" var="hs">
+                        <tr>
+                            <td><g:link controller="historicoSesiones" action="show"
+                                        id="${hs.id}">${formatDate(format: "dd-MM-yyyy", date: hs.fecha)}</g:link></td>
+                            <td><g:link
+                                    uri="/club/show?entidadId=${hs.sesion.categoria.club.entidadId}">${hs.sesion.categoria.club}</g:link></td>
+                            <td><g:link uri="/categoria/show/${hs.sesion.categoria.id}">${hs.sesion.categoria}</g:link></td>
+                            <td><g:link uri="/sesion/show/${hs.sesion.id}">${hs.sesion}</g:link></td>
+                            <td>${hs.participantes}</td>
+                            <td>${hs.ocupacion}</td>
+                            <td>
+                                <g:if test="${hs.resultadoOk}">
+                                    OK
+                                </g:if>
+                                <g:else>
+                                    NO OK
+                                </g:else>
+                            </td>
+                            <td>${hs.observaciones}</td>
+                        </tr>
+                    </g:each>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
 
-    <div class="pagination">
-        <g:paginate total="${historicoSesionesCount ?: 0}"/>
-    </div>--}%
-</div>
+        <div class="pagination">
+            <g:paginate total="${historicoSesionesCount ?: 0}"/>
+        </div>--}%
+        </div>
+    %{--</g:form>--}%
 
-<g:javascript>
+    <g:javascript>
 
-    $('#btndescargar').on('click', function () {
-        let params = '?';
+        /*$('#btndescargar').on('click', function () {
+            let params = '?';
 
-        let fdesde = $('#filtrofechadesde').val();
-        fdesde = (fdesde.length > 0) ? fdesde : 'null';
-        params = params + 'fdesde=' + fdesde;
-        let fhasta = $('#filtrofechahasta').val();
-        fhasta = (fhasta.length > 0) ? fhasta : 'null';
-        params = params + '&fhasta=' + fhasta;
-        const clubId = $('#filtroclub').val();
-        params = params + '&clubId=' + clubId;
-        const categoriaId = $('#filtrocategoria').val();
-        params = params + '&categoriaId=' + categoriaId;
-        const resultado = $('#filtroresultado').val();
-        params = params + '&resultado=' + resultado;
+            let fdesde = $('#filtrofechadesde').val();
+            fdesde = (fdesde.length > 0) ? fdesde : 'null';
+            params = params + 'fdesde=' + fdesde;
+            let fhasta = $('#filtrofechahasta').val();
+            fhasta = (fhasta.length > 0) ? fhasta : 'null';
+            params = params + '&fhasta=' + fhasta;
+            const clubId = $('#filtroclub').val();
+            params = params + '&clubId=' + clubId;
+            const categoriaId = $('#filtrocategoria').val();
+            params = params + '&categoriaId=' + categoriaId;
+            const resultado = $('#filtroresultado').val();
+            params = params + '&resultado=' + resultado;
 
-        let url = '/gobela/historicoSesiones/exportarListadoHistoricoSesiones/' + params;
-        console.log(url);
+            let url = '/gobela/historicoSesiones/exportarListadoHistoricoSesiones/' + params;
+            console.log(url);
 
-        $.ajax({
-            url: url,
-            method: "GET",
-            success: function (data) {
-                console.log(data);
-                window.location ='/gobela/historicoSesiones/index';
-            },
-            error: function (error) {
-                console.log(error);
+            $.ajax({
+                url: url,
+                method: "GET",
+                success: function (data) {
+                    console.log(data);
+                    window.location = '/gobela/historicoSesiones/index';
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        });*/
+
+        $('#btnfiltrar').on('click', function () {
+            let params = '?';
+
+            let fdesde = $('#filtrofechadesde').val();
+            fdesde = (fdesde.length > 0) ? fdesde : 'null';
+            params = params + 'fdesde=' + fdesde;
+            let fhasta = $('#filtrofechahasta').val();
+            fhasta = (fhasta.length > 0) ? fhasta : 'null';
+            params = params + '&fhasta=' + fhasta;
+            const clubId = $('#filtroclub').val();
+            params = params + '&clubId=' + clubId;
+            const categoriaId = $('#filtrocategoria').val();
+            params = params + '&categoriaId=' + categoriaId;
+            const resultado = $('#filtroresultado').val();
+            params = params + '&resultado=' + resultado;
+
+            let url = '/gobela/historicoSesiones/filtraHistoricoSesiones/' + params;
+            console.log(url);
+
+            $.ajax({
+                url: url,
+                method: "GET",
+                success: function (data) {
+                    console.log(data);
+                    $('#tablaListaSesiones').html(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        });
+
+        $('#filtroclub').on('change', function () {
+            const clubId = $(this).val();
+            if (clubId == 'null') {
+                $('#filtrocategoria').val('null');
+            } else {
+                let url = '/gobela/historicoSesiones/filtraCategoriasPorClub/?clubId=' + clubId.toString();
+
+                $.ajax({
+                    url: url,
+                    method: "GET",
+                    success: function (data) {
+                        console.log(data);
+                        $('#combofiltrocategoria').html(data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                })
             }
-        })
-    });
 
-    $('#btnfiltrar').on('click', function () {
-    let params = '?';
-
-    let fdesde = $('#filtrofechadesde').val();
-    fdesde = (fdesde.length > 0) ? fdesde : 'null';
-    params = params + 'fdesde=' + fdesde;
-    let fhasta = $('#filtrofechahasta').val();
-    fhasta = (fhasta.length > 0) ? fhasta : 'null';
-    params = params + '&fhasta=' + fhasta;
-    const clubId = $('#filtroclub').val();
-    params = params + '&clubId=' + clubId;
-    const categoriaId = $('#filtrocategoria').val();
-    params = params + '&categoriaId=' + categoriaId;
-    const resultado = $('#filtroresultado').val();
-    params = params + '&resultado=' + resultado;
-
-    let url = '/gobela/historicoSesiones/filtraHistoricoSesiones/' + params;
-    console.log(url);
-
-    $.ajax({
-        url: url,
-        method: "GET",
-        success: function (data) {
-            console.log(data);
-            $('#tablaListaSesiones').html(data);
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    })
-});
-
-$('#filtroclub').on('change', function () {
-    const clubId = $(this).val();
-    if (clubId == 'null') {
-        $('#filtrocategoria').val('null');
-    } else {
-        let url = '/gobela/historicoSesiones/filtraCategoriasPorClub/?clubId=' + clubId.toString();
-
-        $.ajax({
-            url: url,
-            method: "GET",
-            success: function (data) {
-                console.log(data);
-                $('#combofiltrocategoria').html(data);
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        })
-    }
-
-});
-</g:javascript>
+        });
+    </g:javascript>
 </body>
 </html>

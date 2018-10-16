@@ -2,7 +2,7 @@ package gobela
 
 import grails.gorm.transactions.Transactional
 
-import static gobela.HistoricoSesiones.executeQuery
+//import static gobela.HistoricoSesiones.executeQuery
 
 @Transactional
 class SesionService {
@@ -12,17 +12,18 @@ class SesionService {
      }*/
 
     def filtraSesiones(DiaSemana diaSemana, Date fecha) {
-        def listaSesiones = executeQuery("from HistoricoSesiones hs right join hs.sesion s where (s.diaSemana = :dia and hs.fecha is null) or hs.fecha = :hoy order by s.horaInicio asc, s.horaFin asc", [dia: diaSemana, hoy: fecha])
+        def listaSesiones = gobela.HistoricoSesiones.executeQuery("from HistoricoSesiones hs right join hs.sesion s where (s.diaSemana = :dia and hs.fecha is null) or hs.fecha = :hoy order by s.horaInicio asc, s.horaFin asc", [dia: diaSemana, hoy: fecha])
+//        def listaSesiones = executeQuery("from HistoricoSesiones hs right join hs.sesion s")
         return listaSesiones
     }
 
     def filtraSesionesPorInstalacion(DiaSemana diaSemana, Date fecha, Instalacion instalacion) {
-        def listaSesiones = executeQuery("from HistoricoSesiones hs right join hs.sesion s where (s.instalacion = :instalacion and s.diaSemana = :dia and hs.fecha is null) or (s.instalacion = :instalacion and hs.fecha = :hoy) order by s.horaInicio asc, s.horaFin asc", [instalacion: instalacion, dia: diaSemana, hoy: fecha])
+        def listaSesiones = gobela.HistoricoSesiones.executeQuery("from HistoricoSesiones hs right join hs.sesion s where (s.instalacion = :instalacion and s.diaSemana = :dia and hs.fecha is null) or (s.instalacion = :instalacion and hs.fecha = :hoy) order by s.horaInicio asc, s.horaFin asc", [instalacion: instalacion, dia: diaSemana, hoy: fecha])
         return listaSesiones
     }
 
     def filtraSesionesPorRecinto(DiaSemana diaSemana, Date fecha, Recinto recinto) {
-        def listaSesiones = executeQuery("from HistoricoSesiones hs right join hs.sesion s where (s.recinto = :recinto and s.diaSemana = :dia and hs.fecha is null) or (s.recinto = :recinto and hs.fecha = :hoy) order by s.horaInicio asc, s.horaFin asc", [recinto: recinto, dia: diaSemana, hoy: fecha])
+        def listaSesiones = gobela.HistoricoSesiones.executeQuery("from HistoricoSesiones hs right join hs.sesion s where (s.recinto = :recinto and s.diaSemana = :dia and hs.fecha is null) or (s.recinto = :recinto and hs.fecha = :hoy) order by s.horaInicio asc, s.horaFin asc", [recinto: recinto, dia: diaSemana, hoy: fecha])
         return listaSesiones
     }
 
@@ -62,7 +63,7 @@ class SesionService {
 
         String query = baseQuery + qDesde + qClub + qCategoria + qResultadoOk
 
-        def listaHistoricoSesiones = executeQuery(query, args)
+        def listaHistoricoSesiones = gobela.HistoricoSesiones.executeQuery(query, args)
         return listaHistoricoSesiones
     }
 
