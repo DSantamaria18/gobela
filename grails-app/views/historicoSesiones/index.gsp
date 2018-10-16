@@ -43,12 +43,20 @@
                 <tr>
                     <td><g:link controller="historicoSesiones" action="show"
                                 id="${hs.id}">${formatDate(format: "dd-MM-yyyy", date: hs.fecha)}</g:link></td>
-                    <td><g:link uri="/club/show?entidadId=${hs.sesion.categoria.club.entidadId}">${hs.sesion.categoria.club}</g:link></td>
+                    <td><g:link
+                            uri="/club/show?entidadId=${hs.sesion.categoria.club.entidadId}">${hs.sesion.categoria.club}</g:link></td>
                     <td><g:link uri="/categoria/show/${hs.sesion.categoria.id}">${hs.sesion.categoria}</g:link></td>
                     <td><g:link uri="/sesion/show/${hs.sesion.id}">${hs.sesion}</g:link></td>
                     <td>${hs.participantes}</td>
                     <td>${hs.ocupacion}</td>
-                    <td>${hs.resultadoOk}</td>
+                    <td>
+                        <g:if test="${hs.resultadoOk}">
+                            OK
+                        </g:if>
+                        <g:else>
+                            NO OK
+                        </g:else>
+                    </td>
                     <td>${hs.observaciones}</td>
                 </tr>
             </g:each>
