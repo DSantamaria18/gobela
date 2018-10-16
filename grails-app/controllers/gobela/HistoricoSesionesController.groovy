@@ -15,11 +15,27 @@ class HistoricoSesionesController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         params.order = "desc"
-        def historicoSesionesList = HistoricoSesiones.listOrderByFecha(params).collect{[id: it.id, fecha: it.fecha, sesion: it.sesion, club: it.sesion.categoria.club, categoria: it.sesion.categoria, participantes: it.participantes, ocupacion: it.ocupacion, resultadoOk: it.resultadoOk, observaciones: it.observaciones]} as List
-        respond historicoSesionesList , model: [historicoSesionesList: historicoSesionesList,  historicoSesionesCount: HistoricoSesiones.count()]
+        def historicoSesionesList = HistoricoSesiones.listOrderByFecha(params).collect {
+            [id: it.id, fecha: it.fecha, sesion: it.sesion, club: it.sesion.categoria.club, categoria: it.sesion.categoria, participantes: it.participantes, ocupacion: it.ocupacion, resultadoOk: it.resultadoOk, observaciones: it.observaciones]
+        } as List
+        respond historicoSesionesList, model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: HistoricoSesiones.count()]
     }
 
-    def filtraCategoriasPorClub(params){
+    def filtraHistoricoSesiones(params) {
+        Date fdesde = (params?.fdesde == "null") ? null : Date.parse("yyyy-MM-dd", params.fdesde)
+        Date fhasta = (params?.fhasta == "null") ? null : Date.parse("yyyy-MM-dd", params.fhasta)
+        def clubId = (params?.clubId == "null") ? null : params.clubId as Long
+        Club club = Club.get(clubId)
+        def categoriaId = (params?.categoriaId == "null") ? null : params.categoriaId as Long
+        Categoria categoria = Categoria.get(categoriaId)
+        Boolean resultado = (params?.resultado == "null") ? null : new Boolean(params.resultado)
+
+        def historicoSesionesList = sesionService.filtraHistoricoSesiones(fdesde, fhasta, club, categoria, resultado)
+
+        render template: "listaHistoricoSesiones", model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: historicoSesionesList.size()]
+    }
+
+    def filtraCategoriasPorClub(params) {
         Long clubId = params?.clubId as Long
         Club club = Club.get(clubId)
         def categoriasPorClubList = Categoria.findAllByClub(club)
@@ -76,11 +92,11 @@ class HistoricoSesionesController {
     }
 
     def edit(HistoricoSesiones historicoSesiones) {
-       /* historicoSesiones.participantes = params.participantes as int
-        historicoSesiones.ocupacion = params.ocupacion as int
-        historicoSesiones.observaciones = params.observaciones
-        historicoSesiones.resultadoOk = (params.resultadoOk == "true") ? true : false
-        update(historicoSesiones)*/
+        /* historicoSesiones.participantes = params.participantes as int
+         historicoSesiones.ocupacion = params.ocupacion as int
+         historicoSesiones.observaciones = params.observaciones
+         historicoSesiones.resultadoOk = (params.resultadoOk == "true") ? true : false
+         update(historicoSesiones)*/
 
         respond historicoSesiones
     }
