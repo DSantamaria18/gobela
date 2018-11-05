@@ -49,8 +49,9 @@ class SesionController {
         Date fecha = new Date().clearTime()
         DiaSemana diaSemana = getDiaSemana(fecha)
 
-        Long recintoId = params?.recintoId ? params.recintoId as Long : null
+        Long recintoId =  (params?.recintoId == 'null') ? null : params.recintoId as Long
         Long instalacionId = params?.instalacionId ? params.instalacionId as Long : null
+
         def sesionesList
         if(instalacionId){
             Instalacion instalacion = Instalacion.get(instalacionId)
