@@ -132,7 +132,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="limpiaModal()">&times;</button>
 
                     <h1>Verificación de Sesión</h1>
                 </div>
@@ -264,7 +264,7 @@
 
     function formateaTablaSesiones() {
         $('tr#item-sesion').each(function () {
-            console.log($(this).data('hsresultadook'));
+            //console.log($(this).data('hsresultadook'));
             if ($(this).data('hsresultadook') === true) {
                 $(this).css('background-color', '#abe2ac'); //verde
                 $(this).prop('disabled', true);
@@ -275,19 +275,19 @@
         });
     }
 
-    $('tr').on('click', function () {
+    function rellenaModal(elem) {
         //alimentamos el modal
 
         // $('#fecha').val(hoy.toISOString().substring(0, 10));
         $('#fecha').val($('#fecha-sesion').val());
-        $('#horario').val($(this).data('horainicio') + " - " + $(this).data('horafin'));
-        $('#club').val($(this).data('club'));
-        $('#categoria').val($(this).data('categoria'));
+        $('#horario').val($(elem).data('horainicio') + " - " + $(elem).data('horafin'));
+        $('#club').val($(elem).data('club'));
+        $('#categoria').val($(elem).data('categoria'));
 
-        $('#observaciones').val($(this).data('hsobservaciones'));
-        $('#sesion-id').val($(this).data('sesionid'));
-        $('#hsesion-id').val($(this).data('hsid'));
-    });
+        $('#observaciones').val($(elem).data('hsobservaciones'));
+        $('#sesion-id').val($(elem).data('sesionid'));
+        $('#hsesion-id').val($(elem).data('hsid'));
+    };
 
     $('#verificacionok').on('click', function () {
         $('#verificacionok').removeClass('btn-default').addClass('btn-success');
@@ -312,6 +312,7 @@
             if (hs === "") {
                 console.log("CREANDO!");
                 createHistoricoSesion();
+                limpiaModal();
             } else {
                 console.log("ACTUALIZANDO!");
                 updateHistoricoSesion(hs);
@@ -319,23 +320,16 @@
         }
     });
 
-    /*function updateHistoricoSesion(hs) {
-        var data = {
-            participantes: $('#participantes').val(),
-            ocupacion: $('#ocupacion').val(),
-            observaciones: $('#observaciones').val(),
-            resultadoOk: $('#resultadoOk').val()
-        };
-
-        $.post("/gobela/historicoSesiones/edit/" + hs, data)
-                .done(function (data, status) {
-            $('#tabla-sesiones').html(data);
-            formateaTablaSesiones();
-
-        }).error(function (error) {
-            $('#tabla-sesiones').html(data);
-        });
-    }*/
+    function limpiaModal(){
+        $('#participantes').val('');
+        $('#ocupacion').val('');
+        $('#observaciones').val('');
+        $('#resultadoOk').val('');
+        $('#verificacionok').removeClass('btn-success').addClass('btn-default');
+        $('#verificacionfail').removeClass('btn-danger').addClass('btn-default');
+        $('fecha').val('');
+        fillFechaSesion();
+    }
 
     function createHistoricoSesion() {
         var data = {
@@ -354,13 +348,17 @@
         }).error(function (error) {
             $('#tabla-sesiones').html(data);
         });
-    }
+    };
 
-    $(document).ready(function () {
+    function fillFechaSesion(){
         var fecha = new Date();
         var hoy = fecha.toISOString().substring(0, 10);
         $('#fecha-actual').html(fecha.getDate() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getFullYear());
         $('input#fecha-sesion').val(hoy);
+    };
+
+    $(document).ready(function () {
+        fillFechaSesion();
         formateaTablaSesiones();
     });
 

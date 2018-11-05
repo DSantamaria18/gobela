@@ -26,9 +26,11 @@ class HistoricoSesionesController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         params.order = "desc"
-        def historicoSesionesList = HistoricoSesiones.listOrderByFecha(params).collect {
+        /*def historicoSesionesList = HistoricoSesiones.listOrderByFecha(params).collect {
             [id: it.id, fecha: it.fecha, sesion: it.sesion, club: it.sesion.categoria.club, categoria: it.sesion.categoria, participantes: it.participantes, ocupacion: it.ocupacion, resultadoOk: it.resultadoOk, observaciones: it.observaciones]
-        } as List
+        } as List*/
+        def historicoSesionesList = HistoricoSesiones.findAll("from HistoricoSesiones as hs order by hs.fecha desc, hs.sesion.horaInicio desc, hs.sesion.horaFin desc")
+
         respond historicoSesionesList, model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: HistoricoSesiones.count()]
     }
 

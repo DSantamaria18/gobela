@@ -6,11 +6,7 @@ import grails.gorm.transactions.Transactional
 
 @Transactional
 class SesionService {
-    /* def filtraSesiones(DiaSemana diaSemana, Instalacion instalacion) {
-         def sesionesList = Sesion.executeQuery("from HistoricoSesiones hs right join hs.sesion s where s.diaSemana = :dia and s.instalacion = :instalacion", [dia: diaSemana, instalacion: instalacion])
-         return sesionesList
-     }*/
-
+    
     def filtraSesiones(DiaSemana diaSemana, Date fecha) {
         def listaSesiones = gobela.HistoricoSesiones.executeQuery("from HistoricoSesiones hs right join hs.sesion s where (s.diaSemana = :dia and hs.fecha is null) or hs.fecha = :hoy order by s.horaInicio asc, s.horaFin asc", [dia: diaSemana, hoy: fecha])
 //        def listaSesiones = executeQuery("from HistoricoSesiones hs right join hs.sesion s")
@@ -28,8 +24,7 @@ class SesionService {
     }
 
     def filtraHistoricoSesiones(Date fDesde, Date fHasta, Club club, Categoria categoria, Boolean resultadoOk){
-//        String baseQuery = "from HistoricoSesiones hs right join hs.sesion s where hs.fecha <= :fHasta"
-        String baseQuery = "from HistoricoSesiones hs where hs.fecha <= :fHasta"
+        String baseQuery = "SELECT hs from HistoricoSesiones hs where hs.fecha <= :fHasta"
         def args = ['fHasta': fHasta]
         String qDesde, qCategoria, qClub, qResultadoOk
 
@@ -60,8 +55,8 @@ class SesionService {
         } else {
             qResultadoOk = ""
         }
-
-        String query = baseQuery + qDesde + qClub + qCategoria + qResultadoOk
+        String sortQuery = " order by hs.fecha desc, hs.sesion.horaInicio desc, hs.sesion.horaFin desc"
+        String query = baseQuery + qDesde + qClub + qCategoria + qResultadoOk  + sortQuery
 
         def listaHistoricoSesiones = gobela.HistoricoSesiones.executeQuery(query, args)
         return listaHistoricoSesiones
