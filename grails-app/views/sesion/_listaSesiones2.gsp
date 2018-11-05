@@ -31,7 +31,8 @@
             data-hsparticipantes="${sesion[0]?.participantes}"
             data-hsocupacion="${sesion[0]?.ocupacion}"
             data-hsobservaciones="${sesion[0]?.observaciones}"
-            data-hsresultadook="${sesion[0]?.resultadoOk}">
+            data-hsresultadook="${sesion[0]?.resultadoOk}"
+            onclick="rellenaModal(this)">
             <td>
                 <span id="horario-sesion">
                     <span>${sesion[1].horaInicio}</span>
