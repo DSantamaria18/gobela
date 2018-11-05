@@ -134,6 +134,8 @@
             <li>[Sesiones] Corregido campos vacíos en modal de checking de sesiones</li>
             <li>[Sesiones] Limpieza de campos de la modal de checking de sesiones al cerrarla</li>
             <li>[Sesiones] Corregido error al limpiar filtro de sesiones</li>
+            <li>[Sesiones] Añadido orden en tabla de histórico de sesiones</li>
+            <li>[Sesiones] Añadido orden en tabla de histórico de sesiones tras filtrado</li>
         </ul>
 
         <h2>Modificaciones 16/10/2018</h2>
