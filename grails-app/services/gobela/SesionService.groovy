@@ -6,7 +6,7 @@ import grails.gorm.transactions.Transactional
 
 @Transactional
 class SesionService {
-    
+
     def filtraSesiones(DiaSemana diaSemana, Date fecha) {
         def listaSesiones = gobela.HistoricoSesiones.executeQuery("from HistoricoSesiones hs right join hs.sesion s where (s.diaSemana = :dia and hs.fecha is null) or hs.fecha = :hoy order by s.horaInicio asc, s.horaFin asc", [dia: diaSemana, hoy: fecha])
 //        def listaSesiones = executeQuery("from HistoricoSesiones hs right join hs.sesion s")
