@@ -15,13 +15,13 @@ class SesionController {
 
     def index() {
         Date fecha = new Date().clearTime()
-        DiaSemana diaSemana = getDiaSemana(fecha)
+        DiaSemana diaSemana = getDiaSemanaFromFecha(fecha)
         def listaSesiones = sesionService.filtraSesiones(diaSemana, fecha)
 
         [diaSemana: diaSemana, listaSesiones: listaSesiones]
     }
 
-    DiaSemana getDiaSemana(Date fecha) {
+    private static DiaSemana getDiaSemanaFromFecha(Date fecha) {
         String dia = new SimpleDateFormat("EEEE", new Locale('es', 'ES')).format(fecha).toUpperCase()
 //        String eguna = new SimpleDateFormat("EEEE", new Locale('eu', 'ES')).format(hoy)
 
@@ -47,7 +47,7 @@ class SesionController {
 
     def filtraSesiones(params) {
         Date fecha = new Date().clearTime()
-        DiaSemana diaSemana = getDiaSemana(fecha)
+        DiaSemana diaSemana = getDiaSemanaFromFecha(fecha)
 
         Long recintoId =  (params?.recintoId == 'null') ? null : params.recintoId as Long
         Long instalacionId = params?.instalacionId ? params.instalacionId as Long : null
@@ -62,8 +62,12 @@ class SesionController {
         }else {
             sesionesList = sesionService.filtraSesiones(diaSemana, fecha)
         }
+//        sesionesList = limpiaRegistrosDeFechasAnterioresDeListaDeSesiones(sesionesList, fecha)
+
         render template: "listaSesiones2", model: [diaSemana: diaSemana, listaSesiones: sesionesList]
     }
+
+
 
     def show(Sesion sesion) {
         respond sesion

@@ -1,6 +1,7 @@
 <table id="tabla-sesiones" class="table-responsive" style="display: table">
     <thead>
     <tr>
+        %{--<th>INDEX</th>--}%
         <th>HORA</th>
         <th>CATEGORIA</th>
         <th>INFO</th>
@@ -12,53 +13,54 @@
             id="item-sesion"
             href="#modal-verificacion" data-toggle="modal"
             data-index="${i}"
-            data-diasemana="${sesion[1].diaSemana}"
-            data-sesionid="${sesion[1].id}"
-            data-clubid="${sesion[1]?.categoria?.club?.id}"
-            data-club="${sesion[1]?.categoria?.club}"
-            data-categoriaid="${sesion[1]?.categoria?.id}"
-            data-categoria="${sesion[1]?.categoria}"
-            data-horainicio="${sesion[1]?.horaInicio}"
-            data-horafin="${sesion[1]?.horaFin}"
-            data-recintoid="${sesion[1]?.recinto?.id}"
-            data-recinto="${sesion[1]?.recinto}"
-            data-instalacionid="${sesion[1]?.instalacion?.id}"
-            data-instalacion="${sesion[1]?.instalacion}"
-            data-participantes="${sesion[1]?.categoria?.numDeportistas}"
-            data-ocupacion="${sesion[0]?.ocupacion}"
-            data-hsid="${sesion[0]?.id}"
-            data-hsfecha="${sesion[0]?.fecha}"
-            data-hsparticipantes="${sesion[0]?.participantes}"
-            data-hsocupacion="${sesion[0]?.ocupacion}"
-            data-hsobservaciones="${sesion[0]?.observaciones}"
-            data-hsresultadook="${sesion[0]?.resultadoOk}"
+            data-diasemana="${sesion.diaSemana}"
+            data-sesionid="${sesion.id}"
+            data-clubid="${sesion?.categoria?.club?.id}"
+            data-club="${sesion?.categoria?.club}"
+            data-categoriaid="${sesion?.categoria?.id}"
+            data-categoria="${sesion?.categoria}"
+            data-horainicio="${sesion?.horaInicio}"
+            data-horafin="${sesion?.horaFin}"
+            data-recintoid="${sesion?.recinto?.id}"
+            data-recinto="${sesion?.recinto}"
+            data-instalacionid="${sesion?.instalacion?.id}"
+            data-instalacion="${sesion?.instalacion}"
+            data-participantes="${sesion?.participantes}"
+            data-ocupacion="${sesion?.ocupacion}"
+            data-hsid="${sesion?.sesionDeHoy?.id}"
+            data-hsfecha="${sesion?.sesionDeHoy?.fecha}"
+            data-hsparticipantes="${sesion?.sesionDeHoy?.participantes}"
+            data-hsocupacion="${sesion?.sesionDeHoy?.ocupacion}"
+            data-hsobservaciones="${sesion?.sesionDeHoy?.observaciones}"
+            data-hsresultadook="${sesion?.sesionDeHoy?.resultadoOk}"
             onclick="rellenaModal(this)">
+            %{--<td>${i}</td>--}%
             <td>
                 <span id="horario-sesion">
-                    <span>${sesion[1].horaInicio}</span>
-                    <span>${sesion[1].horaFin}</span>
+                    <span>${sesion.horaInicio}</span> -
+                    <span>${sesion.horaFin}</span>
                 </span>
                 <br>
                 <span id="lugar-sesion">
-                    <span>${sesion[1].recinto}</span>
-                    <span>${sesion[1].instalacion}</span>
+                    <span>${sesion.recinto}</span>
+                    <span>${sesion.instalacion}</span>
                 </span>
 
             </td>
             <td>
-                <span id="sesion-club" style="font-weight: bold">${sesion[1].categoria.club}</span>
+                <span id="sesion-club" style="font-weight: bold">${sesion.club}</span>
                 <br>
-                <span id="sesion-categoria">${sesion[1].categoria}</span>
+                <span id="sesion-categoria">${sesion.categoria}</span>
             </td>
             <td>
                 <span id="info-participantes">
                     <i class="glyphicon glyphicon-user"></i>
-                    ${sesion[1].categoria.numDeportistas}
+                    ${sesion.participantes}
                 </span>
                 <br>
                 <span id="info-ocupacion">
                     <i class="glyphicon glyphicon-stats"></i>
-                    ${sesion[1].ocupacion}
+                    ${sesion.ocupacion}
                 </span>
             </td>
         </tr>
