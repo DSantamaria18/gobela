@@ -17,6 +17,8 @@ String TEST_LOGS_DIR = "C:/temp/gobela_logs"
 String PROD_LOGS_DIR = "/var/log/gobela21"
 String LOGS_DIR = ""
 
+
+
 // See http://logback.qos.ch/manual/groovy.html for details on configuration
 appender('STDOUT', ConsoleAppender) {
     encoder(PatternLayoutEncoder) {
@@ -30,6 +32,9 @@ appender('STDOUT', ConsoleAppender) {
                         '%m%n%wex' // Message
     }
 }
+
+logger 'org.hibernate.type.descriptor.sql.BasicBinder', TRACE, ['STDOUT']
+logger 'org.hibernate.SQL', TRACE, ['STDOUT']
 
 if (Environment.currentEnvironment in [Environment.TEST, Environment.PRODUCTION, Environment.DEVELOPMENT]) {
     LOGS_DIR = (Environment.currentEnvironment == Environment.DEVELOPMENT || Environment.currentEnvironment == Environment.TEST) ? TEST_LOGS_DIR : PROD_LOGS_DIR
