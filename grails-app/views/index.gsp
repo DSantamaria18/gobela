@@ -133,6 +133,7 @@
         <ul>
             <li>[Sesiones] Corregido error de sesiones con datos en histórico no mostradas en vista de checking de sesiones</li>
             <li>[Sesiones] Corregido error de sesiones con datos en histórico no mostradas en filtrado de vista de checking de sesiones</li>
+        </ul>
 
         <h2>Modificaciones 5/11/2018</h2>
         <ul>
