@@ -49,11 +49,6 @@ class SesionService {
         return listaSesiones
     }
 
-   /* private static def buscaDatosHistorico(def sesion, Date fecha) {
-        def datosHistorico = HistoricoSesiones.executeQuery("from HistoricoSesiones hs where hs.sesion = :sesion and hs.fecha = :fecha", [sesion: sesion, fecha: fecha])
-        return datosHistorico
-    }*/
-
     def filtraSesiones(DiaSemana diaSemana, Date fecha) {
         def sesiones = Sesion.executeQuery("from Sesion s where s.diaSemana = :diaSemana order by s.horaInicio asc, s.horaFin asc", [diaSemana: diaSemana])
         def listaSesiones = limpiaRegistrosDeFechasAnterioresDeListaDeSesiones(sesiones, fecha)
@@ -66,9 +61,8 @@ class SesionService {
     }
 
     def filtraSesionesPorRecinto(DiaSemana diaSemana, Date fecha, Recinto recinto) {
-//        def listaSesiones = gobela.HistoricoSesiones.executeQuery("from HistoricoSesiones hs right join hs.sesion s where (s.recinto = :recinto and s.diaSemana = :dia and hs.fecha is null) or (s.recinto = :recinto and hs.fecha = :hoy) order by s.horaInicio asc, s.horaFin asc", [recinto: recinto, dia: diaSemana, hoy: fecha])
-        def listaSesiones = HistoricoSesiones.executeQuery("from HistoricoSesiones hs right join hs.sesion s where s.recinto = :recinto and s.diaSemana = :dia order by s.horaInicio asc, s.horaFin asc", [recinto: recinto, dia: diaSemana])
-        listaSesiones = limpiaRegistrosDeFechasAnterioresDeListaDeSesiones(listaSesiones, fecha)
+        def sesiones = Sesion.executeQuery("from Sesion s where s.diaSemana = :diaSemana and s.recinto = :recinto order by s.horaInicio asc, s.horaFin asc", [diaSemana: diaSemana, recinto: recinto])
+        def listaSesiones = limpiaRegistrosDeFechasAnterioresDeListaDeSesiones(sesiones, fecha)
         return listaSesiones
     }
 
