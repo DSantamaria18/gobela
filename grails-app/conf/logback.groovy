@@ -33,11 +33,12 @@ appender('STDOUT', ConsoleAppender) {
     }
 }
 
-logger 'org.hibernate.type.descriptor.sql.BasicBinder', TRACE, ['STDOUT']
-logger 'org.hibernate.SQL', TRACE, ['STDOUT']
+
 
 if (Environment.currentEnvironment in [Environment.TEST, Environment.PRODUCTION, Environment.DEVELOPMENT]) {
     LOGS_DIR = (Environment.currentEnvironment == Environment.DEVELOPMENT || Environment.currentEnvironment == Environment.TEST) ? TEST_LOGS_DIR : PROD_LOGS_DIR
+    logger 'org.hibernate.type.descriptor.sql.BasicBinder', TRACE, ['STDOUT']
+    logger 'org.hibernate.SQL', TRACE, ['STDOUT']
 }
 
 appender("ROLLING", RollingFileAppender) {
