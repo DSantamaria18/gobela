@@ -129,6 +129,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 13/11/2018</h2>
+        <ul>
+            <li>[Sesiones] Corregido error de sesiones con datos en histórico no mostradas en vista de checking de sesiones</li>
+            <li>[Sesiones] Corregido error de sesiones con datos en histórico no mostradas en filtrado de vista de checking de sesiones</li>
+
         <h2>Modificaciones 5/11/2018</h2>
         <ul>
             <li>[Sesiones] Corregido campos vacíos en modal de checking de sesiones</li>
