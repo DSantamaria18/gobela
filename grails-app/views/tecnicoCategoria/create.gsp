@@ -39,11 +39,11 @@
                     <g:message code="evento.tecnico.label" default="Técnico:"/>
                     <span class="required-indicator">*</span>
                 </label>
-                <g:select name="tecnico"
-                          from="${Tecnico.listOrderByNombre()}"
-                          noSelection="${['': 'Selecciona un técnico...']}"
-                          optionKey="id"
-                          optionValue="${tecnico}"/>
+               <g:select name="tecnico"
+                         from="${Tecnico.findAllByActivo(true) as List}"
+                         noSelection="${['': 'Selecciona un técnico...']}"
+                         optionKey="id"
+                         optionValue="${tecnico}"/>
             </div>
 
             <div class="fieldcontain ${hasErrors(bean: tecnicoCategoria, field: 'principal', 'error')} required">
