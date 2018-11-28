@@ -8,6 +8,7 @@ class Tecnico {
     NivelEuskera nivelEuskera
     Integer antiguedad = 1
     Boolean contrato
+    Boolean activo
 
     static hasMany = [tecnicosCategorias: TecnicoCategoria]
 
@@ -19,6 +20,7 @@ class Tecnico {
         antiguedad(nullable: false, blank: false)
         contrato()
         tecnicosCategorias(nullable: true)
+        activo()
     }
 
     String toString(){
