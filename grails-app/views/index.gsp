@@ -129,6 +129,18 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 28/11/2018</h2>
+        <ul>
+            <li>[CONTACTOS] Añadido campo "ACTIVO" a tabla de Contactos</li>
+            <li>[CONTACTOS] Añadido campo "ACTIVO" a vista principal de Contacto</li>
+            <li>[CONTACTOS] Añadido campo "ACTIVO" a la vista de creación de Contactos</li>
+            <li>[CONTACTOS] Añadido campo "ACTIVO" a la vista de edición de Contactos</li>
+            <li>[EVENTOS] Sólo se mostrarán los contactos activos en la vista de creación de Eventos</li>
+            <li>[EVENTOS] Los contactos inactivos de la entidad organizadora se mostrarán con la etiqueta [INACTIVO] en la vista de edición de Eventos</li>
+            <li>[TECNICOS] Añadido campo "ACTIVO" a tabla de Técnicos</li>
+            <li>[CATEGORIAS] Sólo se muestran los técnicos activos en la vista de asignación de técnicos a categorías</li>
+        </ul>
+
         <h2>Modificaciones 13/11/2018</h2>
         <ul>
             <li>[Sesiones] Corregido error de sesiones con datos en histórico no mostradas en vista de checking de sesiones</li>
