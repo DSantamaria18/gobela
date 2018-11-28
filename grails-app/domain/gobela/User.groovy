@@ -13,15 +13,19 @@ class User implements Serializable {
 
     String username
     String password
-    String telefono
+    String email
     String movil
     boolean whatsapp = false
-
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
-    String email
+    Date dateCreated
+    Date lastUpdated
+    String nombre
+    String apellidos
+    String resetToken
+    Date resetTokenFecha
 
     Set<Role> getAuthorities() {
         (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
@@ -31,9 +35,12 @@ class User implements Serializable {
         username nullable: false, blank: false, unique: true
         password nullable: false, blank: false, password: true
         email nullable: true, blank: true, email: true
-        telefono nullable: true, blank: true
         movil nullable: true, blank: true
         whatsapp()
+        nombre nullable: false, blank: false
+        apellidos nullable: false, blank: false
+        resetToken nullable: true, unique: true
+        resetTokenFecha nullable: true
     }
 
     static mapping = {
