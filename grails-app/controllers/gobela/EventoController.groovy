@@ -281,9 +281,12 @@ class EventoController {
     }
 
     def getContactoByEntidad(params) {
+        Boolean activos = (params.activos != "undefined") ?: null
         def entidadId = params.id
         Entidad entidad = Entidad.get(entidadId)
-        def listaContactos = Contacto.findAllByEntidad(entidad)
+
+//        def listaContactos = Contacto.findAllByEntidad(entidad)
+        def listaContactos = (activos) ? Contacto.findAllByEntidadAndActivo(entidad, activos) : Contacto.findAllByEntidad(entidad)
         render template: "contacto", model: [listaContactos: listaContactos]
     }
 

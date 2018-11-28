@@ -140,7 +140,7 @@
               value="${evento?.entidadOrganizadora?.id}"
               noSelection="${['': 'Selecciona la entidad organizadora...']}"
               optionKey="id"
-              onchange="fillContactoByEntidad(this.value, ${contactoId})" />
+              onchange="fillContactoByEntidad(this.value, ${contactoId}, 'true')" />
 </div>
 
 <div class="fieldcontain" ${hasErrors(bean: evento, field: 'contacto', 'error')} id="contacto-container">

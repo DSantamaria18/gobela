@@ -296,8 +296,8 @@ function fillInstalacionByRecinto(recintoId, instalacionId) {
     })
 }
 
-function fillContactoByEntidad(entidadId, contactoId) {
-    var url = "/gobela/evento/getContactoByEntidad/" + entidadId.toString();
+function fillContactoByEntidad(entidadId, contactoId, activos) {
+    var url = "/gobela/evento/getContactoByEntidad/" + entidadId.toString() + '?activos=' + activos;
     console.log("URL: " + url);
     $.ajax({
         url: url,

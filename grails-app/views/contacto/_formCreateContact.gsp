@@ -23,3 +23,10 @@
     </label>
     <g:textField name="telefono" value="${this.contacto?.telefono}" required=""/>
 </div>
+
+<div class="fieldcontain ${hasErrors(bean: contacto, field: 'activo', 'error')}">
+    <label for="activo">
+        <g:message code="contacto.activo.label" default="Activo:"/>
+    </label>
+    <g:checkBox name="activo" value="${this.contacto?.activo}"/>
+</div>
