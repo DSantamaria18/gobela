@@ -26,9 +26,6 @@ class HistoricoSesionesController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         params.order = "desc"
-        /*def historicoSesionesList = HistoricoSesiones.listOrderByFecha(params).collect {
-            [id: it.id, fecha: it.fecha, sesion: it.sesion, club: it.sesion.categoria.club, categoria: it.sesion.categoria, participantes: it.participantes, ocupacion: it.ocupacion, resultadoOk: it.resultadoOk, observaciones: it.observaciones]
-        } as List*/
         def historicoSesionesList = HistoricoSesiones.findAll("from HistoricoSesiones as hs order by hs.fecha desc, hs.sesion.horaInicio desc, hs.sesion.horaFin desc")
 
         respond historicoSesionesList, model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: HistoricoSesiones.count()]
@@ -43,9 +40,11 @@ class HistoricoSesionesController {
         Categoria categoria = Categoria.get(filtrocategoria)
         def filtroRecinto = (params?.filtrorecinto == "null") ? null : params.filtrorecinto as Long
         Recinto recinto = Recinto.get(filtroRecinto)
+        def filtroInstalacion = (params?.filtroinstalaciones == "null") ? null : params.filtroinstalaciones as Long
+        Instalacion instalacion = Instalacion.get(filtroInstalacion)
         Boolean filtroresultado = (params?.filtroresultado == "null") ? null : new Boolean(params.filtroresultado)
 
-        def listaSesiones = sesionService.filtraHistoricoSesiones(filtrofechadesde, filtrofechahasta, club, categoria, recinto, filtroresultado)
+        def listaSesiones = sesionService.filtraHistoricoSesiones(filtrofechadesde, filtrofechahasta, club, categoria, recinto, instalacion, filtroresultado)
 
         response.setContentType('application/vnd.ms-excel')
         response.setHeader('Content-Disposition', "Attachment;Filename='Informe_Historico_Sesiones.xls'")
@@ -148,9 +147,11 @@ class HistoricoSesionesController {
         Categoria categoria = Categoria.get(categoriaId)
         def filtroRecinto = (params?.recintoId == "null") ? null : params.recintoId as Long
         Recinto recinto = Recinto.get(filtroRecinto)
+        def filtroInstalacion = (params?.instalacionId == "null") ? null : params.instalacionId as Long
+        Instalacion instalacion = Instalacion.get(filtroInstalacion)
         Boolean resultado = (params?.resultado == "null") ? null : new Boolean(params.resultado)
 
-        def historicoSesionesList = sesionService.filtraHistoricoSesiones(fdesde, fhasta, club, categoria, recinto, resultado)
+        def historicoSesionesList = sesionService.filtraHistoricoSesiones(fdesde, fhasta, club, categoria, recinto, instalacion, resultado)
         render template: "listaHistoricoSesiones", model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: historicoSesionesList.size()]
     }
 
@@ -160,6 +161,14 @@ class HistoricoSesionesController {
         def categoriasPorClubList = Categoria.findAllByClub(club)
 
         render template: "filtroCategoria", model: [categoriasPorClubList: categoriasPorClubList]
+    }
+
+    def filtraInstalacionesPorRecinto(params) {
+        Long recintoId = params?.recintoId as Long
+        Recinto recinto = Recinto.get(recintoId)
+        def instalacionesPorRecintoList = Instalacion.findAllByRecinto(recinto)
+
+        render template: "filtroInstalaciones", model: [instalacionesPorRecintoList: instalacionesPorRecintoList]
     }
 
     def show(HistoricoSesiones historicoSesiones) {

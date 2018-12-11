@@ -133,6 +133,7 @@
         <ul>
             <li>[SESIONES] Cambios en campos de Excel de Histórico de Sesiones</li>
             <li>[SESIONES] Añadido filtro por Recinto en Histórico de Sesiones</li>
+            <li>[SESIONES] Añadido filtro por Instalaciones en Histórico de Sesiones</li>
         </ul>
 
         <h2>Modificaciones 28/11/2018</h2>

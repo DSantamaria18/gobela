@@ -66,12 +66,12 @@
                         </g:select>
                     </div>
 
-                    %{--<div class="fieldcontain">
-                        <label for="combofiltrocategoria">Categoria</label>
-                        <span id="combofiltrocategoria">
-                            <g:render template="filtroInstalacion"/>
+                    <div class="fieldcontain">
+                        <label for="combofiltroinstalaciones">Instalación</label>
+                        <span id="combofiltroinstalaciones">
+                            <g:render template="filtroInstalaciones"/>
                         </span>
-                    </div>--}%
+                    </div>
 
 
 
@@ -165,6 +165,9 @@
             const recintoId = $('#filtrorecinto').val();
             params = params + '&recintoId=' + recintoId;
 
+            const instalacionId = $('#filtroinstalaciones').val();
+            params = params + '&instalacionId=' + instalacionId;
+
             const resultado = $('#filtroresultado').val();
             params = params + '&resultado=' + resultado;
 
@@ -203,8 +206,29 @@
                     }
                 })
             }
-
         });
+
+        $('#filtrorecinto').on('change', function () {
+            const recintoId = $(this).val();
+            if (recintoId == 'null') {
+                $('#filtroinstalaciones').val('null');
+            } else {
+                let url = '/gobela/historicoSesiones/filtraInstalacionesPorRecinto/?recintoId=' + recintoId.toString();
+
+                $.ajax({
+                    url: url,
+                    method: "GET",
+                    success: function (data) {
+                        console.log(data);
+                        $('#combofiltroinstalaciones').html(data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                })
+            }
+        });
+
     </g:javascript>
 </body>
 </html>
