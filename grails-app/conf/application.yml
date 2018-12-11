@@ -117,7 +117,7 @@ environments:
             dialect: org.hibernate.dialect.MySQL5InnoDBDialect
             username: gobela21
             password: "fadura2017"
-            logSql: true
+            logSql: false
             properties:
                 jmxEnabled: true
                 initialSize: 5

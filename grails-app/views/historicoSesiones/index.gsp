@@ -50,11 +50,30 @@
                     </div>
 
                     <div class="fieldcontain">
-                        <label for="filtrocategoria">Categoria</label>
+                        <label for="combofiltrocategoria">Categoria</label>
                         <span id="combofiltrocategoria">
                             <g:render template="filtroCategoria"/>
                         </span>
                     </div>
+
+
+                    <div class="fieldcontain">
+                        <label for="filtrorecinto">Recinto</label>
+                        <g:select name="filtrorecinto" id="filtrorecinto"
+                                  from="${gobela.Recinto.list(sort: "nombre", order: "asc")}"
+                                  optionKey="id"
+                                  noSelection="['null': 'Selecciona un recinto...']">
+                        </g:select>
+                    </div>
+
+                    <div class="fieldcontain">
+                        <label for="combofiltroinstalaciones">Instalación</label>
+                        <span id="combofiltroinstalaciones">
+                            <g:render template="filtroInstalaciones"/>
+                        </span>
+                    </div>
+
+
 
                     <div class="fieldcontain">
                         <label for="filtroresultado">Resultado</label>
@@ -129,38 +148,6 @@
 
     <g:javascript>
 
-        /*$('#btndescargar').on('click', function () {
-            let params = '?';
-
-            let fdesde = $('#filtrofechadesde').val();
-            fdesde = (fdesde.length > 0) ? fdesde : 'null';
-            params = params + 'fdesde=' + fdesde;
-            let fhasta = $('#filtrofechahasta').val();
-            fhasta = (fhasta.length > 0) ? fhasta : 'null';
-            params = params + '&fhasta=' + fhasta;
-            const clubId = $('#filtroclub').val();
-            params = params + '&clubId=' + clubId;
-            const categoriaId = $('#filtrocategoria').val();
-            params = params + '&categoriaId=' + categoriaId;
-            const resultado = $('#filtroresultado').val();
-            params = params + '&resultado=' + resultado;
-
-            let url = '/gobela/historicoSesiones/exportarListadoHistoricoSesiones/' + params;
-            console.log(url);
-
-            $.ajax({
-                url: url,
-                method: "GET",
-                success: function (data) {
-                    console.log(data);
-                    window.location = '/gobela/historicoSesiones/index';
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            })
-        });*/
-
         $('#btnfiltrar').on('click', function () {
             let params = '?';
 
@@ -174,6 +161,13 @@
             params = params + '&clubId=' + clubId;
             const categoriaId = $('#filtrocategoria').val();
             params = params + '&categoriaId=' + categoriaId;
+
+            const recintoId = $('#filtrorecinto').val();
+            params = params + '&recintoId=' + recintoId;
+
+            const instalacionId = $('#filtroinstalaciones').val();
+            params = params + '&instalacionId=' + instalacionId;
+
             const resultado = $('#filtroresultado').val();
             params = params + '&resultado=' + resultado;
 
@@ -212,8 +206,29 @@
                     }
                 })
             }
-
         });
+
+        $('#filtrorecinto').on('change', function () {
+            const recintoId = $(this).val();
+            if (recintoId == 'null') {
+                $('#filtroinstalaciones').val('null');
+            } else {
+                let url = '/gobela/historicoSesiones/filtraInstalacionesPorRecinto/?recintoId=' + recintoId.toString();
+
+                $.ajax({
+                    url: url,
+                    method: "GET",
+                    success: function (data) {
+                        console.log(data);
+                        $('#combofiltroinstalaciones').html(data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                })
+            }
+        });
+
     </g:javascript>
 </body>
 </html>
