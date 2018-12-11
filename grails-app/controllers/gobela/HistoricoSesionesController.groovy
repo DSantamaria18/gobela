@@ -41,9 +41,11 @@ class HistoricoSesionesController {
         Club club = Club.get(filtroclub)
         def filtrocategoria = (params?.filtrocategoria == "null") ? null : params.filtrocategoria as Long
         Categoria categoria = Categoria.get(filtrocategoria)
+        def filtroRecinto = (params?.filtrorecinto == "null") ? null : params.filtrorecinto as Long
+        Recinto recinto = Recinto.get(filtroRecinto)
         Boolean filtroresultado = (params?.filtroresultado == "null") ? null : new Boolean(params.filtroresultado)
 
-        def listaSesiones = sesionService.filtraHistoricoSesiones(filtrofechadesde, filtrofechahasta, club, categoria, filtroresultado)
+        def listaSesiones = sesionService.filtraHistoricoSesiones(filtrofechadesde, filtrofechahasta, club, categoria, recinto, filtroresultado)
 
         response.setContentType('application/vnd.ms-excel')
         response.setHeader('Content-Disposition', "Attachment;Filename='Informe_Historico_Sesiones.xls'")
@@ -144,9 +146,11 @@ class HistoricoSesionesController {
         Club club = Club.get(clubId)
         def categoriaId = (params?.categoriaId == "null") ? null : params.categoriaId as Long
         Categoria categoria = Categoria.get(categoriaId)
+        def filtroRecinto = (params?.recintoId == "null") ? null : params.recintoId as Long
+        Recinto recinto = Recinto.get(filtroRecinto)
         Boolean resultado = (params?.resultado == "null") ? null : new Boolean(params.resultado)
 
-        def historicoSesionesList = sesionService.filtraHistoricoSesiones(fdesde, fhasta, club, categoria, resultado)
+        def historicoSesionesList = sesionService.filtraHistoricoSesiones(fdesde, fhasta, club, categoria, recinto, resultado)
         render template: "listaHistoricoSesiones", model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: historicoSesionesList.size()]
     }
 
