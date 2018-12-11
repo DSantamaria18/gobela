@@ -129,6 +129,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 11/12/2018</h2>
+        <ul>
+            <li>[SESIONES] Cambios en campos de Excel de Histórico de sesiones</li>
+        </ul>
+
         <h2>Modificaciones 28/11/2018</h2>
         <ul>
             <li>[CONTACTOS] Añadido campo "ACTIVO" a tabla de Contactos</li>
