@@ -174,6 +174,15 @@
             </div>
 
             <div class="row fieldcontain">
+                <label for="eventoSolidario">
+                    <g:message code="evento.solidario.label" default="Evento Solidario:"/>
+                </label>
+                <g:select name="solidario" id="qSolidario"
+                          from="${['SI', 'NO']}"
+                          noSelection="['': 'TODOS']"/>
+            </div>
+
+            <div class="row fieldcontain">
                 <button type="button" class="row btn-block btn-primary"
                         onclick="filtrarEventos($('#qEstado').val()
                             , $('#qFechaDesde_year').val() + '-' + $('#qFechaDesde_month').val() + '-' + $('#qFechaDesde_day').val()
@@ -187,7 +196,8 @@
                             , $('#qMultikirola option:selected').val()
                             , $('#qAdaptado option:selected').val()
                             , $('#qInclusivo option:selected').val()
-                            , $('#qRelevante option:selected').val());">
+                            , $('#qRelevante option:selected').val()
+                            , $('#qSolidario option:selected').val());">
                     FILTRAR EVENTOS
                 </button>
             </div>
@@ -212,7 +222,7 @@
 
             <div class="row fieldcontain">
                 <fieldset class="buttons">
-                    <g:submitButton name="exportarSolicitudesMat" class="edit"
+                    <g:submitButton name="exportarEventos" class="edit"
                                     value="Descargar en Excel" type="submit"/>
                 </fieldset>
             </div>

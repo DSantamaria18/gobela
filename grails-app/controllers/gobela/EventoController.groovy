@@ -325,6 +325,10 @@ class EventoController {
             if (params.relevante == "SI") params.relevante = true else params.relevante = false
         }
 
+        if (params.solidario) {
+            if (params.solidario == "SI") params.solidario = true else params.solidario = false
+        }
+
         def eventosList = eventoService.filtrarEventosFullInfo(params)
 
         if (eventosList.size() > 0) {
