@@ -1,9 +1,7 @@
 package evento
 
-import gobela.Evento
 import grails.gorm.transactions.Transactional
 import groovy.sql.Sql
-import groovy.sql.GroovyRowResult
 
 @Transactional
 class EventoService {
@@ -34,8 +32,9 @@ class EventoService {
         String qAdaptado = (params.adaptado) ? " AND e.deporte_adaptado = ${params.adaptado} " : ""
         String qInclusivo = (params.inclusivo) ? " AND e.deporte_inclusivo = ${params.inclusivo} " : ""
         String qRelevante = (params.relevante) ? " AND e.relevante = ${params.relevante} " : ""
+        String qSolidario = (params.solidario) ? " AND e.solidario = ${params.solidario} " : ""
         String qOrder = " ORDER BY fecha, estado, tipoActividad, modalidad ASC"
-        String query = qBase + qEstado + qEntidad + qTActividad + qActividad + qModalidad + qLugar + qRecinto + qMultikirola + qAdaptado + qInclusivo + qRelevante + qOrder
+        String query = qBase + qEstado + qEntidad + qTActividad + qActividad + qModalidad + qLugar + qRecinto + qMultikirola + qAdaptado + qInclusivo + qRelevante + qSolidario + qOrder
 
         final Sql sql = new Sql(dataSource)
         final results = sql.rows(query)
@@ -105,15 +104,14 @@ class EventoService {
         String qTActividad = (params.tActividad != '')? " AND e.t_actividad_id = ${params.tActividad}" : ""
         String qActividad = (params.actividad != '')? " AND e.actividad_id = ${params.actividad}" : ""
         String qEstado = (params.estado != 'Cualquiera')? " AND e.estado = '${params.estado}'" : ""
-//        String qTipoActividad = (params.tipoActividad != '')? " AND e.tipo_actividad = '${params.tipoActividad}'" : ""
         String qLugar = (params.lugar != '')? " AND e.lugar_id = '${params.lugar}'" : ""
         String qMultikirola = (params.multikirola != "") ? " AND e.multikirola = ${params.multikirola} " : ""
         String qAdaptado = (params.deporteAdaptado != "") ? " AND e.deporte_adaptado = ${params.deporteAdaptado} " : ""
         String qInclusivo = (params.inclusivo != "") ? " AND e.deporte_inclusivo = ${params.inclusivo} " : ""
         String qRelevante = (params.relevante != "") ? " AND e.relevante = ${params.relevante} " : ""
+        String qSolidario = (params.solidario != "") ? " AND e.solidario = ${params.solidario} " : ""
         String qOrder = " ORDER BY e.fecha, e.estado, e.tipo_actividad, m.nombre ASC"
-//        String query = qBase + qEstado + qTipoActividad + qTActividad + qActividad + qModalidad + qLugar + qMultikirola + qAdaptado + qInclusivo + qRelevante + qOrder
-        String query = qBase + qEstado + qTActividad + qActividad + qModalidad + qLugar + qMultikirola + qAdaptado + qInclusivo + qRelevante + qOrder
+        String query = qBase + qEstado + qTActividad + qActividad + qModalidad + qLugar + qMultikirola + qAdaptado + qInclusivo + qRelevante + qSolidario + qOrder
 
         final Sql sql = new Sql(dataSource)
         final results = sql.rows(query)

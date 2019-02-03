@@ -319,7 +319,7 @@ function fillContactoInfo(contactoId) {
     })
 }
 
-function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, entidad, tActividad, actividad, modalidad, lugar, recinto, multikirola, adaptado, inclusivo, relevante) {
+function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, entidad, tActividad, actividad, modalidad, lugar, recinto, multikirola, adaptado, inclusivo, relevante, solidario) {
    var importante;
    if (relevante === "SI") {
        importante = true;
@@ -356,6 +356,15 @@ function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, entidad, tActivida
         }
     }
 
+    var evSolidario;
+    if (solidario === "SI") {
+        evSolidario = true;
+    } else {
+        if (solidario === "NO") {
+            evSolidario = false;
+        }
+    }
+
 
     var url = "/gobela/evento/filtrarEventos/";
     console.log("URL: " + url);
@@ -376,7 +385,8 @@ function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, entidad, tActivida
             'multikirola': depMultikirola,
             'adaptado': depAdaptado,
             'inclusivo': depInclusivo,
-            'relevante': importante
+            'relevante': importante,
+            'solidario': evSolidario
         }
     }).done(function (data) {
         console.log("data: " + data);

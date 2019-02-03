@@ -129,6 +129,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 02/02/2019</h2>
+        <ul>
+            <li>[EVENTOS] Añadido filtrado por "Evento solidario" a vista de eventos</li>
+        </ul>
+
         <h2>Modificaciones 11/12/2018</h2>
         <ul>
             <li>[SESIONES] Cambios en campos de Excel de Histórico de Sesiones</li>
