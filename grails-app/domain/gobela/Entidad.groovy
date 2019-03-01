@@ -13,6 +13,8 @@ class Entidad {
     String numCuenta
     boolean es_club
 
+    static hasMany = [clubes: Club, contactos: Contacto]
+
     static constraints = {
         nombreEntidad(nullable: false, blank: false, unique: true)
         cif (nullable: false, blank: false)
@@ -25,6 +27,8 @@ class Entidad {
         telefonoEntidad1(nullable: true, blank: true)
         telefonoEntidad2(nullable: true, blank: true)
         numCuenta(nullable: true, blank: true)
+        clubes(nullable: true, display: false)
+        contactos(nullable: true, display: false)
     }
 
     String toString(){
