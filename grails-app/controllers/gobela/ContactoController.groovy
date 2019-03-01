@@ -1,14 +1,6 @@
 package gobela
 
-import jxl.Workbook
-import jxl.WorkbookSettings
-import jxl.write.Border
-import jxl.write.BorderLineStyle
-import jxl.write.Colour
-import jxl.write.Label
 import jxl.write.WritableCellFormat
-import jxl.write.WritableFont
-import jxl.write.WritableSheet
 import jxl.write.WritableWorkbook
 
 import static org.springframework.http.HttpStatus.*
@@ -127,68 +119,13 @@ class ContactoController {
         def listaContactos = contactoService.getListaContactos(listaClubes)
 
         if (listaContactos.size() > 0) {
-            response.setContentType('application/vnd.ms-excel')
-            response.setHeader('Content-Disposition', "Attachment;Filename='Contactos.xls'")
-            WorkbookSettings ws = new WorkbookSettings()
-            ws.setLocale(new Locale("es", "ES"))
-            WritableWorkbook workbook = Workbook.createWorkbook(response.outputStream, ws)
-
-            WritableFont titleFont = new WritableFont(WritableFont.ARIAL, 16, WritableFont.BOLD)
-            WritableCellFormat titleFormat = new WritableCellFormat()
-            titleFormat.setFont(titleFont)
-
-            WritableFont headerFont = new WritableFont(WritableFont.ARIAL, 11, WritableFont.BOLD)
-            WritableCellFormat headerFormat = new WritableCellFormat()
-            headerFormat.with {
-                setBackground(Colour.GREY_25_PERCENT)
-                setBorder(Border.ALL, BorderLineStyle.THIN)
-                setFont(headerFont)
-                setWrap(true)
-            }
-
-            WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 10)
-            WritableCellFormat cellFormat = new WritableCellFormat()
-            cellFormat.with {
-                setFont(cellFont)
-                setBorder(Border.ALL, BorderLineStyle.THIN)
-                setWrap(true)
-            }
-
-            String nombreHoja = "Contactos"
-            WritableSheet sheet = workbook.createSheet(nombreHoja, 0)
-
-            sheet.addCell(new Label(0, 0, "Contactos", titleFormat))
-
-            int columna = 0
-            int fila = 3
+            WritableWorkbook workbook = ExcelUtils.createWorkbook(response, "Contactos")
+            WritableCellFormat titleFormat = ExcelUtils.defaultTitleFormat()
+            WritableCellFormat headerFormat = ExcelUtils.defaultHeaderFormat()
+            WritableCellFormat cellFormat = ExcelUtils.defaultCellFormat()
 
             try {
-                def cabeceras = ['CLUB', 'NOMBRE', 'EMAIL', 'TELEFONO']
-                cabeceras.each {
-                    sheet.addCell(new Label(columna, fila, it, headerFormat))
-                    columna++
-                }
-                fila++
-                columna = 0
-                listaContactos.each {
-                    if(it.activo){
-                        sheet.addCell(new Label(columna, fila, it.entidad.nombreEntidad.toUpperCase(), cellFormat))
-                        columna++
-                        sheet.addCell(new Label(columna, fila, it.nombre.toUpperCase(), cellFormat))
-                        columna++
-                        sheet.addCell(new Label(columna, fila, it.email.toUpperCase(), cellFormat))
-                        columna++
-                        sheet.addCell(new Label(columna, fila, it.telefono.toUpperCase(), cellFormat))
-                        columna = 0
-                        fila++
-                    }
-
-                }
-
-                for (int c = 0; c < 6; c++) {
-                    sheet.setColumnView(c, 40)
-                }
-
+                workbook = contactoService.writeContactData(listaContactos, workbook, headerFormat, cellFormat, titleFormat)
             } catch (Exception e) {
                 e.printStackTrace()
             }
