@@ -14,12 +14,14 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+        <li><g:link class="list" action="exportContactosClubs"><g:message code="default.contactos.exportContactosClubes" default="Exportar Contactos Clubs" /></g:link></li>
         %{--<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--}%
     </ul>
 </div>
 
 
 <div class="container">
+    <br />
     <div class="row" id="filter-options">
         <div class="panel-group" id="accordion-cat-1">
             <div class="panel panel-default panel-faq">
@@ -32,8 +34,13 @@
                 <div id="faq-cat-1-sub-1" class="panel-collapse collapse">
                     <div class="panel-body form-group">
 
+                        %{--<div class="row fieldcontain">
+                            <label for="clubs"><g:message code="contacto.filtro.clubes.label" default="Sólo clubs:"/></label>
+                            <g:checkBox name="clubs"/>
+                        </div>--}%
+
                         <div class="row fieldcontain">
-                            <label for="entidad"><g:message code="evento.entidad.label" default="Entidad:"/></label>
+                            <label for="entidad"><g:message code="contacto.filtro.entidad.label" default="Entidad:"/></label>
                             <g:select name="entidad"
                                       from="${Entidad.listOrderByNombreEntidad()}"
                                       value="''"
