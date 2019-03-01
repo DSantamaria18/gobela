@@ -129,6 +129,12 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 01/03/2019</h2>
+        <ul>
+            <li>[CONTACTOS] Descarga en Excel de contactos activos de clubes</li>
+            <li>[CLUBES] Corregidas entidades con club vacío</li>
+        </ul>
+
         <h2>Modificaciones 02/02/2019</h2>
         <ul>
             <li>[EVENTOS] Añadido filtrado por "Evento solidario" a vista de eventos</li>
