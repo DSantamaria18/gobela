@@ -13,7 +13,7 @@ class ExcelUtils {
 
     static WritableWorkbook createWorkbook(def response, String filename) {
         response.setContentType('application/vnd.ms-excel')
-        response.setHeader('Content-Disposition', "Attachment;Filename='${filename}.xls'")
+        response.setHeader('Content-Disposition', "Attachment;Filename=${filename}.xls")
         WorkbookSettings ws = new WorkbookSettings()
         ws.setLocale(new Locale("es", "ES"))
         WritableWorkbook workbook = Workbook.createWorkbook(response.outputStream, ws)
