@@ -24,11 +24,11 @@ class EstadisticasController {
 
     def exportarInformeSub() {
         def resultList = InformesService.subvencionesPorLinea()
-        response.setContentType('application/vnd.ms-excel')
-        response.setHeader('Content-Disposition', 'Attachment;Filename="subvenciones.xls"')
-        WorkbookSettings ws = new WorkbookSettings()
-        ws.setLocale(new Locale("es", "ES"))
-        WritableWorkbook workbook = Workbook.createWorkbook(response.outputStream, ws)
+
+        WritableWorkbook workbook = ExcelUtils.createWorkbook(response, "Subvenciones")
+        WritableCellFormat titleFormat = ExcelUtils.defaultTitleFormat()
+        WritableCellFormat headerFormat = ExcelUtils.defaultHeaderFormat()
+        WritableCellFormat cellFormat = ExcelUtils.defaultCellFormat()
 
         try {
             for (int i = 0; i < resultList.size(); i++) {
@@ -36,26 +36,6 @@ class EstadisticasController {
                 def datosLinea = resultList[i]
                 if (datosLinea.size() > 0) {
                     WritableSheet sheet = workbook.createSheet(nombreHoja, i)
-                    WritableFont titleFont = new WritableFont(WritableFont.ARIAL, 16, WritableFont.BOLD)
-                    WritableCellFormat titleFormat = new WritableCellFormat()
-                    titleFormat.setFont(titleFont)
-
-                    WritableFont headerFont = new WritableFont(WritableFont.ARIAL, 11, WritableFont.BOLD)
-                    WritableCellFormat headerFormat = new WritableCellFormat()
-                    headerFormat.with {
-                        setBackground(Colour.GREY_25_PERCENT)
-                        setBorder(Border.ALL, BorderLineStyle.THIN)
-                        setFont(headerFont)
-                        setWrap(true)
-                    }
-
-                    WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 10)
-                    WritableCellFormat cellFormat = new WritableCellFormat()
-                    cellFormat.with {
-                        setFont(cellFont)
-                        setBorder(Border.ALL, BorderLineStyle.THIN)
-                        setWrap(true)
-                    }
 
                     sheet.addCell(new Label(0, 0, "SUBVENCIONES LINEA ${i + 1}", titleFormat))
                     def cabeceras = datosLinea[0].keySet()
@@ -147,33 +127,10 @@ class EstadisticasController {
         def euskeraDesarrolloList = resultList[12].collect { it.values() }
         def euskeraSpeakerList = resultList[13].collect { it.values() }
 
-
-        response.setContentType('application/vnd.ms-excel')
-        response.setHeader('Content-Disposition', "Attachment;Filename='Informe_Eventos_${fechaDesde}_${fechaHasta}.xls'")
-        WorkbookSettings ws = new WorkbookSettings()
-        ws.setLocale(new Locale("es", "ES"))
-        WritableWorkbook workbook = Workbook.createWorkbook(response.outputStream, ws)
-
-        WritableFont titleFont = new WritableFont(WritableFont.ARIAL, 16, WritableFont.BOLD)
-        WritableCellFormat titleFormat = new WritableCellFormat()
-        titleFormat.setFont(titleFont)
-
-        WritableFont headerFont = new WritableFont(WritableFont.ARIAL, 11, WritableFont.BOLD)
-        WritableCellFormat headerFormat = new WritableCellFormat()
-        headerFormat.with {
-            setBackground(Colour.GREY_25_PERCENT)
-            setBorder(Border.ALL, BorderLineStyle.THIN)
-            setFont(headerFont)
-            setWrap(true)
-        }
-
-        WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 10)
-        WritableCellFormat cellFormat = new WritableCellFormat()
-        cellFormat.with {
-            setFont(cellFont)
-            setBorder(Border.ALL, BorderLineStyle.THIN)
-            setWrap(true)
-        }
+        WritableWorkbook workbook = ExcelUtils.createWorkbook(response, "Informe_Eventos_${fechaDesde}_${fechaHasta}")
+        WritableCellFormat titleFormat = ExcelUtils.defaultTitleFormat()
+        WritableCellFormat headerFormat = ExcelUtils.defaultHeaderFormat()
+        WritableCellFormat cellFormat = ExcelUtils.defaultCellFormat()
 
         String nombreHoja = "Informe de Eventos"
         WritableSheet sheet = workbook.createSheet(nombreHoja, 0)

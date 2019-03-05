@@ -216,11 +216,7 @@ class ClubController {
         final def instalacionesList = getInstalacionesList(club)
         final def sesionesList = getSesionesList(club)
 
-        response.setContentType('application/vnd.ms-excel')
-        response.setHeader('Content-Disposition', "Attachment;Filename='${club.entidad.nombreEntidad}.xls'")
-        WorkbookSettings ws = new WorkbookSettings()
-        ws.setLocale(new Locale("es", "ES"))
-        WritableWorkbook workbook = Workbook.createWorkbook(response.outputStream, ws)
+        WritableWorkbook workbook = ExcelUtils.createWorkbook(response, "${club.entidad.nombreEntidad}")
 
         WritableFont titleFont = new WritableFont(WritableFont.ARIAL, 16, WritableFont.BOLD)
         WritableCellFormat titleFormat = new WritableCellFormat()
