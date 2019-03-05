@@ -332,32 +332,10 @@ class EventoController {
         def eventosList = eventoService.filtrarEventosFullInfo(params)
 
         if (eventosList.size() > 0) {
-            response.setContentType('application/vnd.ms-excel')
-            response.setHeader('Content-Disposition', "Attachment;Filename='Eventos.xls'")
-            WorkbookSettings ws = new WorkbookSettings()
-            ws.setLocale(new Locale("es", "ES"))
-            WritableWorkbook workbook = Workbook.createWorkbook(response.outputStream, ws)
-
-            WritableFont titleFont = new WritableFont(WritableFont.ARIAL, 16, WritableFont.BOLD)
-            WritableCellFormat titleFormat = new WritableCellFormat()
-            titleFormat.setFont(titleFont)
-
-            WritableFont headerFont = new WritableFont(WritableFont.ARIAL, 11, WritableFont.BOLD)
-            WritableCellFormat headerFormat = new WritableCellFormat()
-            headerFormat.with {
-                setBackground(Colour.GREY_25_PERCENT)
-                setBorder(Border.ALL, BorderLineStyle.THIN)
-                setFont(headerFont)
-                setWrap(true)
-            }
-
-            WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 10)
-            WritableCellFormat cellFormat = new WritableCellFormat()
-            cellFormat.with {
-                setFont(cellFont)
-                setBorder(Border.ALL, BorderLineStyle.THIN)
-                setWrap(true)
-            }
+            WritableWorkbook workbook = ExcelUtils.createWorkbook(response, "Eventos")
+            WritableCellFormat titleFormat = ExcelUtils.defaultTitleFormat()
+            WritableCellFormat headerFormat = ExcelUtils.defaultHeaderFormat()
+            WritableCellFormat cellFormat = ExcelUtils.defaultCellFormat()
 
             String nombreHoja = "Eventos"
             WritableSheet sheet = workbook.createSheet(nombreHoja, 0)

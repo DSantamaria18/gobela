@@ -8,8 +8,8 @@ class Club {
     Boolean carnetGK
 
     static belongsTo = [entidad: Entidad]
-    static hasMany = [asambleas: Asamblea]
-//    static hasMany = [categorias: Categoria, asambleas: Asamblea]
+//    static hasMany = [asambleas: Asamblea]
+    static hasMany = [categorias: Categoria, asambleas: Asamblea]
 
     static constraints = {
         entidad(unique: true)
@@ -17,6 +17,7 @@ class Club {
         fechaElecciones()
         numDirectivos()
         carnetGK()
+        categorias(nullable: true, display: false)
     }
 
     String toString(){

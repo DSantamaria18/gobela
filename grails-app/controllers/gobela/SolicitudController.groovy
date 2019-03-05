@@ -137,11 +137,8 @@ class SolicitudController {
 
     def exportarSolicitud() {
         Solicitud solicitud = Solicitud.get(params.id)
-        response.setContentType('application/vnd.ms-excel')
-        response.setHeader('Content-Disposition', "Attachment;Filename='solicitud_${solicitud.codigo}.xls'")
-        WorkbookSettings ws = new WorkbookSettings()
-        ws.setLocale(new Locale("es", "ES"))
-        WritableWorkbook workbook = Workbook.createWorkbook(response.outputStream, ws)
+
+        WritableWorkbook workbook = ExcelUtils.createWorkbook(response, "solicitud_${solicitud.codigo}")
 
         try {
             WritableSheet sheet = workbook.createSheet("SOLICITUD", 0)
