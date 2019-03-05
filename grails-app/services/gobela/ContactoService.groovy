@@ -32,6 +32,25 @@ class ContactoService {
         return listaContactos
     }
 
+    def getListaContactosByModalidadAndClub(){
+        /*def listaContactos = [:]
+        def listaClubes = Club.findAll()
+
+        listaClubes.categorias.each {
+            listaContactos["${it.modalidad}"] = it.club.entidad.contactos
+        }*/
+
+        def listaContactos = Contacto.findAll()
+        def listaContactosClubs = [:]
+
+        listaContactos.each {
+            if(it.entidad.es_club){
+//                listaContactosClubs["${it.entidad.nombreEntidad}"]
+            }
+        }
+        return listaContactosClubs
+    }
+
     WritableWorkbook writeContactData(List listaContactos, WritableWorkbook workbook, WritableCellFormat headerFormat, WritableCellFormat cellFormat, WritableCellFormat titleFormat) {
         WritableSheet sheet = workbook.createSheet("Contactos", 0)
         sheet.addCell(new Label(0, 0, "Contactos", titleFormat))

@@ -115,6 +115,7 @@ class ContactoController {
     }
 
     def exportContactosClubs() {
+//        def listaContactos = contactoService.getListaContactosByModalidadAndClub()
         def listaClubes = contactoService.getListaClubes()
         def listaContactos = contactoService.getListaContactos(listaClubes)
 
