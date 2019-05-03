@@ -1,15 +1,9 @@
 package gobela
 
-import jxl.Workbook
-import jxl.WorkbookSettings
-import jxl.write.Border
-import jxl.write.BorderLineStyle
-import jxl.write.Colour
 import jxl.write.Formula
 import jxl.write.Label
 import jxl.write.Number
 import jxl.write.WritableCellFormat
-import jxl.write.WritableFont
 import jxl.write.WritableSheet
 import jxl.write.WritableWorkbook
 
