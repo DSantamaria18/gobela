@@ -129,15 +129,23 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 03/05/2019</h2>
+        <ul>
+            <li>[SESIONES] Añadido campo "ACTIVA" a la entidad Sesión</li>
+            <li>[SESIONES] Añadido campo "ACTIVA" a la vista de creación de Sesiones</li>
+            <li>[SESIONES] Añadido campo "ACTIVA" a la vista de edición de Sesiones</li>
+            <li>[SESIONES] Añadido campo "ACTIVA" a la vista de Sesiones</li>
+            <li>[SESIONES] Sólo se muestran las sesiones activas en la vista de check de sesiones</li>
+            <li>[SESIONES] Modificadas consultas de filtros para mostrar sólo las sesiones activas </li>
+            <li style="font-weight: bolder">[SESIONES] IMPORTANTE: Ya no será posible EDITAR una sesión (rompería el histórico). En caso de tener que modificar una sesión, se deberá crear una nueva y desactivar la anterior para que no aparezca en el checking de sesiones.</li>
+        </ul>
+
         <h2>Modificaciones 05/03/2019</h2>
         <ul>
             <li>[CONTACTOS] Descarga en Excel de contactos activos de clubes</li>
             <li>[CLUBES] Corregidas entidades con club vacío</li>
             <li>[EVENTOS] Corregido nombre de fichero Excel incorrecto</li>
-
         </ul>
-
-
 
         <h2>Modificaciones 02/02/2019</h2>
         <ul>
