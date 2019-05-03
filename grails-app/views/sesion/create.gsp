@@ -87,6 +87,12 @@
                 <g:render template="instalacion"/>
             </div>
 
+            <div class="fieldcontain ${hasErrors(bean: sesion, field: 'activa', 'error')}"
+                 id="activa-container">
+                <label for="check-activa"><g:message code="default.sesion.activa.label" default="Activa:" /></label>
+                <g:checkBox name="activa" id="check-activa" checked="true"/>
+            </div>
+
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="save"

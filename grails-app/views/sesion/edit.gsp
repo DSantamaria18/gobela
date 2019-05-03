@@ -78,6 +78,12 @@
                          id="instalacion-container">
                         <g:render template="instalacion"/>
                     </div>
+
+                    <div class="fieldcontain ${hasErrors(bean: sesion, field: 'activa', 'error')}"
+                         id="activa-container">
+                        <label for="check-activa"><g:message code="default.sesion.activa.label" default="Activa:" /></label>
+                        <g:checkBox name="activa" id="check-activa" value="${sesion?.activa}"/>
+                    </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

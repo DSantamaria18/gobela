@@ -23,6 +23,7 @@ class Sesion {
     Recinto recinto
     Instalacion instalacion
     Integer ocupacion
+    boolean activa
 
     static belongsTo = [categoria: Categoria]
     static hasMany = [historicoSesiones: HistoricoSesiones]

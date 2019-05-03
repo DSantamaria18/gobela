@@ -65,11 +65,24 @@
             <span class="property-value" aria-labelledby="Ocupacion-label"><g:fieldValue bean="${sesion}"
                                                                                          field="ocupacion"/></span>
         </li>
+
+        <li class="fieldcontain">
+            <span id="activa-label" class="property-label"><g:message code="sesion.activa.label"
+                                                                         default="Activa:"/></span>
+            <span class="property-value" aria-labelledby="activa-label">
+                <g:if test="${sesion?.activa}">
+                    SI
+                </g:if>
+                <g:else>
+                    NO
+                </g:else>
+%{--                <g:fieldValue bean="${sesion}" field="activa"/></span>--}%
+        </li>
     </ol>
     <g:form resource="${this.sesion}" method="DELETE">
         <fieldset class="buttons">
-            <g:link class="edit" action="edit" resource="${this.sesion}"><g:message code="default.button.edit.label"
-                                                                                    default="Edit"/></g:link>
+            %{--<g:link class="edit" action="edit" resource="${this.sesion}"><g:message code="default.button.edit.label"
+                                                                                    default="Edit"/></g:link>--}%
             <input class="delete" type="submit"
                    value="${message(code: 'default.button.delete.label', default: 'Delete')}"
                    onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
