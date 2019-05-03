@@ -50,18 +50,18 @@ class SesionService {
     }
 
     def filtraSesiones(DiaSemana diaSemana, Date fecha) {
-        def sesiones = Sesion.executeQuery("from Sesion s where s.diaSemana = :diaSemana order by s.horaInicio asc, s.horaFin asc", [diaSemana: diaSemana])
+        def sesiones = Sesion.executeQuery("from Sesion s where s.diaSemana = :diaSemana and s.activa = true order by s.horaInicio asc, s.horaFin asc", [diaSemana: diaSemana])
         def listaSesiones = limpiaRegistrosDeFechasAnterioresDeListaDeSesiones(sesiones, fecha)
         return listaSesiones
     }
 
     def filtraSesionesPorInstalacion(DiaSemana diaSemana, Date fecha, Instalacion instalacion) {
-        def listaSesiones = gobela.HistoricoSesiones.executeQuery("from HistoricoSesiones hs right join hs.sesion s where (s.instalacion = :instalacion and s.diaSemana = :dia and hs.fecha is null) or (s.instalacion = :instalacion and hs.fecha = :hoy) order by s.horaInicio asc, s.horaFin asc", [instalacion: instalacion, dia: diaSemana, hoy: fecha])
+        def listaSesiones = gobela.HistoricoSesiones.executeQuery("from HistoricoSesiones hs right join hs.sesion s where (s.instalacion = :instalacion and s.diaSemana = :dia and hs.fecha is null and s.activa = true) or (s.instalacion = :instalacion and hs.fecha = :hoy and s.activa = true) order by s.horaInicio asc, s.horaFin asc", [instalacion: instalacion, dia: diaSemana, hoy: fecha])
         return listaSesiones
     }
 
     def filtraSesionesPorRecinto(DiaSemana diaSemana, Date fecha, Recinto recinto) {
-        def sesiones = Sesion.executeQuery("from Sesion s where s.diaSemana = :diaSemana and s.recinto = :recinto order by s.horaInicio asc, s.horaFin asc", [diaSemana: diaSemana, recinto: recinto])
+        def sesiones = Sesion.executeQuery("from Sesion s where s.diaSemana = :diaSemana and s.activa = true and s.recinto = :recinto order by s.horaInicio asc, s.horaFin asc", [diaSemana: diaSemana, recinto: recinto])
         def listaSesiones = limpiaRegistrosDeFechasAnterioresDeListaDeSesiones(sesiones, fecha)
         return listaSesiones
     }
@@ -87,7 +87,7 @@ class SesionService {
 
         if (club) {
             qClub = " and hs.sesion.categoria.club = :club"
-            args['club'] = club
+            args['club'] = clubc
         } else {
             qClub = ""
         }
