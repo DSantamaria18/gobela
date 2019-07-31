@@ -1,5 +1,7 @@
 package gobela
 
+import grails.plugin.springsecurity.SpringSecurityUtils
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -18,7 +20,13 @@ class LugarController {
     }
 
     def create() {
-        respond new Lugar(params)
+        def authenticatedUser = User.findByUsername(springSecurityService.principal.username)
+        if (SpringSecurityUtils.ifNotGranted('ROLE_GUEST')) {
+            flash.message = "No tienes permisos para esta acción..."
+            redirect(controller: 'evento', action: 'index')
+        } else {
+            respond new Lugar(params)
+        }
     }
 
     @Transactional
@@ -47,7 +55,13 @@ class LugarController {
     }
 
     def edit(Lugar lugar) {
-        respond lugar
+        def authenticatedUser = User.findByUsername(springSecurityService.principal.username)
+        if (SpringSecurityUtils.ifNotGranted('ROLE_GUEST')) {
+            flash.message = "No tienes permisos para esta acción..."
+            redirect(controller: 'evento', action: 'index')
+        } else {
+            respond lugar
+        }
     }
 
     @Transactional
@@ -77,21 +91,26 @@ class LugarController {
 
     @Transactional
     def delete(Lugar lugar) {
-
-        if (lugar == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
-
-        lugar.delete flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'lugar.label', default: 'Lugar'), lugar.id])
-                redirect action:"index", method:"GET"
+        def authenticatedUser = User.findByUsername(springSecurityService.principal.username)
+        if (SpringSecurityUtils.ifNotGranted('ROLE_GUEST')) {
+            flash.message = "No tienes permisos para esta acción..."
+            redirect(controller: 'evento', action: 'index')
+        } else {
+            if (lugar == null) {
+                transactionStatus.setRollbackOnly()
+                notFound()
+                return
             }
-            '*'{ render status: NO_CONTENT }
+
+            lugar.delete flush: true
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.deleted.message', args: [message(code: 'lugar.label', default: 'Lugar'), lugar.id])
+                    redirect action: "index", method: "GET"
+                }
+                '*' { render status: NO_CONTENT }
+            }
         }
     }
 

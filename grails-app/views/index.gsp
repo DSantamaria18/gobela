@@ -129,8 +129,18 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones 03/05/2019</h2>
+        <h2>Modificaciones 31/07/2019</h2>
         <ul>
+            <li>[USUARUOS] Añadido rol INVITADO con permisos de sólo lectura</li>
+            <li>[EVENTOS] Añadidas restricciones de sólo lectura</li>
+            <li>[SOLICITUDES MATERIAL] Añadidas restricciones de sólo lectura</li>
+            <li>[MATERIAL] Añadidas restricciones de sólo lectura</li>
+            <li>[FICHEROS] Añadidas restricciones de sólo lectura</li>
+            <li>[LUGAR] Añadidas restricciones de sólo lectura</li>
+        </ul>
+
+        <h2>Modificaciones 03/05/2019</h2>
+            <ul>
             <li>[SESIONES] Añadido campo "ACTIVA" a la entidad Sesión</li>
             <li>[SESIONES] Añadido campo "ACTIVA" a la vista de creación de Sesiones</li>
             <li>[SESIONES] Añadido campo "ACTIVA" a la vista de edición de Sesiones</li>
