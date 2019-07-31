@@ -9,7 +9,7 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><g:link action="show" params="[id: params.eventoId]">Volver</g:link> </li>
+        <li><g:link action="show" params="[id: params.eventoId]">Volver</g:link></li>
     </ul>
 </div>
 
@@ -45,14 +45,17 @@
 
                     </td>
                     <td>
+                        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
                         <g:link class="delete"
                                 action="deleteFile"
                                 params='[fileId  : infoDoc.nombre.replace(".", "###"),
                                          eventoId: params.eventoId,
-                                         tipo  : "info"]'>
-                            <input type="button" class="btn btn-danger" value="Borrar"
-                                   onclick="return confirm('El fichero se borrará. ¿Estás seguro/a?');"/>
+                                         tipo    : "info"]'>
+
+                                <input type="button" class="btn btn-danger" value="Borrar"
+                                       onclick="return confirm('El fichero se borrará. ¿Estás seguro/a?');"/>
                         </g:link>
+                        </sec:ifAnyGranted>
                     </td>
                 </tr>
             </g:each>
@@ -60,30 +63,33 @@
         </table>
     </div>
 
-    <div class="container">
-        <div class="col-md-8 col-md-offset-2">
-            <h3>Subir Fichero</h3>
+    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
+        <div class="container">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>Subir Fichero</h3>
 
-            <form method="POST" action="#" enctype="multipart/form-data">
-                <div class="form-group">
-                    <div class="input-group input-file" name="infoFiles">
-                        <span class="input-group-btn">
-                            <button class="btn btn-dark btn-choose" type="button" onclick="buscar('info')">Buscar</button>
-                        </span>
-                        <input type="text" class="form-control" id="infoFileNameInput"
-                               placeholder='Selecciona un fichero...' readonly/>
-                        %{--<input type="hidden" name="tipo" value="info"/>--}%
-                        <span class="input-group-btn">
-                            <g:actionSubmit class="btn btn-primary" value="Subir" action="uploadInfoFile"/>
-                        </span>
-                        <input type="file" class="form-control" id="infoFileUpload" name="infoFileUpload"
-                               onchange="copyFileName('info')"
-                               style="visibility:hidden" ;/>
+                <form method="POST" action="#" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="input-group input-file" name="infoFiles">
+                            <span class="input-group-btn">
+                                <button class="btn btn-dark btn-choose" type="button"
+                                        onclick="buscar('info')">Buscar</button>
+                            </span>
+                            <input type="text" class="form-control" id="infoFileNameInput"
+                                   placeholder='Selecciona un fichero...' readonly/>
+                            %{--<input type="hidden" name="tipo" value="info"/>--}%
+                            <span class="input-group-btn">
+                                <g:actionSubmit class="btn btn-primary" value="Subir" action="uploadInfoFile"/>
+                            </span>
+                            <input type="file" class="form-control" id="infoFileUpload" name="infoFileUpload"
+                                   onchange="copyFileName('info')"
+                                   style="visibility:hidden" ;/>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
+    </sec:ifAnyGranted>
 </div>
 
 <br/>
@@ -92,6 +98,7 @@
 
 <div class="content scaffold-list" role="main">
     <h1>Solicitudes y Permisos</h1>
+
     <div id="success"></div>
 
     <div class="list">
@@ -119,14 +126,16 @@
 
                     </td>
                     <td>
-                        <g:link class="delete"
-                                action="deleteFile"
-                                params='[fileId  : permDoc.nombre.replace(".", "###"),
-                                         eventoId: params.eventoId,
-                                         tipo  : "permisos"]'>
-                            <input type="button" class="btn btn-danger" value="Borrar"
-                                   onclick="return confirm('El fichero se borrará. ¿Estás seguro/a?');"/>
-                        </g:link>
+                        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
+                            <g:link class="delete"
+                                    action="deleteFile"
+                                    params='[fileId  : permDoc.nombre.replace(".", "###"),
+                                             eventoId: params.eventoId,
+                                             tipo    : "permisos"]'>
+                                <input type="button" class="btn btn-danger" value="Borrar"
+                                       onclick="return confirm('El fichero se borrará. ¿Estás seguro/a?');"/>
+                            </g:link>
+                        </sec:ifAnyGranted>
                     </td>
                 </tr>
             </g:each>
@@ -134,35 +143,43 @@
         </table>
     </div>
 
-    <div class="container">
-        <div class="col-md-8 col-md-offset-2">
-            <h3>Subir Fichero</h3>
+    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
+        <div class="container">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>Subir Fichero</h3>
 
-            <form method="POST" action="#" enctype="multipart/form-data">
-                <div class="form-group">
-                    <div class="input-group input-file" name="permFiles">
-                        <span class="input-group-btn">
-                            <button class="btn btn-dark btn-choose" type="button" onclick="buscar('permisos')">Buscar</button>
-                        </span>
-                        <input type="text" class="form-control" id="permFileNameInput"
-                               placeholder='Selecciona un fichero...' readonly/>
-                        %{--<input type="hidden" name="tipo" value="info"/>--}%
-                        <span class="input-group-btn">
-                            <g:actionSubmit class="btn btn-primary" value="Subir" action="uploadPermFile"/>
-                        </span>
-                        <input type="file" class="form-control" id="permFileUpload" name="permFileUpload"
-                               onchange="copyFileName('permisos')"
-                               style="visibility:hidden" ;/>
+                <form method="POST" action="#" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="input-group input-file" name="permFiles">
+                            <span class="input-group-btn">
+                                <button class="btn btn-dark btn-choose" type="button"
+                                        onclick="buscar('permisos')">Buscar</button>
+                            </span>
+                            <input type="text" class="form-control" id="permFileNameInput"
+                                   placeholder='Selecciona un fichero...' readonly/>
+                            %{--<input type="hidden" name="tipo" value="info"/>--}%
+                            <span class="input-group-btn">
+                                <g:actionSubmit class="btn btn-primary" value="Subir" action="uploadPermFile"/>
+                            </span>
+                            <input type="file" class="form-control" id="permFileUpload" name="permFileUpload"
+                                   onchange="copyFileName('permisos')"
+                                   style="visibility:hidden" ;/>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
+    </sec:ifAnyGranted>
 </div>
+
+<br/>
+<hr/>
+<br/>
 
 
 <div class="content scaffold-list" role="main">
     <h1>Documentos Post-Evento</h1>
+
     <div id="success"></div>
 
     <div class="list">
@@ -190,14 +207,16 @@
 
                     </td>
                     <td>
-                        <g:link class="delete"
-                                action="deleteFile"
-                                params='[fileId  : postEventDoc.nombre.replace(".", "###"),
-                                         eventoId: params.eventoId,
-                                         tipo  : "postEvento"]'>
-                            <input type="button" class="btn btn-danger" value="Borrar"
-                                   onclick="return confirm('El fichero se borrará. ¿Estás seguro/a?');"/>
-                        </g:link>
+                        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
+                            <g:link class="delete"
+                                    action="deleteFile"
+                                    params='[fileId  : postEventDoc.nombre.replace(".", "###"),
+                                             eventoId: params.eventoId,
+                                             tipo    : "postEvento"]'>
+                                <input type="button" class="btn btn-danger" value="Borrar"
+                                       onclick="return confirm('El fichero se borrará. ¿Estás seguro/a?');"/>
+                            </g:link>
+                        </sec:ifAnyGranted>
                     </td>
                 </tr>
             </g:each>
@@ -205,29 +224,32 @@
         </table>
     </div>
 
-    <div class="container">
-        <div class="col-md-8 col-md-offset-2">
-            <h3>Subir Fichero</h3>
+    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
+        <div class="container">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>Subir Fichero</h3>
 
-            <form method="POST" action="#" enctype="multipart/form-data">
-                <div class="form-group">
-                    <div class="input-group input-file" name="postEventFiles">
-                        <span class="input-group-btn">
-                            <button class="btn btn-dark btn-choose" type="button" onclick="buscar('postEvento')">Buscar</button>
-                        </span>
-                        <input type="text" class="form-control" id="postEventFileNameInput"
-                               placeholder='Selecciona un fichero...' readonly/>
-                        <span class="input-group-btn">
-                            <g:actionSubmit class="btn btn-primary" value="Subir" action="uploadPostEventFile"/>
-                        </span>
-                        <input type="file" class="form-control" id="postEventFileUpload" name="postEventFileUpload"
-                               onchange="copyFileName('postEvento')"
-                               style="visibility:hidden" ;/>
+                <form method="POST" action="#" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="input-group input-file" name="postEventFiles">
+                            <span class="input-group-btn">
+                                <button class="btn btn-dark btn-choose" type="button"
+                                        onclick="buscar('postEvento')">Buscar</button>
+                            </span>
+                            <input type="text" class="form-control" id="postEventFileNameInput"
+                                   placeholder='Selecciona un fichero...' readonly/>
+                            <span class="input-group-btn">
+                                <g:actionSubmit class="btn btn-primary" value="Subir" action="uploadPostEventFile"/>
+                            </span>
+                            <input type="file" class="form-control" id="postEventFileUpload" name="postEventFileUpload"
+                                   onchange="copyFileName('postEvento')"
+                                   style="visibility:hidden" ;/>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
+    </sec:ifAnyGranted>
 </div>
 </body>
 </html>

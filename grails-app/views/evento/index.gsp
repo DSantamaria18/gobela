@@ -14,8 +14,10 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
         <li><g:link class="create" action="create"><g:message code="default.new.label"
                                                               args="[entityName]"/></g:link></li>
+        </sec:ifAnyGranted>
     </ul>
 </div>
 
@@ -24,6 +26,11 @@
 <br/>
 
 <div class="container">
+
+    <g:if test="${flash.message}">
+        <div class="message" role="status">${flash.message}</div>
+    </g:if>
+
     <div class="row" id="filter-options">
     <div class="panel-group" id="accordion-cat-1">
     <div class="panel panel-default panel-faq">
@@ -212,9 +219,9 @@
 
             <div id="list-evento" class="content scaffold-list" role="main">
                 <h1>Lista de Eventos</h1>
-                <g:if test="${flash.message}">
+                %{--<g:if test="${flash.message}">
                     <div class="message" role="status">${flash.message}</div>
-                </g:if>
+                </g:if>--}%
                 <div class="tabla-eventos" id="tabla-eventos">
                     <g:render template="tablaEventos" model="[eventoList: eventoList]"/>
                 </div>

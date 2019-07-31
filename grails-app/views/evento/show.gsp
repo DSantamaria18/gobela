@@ -18,42 +18,48 @@
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
         <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]"/></g:link></li>
-        <li><g:link class="create"
-                    action="clone"
-                    params="['nombre'               : evento?.nombre
-                             , 'horario'            : evento?.horario
-                             , 'relevante'          : evento?.relevante
-                             , 'tActividad'         : evento?.tActividad?.id
-                             , 'actividad'          : evento?.actividad?.id
-                             , 'modalidad'          : evento?.modalidad?.id
-                             , 'multikirola'        : evento?.multikirola
-                             , 'deporteAdaptado'    : evento?.deporteAdaptado
-                             , 'deporteInclusivo'   : evento?.deporteInclusivo
-                             , 'solidario'          : evento?.solidario
-                             , 'entidadOrganizadora': evento?.entidadOrganizadora?.id
-                             , 'contacto'           : evento?.contacto?.id
-                             , 'emailContacto'      : evento?.emailContacto
-                             , 'telefonoContacto'   : evento?.telefonoContacto
-                             , 'clubOrganizador'    : evento?.clubOrganizador?.id
-                             , 'ambito'             : evento?.ambito
-                             , 'tipoPublico'        : evento?.tipoPublico
-                             , 'publicoDest'        : evento?.publicoDest
-                             , 'euskeraComGK'       : evento?.euskeraComGK
-                             , 'euskeraDesarrollo'  : evento?.euskeraDesarrollo
-                             , 'euskeraSpeaker'     : evento?.euskeraSpeaker
-                             , 'lugar'              : evento?.lugar?.id
-                             , 'zona'               : evento?.zona?.id
-                             , 'recinto'            : evento?.recinto?.id
-                             , 'instalacion'        : evento?.instalacion?.id
-                             , 'ocupacion'          : evento?.ocupacion
-                             , 'entidadColaboradora': evento?.entidadColaboradora?.id]">
-            <g:message code="default.clone.label" args="[entityName]"/></g:link></li>
-        <li><g:link class="create" action="create"><g:message code="default.new.label"
-                                                              args="[entityName]"/></g:link></li>
-        <li><g:link class="create" controller="solicitudMaterial" action="create"
-                    params="['eventoId'  : evento.id
-                             , 'fecha'   : evento?.fecha
-                             , 'fechaFin': evento?.fechaFin]">Solicitar Material</g:link></li>
+        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
+            <li><g:link class="create"
+                        action="clone"
+                        params="['nombre'               : evento?.nombre
+                                 , 'horario'            : evento?.horario
+                                 , 'relevante'          : evento?.relevante
+                                 , 'tActividad'         : evento?.tActividad?.id
+                                 , 'actividad'          : evento?.actividad?.id
+                                 , 'modalidad'          : evento?.modalidad?.id
+                                 , 'multikirola'        : evento?.multikirola
+                                 , 'deporteAdaptado'    : evento?.deporteAdaptado
+                                 , 'deporteInclusivo'   : evento?.deporteInclusivo
+                                 , 'solidario'          : evento?.solidario
+                                 , 'entidadOrganizadora': evento?.entidadOrganizadora?.id
+                                 , 'contacto'           : evento?.contacto?.id
+                                 , 'emailContacto'      : evento?.emailContacto
+                                 , 'telefonoContacto'   : evento?.telefonoContacto
+                                 , 'clubOrganizador'    : evento?.clubOrganizador?.id
+                                 , 'ambito'             : evento?.ambito
+                                 , 'tipoPublico'        : evento?.tipoPublico
+                                 , 'publicoDest'        : evento?.publicoDest
+                                 , 'euskeraComGK'       : evento?.euskeraComGK
+                                 , 'euskeraDesarrollo'  : evento?.euskeraDesarrollo
+                                 , 'euskeraSpeaker'     : evento?.euskeraSpeaker
+                                 , 'lugar'              : evento?.lugar?.id
+                                 , 'zona'               : evento?.zona?.id
+                                 , 'recinto'            : evento?.recinto?.id
+                                 , 'instalacion'        : evento?.instalacion?.id
+                                 , 'ocupacion'          : evento?.ocupacion
+                                 , 'entidadColaboradora': evento?.entidadColaboradora?.id]">
+                <g:message code="default.clone.label" args="[entityName]"/></g:link></li>
+        </sec:ifAnyGranted>
+        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
+            <li><g:link class="create" action="create"><g:message code="default.new.label"
+                                                                  args="[entityName]"/></g:link></li>
+        </sec:ifAnyGranted>
+        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
+            <li><g:link class="create" controller="solicitudMaterial" action="create"
+                        params="['eventoId'  : evento.id
+                                 , 'fecha'   : evento?.fecha
+                                 , 'fechaFin': evento?.fechaFin]">Solicitar Material</g:link></li>
+        </sec:ifAnyGranted>
         <li><g:link class="create" action="listFiles"
                     params="['eventoId': evento.id]">Ficheros</g:link></li>
     </ul>
@@ -552,11 +558,15 @@
 
     <g:form resource="${this.evento}" method="DELETE">
         <fieldset class="buttons">
+            <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
             <g:link class="edit" action="edit" resource="${this.evento}"><g:message code="default.button.edit.label"
                                                                                     default="Edit"/></g:link>
-            <input class="delete" type="submit"
-                   value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-                   onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+            </sec:ifAnyGranted>
+            <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
+                <input class="delete" type="submit"
+                       value="${message(code: 'default.button.delete.label', default: 'Delete')}"
+                       onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+            </sec:ifAnyGranted>
         </fieldset>
     </g:form>
 </div>

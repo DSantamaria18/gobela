@@ -1,18 +1,11 @@
 package gobela
 
 import evento.EventoService
-import grails.gorm.PagedResultList
-import groovy.sql.GroovyRowResult
-import jxl.Workbook
-import jxl.WorkbookSettings
-import jxl.write.Border
-import jxl.write.BorderLineStyle
-import jxl.write.Colour
-import jxl.write.DateTime
+import grails.plugin.springsecurity.SpringSecurityService
+import grails.plugin.springsecurity.SpringSecurityUtils
 import jxl.write.Label
 import jxl.write.Number
 import jxl.write.WritableCellFormat
-import jxl.write.WritableFont
 import jxl.write.WritableSheet
 import jxl.write.WritableWorkbook
 import org.codehaus.groovy.runtime.NullObject
@@ -31,6 +24,7 @@ class EventoController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     static final String UPLOAD_FOLDER = Holders.getGrailsApplication().config.uploadFolder + "/eventos"
     EventoService eventoService
+    SpringSecurityService springSecurityService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 30, 100)
@@ -43,11 +37,24 @@ class EventoController {
     }
 
     def create() {
-        respond new Evento(params)
+        def authenticatedUser = User.findByUsername(springSecurityService.principal.username)
+        if (SpringSecurityUtils.ifNotGranted('ROLE_GUEST')) {
+            flash.message = "No tienes permisos para esta acción..."
+            redirect(controller: 'evento', action: 'index')
+        } else {
+            respond new Evento(params)
+        }
+
     }
 
     def clone() {
-        respond new Evento(params)
+        def authenticatedUser = User.findByUsername(springSecurityService.principal.username)
+        if (SpringSecurityUtils.ifNotGranted('ROLE_GUEST')) {
+            flash.message = "No tienes permisos para esta acción..."
+            redirect(controller: 'evento', action: 'index')
+        } else {
+            respond new Evento(params)
+        }
     }
 
     @Transactional
@@ -77,7 +84,13 @@ class EventoController {
     }
 
     def edit(Evento evento) {
-        respond evento
+        def authenticatedUser = User.findByUsername(springSecurityService.principal.username)
+        if (SpringSecurityUtils.ifNotGranted('ROLE_GUEST')) {
+            flash.message = "No tienes permisos para esta acción..."
+            redirect(controller: 'evento', action: 'index')
+        } else {
+            respond evento
+        }
     }
 
     @Transactional
