@@ -31,7 +31,7 @@
         </li>
     </sec:ifAnyGranted>
 
-    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_USER, ROLE_MANAGER'>
+    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_USER, ROLE_MANAGER, ROLE_GUEST'>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false">Eventos<span class="caret"></span></a>
@@ -51,7 +51,7 @@
             </ul>
         </li></sec:ifAnyGranted>
 
-    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_USER,ROLE_MANAGER'>
+    <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_USER,ROLE_MANAGER, ROLE_GUEST'>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false">Entidades<span class="caret"></span></a>
@@ -79,7 +79,7 @@
         </li>
     </sec:ifAnyGranted>
 
-    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER'>
+    <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MANAGER, ROLE_USER, ROLE_GUEST'>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false">Estadísticas<span class="caret"></span></a>
