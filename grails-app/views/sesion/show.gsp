@@ -4,6 +4,7 @@
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'sesion.label', default: 'Sesion')}"/>
     <title><g:message code="default.show.label" args="[entityName]"/></title>
+    <asset:javascript src="sesiones.js"/>
 </head>
 
 <body>
@@ -14,7 +15,6 @@
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
         <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]"/></g:link></li>
-        %{--<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--}%
     </ul>
 </div>
 
@@ -76,18 +76,17 @@
                 <g:else>
                     NO
                 </g:else>
-%{--                <g:fieldValue bean="${sesion}" field="activa"/></span>--}%
         </li>
     </ol>
-    <g:form resource="${this.sesion}" method="DELETE">
-        <fieldset class="buttons">
-            %{--<g:link class="edit" action="edit" resource="${this.sesion}"><g:message code="default.button.edit.label"
-                                                                                    default="Edit"/></g:link>--}%
-            <input class="delete" type="submit"
-                   value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-                   onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
-        </fieldset>
-    </g:form>
+
+    <fieldset class="buttons">
+        <g:if test="${this.sesion.activa}">
+            <input class="delete" type="button" value="Desactivar" onclick="cambiaEstadoSesion(${this.sesion.id}, true)"/>
+        </g:if>
+        <g:else>
+            <input class="create" type="button" value="Activar" onclick="cambiaEstadoSesion(${this.sesion.id}, false)"/>
+        </g:else>
+    </fieldset>
 </div>
 </body>
 </html>

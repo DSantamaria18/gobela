@@ -1,5 +1,8 @@
 package gobela
 
+import org.hibernate.Session
+import org.hibernate.Transaction
+
 import java.text.SimpleDateFormat
 import java.time.LocalTime
 
@@ -11,7 +14,7 @@ class SesionController {
 
     SesionService sesionService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", actualizaEstadoById: "POST", delete: "DELETE"]
 
     def index() {
         Date fecha = new Date().clearTime()
@@ -112,6 +115,12 @@ class SesionController {
         respond sesion
     }
 
+    def actualizaEstadoById(Long sesionId, boolean nuevoEstado){
+        Sesion sesion = Sesion.findById(sesionId)
+        sesion.activa = nuevoEstado
+        update(sesion)
+    }
+
     @Transactional
     def update(Sesion sesion) {
         if (sesion == null) {
@@ -141,6 +150,28 @@ class SesionController {
             '*' { respond sesion, [status: OK] }
         }
     }
+
+   /* @Transactional
+    def cambiaEstadoSesion(Long sesionId, boolean activa) {
+        Sesion sesion = Sesion.findById(sesionId)
+        sesion.activa = activa
+
+        if (sesion.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond sesion.errors, view: 'edit'
+            return
+        }
+
+        sesion.save flush: true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'sesion.label', default: 'Sesion'), sesion.id])
+                redirect sesion
+            }
+            '*' { respond sesion, [status: OK] }
+        }
+    }*/
 
     @Transactional
     def delete(Sesion sesion) {
