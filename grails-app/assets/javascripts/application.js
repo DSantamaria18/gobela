@@ -409,7 +409,6 @@ function filtrarContactos(entidad){
     })
 }
 
-
 function filtrarSolicitudesMaterial(fechaDesde, fechaHasta, lugarEntrega, lugarDevolucion) {
     var url = "/gobela/solicitudMaterial/filtrarSolicitudesMaterial/";
     console.log("URL: " + url);
