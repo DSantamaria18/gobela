@@ -87,7 +87,7 @@ class SesionService {
 
         if (club) {
             qClub = " and hs.sesion.categoria.club = :club"
-            args['club'] = clubc
+            args['club'] = club
         } else {
             qClub = ""
         }
