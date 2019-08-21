@@ -131,6 +131,7 @@
         <h2>Modificaciones 21/08/2019</h2>
         <ul>
             <li>[SESIONES] Añadido botón para activar-desactivar sesiones en vista de sesión</li>
+            <li>[HISTORICO SESIONES] Corregido error al filtrar por club en Histórico de sesiones</li>
         </ul>
 
         <h2>Modificaciones 03/05/2019</h2>
