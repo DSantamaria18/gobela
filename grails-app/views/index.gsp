@@ -128,6 +128,10 @@
 <div id="content" role="main">
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
+        <h2>Modificaciones 21/08/2019</h2>
+        <ul>
+            <li>[SESIONES] Añadido botón para activar-desactivar sesiones en vista de sesión</li>
+        </ul>
 
         <h2>Modificaciones 03/05/2019</h2>
         <ul>
