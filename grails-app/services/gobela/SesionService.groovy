@@ -34,7 +34,7 @@ class SesionService {
                     }
                 }
             } else if (listaHistoricoSesiones?.size() == 1) {
-                if (fecha.toTimestamp().equals(listaHistoricoSesiones[0].fecha)){
+                if (fecha.toTimestamp().equals(listaHistoricoSesiones[0].fecha)) {
                     sesionDeHoy = new HistoricoSesiones()
                     sesionDeHoy.fecha = listaHistoricoSesiones[0].fecha
                     sesionDeHoy.participantes = listaHistoricoSesiones[0].participantes
@@ -66,9 +66,11 @@ class SesionService {
         return listaSesiones
     }
 
-    def filtraHistoricoSesiones(Date fDesde, Date fHasta, Club club, Categoria categoria, Recinto recinto, Instalacion instalacion,Boolean resultadoOk) {
-        String baseQuery = "SELECT hs from HistoricoSesiones hs where hs.fecha <= :fHasta"
-        def args = ['fHasta': fHasta]
+//    def filtraHistoricoSesiones(Date fDesde, Date fHasta, Club club, Categoria categoria, Recinto recinto, Instalacion instalacion,Boolean resultadoOk) {
+    def filtraHistoricoSesiones(final Date fDesde, final Date fHasta, final Club club, final Long categoriaId,
+                                final Recinto recinto, final Instalacion instalacion, final Boolean resultadoOk) {
+        final String baseQuery = "SELECT hs from HistoricoSesiones hs where hs.fecha <= :fHasta"
+        final def args = ['fHasta': fHasta]
         String qDesde, qCategoria, qClub, qRecinto, qInstalacion, qResultadoOk
 
         if (fDesde) {
@@ -78,29 +80,29 @@ class SesionService {
             qDesde = ""
         }
 
-        if (categoria) {
-            qCategoria = " and hs.sesion.categoria = :categoria"
-            args['categoria'] = categoria
+        if (categoriaId) {
+            qCategoria = " and hs.categoriaId = :categoriaId"
+            args['categoriaId'] = categoriaId
         } else {
             qCategoria = ""
         }
 
         if (club) {
-            qClub = " and hs.sesion.categoria.club = :club"
+            qClub = " and hs.club = :club"
             args['club'] = club
         } else {
             qClub = ""
         }
 
         if (recinto) {
-            qRecinto = " and hs.sesion.recinto = :recinto"
+            qRecinto = " and hs.recinto = :recinto"
             args['recinto'] = recinto
         } else {
             qRecinto = ""
         }
 
         if (instalacion) {
-            qInstalacion = " and hs.sesion.instalacion = :instalacion"
+            qInstalacion = " and hs.instalacion = :instalacion"
             args['instalacion'] = instalacion
         } else {
             qInstalacion = ""
@@ -112,10 +114,10 @@ class SesionService {
         } else {
             qResultadoOk = ""
         }
-        String sortQuery = " order by hs.fecha desc, hs.sesion.horaInicio desc, hs.sesion.horaFin desc"
-        String query = baseQuery + qDesde + qClub + qCategoria + qRecinto + qInstalacion + qResultadoOk + sortQuery
+        final String sortQuery = " order by hs.fecha desc, hs.horaInicio desc, hs.horaFin desc"
+        final String query = baseQuery + qDesde + qClub + qCategoria + qRecinto + qInstalacion + qResultadoOk + sortQuery
 
-        def listaHistoricoSesiones = HistoricoSesiones.executeQuery(query, args)
+        final def listaHistoricoSesiones = HistoricoSesiones.executeQuery(query, args)
         return listaHistoricoSesiones
     }
 

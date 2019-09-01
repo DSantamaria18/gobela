@@ -20,25 +20,26 @@ class HistoricoSesionesController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         params.order = "desc"
-        def historicoSesionesList = HistoricoSesiones.findAll("from HistoricoSesiones as hs order by hs.fecha desc, hs.sesion.horaInicio desc, hs.sesion.horaFin desc")
-
+        def historicoSesionesList = HistoricoSesiones.findAll("from HistoricoSesiones as hs order by hs.fecha desc, hs.horaInicio desc, hs.horaFin desc")
         respond historicoSesionesList, model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: HistoricoSesiones.count()]
     }
 
     def exportarListadoHistoricoSesiones(params) {
-        Date filtrofechadesde = (params?.filtrofechadesde == "") ? null : Date.parse("yyyy-MM-dd", params.filtrofechadesde)
-        Date filtrofechahasta = (params?.filtrofechahasta == "null") ? null : Date.parse("yyyy-MM-dd", params.filtrofechahasta)
-        def filtroclub = (params?.filtroclub == "null") ? null : params.filtroclub as Long
-        Club club = Club.get(filtroclub)
-        def filtrocategoria = (params?.filtrocategoria == "null") ? null : params.filtrocategoria as Long
-        Categoria categoria = Categoria.get(filtrocategoria)
-        def filtroRecinto = (params?.filtrorecinto == "null") ? null : params.filtrorecinto as Long
-        Recinto recinto = Recinto.get(filtroRecinto)
-        def filtroInstalacion = (params?.filtroinstalaciones == "null") ? null : params.filtroinstalaciones as Long
-        Instalacion instalacion = Instalacion.get(filtroInstalacion)
-        Boolean filtroresultado = (params?.filtroresultado == "null") ? null : new Boolean(params.filtroresultado)
+        final Date filtrofechadesde = (params?.filtrofechadesde == "") ? null : Date.parse("yyyy-MM-dd", params.filtrofechadesde)
+        final Date filtrofechahasta = (params?.filtrofechahasta == "null") ? null : Date.parse("yyyy-MM-dd", params.filtrofechahasta)
+        final def filtroclub = (params?.filtroclub == "null") ? null : params.filtroclub as Long
+        final Club club = Club.get(filtroclub)
+//        final def filtrocategoria = (params?.filtrocategoria == "null") ? null : params.filtrocategoria as Long
+        final Long categoriaId = (params?.filtrocategoria == "null") ? null : params.filtrocategoria as Long
+//        final Categoria categoria = Categoria.get(filtrocategoria)
+        final Long filtroRecinto = (params?.filtrorecinto == "null") ? null : params.filtrorecinto as Long
+        final Recinto recinto = Recinto.get(filtroRecinto)
+        final Long filtroInstalacion = (params?.filtroinstalaciones == "null") ? null : params.filtroinstalaciones as Long
+        final Instalacion instalacion = Instalacion.get(filtroInstalacion)
+        final Boolean filtroresultado = (params?.filtroresultado == "null") ? null : new Boolean(params.filtroresultado)
 
-        def listaSesiones = sesionService.filtraHistoricoSesiones(filtrofechadesde, filtrofechahasta, club, categoria, recinto, instalacion, filtroresultado)
+//        final def listaSesiones = sesionService.filtraHistoricoSesiones(filtrofechadesde, filtrofechahasta, club, categoria, recinto, instalacion, filtroresultado)
+        final def listaSesiones = sesionService.filtraHistoricoSesiones(filtrofechadesde, filtrofechahasta, club, categoriaId, recinto, instalacion, filtroresultado)
 
         WritableWorkbook workbook = ExcelUtils.createWorkbook(response, "Informe_Historico_Sesiones")
         WritableCellFormat titleFormat = ExcelUtils.defaultTitleFormat()
@@ -115,14 +116,15 @@ class HistoricoSesionesController {
         def clubId = (params?.clubId == "null") ? null : params.clubId as Long
         Club club = Club.get(clubId)
         def categoriaId = (params?.categoriaId == "null") ? null : params.categoriaId as Long
-        Categoria categoria = Categoria.get(categoriaId)
+//        Categoria categoria = Categoria.get(categoriaId)
         def filtroRecinto = (params?.recintoId == "null") ? null : params.recintoId as Long
         Recinto recinto = Recinto.get(filtroRecinto)
         def filtroInstalacion = (params?.instalacionId == "null") ? null : params.instalacionId as Long
         Instalacion instalacion = Instalacion.get(filtroInstalacion)
         Boolean resultado = (params?.resultado == "null") ? null : new Boolean(params.resultado)
 
-        def historicoSesionesList = sesionService.filtraHistoricoSesiones(fdesde, fhasta, club, categoria, recinto, instalacion, resultado)
+        final def historicoSesionesList = sesionService.filtraHistoricoSesiones(fdesde, fhasta, club, categoriaId, recinto, instalacion, resultado)
+//        def historicoSesionesList = sesionService.filtraHistoricoSesiones(fdesde, fhasta, club, categoria, recinto, instalacion, resultado)
         render template: "listaHistoricoSesiones", model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: historicoSesionesList.size()]
     }
 
@@ -147,17 +149,40 @@ class HistoricoSesionesController {
     }
 
     def create() {
-        HistoricoSesiones historicoSesiones1 = new HistoricoSesiones()
-        Sesion sesion = Sesion.get(params.sesionId as Long)
-        historicoSesiones1.sesion = sesion
-        Date fecha = new Date().parse('yyyy-MM-dd', params.fecha)
-        historicoSesiones1.fecha = fecha
-        historicoSesiones1.participantes = params.participantes as int
-        historicoSesiones1.ocupacion = params.ocupacion as int
-        historicoSesiones1.observaciones = params.observaciones
-        historicoSesiones1.resultadoOk = (params.resultadoOk == "true") ? true : false
+        HistoricoSesiones historicoSesiones = new HistoricoSesiones()
 
-        save(historicoSesiones1)
+        final Date fecha = new Date().parse('yyyy-MM-dd', params.fecha)
+        historicoSesiones.fecha = fecha
+        historicoSesiones.participantes = params.participantes as int
+        historicoSesiones.ocupacion = params.ocupacion as int
+        historicoSesiones.observaciones = params.observaciones
+        historicoSesiones.resultadoOk = (params.resultadoOk == "true")
+
+        // Sesion
+        final Sesion sesion = Sesion.get(params.sesionId as Long)
+        //        historicoSesiones.sesion = sesion
+        historicoSesiones.sesionId = sesion.id
+        historicoSesiones.diaSemana = sesion.diaSemana
+        historicoSesiones.horaInicio = sesion.horaInicio
+        historicoSesiones.horaFin = sesion.horaFin
+        historicoSesiones.recinto = sesion.recinto
+        historicoSesiones.instalacion = sesion.instalacion
+        historicoSesiones.ocupacionEsperada = sesion.ocupacion
+
+        // Categoria
+        historicoSesiones.categoriaId = sesion.categoria.id
+        historicoSesiones.nombreCategoria = sesion.categoria.nombre
+        historicoSesiones.sexo = sesion.categoria.sexo
+        historicoSesiones.numDeportistas = sesion.categoria.numDeportistas
+        historicoSesiones.edadMin = sesion.categoria.edadMin
+        historicoSesiones.edadMax = sesion.categoria.edadMax
+        historicoSesiones.club = sesion.categoria.club
+        historicoSesiones.modalidad = sesion.categoria.modalidad
+
+        // Entidad
+        historicoSesiones.entidad = sesion.categoria.club.entidad
+
+        save(historicoSesiones)
     }
 
     @Transactional
@@ -176,8 +201,8 @@ class HistoricoSesionesController {
 
         historicoSesiones.save flush: true
 //        def sesionesList = sesionService.filtraSesiones(historicoSesiones.sesion.diaSemana, historicoSesiones.sesion.instalacion)
-        def listaSesiones = sesionService.filtraSesiones(historicoSesiones.sesion.diaSemana, historicoSesiones.fecha)
-        DiaSemana diaSemana = historicoSesiones.sesion.diaSemana
+        def listaSesiones = sesionService.filtraSesiones(historicoSesiones.diaSemana, historicoSesiones.fecha)
+        DiaSemana diaSemana = historicoSesiones.diaSemana
 
         request.withFormat {
             form multipartForm {
@@ -217,7 +242,7 @@ class HistoricoSesionesController {
         historicoSesiones.save flush: true
 
 //        def sesionesList = sesionService.filtraSesiones(historicoSesiones.sesion.diaSemana, historicoSesiones.sesion.instalacion)
-        def sesionesList = sesionService.filtraSesiones(historicoSesiones.sesion.diaSemana, historicoSesiones.fecha)
+        def sesionesList = sesionService.filtraSesiones(historicoSesiones.diaSemana, historicoSesiones.fecha)
 
         request.withFormat {
             form multipartForm {
