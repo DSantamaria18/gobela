@@ -65,15 +65,15 @@ class HistoricoSesionesController {
         listaSesiones.each {
             final HistoricoSesiones hs = it as HistoricoSesiones
             sheet.addCell(new Label(COLUMNA_INICIAL, fila_actual, hs.fecha.format("dd-MM-yyyy"), cellFormat))
-            sheet.addCell(new Label(COLUMNA_INICIAL + 1, fila_actual, hs.sesion.categoria.club.toString(), cellFormat))
-            sheet.addCell(new Label(COLUMNA_INICIAL + 2, fila_actual, hs.sesion.categoria.nombre + ' [' + hs.sesion.categoria.sexo + ']', cellFormat))
-            sheet.addCell(new Label(COLUMNA_INICIAL + 3, fila_actual, hs.sesion.recinto.nombre.toUpperCase(), cellFormat))
-            sheet.addCell(new Label(COLUMNA_INICIAL + 4, fila_actual, hs.sesion.instalacion.nombreInstalacion.toUpperCase(), cellFormat))
-            sheet.addCell(new Label(COLUMNA_INICIAL + 5, fila_actual, hs.sesion.diaSemana.toString(), cellFormat))
-            sheet.addCell(new Label(COLUMNA_INICIAL + 6, fila_actual, hs.sesion.horaInicio + ' - ' + hs.sesion.horaFin, cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 1, fila_actual, hs.club.toString(), cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 2, fila_actual, HistoricoSesiones.categoriaString(hs) + ' [' + hs.sexo + ']', cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 3, fila_actual, hs.recinto.nombre.toUpperCase(), cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 4, fila_actual, hs.instalacion.nombreInstalacion.toUpperCase(), cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 5, fila_actual, hs.diaSemana.toString(), cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 6, fila_actual, hs.horaInicio + ' - ' + hs.horaFin, cellFormat))
             sheet.addCell(new Number(COLUMNA_INICIAL + 7, fila_actual, hs.participantes, cellFormat))
             sheet.addCell(new Number(COLUMNA_INICIAL + 8, fila_actual, hs.ocupacion, cellFormat))
-            String resultado = (hs.resultadoOk) ? "OK" : "NO OK"
+            final String resultado = (hs.resultadoOk) ? "OK" : "NO OK"
             sheet.addCell(new Label(COLUMNA_INICIAL + 9, fila_actual, resultado, cellFormat))
             sheet.addCell(new Label(COLUMNA_INICIAL + 10, fila_actual, hs.observaciones, cellFormat))
             fila_actual++
@@ -105,7 +105,6 @@ class HistoricoSesionesController {
         sheet.setColumnView(10, 15)
         sheet.setColumnView(11, 40)
 
-
         workbook.write()
         workbook.close()
     }
@@ -116,7 +115,6 @@ class HistoricoSesionesController {
         def clubId = (params?.clubId == "null") ? null : params.clubId as Long
         Club club = Club.get(clubId)
         def categoriaId = (params?.categoriaId == "null") ? null : params.categoriaId as Long
-//        Categoria categoria = Categoria.get(categoriaId)
         def filtroRecinto = (params?.recintoId == "null") ? null : params.recintoId as Long
         Recinto recinto = Recinto.get(filtroRecinto)
         def filtroInstalacion = (params?.instalacionId == "null") ? null : params.instalacionId as Long
@@ -124,7 +122,6 @@ class HistoricoSesionesController {
         Boolean resultado = (params?.resultado == "null") ? null : new Boolean(params.resultado)
 
         final def historicoSesionesList = sesionService.filtraHistoricoSesiones(fdesde, fhasta, club, categoriaId, recinto, instalacion, resultado)
-//        def historicoSesionesList = sesionService.filtraHistoricoSesiones(fdesde, fhasta, club, categoria, recinto, instalacion, resultado)
         render template: "listaHistoricoSesiones", model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: historicoSesionesList.size()]
     }
 
