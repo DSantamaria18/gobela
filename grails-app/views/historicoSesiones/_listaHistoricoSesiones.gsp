@@ -1,3 +1,4 @@
+<%@ page import="gobela.HistoricoSesiones" %>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -16,20 +17,16 @@
         <g:each in="${historicoSesionesList}" var="hs">
             <tr>
                 <td><g:link controller="historicoSesiones" action="show"
-                            id="${hs.id}">${formatDate(format: "dd-MM-yyyy", date: hs.fecha)}</g:link></td>
-                <td><g:link
-                        uri="/club/show?entidadId=${hs.sesion.categoria.club.entidadId}">${hs.sesion.categoria.club}</g:link></td>
-                <td><g:link uri="/categoria/show/${hs.sesion.categoria.id}">${hs.sesion.categoria}</g:link></td>
-                <td><g:link uri="/sesion/show/${hs.sesion.id}">${hs.sesion}</g:link></td>
+                            id="${hs.id}">${formatDate(format: "dd-MM-yyyy", date: hs.fecha)}
+                </g:link></td>
+                <td><g:link uri="/club/show?entidadId=${hs.entidad}">${hs.club}</g:link></td>
+                <td><g:link uri="/categoria/show/${hs.categoriaId}">${gobela.HistoricoSesiones.categoriaString(hs)}</g:link></td>
+                <td><g:link uri="/sesion/show/${hs.sesionId}">${gobela.HistoricoSesiones.sesionString(hs)}</g:link></td>
                 <td>${hs.participantes}</td>
                 <td>${hs.ocupacion}</td>
                 <td>
-                    <g:if test="${hs.resultadoOk}">
-                        OK
-                    </g:if>
-                    <g:else>
-                        NO OK
-                    </g:else>
+                    <g:if test="${hs.resultadoOk}">OK</g:if>
+                    <g:else>NO OK</g:else>
                 </td>
                 <td>${hs.observaciones}</td>
             </tr>
