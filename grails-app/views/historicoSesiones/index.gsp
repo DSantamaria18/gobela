@@ -14,8 +14,6 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        %{--<li><g:link class="create" action="create"><g:message code="default.new.label"
-                                                              args="[entityName]"/></g:link></li>--}%
     </ul>
 </div>
 
@@ -32,9 +30,6 @@
                     <div class="fieldcontain">
                         <label for="filtrofechadesde">Fecha desde</label>
                         <input name="filtrofechadesde" id="filtrofechadesde" type="date">
-                    </div>
-
-                    <div class="fieldcontain">
                         <label for="filtrofechahasta">Fecha hasta</label>
                         <input name="filtrofechahasta" id="filtrofechahasta" type="date"
                                value="${new Date().format('yyyy-MM-dd')}">
@@ -98,51 +93,6 @@
 
     <div class="row" id="tablaListaSesiones">
         <g:render template="listaHistoricoSesiones"/>
-        %{--<g:render template="listaHistoricoSesiones" model="[historicoSesionesList: historicoSesionesList, historicoSesionesCount: historicoSesionesList.size()]"/>--}%
-        %{--<div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Club</th>
-                    <th>Categoria</th>
-                    <th>Sesión</th>
-                    <th>Participantes</th>
-                    <th>Ocupación</th>
-                    <th>Resultado</th>
-                    <th>Observaciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                <g:each in="${historicoSesionesList}" var="hs">
-                    <tr>
-                        <td><g:link controller="historicoSesiones" action="show"
-                                    id="${hs.id}">${formatDate(format: "dd-MM-yyyy", date: hs.fecha)}</g:link></td>
-                        <td><g:link
-                                uri="/club/show?entidadId=${hs.sesion.categoria.club.entidadId}">${hs.sesion.categoria.club}</g:link></td>
-                        <td><g:link uri="/categoria/show/${hs.sesion.categoria.id}">${hs.sesion.categoria}</g:link></td>
-                        <td><g:link uri="/sesion/show/${hs.sesion.id}">${hs.sesion}</g:link></td>
-                        <td>${hs.participantes}</td>
-                        <td>${hs.ocupacion}</td>
-                        <td>
-                            <g:if test="${hs.resultadoOk}">
-                                OK
-                            </g:if>
-                            <g:else>
-                                NO OK
-                            </g:else>
-                        </td>
-                        <td>${hs.observaciones}</td>
-                    </tr>
-                </g:each>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="pagination">
-        <g:paginate total="${historicoSesionesCount ?: 0}"/>
-    </div>--}%
     </div>
 
 

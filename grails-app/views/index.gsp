@@ -128,6 +128,16 @@
 <div id="content" role="main">
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
+
+        <h2>Modificaciones 01/09/2019</h2>
+        <ul>
+            <li>[HISTORICO SESIONES] Añadidos campos de sesion a tabla de histórico</li>
+            <li>[HISTORICO SESIONES] Añadidos campos de categoría a tabla de histórico</li>
+            <li>[HISTORICO SESIONES] Adaptada vista de listado de histórico </li>
+            <li>[HISTORICO SESIONES] Adaptada vista de edición de histórico </li>
+            <li>[HISTORICO SESIONES] Adaptada informe de histórico </li>
+            <li>[HISTORICO SESIONES] Adaptados filtros en vista de listado de histórico </li>
+        </ul>
         <h2>Modificaciones 21/08/2019</h2>
         <ul>
             <li>[SESIONES] Añadido botón para activar-desactivar sesiones en vista de sesión</li>
