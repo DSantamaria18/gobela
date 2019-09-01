@@ -30,19 +30,18 @@
                 <g:hiddenField name="version" value="${this.historicoSesiones?.version}" />
                 <fieldset class="form">
                     <div class="fieldcontain ${hasErrors(bean: historicoSesiones, field: 'sesion', 'error')} required">
-                        <label>${this.historicoSesiones?.sesion?.categoria?.club}</label>
-                        <label>${this.historicoSesiones?.sesion?.categoria}</label>
-                        <label>${this.historicoSesiones?.sesion?.diaSemana} ${this.historicoSesiones?.sesion?.horaInicio} - ${this.historicoSesiones?.sesion?.horaFin}</label>
-                        <label>${this.historicoSesiones?.sesion?.recinto} ${this.historicoSesiones?.sesion?.instalacion}</label>
-                        %{--<g:hiddenField name="sesion" value="${this.historicoSesiones?.sesion}" />--}%
-                        %{--<g:hiddenField name="fecha" value="${this.historicoSesiones?.fecha}" />--}%
+                        <label>${this.historicoSesiones?.club}</label>
+%{--                        <label>${this.historicoSesiones?.sesion?.categoria?.club}</label>--}%
+                        <label>${gobela.HistoricoSesiones.categoriaString(this.historicoSesiones)}</label>
+%{--                        <label>${this.historicoSesiones?.sesion?.categoria}</label>--}%
+                        <label>${this.historicoSesiones?.diaSemana} ${this.historicoSesiones?.horaInicio} - ${this.historicoSesiones?.horaFin}</label>
+                        <label>${this.historicoSesiones?.recinto} ${this.historicoSesiones?.instalacion}</label>
                     </div>
                     <div class="fieldcontain ${hasErrors(bean: historicoSesiones, field: 'fecha', 'error')} required">
                         <label for="fecha">
                             <g:message code="historicoSesiones.fecha.label" default="Fecha Sesión:"/>
                             <span class="required-indicator">*</span>
                         </label>
-                        %{--<g:datePicker name="fecha" value="${historicoSesiones?.fecha}" precision="day"/>--}%
                         <label><g:formatDate date="${this.historicoSesiones?.fecha}" format="dd-MM-yyyy"/></label>
                     </div>
                     <div class="fieldcontain ${hasErrors(bean: historicoSesiones, field: 'participantes', 'error')} required">
