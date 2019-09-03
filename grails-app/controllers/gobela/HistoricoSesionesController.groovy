@@ -18,10 +18,8 @@ class HistoricoSesionesController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        params.order = "desc"
-        def historicoSesionesList = HistoricoSesiones.findAll("from HistoricoSesiones as hs order by hs.fecha desc, hs.horaInicio desc, hs.horaFin desc")
-        respond historicoSesionesList, model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: HistoricoSesiones.count()]
+
+        [historicoSesionesList: [], historicoSesionesCount: 0]
     }
 
     def exportarListadoHistoricoSesiones(params) {
@@ -59,7 +57,7 @@ class HistoricoSesionesController {
             sheet.addCell(new Label(COLUMNA_INICIAL + j, FILA_CABECERA, cabeceras[j].toUpperCase(), headerFormat))
         }
         final int PRIMERA_FILA_SESIONES = FILA_CABECERA + 1
-        final int ULTIMA_FILA_SESIONES =  PRIMERA_FILA_SESIONES + listaSesiones.size() - 1
+        final int ULTIMA_FILA_SESIONES = PRIMERA_FILA_SESIONES + listaSesiones.size() - 1
         int fila_actual = PRIMERA_FILA_SESIONES
 
         listaSesiones.each {
@@ -80,17 +78,17 @@ class HistoricoSesionesController {
         }
 
         // La fórmula se evalua en Excel, donde las filas empiezan por 1, no por 0, por lo que hay que sumar 1 a las filas
-        sheet.addCell(new Formula(COLUMNA_INICIAL, fila_actual, "CONTARA(B${PRIMERA_FILA_SESIONES+1}:B${ULTIMA_FILA_SESIONES+1})", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +1, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +2, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +3, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +4, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +5, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +6, fila_actual,"TOTALES:" , headerFormat))
-        sheet.addCell(new Formula(COLUMNA_INICIAL +7, fila_actual, "SUMA(I${PRIMERA_FILA_SESIONES+1}:I${ULTIMA_FILA_SESIONES+1})", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +8, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +9, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +10, fila_actual, "", headerFormat))
+        sheet.addCell(new Formula(COLUMNA_INICIAL, fila_actual, "CONTARA(B${PRIMERA_FILA_SESIONES + 1}:B${ULTIMA_FILA_SESIONES + 1})", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 1, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 2, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 3, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 4, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 5, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 6, fila_actual, "TOTALES:", headerFormat))
+        sheet.addCell(new Formula(COLUMNA_INICIAL + 7, fila_actual, "SUMA(I${PRIMERA_FILA_SESIONES + 1}:I${ULTIMA_FILA_SESIONES + 1})", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 8, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 9, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 10, fila_actual, "", headerFormat))
 
 
         sheet.setColumnView(1, 15)

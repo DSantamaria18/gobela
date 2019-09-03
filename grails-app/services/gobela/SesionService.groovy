@@ -66,7 +66,6 @@ class SesionService {
         return listaSesiones
     }
 
-//    def filtraHistoricoSesiones(Date fDesde, Date fHasta, Club club, Categoria categoria, Recinto recinto, Instalacion instalacion,Boolean resultadoOk) {
     def filtraHistoricoSesiones(final Date fDesde, final Date fHasta, final Club club, final Long categoriaId,
                                 final Recinto recinto, final Instalacion instalacion, final Boolean resultadoOk) {
         final String baseQuery = "SELECT hs from HistoricoSesiones hs where hs.fecha <= :fHasta"

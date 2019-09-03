@@ -34,8 +34,3 @@
         </tbody>
     </table>
 </div>
-</div>
-
-<div class="pagination">
-    <g:paginate total="${historicoSesionesCount ?: 0}"/>
-</div>
