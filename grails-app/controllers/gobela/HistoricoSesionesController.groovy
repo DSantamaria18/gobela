@@ -18,27 +18,26 @@ class HistoricoSesionesController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        params.order = "desc"
-        def historicoSesionesList = HistoricoSesiones.findAll("from HistoricoSesiones as hs order by hs.fecha desc, hs.sesion.horaInicio desc, hs.sesion.horaFin desc")
 
-        respond historicoSesionesList, model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: HistoricoSesiones.count()]
+        [historicoSesionesList: [], historicoSesionesCount: 0]
     }
 
     def exportarListadoHistoricoSesiones(params) {
-        Date filtrofechadesde = (params?.filtrofechadesde == "") ? null : Date.parse("yyyy-MM-dd", params.filtrofechadesde)
-        Date filtrofechahasta = (params?.filtrofechahasta == "null") ? null : Date.parse("yyyy-MM-dd", params.filtrofechahasta)
-        def filtroclub = (params?.filtroclub == "null") ? null : params.filtroclub as Long
-        Club club = Club.get(filtroclub)
-        def filtrocategoria = (params?.filtrocategoria == "null") ? null : params.filtrocategoria as Long
-        Categoria categoria = Categoria.get(filtrocategoria)
-        def filtroRecinto = (params?.filtrorecinto == "null") ? null : params.filtrorecinto as Long
-        Recinto recinto = Recinto.get(filtroRecinto)
-        def filtroInstalacion = (params?.filtroinstalaciones == "null") ? null : params.filtroinstalaciones as Long
-        Instalacion instalacion = Instalacion.get(filtroInstalacion)
-        Boolean filtroresultado = (params?.filtroresultado == "null") ? null : new Boolean(params.filtroresultado)
+        final Date filtrofechadesde = (params?.filtrofechadesde == "") ? null : Date.parse("yyyy-MM-dd", params.filtrofechadesde)
+        final Date filtrofechahasta = (params?.filtrofechahasta == "null") ? null : Date.parse("yyyy-MM-dd", params.filtrofechahasta)
+        final def filtroclub = (params?.filtroclub == "null") ? null : params.filtroclub as Long
+        final Club club = Club.get(filtroclub)
+//        final def filtrocategoria = (params?.filtrocategoria == "null") ? null : params.filtrocategoria as Long
+        final Long categoriaId = (params?.filtrocategoria == "null") ? null : params.filtrocategoria as Long
+//        final Categoria categoria = Categoria.get(filtrocategoria)
+        final Long filtroRecinto = (params?.filtrorecinto == "null") ? null : params.filtrorecinto as Long
+        final Recinto recinto = Recinto.get(filtroRecinto)
+        final Long filtroInstalacion = (params?.filtroinstalaciones == "null") ? null : params.filtroinstalaciones as Long
+        final Instalacion instalacion = Instalacion.get(filtroInstalacion)
+        final Boolean filtroresultado = (params?.filtroresultado == "null") ? null : new Boolean(params.filtroresultado)
 
-        def listaSesiones = sesionService.filtraHistoricoSesiones(filtrofechadesde, filtrofechahasta, club, categoria, recinto, instalacion, filtroresultado)
+//        final def listaSesiones = sesionService.filtraHistoricoSesiones(filtrofechadesde, filtrofechahasta, club, categoria, recinto, instalacion, filtroresultado)
+        final def listaSesiones = sesionService.filtraHistoricoSesiones(filtrofechadesde, filtrofechahasta, club, categoriaId, recinto, instalacion, filtroresultado)
 
         WritableWorkbook workbook = ExcelUtils.createWorkbook(response, "Informe_Historico_Sesiones")
         WritableCellFormat titleFormat = ExcelUtils.defaultTitleFormat()
@@ -58,38 +57,38 @@ class HistoricoSesionesController {
             sheet.addCell(new Label(COLUMNA_INICIAL + j, FILA_CABECERA, cabeceras[j].toUpperCase(), headerFormat))
         }
         final int PRIMERA_FILA_SESIONES = FILA_CABECERA + 1
-        final int ULTIMA_FILA_SESIONES =  PRIMERA_FILA_SESIONES + listaSesiones.size() - 1
+        final int ULTIMA_FILA_SESIONES = PRIMERA_FILA_SESIONES + listaSesiones.size() - 1
         int fila_actual = PRIMERA_FILA_SESIONES
 
         listaSesiones.each {
             final HistoricoSesiones hs = it as HistoricoSesiones
             sheet.addCell(new Label(COLUMNA_INICIAL, fila_actual, hs.fecha.format("dd-MM-yyyy"), cellFormat))
-            sheet.addCell(new Label(COLUMNA_INICIAL + 1, fila_actual, hs.sesion.categoria.club.toString(), cellFormat))
-            sheet.addCell(new Label(COLUMNA_INICIAL + 2, fila_actual, hs.sesion.categoria.nombre + ' [' + hs.sesion.categoria.sexo + ']', cellFormat))
-            sheet.addCell(new Label(COLUMNA_INICIAL + 3, fila_actual, hs.sesion.recinto.nombre.toUpperCase(), cellFormat))
-            sheet.addCell(new Label(COLUMNA_INICIAL + 4, fila_actual, hs.sesion.instalacion.nombreInstalacion.toUpperCase(), cellFormat))
-            sheet.addCell(new Label(COLUMNA_INICIAL + 5, fila_actual, hs.sesion.diaSemana.toString(), cellFormat))
-            sheet.addCell(new Label(COLUMNA_INICIAL + 6, fila_actual, hs.sesion.horaInicio + ' - ' + hs.sesion.horaFin, cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 1, fila_actual, hs.club.toString(), cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 2, fila_actual, HistoricoSesiones.categoriaString(hs) + ' [' + hs.sexo + ']', cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 3, fila_actual, hs.recinto.nombre.toUpperCase(), cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 4, fila_actual, hs.instalacion.nombreInstalacion.toUpperCase(), cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 5, fila_actual, hs.diaSemana.toString(), cellFormat))
+            sheet.addCell(new Label(COLUMNA_INICIAL + 6, fila_actual, hs.horaInicio + ' - ' + hs.horaFin, cellFormat))
             sheet.addCell(new Number(COLUMNA_INICIAL + 7, fila_actual, hs.participantes, cellFormat))
             sheet.addCell(new Number(COLUMNA_INICIAL + 8, fila_actual, hs.ocupacion, cellFormat))
-            String resultado = (hs.resultadoOk) ? "OK" : "NO OK"
+            final String resultado = (hs.resultadoOk) ? "OK" : "NO OK"
             sheet.addCell(new Label(COLUMNA_INICIAL + 9, fila_actual, resultado, cellFormat))
             sheet.addCell(new Label(COLUMNA_INICIAL + 10, fila_actual, hs.observaciones, cellFormat))
             fila_actual++
         }
 
         // La fórmula se evalua en Excel, donde las filas empiezan por 1, no por 0, por lo que hay que sumar 1 a las filas
-        sheet.addCell(new Formula(COLUMNA_INICIAL, fila_actual, "CONTARA(B${PRIMERA_FILA_SESIONES+1}:B${ULTIMA_FILA_SESIONES+1})", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +1, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +2, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +3, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +4, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +5, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +6, fila_actual,"TOTALES:" , headerFormat))
-        sheet.addCell(new Formula(COLUMNA_INICIAL +7, fila_actual, "SUMA(I${PRIMERA_FILA_SESIONES+1}:I${ULTIMA_FILA_SESIONES+1})", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +8, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +9, fila_actual, "", headerFormat))
-        sheet.addCell(new Label(COLUMNA_INICIAL +10, fila_actual, "", headerFormat))
+        sheet.addCell(new Formula(COLUMNA_INICIAL, fila_actual, "CONTARA(B${PRIMERA_FILA_SESIONES + 1}:B${ULTIMA_FILA_SESIONES + 1})", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 1, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 2, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 3, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 4, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 5, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 6, fila_actual, "TOTALES:", headerFormat))
+        sheet.addCell(new Formula(COLUMNA_INICIAL + 7, fila_actual, "SUMA(I${PRIMERA_FILA_SESIONES + 1}:I${ULTIMA_FILA_SESIONES + 1})", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 8, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 9, fila_actual, "", headerFormat))
+        sheet.addCell(new Label(COLUMNA_INICIAL + 10, fila_actual, "", headerFormat))
 
 
         sheet.setColumnView(1, 15)
@@ -104,7 +103,6 @@ class HistoricoSesionesController {
         sheet.setColumnView(10, 15)
         sheet.setColumnView(11, 40)
 
-
         workbook.write()
         workbook.close()
     }
@@ -115,14 +113,13 @@ class HistoricoSesionesController {
         def clubId = (params?.clubId == "null") ? null : params.clubId as Long
         Club club = Club.get(clubId)
         def categoriaId = (params?.categoriaId == "null") ? null : params.categoriaId as Long
-        Categoria categoria = Categoria.get(categoriaId)
         def filtroRecinto = (params?.recintoId == "null") ? null : params.recintoId as Long
         Recinto recinto = Recinto.get(filtroRecinto)
         def filtroInstalacion = (params?.instalacionId == "null") ? null : params.instalacionId as Long
         Instalacion instalacion = Instalacion.get(filtroInstalacion)
         Boolean resultado = (params?.resultado == "null") ? null : new Boolean(params.resultado)
 
-        def historicoSesionesList = sesionService.filtraHistoricoSesiones(fdesde, fhasta, club, categoria, recinto, instalacion, resultado)
+        final def historicoSesionesList = sesionService.filtraHistoricoSesiones(fdesde, fhasta, club, categoriaId, recinto, instalacion, resultado)
         render template: "listaHistoricoSesiones", model: [historicoSesionesList: historicoSesionesList, historicoSesionesCount: historicoSesionesList.size()]
     }
 
@@ -147,17 +144,40 @@ class HistoricoSesionesController {
     }
 
     def create() {
-        HistoricoSesiones historicoSesiones1 = new HistoricoSesiones()
-        Sesion sesion = Sesion.get(params.sesionId as Long)
-        historicoSesiones1.sesion = sesion
-        Date fecha = new Date().parse('yyyy-MM-dd', params.fecha)
-        historicoSesiones1.fecha = fecha
-        historicoSesiones1.participantes = params.participantes as int
-        historicoSesiones1.ocupacion = params.ocupacion as int
-        historicoSesiones1.observaciones = params.observaciones
-        historicoSesiones1.resultadoOk = (params.resultadoOk == "true") ? true : false
+        HistoricoSesiones historicoSesiones = new HistoricoSesiones()
 
-        save(historicoSesiones1)
+        final Date fecha = new Date().parse('yyyy-MM-dd', params.fecha)
+        historicoSesiones.fecha = fecha
+        historicoSesiones.participantes = params.participantes as int
+        historicoSesiones.ocupacion = params.ocupacion as int
+        historicoSesiones.observaciones = params.observaciones
+        historicoSesiones.resultadoOk = (params.resultadoOk == "true")
+
+        // Sesion
+        final Sesion sesion = Sesion.get(params.sesionId as Long)
+        //        historicoSesiones.sesion = sesion
+        historicoSesiones.sesionId = sesion.id
+        historicoSesiones.diaSemana = sesion.diaSemana
+        historicoSesiones.horaInicio = sesion.horaInicio
+        historicoSesiones.horaFin = sesion.horaFin
+        historicoSesiones.recinto = sesion.recinto
+        historicoSesiones.instalacion = sesion.instalacion
+        historicoSesiones.ocupacionEsperada = sesion.ocupacion
+
+        // Categoria
+        historicoSesiones.categoriaId = sesion.categoria.id
+        historicoSesiones.nombreCategoria = sesion.categoria.nombre
+        historicoSesiones.sexo = sesion.categoria.sexo
+        historicoSesiones.numDeportistas = sesion.categoria.numDeportistas
+        historicoSesiones.edadMin = sesion.categoria.edadMin
+        historicoSesiones.edadMax = sesion.categoria.edadMax
+        historicoSesiones.club = sesion.categoria.club
+        historicoSesiones.modalidad = sesion.categoria.modalidad
+
+        // Entidad
+        historicoSesiones.entidad = sesion.categoria.club.entidad
+
+        save(historicoSesiones)
     }
 
     @Transactional
@@ -176,8 +196,8 @@ class HistoricoSesionesController {
 
         historicoSesiones.save flush: true
 //        def sesionesList = sesionService.filtraSesiones(historicoSesiones.sesion.diaSemana, historicoSesiones.sesion.instalacion)
-        def listaSesiones = sesionService.filtraSesiones(historicoSesiones.sesion.diaSemana, historicoSesiones.fecha)
-        DiaSemana diaSemana = historicoSesiones.sesion.diaSemana
+        def listaSesiones = sesionService.filtraSesiones(historicoSesiones.diaSemana, historicoSesiones.fecha)
+        DiaSemana diaSemana = historicoSesiones.diaSemana
 
         request.withFormat {
             form multipartForm {
@@ -217,7 +237,7 @@ class HistoricoSesionesController {
         historicoSesiones.save flush: true
 
 //        def sesionesList = sesionService.filtraSesiones(historicoSesiones.sesion.diaSemana, historicoSesiones.sesion.instalacion)
-        def sesionesList = sesionService.filtraSesiones(historicoSesiones.sesion.diaSemana, historicoSesiones.fecha)
+        def sesionesList = sesionService.filtraSesiones(historicoSesiones.diaSemana, historicoSesiones.fecha)
 
         request.withFormat {
             form multipartForm {

@@ -14,8 +14,6 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        %{--<li><g:link class="create" action="create"><g:message code="default.new.label"
-                                                              args="[entityName]"/></g:link></li>--}%
     </ul>
 </div>
 
@@ -32,9 +30,6 @@
                     <div class="fieldcontain">
                         <label for="filtrofechadesde">Fecha desde</label>
                         <input name="filtrofechadesde" id="filtrofechadesde" type="date">
-                    </div>
-
-                    <div class="fieldcontain">
                         <label for="filtrofechahasta">Fecha hasta</label>
                         <input name="filtrofechahasta" id="filtrofechahasta" type="date"
                                value="${new Date().format('yyyy-MM-dd')}">
@@ -74,7 +69,6 @@
                     </div>
 
 
-
                     <div class="fieldcontain">
                         <label for="filtroresultado">Resultado</label>
                         <g:select name="filtroresultado"
@@ -98,137 +92,92 @@
 
     <div class="row" id="tablaListaSesiones">
         <g:render template="listaHistoricoSesiones"/>
-        %{--<g:render template="listaHistoricoSesiones" model="[historicoSesionesList: historicoSesionesList, historicoSesionesCount: historicoSesionesList.size()]"/>--}%
-        %{--<div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Club</th>
-                    <th>Categoria</th>
-                    <th>Sesión</th>
-                    <th>Participantes</th>
-                    <th>Ocupación</th>
-                    <th>Resultado</th>
-                    <th>Observaciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                <g:each in="${historicoSesionesList}" var="hs">
-                    <tr>
-                        <td><g:link controller="historicoSesiones" action="show"
-                                    id="${hs.id}">${formatDate(format: "dd-MM-yyyy", date: hs.fecha)}</g:link></td>
-                        <td><g:link
-                                uri="/club/show?entidadId=${hs.sesion.categoria.club.entidadId}">${hs.sesion.categoria.club}</g:link></td>
-                        <td><g:link uri="/categoria/show/${hs.sesion.categoria.id}">${hs.sesion.categoria}</g:link></td>
-                        <td><g:link uri="/sesion/show/${hs.sesion.id}">${hs.sesion}</g:link></td>
-                        <td>${hs.participantes}</td>
-                        <td>${hs.ocupacion}</td>
-                        <td>
-                            <g:if test="${hs.resultadoOk}">
-                                OK
-                            </g:if>
-                            <g:else>
-                                NO OK
-                            </g:else>
-                        </td>
-                        <td>${hs.observaciones}</td>
-                    </tr>
-                </g:each>
-                </tbody>
-            </table>
-        </div>
     </div>
 
-    <div class="pagination">
-        <g:paginate total="${historicoSesionesCount ?: 0}"/>
-    </div>--}%
-    </div>
+</div>
+<g:javascript>
 
+    $('#btnfiltrar').on('click', function () {
+        let params = '?';
 
-    <g:javascript>
+        let fdesde = $('#filtrofechadesde').val();
+        fdesde = (fdesde.length > 0) ? fdesde : 'null';
+        params = params + 'fdesde=' + fdesde;
+        let fhasta = $('#filtrofechahasta').val();
+        fhasta = (fhasta.length > 0) ? fhasta : 'null';
+        params = params + '&fhasta=' + fhasta;
+        const clubId = $('#filtroclub').val();
+        params = params + '&clubId=' + clubId;
+        const categoriaId = $('#filtrocategoria').val();
+        params = params + '&categoriaId=' + categoriaId;
 
-        $('#btnfiltrar').on('click', function () {
-            let params = '?';
+        const recintoId = $('#filtrorecinto').val();
+        params = params + '&recintoId=' + recintoId;
 
-            let fdesde = $('#filtrofechadesde').val();
-            fdesde = (fdesde.length > 0) ? fdesde : 'null';
-            params = params + 'fdesde=' + fdesde;
-            let fhasta = $('#filtrofechahasta').val();
-            fhasta = (fhasta.length > 0) ? fhasta : 'null';
-            params = params + '&fhasta=' + fhasta;
-            const clubId = $('#filtroclub').val();
-            params = params + '&clubId=' + clubId;
-            const categoriaId = $('#filtrocategoria').val();
-            params = params + '&categoriaId=' + categoriaId;
+        const instalacionId = $('#filtroinstalaciones').val();
+        params = params + '&instalacionId=' + instalacionId;
 
-            const recintoId = $('#filtrorecinto').val();
-            params = params + '&recintoId=' + recintoId;
+        const resultado = $('#filtroresultado').val();
+        params = params + '&resultado=' + resultado;
 
-            const instalacionId = $('#filtroinstalaciones').val();
-            params = params + '&instalacionId=' + instalacionId;
+        let url = '/gobela/historicoSesiones/filtraHistoricoSesiones/' + params;
+        console.log(url);
 
-            const resultado = $('#filtroresultado').val();
-            params = params + '&resultado=' + resultado;
+        $.ajax({
+            url: url,
+            method: "GET",
+            success: function (data) {
+                console.log(data);
+                $('#tablaListaSesiones').html(data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    });
 
-            let url = '/gobela/historicoSesiones/filtraHistoricoSesiones/' + params;
-            console.log(url);
+    $('#filtroclub').on('change', function () {
+        const clubId = $(this).val();
+        if (clubId == 'null') {
+            $('#filtrocategoria').val('null');
+        } else {
+            let url = '/gobela/historicoSesiones/filtraCategoriasPorClub/?clubId=' + clubId.toString();
 
             $.ajax({
                 url: url,
                 method: "GET",
                 success: function (data) {
                     console.log(data);
-                    $('#tablaListaSesiones').html(data);
+                    $('#combofiltrocategoria').html(data);
                 },
                 error: function (error) {
                     console.log(error);
                 }
             })
-        });
+        }
+    });
 
-        $('#filtroclub').on('change', function () {
-            const clubId = $(this).val();
-            if (clubId == 'null') {
-                $('#filtrocategoria').val('null');
-            } else {
-                let url = '/gobela/historicoSesiones/filtraCategoriasPorClub/?clubId=' + clubId.toString();
+    $('#filtrorecinto').on('change', function () {
+        const recintoId = $(this).val();
+        if (recintoId == 'null') {
+            $('#filtroinstalaciones').val('null');
+        } else {
+            let url = '/gobela/historicoSesiones/filtraInstalacionesPorRecinto/?recintoId=' + recintoId.toString();
 
-                $.ajax({
-                    url: url,
-                    method: "GET",
-                    success: function (data) {
-                        console.log(data);
-                        $('#combofiltrocategoria').html(data);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                })
-            }
-        });
+            $.ajax({
+                url: url,
+                method: "GET",
+                success: function (data) {
+                    console.log(data);
+                    $('#combofiltroinstalaciones').html(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        }
+    });
 
-        $('#filtrorecinto').on('change', function () {
-            const recintoId = $(this).val();
-            if (recintoId == 'null') {
-                $('#filtroinstalaciones').val('null');
-            } else {
-                let url = '/gobela/historicoSesiones/filtraInstalacionesPorRecinto/?recintoId=' + recintoId.toString();
-
-                $.ajax({
-                    url: url,
-                    method: "GET",
-                    success: function (data) {
-                        console.log(data);
-                        $('#combofiltroinstalaciones').html(data);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                })
-            }
-        });
-
-    </g:javascript>
+</g:javascript>
 </body>
 </html>
