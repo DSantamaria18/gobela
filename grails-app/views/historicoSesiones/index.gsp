@@ -97,6 +97,11 @@
 </div>
 <g:javascript>
 
+    function showSpinner(visible) {
+        if (visible) $('#spinner').show();
+        else $('#spinner').hide();
+    }
+
     $('#btnfiltrar').on('click', function () {
         let params = '?';
 
@@ -132,6 +137,12 @@
             },
             error: function (error) {
                 console.log(error);
+            },
+            beforeSend: function () {
+                showSpinner(true)
+            },
+            complete: function () {
+                showSpinner(false)
             }
         })
     });

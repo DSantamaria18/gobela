@@ -99,15 +99,15 @@ img {
     color: #4D8618;
 }
 
-.spinner {
+#spinner {
     background: url(../images/spinner.gif) 50% 50% no-repeat transparent;
-    height: 16px;
-    width: 16px;
-    padding: 0.5em;
-    position: absolute;
-    right: 0;
-    top: 0;
-    text-indent: -9999px;
+    /*height: 16px;*/
+    /*width: 16px;*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    overflow: auto;
 }
 
 /* NAVIGATION MENU */

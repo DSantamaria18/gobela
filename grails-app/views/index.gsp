@@ -129,6 +129,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 05/09/2019</h2>
+        <ul>
+            <li>[HISTORICO SESIONES] Añadido spinner durante el filtrado</li>
+        </ul>
+
         <h2>Modificaciones 01/09/2019</h2>
         <ul>
             <li>[HISTORICO SESIONES] Añadidos campos de sesion a tabla de histórico</li>
