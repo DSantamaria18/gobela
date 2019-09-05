@@ -11,15 +11,12 @@
 //= require_tree .
 //= require_self
 
-if (typeof jQuery !== 'undefined') {
-    (function ($) {
-        $(document).ajaxStart(function () {
-            $('#spinner').fadeIn();
-        }).ajaxStop(function () {
-            $('#spinner').fadeOut();
-        });
-    })(jQuery);
-}
+$(document).ready(function () {
+    function showSpinner(visible) {
+        if (visible) $('#spinner').show();
+        else $('#spinner').hide();
+    }
+});
 
 function sumar() {
     var total = 0.0;
@@ -218,19 +215,6 @@ function deleteMaterial(elem) {
         });
 }
 
-/*function fillAvailableStock(id) {
-    console.log(id);
-    var url = "/gobela/solicitudMaterial/checkStock/" + id.toString();
-    console.log("URL: " + url);
-    $.ajax({
-        url: url,
-        type: 'get'
-    }).done(function (data) {
-        console.log("data: " + data);
-        $('#stock-container').html(data);
-    })
-}*/
-
 function buscar(tipo) {
     if (tipo === "info") {
         console.log("buscando info");
@@ -320,14 +304,14 @@ function fillContactoInfo(contactoId) {
 }
 
 function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, entidad, tActividad, actividad, modalidad, lugar, recinto, multikirola, adaptado, inclusivo, relevante, solidario) {
-   var importante;
-   if (relevante === "SI") {
-       importante = true;
-   } else {
-       if (relevante === "NO") {
-           importante = false;
-       }
-   }
+    var importante;
+    if (relevante === "SI") {
+        importante = true;
+    } else {
+        if (relevante === "NO") {
+            importante = false;
+        }
+    }
 
     var depInclusivo;
     if (inclusivo === "SI") {
@@ -394,7 +378,7 @@ function filtrarEventos(estado, fechaIniDesde, fechaIniHasta, entidad, tActivida
     })
 }
 
-function filtrarContactos(entidad){
+function filtrarContactos(entidad) {
     var url = "/gobela/contacto/filtrarContactos/";
     console.log("URL: " + url);
     $.ajax({
