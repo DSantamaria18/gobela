@@ -1,4 +1,3 @@
-<%@ page import="gobela.Recinto" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,8 +10,8 @@
         <div class="nav" role="navigation">
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                %{--<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>--}%
-                %{--<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--}%
+                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
         <div id="edit-sesion" class="content scaffold-edit" role="main">
@@ -27,77 +26,15 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-
             <g:form resource="${this.sesion}" method="PUT">
                 <g:hiddenField name="version" value="${this.sesion?.version}" />
                 <fieldset class="form">
-
-                    <div class="fieldcontain ${hasErrors(bean: sesion, field: 'diaSemana', 'error')} required">
-                        <label for="diaSemana">
-                            <g:message code="evento.diaSemana.label" default="Día:"/>
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <g:select name="diaSemana"
-                                  from="['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO']" value="${this.sesion?.diaSemana}"
-                        />
-                    </div>
-
-                    <div class="fieldcontain ${hasErrors(bean: sesion, field: 'horaInicio', 'error')} required">
-                        <label for="horaInicio">
-                            <g:message code="evento.horaInicio.label" default="Hora Inicio:"/>
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input type="time" class="date" name="horaInicio" step="900"
-                               value="${this.sesion?.horaInicio}" required=""/> (hh:mm)
-                    </div>
-
-                    <div class="fieldcontain ${hasErrors(bean: sesion, field: 'horaFin', 'error')} required">
-                        <label for="horaFin">
-                            <g:message code="evento.horaFin.label" default="Hora Fin:"/>
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input type="time" class="date" name="horaFin" step="900"
-                               value="${this.sesion?.horaFin}" required=""/> (hh:mm)
-                    </div>
-
-                    <div class="fieldcontain ${hasErrors(bean: sesion, field: 'recinto', 'error')} required">
-                        <label for="recinto">
-                            <g:message code="sesion.recinto.label" default="Recinto:"/>
-                        </label>
-                        <g:set var="instalacionId" value="${sesion?.instalacion?.id}"/>
-                        <g:select name="recinto"
-                                  from="${Recinto.listOrderByNombre()}"
-                                  value="${sesion?.recinto?.id}"
-                                  noSelection="${['': 'Selecciona un recinto...']}"
-                                  optionKey="id"
-                                  optionValue="nombre"
-                                  onchange="fillInstalacionByRecinto(this.value, ${instalacionId})"/>
-                    </div>
-
-                    <div class="fieldcontain ${hasErrors(bean: sesion, field: 'instalacion', 'error')}"
-                         id="instalacion-container">
-                        <g:render template="instalacion"/>
-                    </div>
-
-                    <div class="fieldcontain ${hasErrors(bean: sesion, field: 'activa', 'error')}"
-                         id="activa-container">
-                        <label for="check-activa"><g:message code="default.sesion.activa.label" default="Activa:" /></label>
-                        <g:checkBox name="activa" id="check-activa" value="${sesion?.activa}"/>
-                    </div>
+                    <f:all bean="sesion"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                 </fieldset>
             </g:form>
         </div>
-
-    <g:javascript>
-    $(document).ready(function () {
-        var recintoId = $('[name="recinto"').val();
-        fillInstalacionByRecinto(recintoId, ${instalacionId});
-        $('[name="instalacion"]').val(${instalacionId});
-    });
-    </g:javascript>
-
     </body>
 </html>
