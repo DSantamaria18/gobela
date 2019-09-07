@@ -27,16 +27,13 @@ class HistoricoSesionesController {
         final Date filtrofechahasta = (params?.filtrofechahasta == "null") ? null : Date.parse("yyyy-MM-dd", params.filtrofechahasta)
         final def filtroclub = (params?.filtroclub == "null") ? null : params.filtroclub as Long
         final Club club = Club.get(filtroclub)
-//        final def filtrocategoria = (params?.filtrocategoria == "null") ? null : params.filtrocategoria as Long
         final Long categoriaId = (params?.filtrocategoria == "null") ? null : params.filtrocategoria as Long
-//        final Categoria categoria = Categoria.get(filtrocategoria)
         final Long filtroRecinto = (params?.filtrorecinto == "null") ? null : params.filtrorecinto as Long
         final Recinto recinto = Recinto.get(filtroRecinto)
         final Long filtroInstalacion = (params?.filtroinstalaciones == "null") ? null : params.filtroinstalaciones as Long
         final Instalacion instalacion = Instalacion.get(filtroInstalacion)
         final Boolean filtroresultado = (params?.filtroresultado == "null") ? null : new Boolean(params.filtroresultado)
 
-//        final def listaSesiones = sesionService.filtraHistoricoSesiones(filtrofechadesde, filtrofechahasta, club, categoria, recinto, instalacion, filtroresultado)
         final def listaSesiones = sesionService.filtraHistoricoSesiones(filtrofechadesde, filtrofechahasta, club, categoriaId, recinto, instalacion, filtroresultado)
 
         WritableWorkbook workbook = ExcelUtils.createWorkbook(response, "Informe_Historico_Sesiones")
@@ -195,28 +192,18 @@ class HistoricoSesionesController {
         }
 
         historicoSesiones.save flush: true
-//        def sesionesList = sesionService.filtraSesiones(historicoSesiones.sesion.diaSemana, historicoSesiones.sesion.instalacion)
-        def listaSesiones = sesionService.filtraSesiones(historicoSesiones.diaSemana, historicoSesiones.fecha)
-        DiaSemana diaSemana = historicoSesiones.diaSemana
+        final def listaSesiones = sesionService.filtraSesiones(historicoSesiones.diaSemana, historicoSesiones.fecha)
+        final DiaSemana diaSemana = historicoSesiones.diaSemana
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'historicoSesiones.label', default: 'HistoricoSesiones'), historicoSesiones.id])
-//                render template: "/sesion/listaSesiones", model: [sesionesList: sesionesList, dia: historicoSesiones.sesion.diaSemana.toString(), instalacion: historicoSesiones.sesion.instalacion]
                 render template: "/sesion/listaSesiones2", model: [diaSemana: diaSemana, listaSesiones: listaSesiones]
-//                redirect historicoSesiones
             }
-//            '*' { respond historicoSesiones, [status: CREATED] }
         }
     }
 
-    def edit(HistoricoSesiones historicoSesiones) {
-        /* historicoSesiones.participantes = params.participantes as int
-         historicoSesiones.ocupacion = params.ocupacion as int
-         historicoSesiones.observaciones = params.observaciones
-         historicoSesiones.resultadoOk = (params.resultadoOk == "true") ? true : false
-         update(historicoSesiones)*/
-
+    def edit(final HistoricoSesiones historicoSesiones) {
         respond historicoSesiones
     }
 
@@ -236,17 +223,14 @@ class HistoricoSesionesController {
 
         historicoSesiones.save flush: true
 
-//        def sesionesList = sesionService.filtraSesiones(historicoSesiones.sesion.diaSemana, historicoSesiones.sesion.instalacion)
         def sesionesList = sesionService.filtraSesiones(historicoSesiones.diaSemana, historicoSesiones.fecha)
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'historicoSesiones.label', default: 'HistoricoSesiones'), historicoSesiones.id])
-//                render template: "/sesion/listaSesiones", model: [sesionesList: sesionesList, dia: historicoSesiones.sesion.diaSemana.toString(), instalacion: historicoSesiones.sesion.instalacion]
                 redirect historicoSesiones
             }
             '*' { respond historicoSesiones, [status: OK] }
-//            render template: "/sesion/listaSesiones", model: [sesionesList: sesionesList, dia: historicoSesiones.sesion.diaSemana.toString(), instalacion: historicoSesiones.sesion.instalacion]
         }
     }
 
