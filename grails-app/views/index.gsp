@@ -139,6 +139,7 @@
             <li>[HISTORICO SESIONES] Añadido servicio para Histórico de Sesiones</li>
             <li>[HISTORICO SESIONES] Modificadas consultas de Checking de sesiones</li>
             <li>[HISTORICO SESIONES] Modificada plantilla de Checking de Sesiones</li>
+            <li>[CLUBES] Añadido check para mostrar/ocultar los técnicos inactivos</li>
         </ul>
 
         <h2>Modificaciones 05/09/2019</h2>
