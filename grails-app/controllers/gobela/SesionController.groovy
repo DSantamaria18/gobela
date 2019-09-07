@@ -1,9 +1,6 @@
 package gobela
 
-import org.hibernate.Session
-import org.hibernate.Transaction
 
-import java.text.SimpleDateFormat
 import java.time.LocalTime
 
 import static org.springframework.http.HttpStatus.*
@@ -17,26 +14,11 @@ class SesionController {
     static allowedMethods = [save: "POST", update: "PUT", actualizaEstadoById: "POST", delete: "DELETE"]
 
     def index() {
-        Date fecha = new Date().clearTime()
-        DiaSemana diaSemana = getDiaSemanaFromFecha(fecha)
-        def listaSesiones = sesionService.filtraSesiones(diaSemana, fecha)
+        final Date fecha = new Date().clearTime()
+        final DiaSemana diaSemana = DiaSemana.getDiaSemanaFromFecha(fecha)
+        final def listaSesiones = sesionService.getSesionesDeHoy(fecha)
 
         [diaSemana: diaSemana, listaSesiones: listaSesiones]
-    }
-
-    private static DiaSemana getDiaSemanaFromFecha(Date fecha) {
-        String dia = new SimpleDateFormat("EEEE", new Locale('es', 'ES')).format(fecha).toUpperCase()
-//        String eguna = new SimpleDateFormat("EEEE", new Locale('eu', 'ES')).format(hoy)
-
-        DiaSemana diaSemana
-        if (dia.equals("MIÉRCOLES")) {
-            diaSemana = DiaSemana.MIERCOLES
-        } else if (dia.equals("SÁBADO")) {
-            diaSemana = DiaSemana.SABADO
-        } else {
-            diaSemana = dia
-        }
-        diaSemana
     }
 
     def filtraInstalacionesPorRecinto(params) {
@@ -49,35 +31,32 @@ class SesionController {
     }
 
     def filtraSesiones(params) {
-        Date fecha = new Date().clearTime()
-        DiaSemana diaSemana = getDiaSemanaFromFecha(fecha)
+        final Date fecha = new Date().clearTime()
+        final DiaSemana diaSemana = DiaSemana.getDiaSemanaFromFecha(fecha)
 
-        Long recintoId =  (params?.recintoId == 'null') ? null : params.recintoId as Long
-        Long instalacionId = params?.instalacionId ? params.instalacionId as Long : null
+        final Long recintoId =  (params?.recintoId == 'null') ? null : params.recintoId as Long
+        final Long instalacionId = params?.instalacionId ? params.instalacionId as Long : null
 
         def sesionesList
         if(instalacionId){
-            Instalacion instalacion = Instalacion.get(instalacionId)
+            final Instalacion instalacion = Instalacion.get(instalacionId)
             sesionesList = sesionService.filtraSesionesPorInstalacion(diaSemana, fecha, instalacion)
         } else if(recintoId){
-            Recinto recinto = Recinto.get(recintoId)
+            final Recinto recinto = Recinto.get(recintoId)
             sesionesList = sesionService.filtraSesionesPorRecinto(diaSemana, fecha, recinto)
         }else {
             sesionesList = sesionService.filtraSesiones(diaSemana, fecha)
         }
-//        sesionesList = limpiaRegistrosDeFechasAnterioresDeListaDeSesiones(sesionesList, fecha)
 
         render template: "listaSesiones2", model: [diaSemana: diaSemana, listaSesiones: sesionesList]
     }
-
-
 
     def show(Sesion sesion) {
         respond sesion
     }
 
     def create() {
-        Categoria categoria = Categoria.get(params.categoria as Long)
+        final Categoria categoria = Categoria.get(params.categoria as Long)
         respond new Sesion(params), model: [categoria: categoria]
     }
 
@@ -150,28 +129,6 @@ class SesionController {
             '*' { respond sesion, [status: OK] }
         }
     }
-
-   /* @Transactional
-    def cambiaEstadoSesion(Long sesionId, boolean activa) {
-        Sesion sesion = Sesion.findById(sesionId)
-        sesion.activa = activa
-
-        if (sesion.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond sesion.errors, view: 'edit'
-            return
-        }
-
-        sesion.save flush: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'sesion.label', default: 'Sesion'), sesion.id])
-                redirect sesion
-            }
-            '*' { respond sesion, [status: OK] }
-        }
-    }*/
 
     @Transactional
     def delete(Sesion sesion) {

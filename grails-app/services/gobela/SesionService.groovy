@@ -5,7 +5,39 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class SesionService {
 
-    private static def limpiaRegistrosDeFechasAnterioresDeListaDeSesiones(List sesionesList, Date fecha) {
+    def getSesionesDeHoy(final Date hoy) {
+        final DiaSemana diaSemana = DiaSemana.getDiaSemanaFromFecha(hoy)
+        final def listaSesiones = Sesion.executeQuery("FROM Sesion s LEFT JOIN HistoricoSesiones hs ON hs.sesionId = s.id AND hs.fecha >= :fecha WHERE s.activa = true AND s.diaSemana = :diaSemana", [diaSemana: diaSemana, fecha: hoy])
+        final List model = getSesionesModel(listaSesiones)
+        return model
+    }
+
+    List getSesionesModel(final List listaSesiones) {
+        def model = []
+        for (sesionData in listaSesiones) {
+            def sesion = [:]
+            sesion['diaSemana'] = sesionData[0].diaSemana
+            sesion['id'] = sesionData[0].id
+            sesion['clubId'] = sesionData[0].categoria.club.id
+            sesion['club'] = sesionData[0].categoria.club
+            sesion['categoriaId'] = sesionData[0].categoria.id
+            sesion['categoria'] = sesionData[0].categoria
+            sesion['horaInicio'] = sesionData[0].horaInicio
+            sesion['horaFin'] = sesionData[0].horaFin
+            sesion['recintoId'] = sesionData[0].recinto.id
+            sesion['recinto'] = sesionData[0].recinto
+            sesion['instalacionId'] = sesionData[0].instalacion.id
+            sesion['instalacion'] = sesionData[0].instalacion
+            sesion['participantes'] = sesionData[0].categoria.numDeportistas
+            sesion['ocupacion'] = sesionData[0].ocupacion
+
+            sesion['sesionDeHoy'] = (sesionData[1]) ?: null
+            model.add(sesion)
+        }
+        return model
+    }
+
+    private static def filtraDatosHistorico(final List sesionesList, final Date fecha) {
         def listaSesiones = []
         for (sesionData in sesionesList) {
             def sesion = [:]
@@ -24,7 +56,8 @@ class SesionService {
             sesion['participantes'] = sesionData.categoria.numDeportistas
             sesion['ocupacion'] = sesionData.ocupacion
 
-            def listaHistoricoSesiones = sesionData?.historicoSesiones
+            //            def listaHistoricoSesiones = sesionData?.historicoSesiones
+            def listaHistoricoSesiones = HistoricoSesionesService.getHistoricoPorSesionYFecha(sesionData.id, fecha)
             HistoricoSesiones sesionDeHoy
             if (listaHistoricoSesiones?.size() > 1) {
                 for (hSesion in listaHistoricoSesiones) {
@@ -49,21 +82,22 @@ class SesionService {
         return listaSesiones
     }
 
-    def filtraSesiones(DiaSemana diaSemana, Date fecha) {
-        def sesiones = Sesion.executeQuery("from Sesion s where s.diaSemana = :diaSemana and s.activa = true order by s.horaInicio asc, s.horaFin asc", [diaSemana: diaSemana])
-        def listaSesiones = limpiaRegistrosDeFechasAnterioresDeListaDeSesiones(sesiones, fecha)
+    def filtraSesiones(final DiaSemana diaSemana, final Date fecha) {
+        final def sesiones = Sesion.executeQuery("FROM Sesion s LEFT JOIN HistoricoSesiones hs ON hs.sesionId = s.id AND hs.fecha >= :fecha WHERE s.diaSemana = :diaSemana AND s.activa = true ORDER BY s.horaInicio ASC, s.horaFin ASC", [diaSemana: diaSemana, fecha: fecha])
+        final List listaSesiones = getSesionesModel(sesiones)
         return listaSesiones
     }
 
-    def filtraSesionesPorInstalacion(DiaSemana diaSemana, Date fecha, Instalacion instalacion) {
-        def listaSesiones = gobela.HistoricoSesiones.executeQuery("from HistoricoSesiones hs right join hs.sesion s where (s.instalacion = :instalacion and s.diaSemana = :dia and hs.fecha is null and s.activa = true) or (s.instalacion = :instalacion and hs.fecha = :hoy and s.activa = true) order by s.horaInicio asc, s.horaFin asc", [instalacion: instalacion, dia: diaSemana, hoy: fecha])
-        return listaSesiones
+    def filtraSesionesPorInstalacion(final DiaSemana diaSemana, final Date fecha, final Instalacion instalacion) {
+        final def listaSesiones = HistoricoSesiones.executeQuery("FROM Sesion s LEFT JOIN HistoricoSesiones hs ON hs.sesionId = s.id AND hs.fecha >= :hoy WHERE s.activa = true AND s.diaSemana = :diaSemana AND s.instalacion = :instalacion order by s.horaInicio asc, s.horaFin asc", [instalacion: instalacion, dia: diaSemana, hoy: fecha])
+        final List model = getSesionesModel(listaSesiones)
+        return model
     }
 
-    def filtraSesionesPorRecinto(DiaSemana diaSemana, Date fecha, Recinto recinto) {
-        def sesiones = Sesion.executeQuery("from Sesion s where s.diaSemana = :diaSemana and s.activa = true and s.recinto = :recinto order by s.horaInicio asc, s.horaFin asc", [diaSemana: diaSemana, recinto: recinto])
-        def listaSesiones = limpiaRegistrosDeFechasAnterioresDeListaDeSesiones(sesiones, fecha)
-        return listaSesiones
+    def filtraSesionesPorRecinto(final DiaSemana diaSemana, final Date fecha, final Recinto recinto) {
+        final def sesiones = Sesion.executeQuery("FROM Sesion s LEFT JOIN HistoricoSesiones hs ON hs.sesionId = s.id AND hs.fecha >= :fecha WHERE s.activa = true AND s.diaSemana = :diaSemana AND s.recinto = :recinto order by s.horaInicio asc, s.horaFin asc", [diaSemana: diaSemana, recinto: recinto, fecha: fecha])
+        final List model = getSesionesModel(sesiones)
+        return model
     }
 
     def filtraHistoricoSesiones(final Date fDesde, final Date fHasta, final Club club, final Long categoriaId,
