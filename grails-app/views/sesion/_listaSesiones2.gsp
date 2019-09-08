@@ -25,7 +25,7 @@
             data-recinto="${sesion?.recinto}"
             data-instalacionid="${sesion?.instalacion?.id}"
             data-instalacion="${sesion?.instalacion}"
-            data-participantes="${sesion?.participantes}"
+            data-participantes="${sesion?.categoria?.numDeportistas}"
             data-ocupacion="${sesion?.ocupacion}"
             data-hsid="${sesion?.sesionDeHoy?.id}"
             data-hsfecha="${sesion?.sesionDeHoy?.fecha}"
@@ -48,19 +48,21 @@
 
             </td>
             <td>
-                <span id="sesion-club" style="font-weight: bold">${sesion.club}</span>
+                <span id="sesion-club" style="font-weight: bold">${sesion?.club}</span>
+%{--                <span id="sesion-club" style="font-weight: bold">${sesion?.categoria?.club}</span>--}%
                 <br>
-                <span id="sesion-categoria">${sesion.categoria}</span>
+                <span id="sesion-categoria">${sesion?.categoria}</span>
             </td>
             <td>
                 <span id="info-participantes">
                     <i class="glyphicon glyphicon-user"></i>
-                    ${sesion.participantes}
+                    ${sesion?.participantes}
+%{--                    ${sesion?.categoria?.numDeportistas}--}%
                 </span>
                 <br>
                 <span id="info-ocupacion">
                     <i class="glyphicon glyphicon-stats"></i>
-                    ${sesion.ocupacion}
+                    ${sesion?.ocupacion}
                 </span>
             </td>
         </tr>

@@ -4,6 +4,7 @@
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'club.label', default: 'Club')}"/>
     <title><g:message code="default.show.label" args="[entityName]"/></title>
+    <asset:javascript src="club.js"/>
 
     <style>
 
@@ -110,8 +111,12 @@
 
         <g:if test="${tecnicosList?.size() > 0}">
             <h5>Técnicos:</h5>
-            <br/>
-            <table class="table-responsive table-condensed">
+            <div class="fieldcontain">
+                <label for="check-tecnicos">Mostrar técnicos inactivos</label>
+                <input type="checkbox" id="check-tecnicos" onchange="mostrarTecnicosInactivos()">
+            </div>
+            <br />
+            <table class="table-responsive table-condensed" id="tabla-tecnicos">
                 <thead>
                 <tr>
                     <th>Nombre</th>
@@ -120,11 +125,12 @@
                     %{--<th>Nivel</th>--}%
                     <th>Contrato</th>
                     <th>Antigüedad</th>
+                    <th>Activo</th>
                 </tr>
                 </thead>
                 <tbody>
                 <g:each in="${tecnicosList}" var="tecnico">
-                    <tr>
+                    <tr data-activo="${tecnico.activo}" id="${tecnico.id}" name="fila-tecnico">
                         <td class="text-uppercase">${tecnico?.nombre} ${tecnico.apellidos}</td>
                         <td>${tecnico?.titulacion}</td>
                         <td>${tecnico?.nivelEuskera}</td>
@@ -137,6 +143,12 @@
                         </g:else>
                         </td>
                         <td>${tecnico?.antiguedad}</td>
+                        <td><g:if test="${tecnico?.activo}">
+                                <i class="glyphicon glyphicon-ok"></i>
+                            </g:if><g:else>
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </g:else>
+                        </td>
                     </tr>
                 </g:each>
                 </tbody>
@@ -238,5 +250,11 @@
         </g:form>
     </div>
 </div>
+<g:javascript>
+    $(document).ready(function () {
+        mostrarTecnicosInactivos();
+    });
+</g:javascript>
 </body>
+
 </html>

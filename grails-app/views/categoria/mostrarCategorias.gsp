@@ -45,7 +45,7 @@
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
         <g:if test="${categoriasCount > 0}">
             <li><g:link class="create" action="create" params="['clubId': clubId]"><g:message code="default.new.label"
-                                                                  args="[entityName]"/></g:link></li>
+                                                                                              args="[entityName]"/></g:link></li>
         </g:if>
     </ul>
 </div>
@@ -125,7 +125,7 @@
 
     <div class="property-list">
         <div class="fieldcontain">
-            <label for="modalidad">Selecciona una </label>
+            <label for="modalidad">Selecciona una</label>
             <g:select name="modalidad"
                       from="${Modalidad.listOrderByNombre()}"
                       value="${id}"

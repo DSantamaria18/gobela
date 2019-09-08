@@ -129,6 +129,19 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 07/09/2019</h2>
+        <ul>
+            <li>[SESIONES] Modificada entidad para desacoplar de Categoría</li>
+            <li>[SESIONES] Añadido botón "Eliminar" en vista de Sesión</li>
+            <li>[SESIONES] Extraída entidad DiaSemana de Sesión</li>
+            <li>[SESIONES] Creada nueva vista de edición de Sesión</li>
+            <li>[SESIONES] Adaptada vista de listado de sesiones</li>
+            <li>[HISTORICO SESIONES] Añadido servicio para Histórico de Sesiones</li>
+            <li>[HISTORICO SESIONES] Modificadas consultas de Checking de sesiones</li>
+            <li>[HISTORICO SESIONES] Modificada plantilla de Checking de Sesiones</li>
+            <li>[CLUBES] Añadido check para mostrar/ocultar los técnicos inactivos</li>
+        </ul>
+
         <h2>Modificaciones 05/09/2019</h2>
         <ul>
             <li>[HISTORICO SESIONES] Añadido spinner durante el filtrado</li>

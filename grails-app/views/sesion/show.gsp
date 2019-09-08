@@ -68,7 +68,7 @@
 
         <li class="fieldcontain">
             <span id="activa-label" class="property-label"><g:message code="sesion.activa.label"
-                                                                         default="Activa:"/></span>
+                                                                      default="Activa:"/></span>
             <span class="property-value" aria-labelledby="activa-label">
                 <g:if test="${sesion?.activa}">
                     SI
@@ -76,17 +76,29 @@
                 <g:else>
                     NO
                 </g:else>
+            </span>
         </li>
     </ol>
 
-    <fieldset class="buttons">
-        <g:if test="${this.sesion.activa}">
-            <input class="delete" type="button" value="Desactivar" onclick="cambiaEstadoSesion(${this.sesion.id}, true)"/>
-        </g:if>
-        <g:else>
-            <input class="create" type="button" value="Activar" onclick="cambiaEstadoSesion(${this.sesion.id}, false)"/>
-        </g:else>
-    </fieldset>
+    <g:form resource="${this.session}" method="DELETE">
+        <fieldset class="buttons">
+            <g:link class="edit" action="edit" resource="${this.session}"><g:message
+                    code="default.button.edit.label" default="Edit"/></g:link>
+            <input class="delete" type="submit"
+                   value="${message(code: 'default.button.delete.label', default: 'Delete')}"
+                   onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+        </fieldset>
+    </g:form>
+%{--        <fieldset class="buttons">--}%
+%{--            <g:if test="${this.sesion.activa}">--}%
+%{--                <input class="delete" type="button" value="Desactivar"--}%
+%{--                       onclick="cambiaEstadoSesion(${this.sesion.id}, true)"/>--}%
+%{--            </g:if>--}%
+%{--            <g:else>--}%
+%{--                <input class="create" type="button" value="Activar"--}%
+%{--                       onclick="cambiaEstadoSesion(${this.sesion.id}, false)"/>--}%
+%{--            </g:else>--}%
+%{--        </fieldset>--}%
 </div>
 </body>
 </html>

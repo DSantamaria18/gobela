@@ -24,13 +24,12 @@
 
     <hr/>
     <br/>
-    <label id="diaSemana">${diaSemana}</label>
-    <label id="fecha-actual" for="hoy"></label>
-
 
     <!-- Filtro -->
     <div id="filtroSesiones">
         <div class="row filtro-sesiones">
+            <label id="diaSemana">${diaSemana}</label>
+            <label id="fecha-actual" for="hoy"></label>
 
             <div id="combo-recintos" style="display: block">
                 <g:select from="${gobela.Recinto.list()}"
@@ -41,15 +40,7 @@
             <br>
             <button id="botonFiltrado" type="button" class="btn btn-info bt">Filtrar</button>
             <br>
-
-            %{--<div id="combo-instalaciones" style="display: block">
-                <g:render template="comboInstalaciones"/>
-            </div>--}%
-
             <g:hiddenField name="filtroRecintos" id="filtroRecintos" value=""/>
-            %{--<g:hiddenField name="filtroinstalaciones" id="filtroInstalaciones" value=""/>--}%
-            %{--<br>
-            <button id="botonFiltrado" type="button" class="btn btn-info bt">Filtrar Sesiones</button>--}%
         </div>
     </div>
     <!-- Fin filtro -->
@@ -132,7 +123,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="limpiaModal()">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            onclick="limpiaModal()">&times;</button>
 
                     <h1>Verificación de Sesión</h1>
                 </div>
@@ -237,6 +229,10 @@
                 formateaTablaSesiones();
             }, error: function (error) {
                 console.debug(error);
+            }, beforeSend: function () {
+                showSpinner(true)
+            }, complete: function () {
+                showSpinner(false)
             }
         })
     });
@@ -320,7 +316,7 @@
         }
     });
 
-    function limpiaModal(){
+    function limpiaModal() {
         $('#participantes').val('');
         $('#ocupacion').val('');
         $('#observaciones').val('');
@@ -350,11 +346,16 @@
         });
     };
 
-    function fillFechaSesion(){
+    function fillFechaSesion() {
         var fecha = new Date();
         var hoy = fecha.toISOString().substring(0, 10);
         $('#fecha-actual').html(fecha.getDate() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getFullYear());
         $('input#fecha-sesion').val(hoy);
+    };
+
+    function showSpinner(visible) {
+        if (visible) $('#spinner').show();
+        else $('#spinner').hide();
     };
 
     $(document).ready(function () {
