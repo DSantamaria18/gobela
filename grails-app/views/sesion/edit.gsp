@@ -48,30 +48,49 @@
             </div>
 
             <div class="fieldcontain">
-                <label for="diaSemana">Día Semana</label>
+                <label for="diaSemana" class="required-indicator">Día Semana</label>
+                <span class="required-indicator">*</span>
                 <g:select from="${gobela.DiaSemana}" id="diaSemana" name="diaSemana"
-                          value="${this.session?.diaSemana}"/>
+                          value="${sesion?.diaSemana}"/>
             </div>
 
             <div class="fieldcontain">
-                <label for=""></label>
-                <input id="" name="" type="">
+                <label for="horaInicio" class="required-indicator">Hora Inicio</label>
+                <span class="required-indicator">*</span>
+                <input id="horaInicio" name="horaInicio" type="text" value="${sesion?.horaInicio}"/>
             </div>
+
             <div class="fieldcontain">
-                <label for=""></label>
-                <input id="" name="" type="">
+                <label for="horaFin" class="required-indicator">Hora Fin</label>
+                <span class="required-indicator">*</span>
+                <input id="horaFin" name="horaFin" type="text" value="${this.sesion?.horaFin}"/>
             </div>
+
             <div class="fieldcontain">
-                <label for=""></label>
-                <input id="" name="" type="">
+                <label for="recinto" class="required-indicator">Recinto</label>
+                <span class="required-indicator">*</span>
+                <g:select name="recinto"
+                          from="${gobela.Recinto.listOrderByNombre()}"
+                          value="${sesion?.recinto}"
+                          optionKey="id"
+                          optionValue="nombre"
+                          id="recinto"
+                          onchange="getInstalacionByRecinto(this.value)"/>
             </div>
-            <div class="fieldcontain">
-                <label for=""></label>
-                <input id="" name="" type="">
+
+            <div class="fieldcontain" id="combo-instalacion">
+                <g:render template="comboInstalacionesEdit"/>
             </div>
+
             <div class="fieldcontain">
-                <label for=""></label>
-                <input id="" name="" type="">
+                <label for="ocupacion">Ocupacion</label>
+                <span class="required-indicator">*</span>
+                <input id="ocupacion" name="ocupacion" type="number" value="${this.sesion?.ocupacion}"/>
+            </div>
+
+            <div class="fieldcontain">
+                <label for="activa">Activa</label>
+                <g:checkBox id="activa" name="activa" value="${this.sesion?.activa}"/>
             </div>
 
         </fieldset>
@@ -81,5 +100,26 @@
         </fieldset>
     </g:form>
 </div>
+
+<g:javascript>
+    function getInstalacionByRecinto(recintoId) {
+        const url = "/gobela/sesion/getInstalacionByRecinto/" + recintoId.toString();
+        $.ajax({
+            url: url,
+            type: 'get'
+        }).done(function (data) {
+            $('div#combo-instalacion').html(data);
+        })
+    };
+
+    $(document).ready(function(){
+        const recintoId = $('select#recinto').val();
+        getInstalacionByRecinto(recintoId);
+        $('select#instalacion').val(${this.sesion?.instalacion});
+    });
+</g:javascript>
+
 </body>
+
+
 </html>
