@@ -129,6 +129,12 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 10/09/2019</h2>
+        <ul>
+            <li>[SESIONES] Recuperado orden en checking de sesiones </li>
+            <li>[SESIONES] Nueva vista de edición de sesiones </li>
+        </ul>
+
         <h2>Modificaciones 07/09/2019</h2>
         <ul>
             <li>[SESIONES] Modificada entidad para desacoplar de Categoría</li>

@@ -7,7 +7,7 @@ class SesionService {
 
     def getSesionesDeHoy(final Date hoy) {
         final DiaSemana diaSemana = DiaSemana.getDiaSemanaFromFecha(hoy)
-        final def listaSesiones = Sesion.executeQuery("FROM Sesion s LEFT JOIN HistoricoSesiones hs ON hs.sesionId = s.id AND hs.fecha >= :fecha WHERE s.activa = true AND s.diaSemana = :diaSemana", [diaSemana: diaSemana, fecha: hoy])
+        final def listaSesiones = Sesion.executeQuery("FROM Sesion s LEFT JOIN HistoricoSesiones hs ON hs.sesionId = s.id AND hs.fecha >= :fecha WHERE s.activa = true AND s.diaSemana = :diaSemana ORDER BY s.horaInicio ASC, s.horaFin ASC", [diaSemana: diaSemana, fecha: hoy])
         final List model = getSesionesModel(listaSesiones)
         return model
     }

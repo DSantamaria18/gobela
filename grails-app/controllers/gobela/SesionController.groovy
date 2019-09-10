@@ -159,4 +159,11 @@ class SesionController {
             '*' { render status: NOT_FOUND }
         }
     }
+
+    def getInstalacionByRecinto(params) {
+        final def recintoId = params.id
+        final Recinto recinto = Recinto.get(recintoId)
+        final def listaInstalaciones = Instalacion.findAllByRecinto(recinto)
+        render template: "comboInstalacionesEdit", model: [listaInstalaciones: listaInstalaciones]
+    }
 }
