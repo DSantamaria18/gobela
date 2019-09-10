@@ -1,7 +1,7 @@
 <label for="instalacion">Instalacion</label>
 <span class="required-indicator">*</span>
 <g:select name="instalacion"
-          id="instalacion"
           from="${listaInstalaciones}"
-          value="${this.sesion?.instalacion}"
+          value="${sesion?.instalacion}"
+          noSelection="${['': 'Selecciona un instalación...']}"
           optionKey="id"/>

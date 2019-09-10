@@ -27,4 +27,16 @@ function cambiaEstadoSesion(sesionId, activa) {
             alert('No se ha podido actualizar la sesión');
         });
     }
-}
+};
+
+function getInstalacionByRecinto(recintoId, instalacionId) {
+    const url = "/gobela/sesion/getInstalacionByRecinto/" + recintoId.toString();
+    $.ajax({
+        url: url,
+        type: 'get'
+    }).done(function (data) {
+        $('div#combo-instalacion').html(data);
+        $('[name="instalacion"]').val(instalacionId);
+        // $('[name="ocupacion"]').val(100);
+    })
+};

@@ -1,10 +1,11 @@
-<%@ page import="gobela.DiaSemana" %>
+<%@ page import="gobela.DiaSemana; gobela.Recinto; gobela.Sesion" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'sesion.label', default: 'Sesion')}"/>
     <title><g:message code="default.edit.label" args="[entityName]"/></title>
+    <asset:javascript src="sesiones.js"/>
 </head>
 
 <body>
@@ -36,12 +37,6 @@
     <g:form resource="${this.sesion}" method="PUT">
         <g:hiddenField name="version" value="${this.sesion?.version}"/>
         <fieldset class="form">
-            <f:all bean="sesion"/>
-
-            <br/>
-            <hr>
-            <br/>
-
             <div class="fieldcontain">
                 <label for="categoria">Categoría</label>
                 <span><label id="categoria" name="categoria">${this.sesion?.categoria.toString()}</label></span>
@@ -69,13 +64,13 @@
             <div class="fieldcontain">
                 <label for="recinto" class="required-indicator">Recinto</label>
                 <span class="required-indicator">*</span>
+                <g:set var="instalacionId" value="${this.sesion?.instalacion?.id}"/>
                 <g:select name="recinto"
-                          from="${gobela.Recinto.listOrderByNombre()}"
-                          value="${sesion?.recinto}"
-                          optionKey="id"
-                          optionValue="nombre"
+                          from="${Recinto.listOrderByNombre()}"
+                          value="${this.sesion?.recinto.id}"
                           id="recinto"
-                          onchange="getInstalacionByRecinto(this.value)"/>
+                          optionKey="id"
+                          onchange="getInstalacionByRecinto(this.value, ${instalacionId})"/>
             </div>
 
             <div class="fieldcontain" id="combo-instalacion">
@@ -102,24 +97,12 @@
 </div>
 
 <g:javascript>
-    function getInstalacionByRecinto(recintoId) {
-        const url = "/gobela/sesion/getInstalacionByRecinto/" + recintoId.toString();
-        $.ajax({
-            url: url,
-            type: 'get'
-        }).done(function (data) {
-            $('div#combo-instalacion').html(data);
-        })
-    };
-
-    $(document).ready(function(){
+    $(document).ready(function () {
         const recintoId = $('select#recinto').val();
-        getInstalacionByRecinto(recintoId);
-        $('select#instalacion').val(${this.sesion?.instalacion});
+        getInstalacionByRecinto(recintoId, ${this.sesion?.instalacion.id});
     });
 </g:javascript>
 
 </body>
-
 
 </html>

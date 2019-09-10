@@ -277,7 +277,7 @@ class EventoController {
         def recintoId = params.id
         Recinto recinto = Recinto.get(recintoId)
         def listaInstalaciones = Instalacion.findAllByRecinto(recinto)
-        render template: "instalacion", model: [listaInstalaciones: listaInstalaciones]
+        render template: "/sesion/comboInstalacionesEdit", model: [listaInstalaciones: listaInstalaciones]
     }
 
     def getContactoByEntidad(params) {
