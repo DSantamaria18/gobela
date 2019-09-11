@@ -277,7 +277,8 @@ class EventoController {
         def recintoId = params.id
         Recinto recinto = Recinto.get(recintoId)
         def listaInstalaciones = Instalacion.findAllByRecinto(recinto)
-        render template: "/sesion/comboInstalacionesEdit", model: [listaInstalaciones: listaInstalaciones]
+        final String comboTemplate = (request.getHeader("referer").contains("/sesion/create?")) ? "/sesion/instalacion" : "/sesion/comboInstalacionesEdit"
+        render template: comboTemplate, model: [listaInstalaciones: listaInstalaciones]
     }
 
     def getContactoByEntidad(params) {
