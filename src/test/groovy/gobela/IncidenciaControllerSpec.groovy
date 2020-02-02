@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(IncidenciaController)
-@Mock(Incidencia)
+//@TestFor(IncidenciaController)
+//@Mock(Incidencia)
 class IncidenciaControllerSpec extends Specification {
 
     def populateValidParams(params) {

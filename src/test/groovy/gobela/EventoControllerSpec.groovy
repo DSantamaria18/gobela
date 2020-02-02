@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(EventoController)
-@Mock(Evento)
+//@TestFor(EventoController)
+//@Mock(Evento)
 class EventoControllerSpec extends Specification {
 
     def populateValidParams(params) {

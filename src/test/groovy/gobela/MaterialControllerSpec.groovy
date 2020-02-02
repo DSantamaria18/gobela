@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(MaterialController)
-@Mock(Material)
+//@TestFor(MaterialController)
+//@Mock(Material)
 class MaterialControllerSpec extends Specification {
 
     def populateValidParams(params) {

@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(SesionController)
-@Mock(Sesion)
+//@TestFor(SesionController)
+//@Mock(Sesion)
 class SesionControllerSpec extends Specification {
 
     def populateValidParams(params) {

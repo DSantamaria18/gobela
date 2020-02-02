@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(BalanceController)
-@Mock(Balance)
+//@TestFor(BalanceController)
+//@Mock(Balance)
 class BalanceControllerSpec extends Specification {
 
     def populateValidParams(params) {

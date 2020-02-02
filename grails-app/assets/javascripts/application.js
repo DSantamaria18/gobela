@@ -276,7 +276,6 @@ function fillInstalacionByRecinto(recintoId, instalacionId) {
     }).done(function (data) {
         $('#instalacion-container').html(data);
         $('[name="instalacion"]').val(instalacionId);
-        $('[name="ocupacion"]').val(100);
     })
 }
 

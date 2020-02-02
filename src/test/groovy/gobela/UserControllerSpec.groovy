@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(UserController)
-@Mock(User)
+//@TestFor(UserController)
+//@Mock(User)
 class UserControllerSpec extends Specification {
 
     def populateValidParams(params) {

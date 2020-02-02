@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(EntidadController)
-@Mock(Entidad)
+//@TestFor(EntidadController)
+//@Mock(Entidad)
 class EntidadControllerSpec extends Specification {
 
     def populateValidParams(params) {

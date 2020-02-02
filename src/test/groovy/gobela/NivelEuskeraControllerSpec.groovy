@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(NivelEuskeraController)
-@Mock(NivelEuskera)
+//@TestFor(NivelEuskeraController)
+//@Mock(NivelEuskera)
 class NivelEuskeraControllerSpec extends Specification {
 
     def populateValidParams(params) {

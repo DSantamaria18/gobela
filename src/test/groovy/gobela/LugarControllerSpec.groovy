@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(LugarController)
-@Mock(Lugar)
+//@TestFor(LugarController)
+//@Mock(Lugar)
 class LugarControllerSpec extends Specification {
 
     def populateValidParams(params) {

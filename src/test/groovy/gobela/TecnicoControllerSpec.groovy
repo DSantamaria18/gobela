@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(TecnicoController)
-@Mock(Tecnico)
+//@TestFor(TecnicoController)
+//@Mock(Tecnico)
 class TecnicoControllerSpec extends Specification {
 
     def populateValidParams(params) {
