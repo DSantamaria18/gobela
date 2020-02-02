@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(ClubController)
-@Mock(Club)
+//@TestFor(ClubController)
+//@Mock(Club)
 class ClubControllerSpec extends Specification {
 
     def populateValidParams(params) {

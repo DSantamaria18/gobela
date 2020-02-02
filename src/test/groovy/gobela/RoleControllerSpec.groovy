@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(RoleController)
-@Mock(Role)
+//@TestFor(RoleController)
+//@Mock(Role)
 class RoleControllerSpec extends Specification {
 
     def populateValidParams(params) {

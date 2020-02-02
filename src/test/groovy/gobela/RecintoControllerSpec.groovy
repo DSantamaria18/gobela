@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(RecintoController)
-@Mock(Recinto)
+//@TestFor(RecintoController)
+//@Mock(Recinto)
 class RecintoControllerSpec extends Specification {
 
     def populateValidParams(params) {

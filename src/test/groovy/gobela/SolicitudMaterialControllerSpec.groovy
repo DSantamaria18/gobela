@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(SolicitudMaterialController)
-@Mock(SolicitudMaterial)
+//@TestFor(SolicitudMaterialController)
+//@Mock(SolicitudMaterial)
 class SolicitudMaterialControllerSpec extends Specification {
 
     def populateValidParams(params) {

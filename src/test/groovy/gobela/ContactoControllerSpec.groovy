@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(ContactoController)
-@Mock(Contacto)
+//@TestFor(ContactoController)
+//@Mock(Contacto)
 class ContactoControllerSpec extends Specification {
 
     def populateValidParams(params) {

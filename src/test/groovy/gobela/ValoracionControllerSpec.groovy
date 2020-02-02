@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(ValoracionController)
-@Mock(Valoracion)
+//@TestFor(ValoracionController)
+//@Mock(Valoracion)
 class ValoracionControllerSpec extends Specification {
 
     def populateValidParams(params) {

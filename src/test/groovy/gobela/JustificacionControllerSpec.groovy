@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(JustificacionController)
-@Mock(Justificacion)
+//@TestFor(JustificacionController)
+//@Mock(Justificacion)
 class JustificacionControllerSpec extends Specification {
 
     def populateValidParams(params) {

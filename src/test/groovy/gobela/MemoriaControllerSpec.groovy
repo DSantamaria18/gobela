@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(MemoriaController)
-@Mock(Memoria)
+//@TestFor(MemoriaController)
+//@Mock(Memoria)
 class MemoriaControllerSpec extends Specification {
 
     def populateValidParams(params) {

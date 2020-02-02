@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(InstalacionController)
-@Mock(Instalacion)
+//@TestFor(InstalacionController)
+//@Mock(Instalacion)
 class InstalacionControllerSpec extends Specification {
 
     def populateValidParams(params) {

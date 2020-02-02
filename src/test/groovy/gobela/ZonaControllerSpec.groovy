@@ -3,8 +3,8 @@ package gobela
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(ZonaController)
-@Mock(Zona)
+//@TestFor(ZonaController)
+//@Mock(Zona)
 class ZonaControllerSpec extends Specification {
 
     def populateValidParams(params) {
