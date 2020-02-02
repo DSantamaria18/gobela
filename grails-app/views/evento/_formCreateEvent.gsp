@@ -277,6 +277,12 @@
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'instalacion', 'error')}" id="instalacion-container">
     <g:render template="instalacion"/>
 </div>
+<div class="fieldcontain" id="field-ocuoacion" ${hasErrors(bean: evento, field: 'ocupacion', 'error')}">
+    <label for="ocupacion">
+        <g:message code="evento.ocupacion.label" default="Ocupación:"/>
+    </label>
+    <g:textField name="ocupacion" id="ocupacion" value="${this.evento?.ocupacion}"/>%
+</div>
 
 <br/>
 <hr/>
@@ -311,7 +317,7 @@
     <label for="numAsistentes">
         <g:message code="evento.numAsistentes.label" default="Número de asistentes:"/>
     </label>
-    <g:textField name="numAsistentes" value="${this.evento?.numParticipantes}"/>
+    <g:textField name="numAsistentes" value="${this.evento?.numAsistentes}"/>
 </div>
 
 <div class="fieldcontain" ${hasErrors(bean: evento, field: 'numVoluntarios', 'error')}>
