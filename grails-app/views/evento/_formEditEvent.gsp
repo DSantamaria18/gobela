@@ -90,8 +90,14 @@
         <g:message code="evento.multikirola.label" default="Multikirola:"/>
     </label>
     <g:checkBox name="multikirola" value="${evento?.multikirola}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'multikirola', 'error')}">
     <label for="edadMinima">Edad Mínima </label>
     <g:textField name="edadMinima" type="number" id="edadMinima" value="${this.evento?.edadMinima}"/>
+
+    <label for="edadMaxima">Edad Máxima </label>
+    <g:textField name="edadMaxima" type="number" id="edadMaxima" value="${this.evento?.edadMaxima}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'deporteAdaptado', 'error')}">
@@ -146,19 +152,6 @@
 <br/>
 <hr/>
 <br/>
-
-%{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'clubOrganizador', 'error')}">
-    <label for="clubOrganizador">
-        <g:message code="evento.clubOrganizador.label" default="Club organizador:"/>
-    </label>
-    --}%%{--<g:textField name="clubOrganizador" value="${this.evento?.clubOrganizador}"/>--}%%{--
-    <g:select name="clubOrganizador"
-              from="${gobela.Entidad.listOrderByNombreEntidad()}"
-              value="${evento?.clubOrganizador?.id}"
-              noSelection="${['':'Selecciona un club organizador...']}"
-              optionKey="id"
-              optionValue="nombreEntidad"/>
-</div>--}%
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'ambito', 'error')} required">
     <label for="ambito">
