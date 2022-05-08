@@ -129,6 +129,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
+        <h2>Modificaciones 08/05/2022</h2>
+        <ul>
+            <li>[EVENTOS] Añade soporte para restringir eventos Multikirola por edad máxima</li>
+        </ul>
+
         <h2>Modificaciones 02/02/2020</h2>
         <ul>
             <li>[EVENTOS] Corregido error Nº participantes se copia a nº de asistentes</li>
