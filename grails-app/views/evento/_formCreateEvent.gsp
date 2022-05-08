@@ -22,14 +22,6 @@
     <g:checkBox name="relevante" value="${evento?.relevante}"/>
 </div>
 
-%{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'fecha', 'error')} required">
-    <label for="fecha">
-        <g:message code="evento.fecha.label" default="Fecha del evento:"/>
-        <span class="required-indicator">*</span>
-    </label>
-    <g:datePicker name="fecha" precision="day" value="${this.evento?.fecha}"/>
-</div>--}%
-
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'fecha', 'error')} required">
     <label for="fecha">
         <g:message code="evento.fechaInicio.label" default="Fecha del evento:"/>
@@ -98,9 +90,14 @@
         <g:message code="evento.multikirola.label" default="Multikirola:"/>
     </label>
     <g:checkBox name="multikirola" value="${evento?.multikirola}"/>
+</div>
 
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'multikirola', 'error')}">
     <label for="edadMinima">Edad Mínima </label>
     <g:textField name="edadMinima" type="number" id="edadMinima" value="${this.evento?.edadMinima}"/>
+
+    <label for="edadMaxima">Edad Máxima </label>
+    <g:textField name="edadMaxima" type="number" id="edadMaxima" value="${this.evento?.edadMaxima}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'deporteAdaptado', 'error')}">
@@ -154,20 +151,6 @@
 <br/>
 <hr/>
 <br/>
-
-%{--<div class="fieldcontain ${hasErrors(bean: evento, field: 'clubOrganizador', 'error')}">
-    <label for="clubOrganizador">
-        <g:message code="evento.clubOrganizador.label" default="Club organizador:"/>
-    </label>
-    --}%%{--<g:textField name="clubOrganizador" value="${this.evento?.clubOrganizador}"/>--}%%{--
-    <g:select name="clubOrganizador"
-              from="${gobela.Entidad.listOrderByNombreEntidad()}"
-              value="${evento?.clubOrganizador}"
-              noSelection="${['':'Selecciona al menos un club organozador...']}"
-              multiple="true"
-              optionKey="id"
-              optionValue="nombreEntidad"/>
-</div>--}%
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'ambito', 'error')} required">
     <label for="ambito">
@@ -326,42 +309,6 @@
     </label>
     <g:textField name="numVoluntarios" value="${this.evento?.numVoluntarios}"/>
 </div>
-
-%{--
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'horasMant', 'error')}>
-    <label for="horasMant">
-        <g:message code="evento.horasMantM.label" default="Número de mantenimiento:"/>
-    </label>
-    <g:textField name="horasMant" value="${this.evento?.horasMant}"/>
-</div>
-
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'horasDeptivo', 'error')}>
-    <label for="horasDeptivo">
-        <g:message code="evento.horasDeptivoM.label" default="Número de polideportivo:"/>
-    </label>
-    <g:textField name="horasDeptivo" value="${this.evento?.horasDeptivo}"/>
-</div>
-
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'horasLimpieza', 'error')}>
-    <label for="horasLimpieza">
-        <g:message code="evento.horasLimpiezaM.label" default="Número de limpieza:"/>
-    </label>
-    <g:textField name="horasLimpieza" value="${this.evento?.horasLimpieza}"/>
-</div>
-
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'costesPersonal', 'error')}>
-    <label for="costesPersonal">
-        <g:message code="evento.costesPersonalM.label" default="Costes de personal:"/>
-    </label>
-    <g:textField name="costesPersonal" value="${this.evento?.costesPersonal}"/>
-</div>
-
-<div class="fieldcontain" ${hasErrors(bean: evento, field: 'totalInversion', 'error')}>
-    <label for="totalInversion">
-        <g:message code="evento.totalInversionM.label" default="Total inversión:"/>
-    </label>
-    <g:textField name="totalInversion" value="${this.evento?.totalInversion}"/>
-</div>--}%
 
 <div class="fieldcontain ${hasErrors(bean: evento, field: 'observaciones', 'error')} ">
     <label for="observaciones">

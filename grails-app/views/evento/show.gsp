@@ -197,6 +197,17 @@
             </li>
         </g:if>
 
+        <g:if test="${evento?.edadMaxima}">
+            <li class="fieldcontain">
+                <span id="edadMaxima-label" class="property-label"><g:message
+                        code="evento.edadMaxima.label"
+                        default="Edad Máxima:"/></span>
+                <span class="property-value" aria-labelledby="edadMaxima-label"><g:fieldValue
+                        bean="${evento}"
+                        field="edadMaxima"/></span>
+            </li>
+        </g:if>
+
         <g:if test="${evento?.deporteAdaptado}">
             <li class="fieldcontain">
                 <span id="deporteAdaptado-label" class="property-label"><g:message

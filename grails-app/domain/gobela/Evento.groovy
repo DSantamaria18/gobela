@@ -38,6 +38,7 @@ class Evento {
     String euskeraDesarrollo
     String euskeraSpeaker
     Integer edadMinima
+    Integer edadMaxima
 
 
     static hasMany = [solicitudesMaterial: SolicitudMaterial]
