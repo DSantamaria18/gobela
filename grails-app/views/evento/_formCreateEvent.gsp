@@ -92,7 +92,7 @@
     <g:checkBox name="multikirola" value="${evento?.multikirola}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: evento, field: 'multikirola', 'error')}">
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'edadMinima', 'error')}">
     <label for="edadMinima">Edad Mínima </label>
     <g:textField name="edadMinima" type="number" id="edadMinima" value="${this.evento?.edadMinima}"/>
 
@@ -119,6 +119,16 @@
         <g:message code="evento.solidario.label" default="Evento solidario:"/>
     </label>
     <g:checkBox name="solidario" value="${evento?.solidario}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'avisos', 'error')} ">
+    <label for="avisos">
+        <g:message code="evento.avisos.label" default="Avisos (multikirola):"/>
+
+    </label>
+    <g:textArea name="avisos" cols="60" rows="15" maxlength="5000"
+                value="${this.evento?.avisos}"/>
+
 </div>
 
 <br/>
@@ -319,10 +329,20 @@
                 value="${this.evento?.observaciones}"/>
 
 </div>
+<div class="fieldcontain ${hasErrors(bean: evento, field: 'observaciones', 'error')} ">
+    <label for="observaciones">
+        <g:message code="evento.observaciones.label" default="Observaciones:"/>
+
+    </label>
+    <g:textArea name="observaciones" cols="60" rows="15" maxlength="5000"
+                value="${this.evento?.observaciones}"/>
+
+</div>
 
 <g:javascript>
         $(document).ready(function () {
             $('#ocupacion').val('100');
             $('#edadMinima').val(0);
+            $('#edadMaxima').val(12);
         })
 </g:javascript>
