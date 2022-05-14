@@ -39,7 +39,7 @@ class Evento {
     String euskeraSpeaker
     Integer edadMinima
     Integer edadMaxima
-
+    String avisos
 
     static hasMany = [solicitudesMaterial: SolicitudMaterial]
 
@@ -84,5 +84,6 @@ class Evento {
         observaciones(nullable: true, blank: true, maxSize: 5000)
         solicitudesMaterial()
         ocupacion(nullable: false, blank: false)
+        avisos(nullable: true, blank: true)
     }
 }

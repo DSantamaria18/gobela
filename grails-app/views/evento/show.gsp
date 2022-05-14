@@ -238,6 +238,19 @@
             </li>
         </g:if>
 
+        <g:if test="${evento?.avisos}">
+            <li class="fieldcontain">
+                <span id="avisos-label" class="property-label">
+                    <g:message code="evento.avisos.label"
+                               default="Avisos (multikirola):"/>
+                </span>
+                <span class="property-value" aria-labelledby="avisos-label">
+                    <g:fieldValue bean="${evento}"
+                                  field="avisos"/>
+                </span>
+            </li>
+        </g:if>
+
         <g:if test="${evento?.entidadOrganizadora}">
             <li class="fieldcontain">
                 <span id="entidadOrganizadora-label" class="property-label"><g:message
