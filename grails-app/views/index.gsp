@@ -129,10 +129,11 @@
     <section class="row colset-2-its">
         <h1>ULTIMOS CAMBIOS</h1>
 
-        <h2>Modificaciones 14/05/2022</h2>
+        <h2>Modificaciones 27/05/2022</h2>
         <ul>
             <li>[EVENTOS] Añade soporte para restringir eventos Multikirola por edad máxima</li>
             <li>[EVENTOS] Añade soporte para avisos en eventos Multikirola</li>
+            <li>[EVENTOS] Añade soporte en Recintos para el enlace a Google Maps en eventos Multikirola</li>
         </ul>
 
         <h2>Modificaciones 02/02/2020</h2>
